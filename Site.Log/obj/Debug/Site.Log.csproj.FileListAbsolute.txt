@@ -1,0 +1,7 @@
+E:\liaoyang\Project\Site.WeiXin\Site.Log\bin\Debug\Site.Log.dll
+E:\liaoyang\Project\Site.WeiXin\Site.Log\bin\Debug\Site.Log.pdb
+E:\liaoyang\Project\Site.WeiXin\Site.Log\bin\Debug\log4net.dll
+E:\liaoyang\Project\Site.WeiXin\Site.Log\bin\Debug\log4net.xml
+E:\liaoyang\Project\Site.WeiXin\Site.Log\obj\Debug\Site.Log.csprojResolveAssemblyReference.cache
+E:\liaoyang\Project\Site.WeiXin\Site.Log\obj\Debug\Site.Log.dll
+E:\liaoyang\Project\Site.WeiXin\Site.Log\obj\Debug\Site.Log.pdb

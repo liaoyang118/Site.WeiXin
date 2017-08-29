@@ -1,0 +1,5 @@
+E:\liaoyang\Project\Site.WeiXin\Site.Untity\bin\Debug\Site.Untity.dll
+E:\liaoyang\Project\Site.WeiXin\Site.Untity\bin\Debug\Site.Untity.pdb
+E:\liaoyang\Project\Site.WeiXin\Site.Untity\obj\Debug\Site.Untity.csprojResolveAssemblyReference.cache
+E:\liaoyang\Project\Site.WeiXin\Site.Untity\obj\Debug\Site.Untity.dll
+E:\liaoyang\Project\Site.WeiXin\Site.Untity\obj\Debug\Site.Untity.pdb
