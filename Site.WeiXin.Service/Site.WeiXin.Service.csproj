@@ -41,6 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeiXinService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Site.WeiXin.DataAccess\Site.WeiXin.DataAccess.csproj">
+      <Project>{89fb9241-f677-4a7a-a9b0-a60d9a686f8e}</Project>
+      <Name>Site.WeiXin.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

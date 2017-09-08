@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Site.WeiXin.DataAccess.Model;
+using Site.WeiXin.DataAccess.Service;
 
 namespace Site.WeiXin.Interface.Controllers
 {
@@ -30,7 +32,7 @@ namespace Site.WeiXin.Interface.Controllers
 
         }
 
-
+        //验证参数
         private bool CheckSignature(string signature, string timestamp, string nonce)
         {
             string token = UntityConfig.GetConfigValue("token");
@@ -48,8 +50,6 @@ namespace Site.WeiXin.Interface.Controllers
                 return false;
             }
         }
-
-
-
+        
     }
 }

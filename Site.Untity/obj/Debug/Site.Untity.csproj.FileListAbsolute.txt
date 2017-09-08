@@ -3,3 +3,8 @@ E:\liaoyang\Project\Site.WeiXin\Site.Untity\bin\Debug\Site.Untity.pdb
 E:\liaoyang\Project\Site.WeiXin\Site.Untity\obj\Debug\Site.Untity.csprojResolveAssemblyReference.cache
 E:\liaoyang\Project\Site.WeiXin\Site.Untity\obj\Debug\Site.Untity.dll
 E:\liaoyang\Project\Site.WeiXin\Site.Untity\obj\Debug\Site.Untity.pdb
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Untity\bin\Debug\Site.Untity.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Untity\bin\Debug\Site.Untity.pdb
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Untity\obj\Debug\Site.Untity.csprojResolveAssemblyReference.cache
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Untity\obj\Debug\Site.Untity.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Untity\obj\Debug\Site.Untity.pdb

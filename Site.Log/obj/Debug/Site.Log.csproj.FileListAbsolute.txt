@@ -5,3 +5,10 @@ E:\liaoyang\Project\Site.WeiXin\Site.Log\bin\Debug\log4net.xml
 E:\liaoyang\Project\Site.WeiXin\Site.Log\obj\Debug\Site.Log.csprojResolveAssemblyReference.cache
 E:\liaoyang\Project\Site.WeiXin\Site.Log\obj\Debug\Site.Log.dll
 E:\liaoyang\Project\Site.WeiXin\Site.Log\obj\Debug\Site.Log.pdb
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Log\bin\Debug\Site.Log.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Log\bin\Debug\Site.Log.pdb
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Log\bin\Debug\log4net.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Log\bin\Debug\log4net.xml
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Log\obj\Debug\Site.Log.csprojResolveAssemblyReference.cache
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Log\obj\Debug\Site.Log.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.Log\obj\Debug\Site.Log.pdb

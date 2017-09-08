@@ -1,0 +1,99 @@
+﻿<#@ template  debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="System.Windows.Forms" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ include file="params.ttinclude" #>
+<#@ include file="DbHelper.ttinclude" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.Common;
+using System.Data;
+using <#= ModelNamespaceStr #>;
+using <#= DataAccessNamespaceStr #>;
+
+namespace <#= ServiceNamespaceStr #>
+{
+
+<# 
+    foreach (DbTable table in DbHelper.GetDbTables(ConnectionString,DataBaseName))
+    {
+#>
+	public partial class <#=table.TableName#>Service
+    {
+
+        #region 01 <#=table.TableName#>_Insert
+		 public static int Insert(<#=table.TableName#> obj)
+		 {
+			using (var access = new <#=table.TableName#>Access())
+            {
+                return access.Insert(obj);
+            }
+		 }
+		#endregion
+		
+		#region 02 <#=table.TableName#>_Delete
+		 public static int Delete(int id)
+		 {
+			using (var access = new <#=table.TableName#>Access())
+			{
+				return access.Delete(id);
+			}
+		}
+		#endregion
+
+		#region 03 <#=table.TableName#>_Update
+		 public static int Update(<#=table.TableName#> obj)
+		 {
+			
+			using (var access = new <#=table.TableName#>Access())
+			{
+				return access.Update(obj);
+			}
+		}
+		#endregion
+
+		#region 04 <#=table.TableName#>_SelectObject
+		 public static <#=table.TableName#> SelectObject(int id)
+		 {
+			
+			using (var access = new <#=table.TableName#>Access())
+			{
+				return access.SelectObject(id);
+			}
+		}
+		#endregion
+
+		#region 05 <#=table.TableName#>_Select
+		 public static IList<<#=table.TableName#>> Select(string whereStr)
+		 {
+			using (var access = new <#=table.TableName#>Access())
+			{
+				return access.Select(whereStr);
+			}
+		}
+		#endregion
+
+		#region 06 <#=table.TableName#>_SelectPage
+		 public static IList<<#=table.TableName#>> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			using (var access = new <#=table.TableName#>Access())
+			{
+				return access.SelectPage(cloumns,order,whereStr,pageIndex,pageSize, out rowCount);
+			}
+		}
+		#endregion
+
+    }
+<#		 
+    }
+#>
+}

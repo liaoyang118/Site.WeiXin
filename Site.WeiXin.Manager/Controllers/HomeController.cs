@@ -13,5 +13,7 @@ namespace Site.WeiXin.Manager.Controllers
         {
             return View();
         }
+
+
     }
 }

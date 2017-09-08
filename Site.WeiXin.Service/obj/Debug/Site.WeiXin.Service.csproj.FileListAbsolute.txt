@@ -1,0 +1,11 @@
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Service\bin\Debug\Site.WeiXin.Service.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Service\bin\Debug\Site.WeiXin.Service.pdb
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Service\obj\Debug\Site.WeiXin.Service.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Service\obj\Debug\Site.WeiXin.Service.pdb
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Service\bin\Debug\Site.WeiXin.DataAccess.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Service\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Service\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Service\bin\Debug\Site.WeiXin.DataAccess.pdb
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Service\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Service\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Service\obj\Debug\Site.WeiXin.Service.csprojResolveAssemblyReference.cache

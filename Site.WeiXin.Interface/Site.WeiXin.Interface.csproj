@@ -127,6 +127,10 @@
       <Project>{37795c68-ae6c-4f55-917d-f5744c69f6a1}</Project>
       <Name>Site.Untity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Site.WeiXin.DataAccess\Site.WeiXin.DataAccess.csproj">
+      <Project>{89fb9241-f677-4a7a-a9b0-a60d9a686f8e}</Project>
+      <Name>Site.WeiXin.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
