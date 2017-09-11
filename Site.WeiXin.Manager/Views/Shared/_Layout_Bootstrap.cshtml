@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery.toast.css" rel="stylesheet" />
+
+    <link href="~/PageTemplate/style/font-awesome.css" rel="stylesheet" />
+    <link href="~/PageTemplate/style/style.css" rel="stylesheet" />
+
+
+    @RenderSection("css", false)
+    @RenderSection("head", false)
+
+</head>
+<body>
+    <div class="admin-form">
+        <div class="container">
+            @RenderBody()
+
+            <p>&copy; @DateTime.Now.Year - 微信管理系统</p>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.toast.js"></script>
+
+    @RenderSection("scripts", false)
+
+</body>
+</html>

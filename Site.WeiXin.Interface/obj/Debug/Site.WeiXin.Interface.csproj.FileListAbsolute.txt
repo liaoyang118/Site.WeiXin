@@ -124,3 +124,9 @@ E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Interface\bin\Site.WeiXi
 E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Interface\bin\Site.WeiXin.DataAccess.pdb
 E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Interface\bin\Microsoft.Practices.EnterpriseLibrary.Data.xml
 E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Interface\bin\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Site.WeiXin.DataAccess.dll
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Site.WeiXin.DataAccess.pdb
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Microsoft.Practices.EnterpriseLibrary.Common.xml
