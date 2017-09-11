@@ -16,4 +16,5 @@
 	string ServiceNamespaceStr="Site.WeiXin.DataAccess.Service";
 	string ConnectionString="Data Source=.;Initial Catalog=TestDB;User ID=sa;Password=USER1122@";
 	string DataBaseName="TestDB";
+	string connectionNameString="wxmanager";
 #>

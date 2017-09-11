@@ -73,6 +73,11 @@ namespace <#= ServiceNamespaceStr #>
 		#endregion
 
 		#region 05 <#=table.TableName#>_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以空格 and 开始</param>
+         /// <returns></returns>
 		 public static IList<<#=table.TableName#>> Select(string whereStr)
 		 {
 			using (var access = new <#=table.TableName#>Access())

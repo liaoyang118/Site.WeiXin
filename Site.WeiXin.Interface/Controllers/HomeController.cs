@@ -35,7 +35,7 @@ namespace Site.WeiXin.Interface.Controllers
         //验证参数
         private bool CheckSignature(string signature, string timestamp, string nonce)
         {
-            string token = UntityConfig.GetConfigValue("token");
+            string token = Untity.UntityTool.GetConfigValue("token");
             string[] ArrTmp = { token, timestamp, nonce };
             Array.Sort(ArrTmp);
             string tmpStr = string.Join("", ArrTmp);

@@ -1,4 +1,0 @@
-E:\yang.liao\私人项目文件\Site.Weixin\Site.BT.Service\bin\Debug\Site.BT.Service.dll
-E:\yang.liao\私人项目文件\Site.Weixin\Site.BT.Service\bin\Debug\Site.BT.Service.pdb
-E:\yang.liao\私人项目文件\Site.Weixin\Site.BT.Service\obj\Debug\Site.BT.Service.dll
-E:\yang.liao\私人项目文件\Site.Weixin\Site.BT.Service\obj\Debug\Site.BT.Service.pdb

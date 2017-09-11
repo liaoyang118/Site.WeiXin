@@ -1,20 +1,110 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "微信后台管理系统_登录界面";
 }
 
-<!--下面是用户名输入框-->
-<div class="input-group">
-    <span class="input-group-addon" id="basic-addon1">@@</span>
-    <input id="userName" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
-</div>
-<br>
-<!--下面是密码输入框-->
-<div class="input-group">
-    <span class="input-group-addon" id="basic-addon1">@@</span>
-    <input id="passWord" type="text" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
-</div>
-<br>
-<!--下面是登陆按钮,包括颜色控制-->
-<button type="button" style="width:280px;" class="btn btn-default">登 录</button>
+@section css{
+    <link href="~/Content/bootstrapValidator.min.css" rel="stylesheet" />
 
+}
+
+@section scripts{
+    <script src="~/Scripts/bootstrapValidator.min.js"></script>
+    <script src="~/Scripts/Jquery.toast.customer.js"></script>
+    <script>
+        $(function () {
+            //设置校验规则
+            $('form').bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    username: {
+                        message: '用户名验证失败',
+                        validators: {
+                            notEmpty: {
+                                message: '用户名不能为空'
+                            }
+                        }
+                    },
+                    passWord: {
+                        validators: {
+                            notEmpty: {
+                                message: '密码不能为空'
+                            }
+                        }
+                    }
+                }
+            });
+
+            //校验
+            $('#btn_submit').click(function () {
+                var valiForm = $('#forms_login').data('bootstrapValidator');
+                valiForm.validate();
+                if (valiForm.isValid()) {
+                    $.ShowLoading("登录中...");
+                    //验证通过
+                    $.ajax({
+                        url: "/Login/Do",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            name: $("#username").val(),
+                            pwd: $("#passWord").val()
+                        },
+                        cache: false,
+                        success: function (json) {
+                            $.HideLoading();
+                            if (json.success) {
+                                $.SuccessInfo(json.message.text, 1500);
+                                setTimeout(function () {
+                                    top.location.href = "/";
+                                }, 2000);
+                            }
+                            else {
+                                $.WarningInfo(json.message.text);
+                            }
+                        },
+                        error: function (xhr, state, error) {
+                            $.HideLoading();
+
+                            $.ErrorInfo(json.message.text);
+                        }
+                    });
+                }
+            });
+
+
+
+
+        });
+    </script>
+
+}
+
+
+<form id="forms_login">
+    <!--下面是用户名输入框-->
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">@@</span>
+            <input id="username" name="username" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <!--下面是密码输入框-->
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">@@</span>
+            <input id="passWord" name="passWord" type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <!--下面是登陆按钮,包括颜色控制-->
+        <button type="button" id="btn_submit" style="width:280px;" class="btn btn-default">登 录</button>
+    </div>
+</form>

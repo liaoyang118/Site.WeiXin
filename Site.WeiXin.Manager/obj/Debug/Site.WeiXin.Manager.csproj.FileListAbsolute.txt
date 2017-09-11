@@ -103,3 +103,11 @@ E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\bin\zh-Hans\Syst
 E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\obj\Debug\Site.WeiXin.Manager.csprojResolveAssemblyReference.cache
 E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\obj\Debug\Site.WeiXin.Manager.dll
 E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\obj\Debug\Site.WeiXin.Manager.pdb
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\bin\Site.WeiXin.DataAccess.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\bin\Site.WeiXin.DataAccess.pdb
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\bin\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\bin\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\bin\Site.Untity.dll
+E:\yang.liao\私人项目文件\Site.Weixin\Site.WeiXin.Manager\bin\Site.Untity.pdb

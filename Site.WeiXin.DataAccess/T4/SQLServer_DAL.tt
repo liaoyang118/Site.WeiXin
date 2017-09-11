@@ -34,15 +34,17 @@ namespace <#= DataAccessNamespaceStr #>
 
 		Database db;
 
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
         #region 00 IDisposable 实现
         public <#=table.TableName#>Access(string configName)
         {
-            db = DatabaseFactory.CreateDatabase(configName);
+			db = factory.Create(configName);
         }
 
         public <#=table.TableName#>Access()
         {
-            db = DatabaseFactory.CreateDatabase("MySite");
+            db = factory.Create("<#=connectionNameString#>");
         }
 
         //虚拟Idisposable 实现,手动调用的
@@ -206,6 +208,11 @@ namespace <#= DataAccessNamespaceStr #>
 		#endregion
 
 		#region 05 Proc_<#=table.TableName#>_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
 		 public override IList<<#=table.TableName#>> Select(string whereStr)
 		 {
 			DbCommand dbCmd = db.GetStoredProcCommand("Proc_<#=table.TableName#>_SelectList");

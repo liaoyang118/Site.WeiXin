@@ -60,6 +60,11 @@ namespace Site.WeiXin.DataAccess.Service
 		#endregion
 
 		#region 05 GloblaToken_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以空格 and 开始</param>
+         /// <returns></returns>
 		 public static IList<GloblaToken> Select(string whereStr)
 		 {
 			using (var access = new GloblaTokenAccess())
@@ -126,6 +131,11 @@ namespace Site.WeiXin.DataAccess.Service
 		#endregion
 
 		#region 05 Menu_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以空格 and 开始</param>
+         /// <returns></returns>
 		 public static IList<Menu> Select(string whereStr)
 		 {
 			using (var access = new MenuAccess())
@@ -192,6 +202,11 @@ namespace Site.WeiXin.DataAccess.Service
 		#endregion
 
 		#region 05 MenuType_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以空格 and 开始</param>
+         /// <returns></returns>
 		 public static IList<MenuType> Select(string whereStr)
 		 {
 			using (var access = new MenuTypeAccess())
@@ -258,6 +273,11 @@ namespace Site.WeiXin.DataAccess.Service
 		#endregion
 
 		#region 05 SystemUser_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以空格 and 开始</param>
+         /// <returns></returns>
 		 public static IList<SystemUser> Select(string whereStr)
 		 {
 			using (var access = new SystemUserAccess())
@@ -324,6 +344,11 @@ namespace Site.WeiXin.DataAccess.Service
 		#endregion
 
 		#region 05 User_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以空格 and 开始</param>
+         /// <returns></returns>
 		 public static IList<User> Select(string whereStr)
 		 {
 			using (var access = new UserAccess())

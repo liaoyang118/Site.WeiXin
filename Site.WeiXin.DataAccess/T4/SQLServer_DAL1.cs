@@ -20,15 +20,17 @@ namespace Site.WeiXin.DataAccess.Access
 
 		Database db;
 
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
         #region 00 IDisposable 实现
         public GloblaTokenAccess(string configName)
         {
-            db = DatabaseFactory.CreateDatabase(configName);
+			db = factory.Create(configName);
         }
 
         public GloblaTokenAccess()
         {
-            db = DatabaseFactory.CreateDatabase("MySite");
+            db = factory.Create("wxmanager");
         }
 
         //虚拟Idisposable 实现,手动调用的
@@ -154,6 +156,11 @@ namespace Site.WeiXin.DataAccess.Access
 		#endregion
 
 		#region 05 Proc_GloblaToken_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
 		 public override IList<GloblaToken> Select(string whereStr)
 		 {
 			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GloblaToken_SelectList");
@@ -248,15 +255,17 @@ namespace Site.WeiXin.DataAccess.Access
 
 		Database db;
 
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
         #region 00 IDisposable 实现
         public MenuAccess(string configName)
         {
-            db = DatabaseFactory.CreateDatabase(configName);
+			db = factory.Create(configName);
         }
 
         public MenuAccess()
         {
-            db = DatabaseFactory.CreateDatabase("MySite");
+            db = factory.Create("wxmanager");
         }
 
         //虚拟Idisposable 实现,手动调用的
@@ -386,6 +395,11 @@ namespace Site.WeiXin.DataAccess.Access
 		#endregion
 
 		#region 05 Proc_Menu_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
 		 public override IList<Menu> Select(string whereStr)
 		 {
 			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Menu_SelectList");
@@ -482,15 +496,17 @@ namespace Site.WeiXin.DataAccess.Access
 
 		Database db;
 
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
         #region 00 IDisposable 实现
         public MenuTypeAccess(string configName)
         {
-            db = DatabaseFactory.CreateDatabase(configName);
+			db = factory.Create(configName);
         }
 
         public MenuTypeAccess()
         {
-            db = DatabaseFactory.CreateDatabase("MySite");
+            db = factory.Create("wxmanager");
         }
 
         //虚拟Idisposable 实现,手动调用的
@@ -614,6 +630,11 @@ namespace Site.WeiXin.DataAccess.Access
 		#endregion
 
 		#region 05 Proc_MenuType_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
 		 public override IList<MenuType> Select(string whereStr)
 		 {
 			DbCommand dbCmd = db.GetStoredProcCommand("Proc_MenuType_SelectList");
@@ -707,15 +728,17 @@ namespace Site.WeiXin.DataAccess.Access
 
 		Database db;
 
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
         #region 00 IDisposable 实现
         public SystemUserAccess(string configName)
         {
-            db = DatabaseFactory.CreateDatabase(configName);
+			db = factory.Create(configName);
         }
 
         public SystemUserAccess()
         {
-            db = DatabaseFactory.CreateDatabase("MySite");
+            db = factory.Create("wxmanager");
         }
 
         //虚拟Idisposable 实现,手动调用的
@@ -847,6 +870,11 @@ namespace Site.WeiXin.DataAccess.Access
 		#endregion
 
 		#region 05 Proc_SystemUser_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
 		 public override IList<SystemUser> Select(string whereStr)
 		 {
 			DbCommand dbCmd = db.GetStoredProcCommand("Proc_SystemUser_SelectList");
@@ -944,15 +972,17 @@ namespace Site.WeiXin.DataAccess.Access
 
 		Database db;
 
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
         #region 00 IDisposable 实现
         public UserAccess(string configName)
         {
-            db = DatabaseFactory.CreateDatabase(configName);
+			db = factory.Create(configName);
         }
 
         public UserAccess()
         {
-            db = DatabaseFactory.CreateDatabase("MySite");
+            db = factory.Create("wxmanager");
         }
 
         //虚拟Idisposable 实现,手动调用的
@@ -1092,6 +1122,11 @@ namespace Site.WeiXin.DataAccess.Access
 		#endregion
 
 		#region 05 Proc_User_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
 		 public override IList<User> Select(string whereStr)
 		 {
 			DbCommand dbCmd = db.GetStoredProcCommand("Proc_User_SelectList");
