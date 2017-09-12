@@ -15,7 +15,7 @@ namespace Site.WeiXin.Manager.Controllers
     {
         public ActionResult Index()
         {
-            return View("test");
+            return View();
         }
 
 

@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "微信后台管理系统_登录界面";
+    Layout = "~/Views/Shared/_Layout_Index.cshtml";
 }
 
 @section css{
@@ -10,7 +11,7 @@
 
 @section scripts{
     <script src="~/Scripts/bootstrapValidator.min.js"></script>
-    <script src="~/Scripts/Jquery.toast.customer.js"></script>
+    
     <script>
         $(function () {
             //设置校验规则
@@ -52,8 +53,8 @@
                         type: "post",
                         dataType: "json",
                         data: {
-                            name: $("#username").val(),
-                            pwd: $("#passWord").val()
+                            name: $("#inputAccount").val(),
+                            pwd: $("#inputPassword").val()
                         },
                         cache: false,
                         success: function (json) {
@@ -86,25 +87,57 @@
 }
 
 
-<form id="forms_login">
-    <!--下面是用户名输入框-->
-    <div class="form-group">
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">@@</span>
-            <input id="username" name="username" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+<div class="row">
+    <div class="col-md-12">
+        <!-- Widget starts -->
+        <div class="widget worange">
+            <!-- Widget head -->
+            <div class="widget-head">
+                <i class="icon-lock"></i> 登录系统
+            </div>
+
+            <div class="widget-content">
+                <div class="padd">
+                    <!-- Login form -->
+                    <form id="forms_login" class="form-horizontal">
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3" for="inputAccount">账号</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="username" class="form-control" id="inputAccount" placeholder="账号">
+                            </div>
+                        </div>
+                        <!-- Password -->
+                        <div class="form-group">
+
+                            <label class="control-label col-lg-3" for="inputPassword">密码</label>
+                            <div class="col-lg-9">
+                                <input type="password" name="passWord" class="form-control" id="inputPassword" placeholder="密码">
+                            </div>
+                        </div>
+                        <!-- Remember me checkbox and sign in button -->
+                        <div class="form-group">
+                            <div class="col-lg-9 col-lg-offset-3">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> 记住登录
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-lg-offset-2">
+                            <button type="button" id="btn_submit" class="btn btn-danger">登录</button>
+                            <button type="reset" class="btn btn-default">重置</button>
+                        </div>
+                        <br>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="widget-foot">
+                没有账号? <a href="#">联系管理员</a>
+            </div>
         </div>
     </div>
-    <br>
-    <div class="form-group">
-        <!--下面是密码输入框-->
-        <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">@@</span>
-            <input id="passWord" name="passWord" type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
-        </div>
-    </div>
-    <br>
-    <div class="form-group">
-        <!--下面是登陆按钮,包括颜色控制-->
-        <button type="button" id="btn_submit" style="width:280px;" class="btn btn-default">登 录</button>
-    </div>
-</form>
+</div>
