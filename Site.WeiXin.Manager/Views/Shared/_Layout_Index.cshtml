@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
 
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/jquery.toast.css" rel="stylesheet" />
-
-    <link href="~/PageTemplate/style/font-awesome.css" rel="stylesheet" />
-    <link href="~/PageTemplate/style/style.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css/base")
 
 
     @RenderSection("css", false)
@@ -20,12 +16,7 @@
 
     @RenderBody()
 
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery.toast.js"></script>
-    <script src="~/Scripts/Jquery.toast.customer.js"></script>
-
+    @Scripts.Render("~/bundles/js/base")
     @RenderSection("scripts", false)
 
 </body>

@@ -4,56 +4,11 @@
     Layout = "~/Views/Shared/_Layout_Index.cshtml";
 }
 @section css{
-    <!-- jQuery UI -->
-    <link rel="stylesheet" href="~/PageTemplate/style/jquery-ui.css">
-    <!-- Calendar -->
-    <link rel="stylesheet" href="~/PageTemplate/style/fullcalendar.css">
-    <!-- prettyPhoto -->
-    <link rel="stylesheet" href="~/PageTemplate/style/prettyPhoto.css">
-    <!-- Star rating -->
-    <link rel="stylesheet" href="~/PageTemplate/style/rateit.css">
-    <!-- Date picker -->
-    <link rel="stylesheet" href="~/PageTemplate/style/bootstrap-datetimepicker.min.css">
-    <!-- CLEditor -->
-    <link rel="stylesheet" href="~/PageTemplate/style/jquery.cleditor.css">
-    <!-- Uniform 404-->
-    @*<link rel="stylesheet" href="~/PageTemplate/style/uniform.default.css">*@
-    <!-- Bootstrap toggle -->
-    <link rel="stylesheet" href="~/PageTemplate/style/bootstrap-switch.css">
-    <!-- Widgets stylesheet -->
-    <link href="~/PageTemplate/style/widgets.css" rel="stylesheet">
-
+    @Styles.Render("/bundles/css/bootstrap/template")
 }
 
 @section scripts{
-    <!-- JS -->
-    <script src="~/PageTemplate/js/jquery-ui-1.9.2.custom.min.js"></script> <!-- jQuery UI -->
-    <script src="~/PageTemplate/js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
-    <script src="~/PageTemplate/js/jquery.rateit.min.js"></script> <!-- RateIt - Star rating -->
-    <script src="~/PageTemplate/js/jquery.prettyPhoto.js"></script> <!-- prettyPhoto -->
-    <!-- jQuery Flot -->
-    <script src="~/PageTemplate/js/excanvas.min.js"></script>
-    <script src="~/PageTemplate/js/jquery.flot.js"></script>
-    <script src="~/PageTemplate/js/jquery.flot.resize.js"></script>
-    <script src="~/PageTemplate/js/jquery.flot.pie.js"></script>
-    <script src="~/PageTemplate/js/jquery.flot.stack.js"></script>
-
-    <!-- jQuery Notification - Noty -->
-    <script src="~/PageTemplate/js/jquery.noty.js"></script> <!-- jQuery Notify -->
-    <script src="~/PageTemplate/js/themes/default.js"></script> <!-- jQuery Notify -->
-    <script src="~/PageTemplate/js/layouts/bottom.js"></script> <!-- jQuery Notify -->
-    <script src="~/PageTemplate/js/layouts/topRight.js"></script> <!-- jQuery Notify -->
-    <script src="~/PageTemplate/js/layouts/top.js"></script> <!-- jQuery Notify -->
-    <!-- jQuery Notification ends -->
-
-    <script src="~/PageTemplate/js/sparklines.js"></script> <!-- Sparklines -->
-    <script src="~/PageTemplate/js/jquery.cleditor.min.js"></script> <!-- CLEditor -->
-    <script src="~/PageTemplate/js/bootstrap-datetimepicker.min.js"></script> <!-- Date picker -->
-    @*<script src="~/PageTemplate/js/jquery.uniform.min.js"></script>*@ <!-- jQuery Uniform 404-->
-    <script src="~/PageTemplate/js/bootstrap-switch.min.js"></script> <!-- Bootstrap Toggle -->
-    <script src="~/PageTemplate/js/filter.js"></script> <!-- Filter for support page -->
-    <script src="~/PageTemplate/js/custom.js"></script> <!-- Custom codes -->
-    <script src="~/PageTemplate/js/charts.js"></script> <!-- Charts & Graphs -->
+    @Scripts.Render("~/bundles/js/bootstrap/template")
     <!-- Script for this page -->
     <script type="text/javascript">
         $(function () {
@@ -283,7 +238,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="icon-user"></i> 资料</a></li>
                         <li><a href="#"><i class="icon-cogs"></i> 设置</a></li>
-                        <li><a href="login.html"><i class="icon-off"></i> 退出</a></li>
+                        <li><a href="/Login/LoginOut"><i class="icon-off"></i> 退出</a></li>
                     </ul>
                 </li>
 

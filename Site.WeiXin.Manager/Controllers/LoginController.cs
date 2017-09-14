@@ -19,12 +19,14 @@ namespace Site.WeiXin.Manager.Controllers
         }
 
 
-        [HttpPost, AllowAnonymous]
+        [HttpPost]
         public ActionResult Do(string name, string pwd)
         {
-            SystemUserSearchInfo search = new SystemUserSearchInfo();
-            search.Account = name;
-            search.AccountState = (int)SiteEnum.AccountState.正常;
+            SystemUserSearchInfo search = new SystemUserSearchInfo
+            {
+                Account = name,
+                AccountState = (int)SiteEnum.AccountState.正常
+            };
             IList<SystemUser> list = SystemUserService.Select(search.ToWhereString());
             if (list.Count > 0)
             {
@@ -40,7 +42,7 @@ namespace Site.WeiXin.Manager.Controllers
                     {
                         //创建一个新的票据，将客户ip记入ticket的userdata 
                         FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                        1, name, DateTime.Now, DateTime.Now.AddMinutes(30),
+                        1, name, DateTime.Now, DateTime.Now.AddHours(2),
                         false, uInfo.Id.ToString());
                         //将票据加密 
                         string authTicket = FormsAuthentication.Encrypt(ticket);
@@ -66,6 +68,13 @@ namespace Site.WeiXin.Manager.Controllers
                 return Json(UntityTool.JsonResult(false, "账号不存在，请确认！"));
             }
 
+        }
+
+
+        public void LoginOut()
+        {
+            FormsAuthentication.SignOut();
+            FormsAuthentication.RedirectToLoginPage();
         }
 
     }
