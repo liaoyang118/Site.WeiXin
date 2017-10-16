@@ -290,7 +290,7 @@ namespace <#= DataAccessNamespaceStr #>
 				#>
 
             }
-            catch
+            catch(Exception ex)
             {
                 obj = null;
             }

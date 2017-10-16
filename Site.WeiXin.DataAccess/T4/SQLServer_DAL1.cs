@@ -236,7 +236,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.ExpireTime = reader["ExpireTime"] == null ? default(DateTime) : (DateTime)reader["ExpireTime"];
 				
             }
-            catch
+            catch(Exception ex)
             {
                 obj = null;
             }
@@ -311,6 +311,8 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@Type", DbType.String,obj.Type);
 			db.AddInParameter(dbCmd, "@Value", DbType.String,obj.Value);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@LevelCode", DbType.String,obj.LevelCode);
+			db.AddInParameter(dbCmd, "@Status", DbType.Int32,obj.Status);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -354,6 +356,8 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@Type", DbType.String,obj.Type);
 			db.AddInParameter(dbCmd, "@Value", DbType.String,obj.Value);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@LevelCode", DbType.String,obj.LevelCode);
+			db.AddInParameter(dbCmd, "@Status", DbType.Int32,obj.Status);
 			
 			try
 			{ 
@@ -475,9 +479,11 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.Type = reader["Type"] == null ? default(string) : (string)reader["Type"];
 				obj.Value = reader["Value"] == null ? default(string) : (string)reader["Value"];
 				obj.CreateTime = reader["CreateTime"] == null ? default(DateTime) : (DateTime)reader["CreateTime"];
+				obj.LevelCode = reader["LevelCode"] == null ? default(string) : (string)reader["LevelCode"];
+				obj.Status = reader["Status"] == null ? default(int) : (int)reader["Status"];
 				
             }
-            catch
+            catch(Exception ex)
             {
                 obj = null;
             }
@@ -709,7 +715,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.Intro = reader["Intro"] == null ? default(string) : (string)reader["Intro"];
 				
             }
-            catch
+            catch(Exception ex)
             {
                 obj = null;
             }
@@ -953,7 +959,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.AccountState = reader["AccountState"] == null ? default(int) : (int)reader["AccountState"];
 				
             }
-            catch
+            catch(Exception ex)
             {
                 obj = null;
             }
@@ -1209,7 +1215,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.Unionid = reader["Unionid"] == null ? default(string) : (string)reader["Unionid"];
 				
             }
-            catch
+            catch(Exception ex)
             {
                 obj = null;
             }

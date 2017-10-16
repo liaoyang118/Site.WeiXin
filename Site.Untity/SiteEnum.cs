@@ -16,5 +16,14 @@ namespace Site.Untity
             正常 = 0,
             不可用 = 1
         }
+
+        /// <summary>
+        /// 菜单状态
+        /// </summary>
+        public enum MenuState
+        {
+            正常 = 0,
+            不可用 = 1
+        }
     }
 }

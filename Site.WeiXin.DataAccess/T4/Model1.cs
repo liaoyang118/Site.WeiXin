@@ -158,6 +158,34 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region LevelCode
+		private string _LevelCode;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string LevelCode 
+		{ 
+			get { return _LevelCode; } 
+			set { _LevelCode = value; } 
+		
+		}
+		#endregion
+		
+		#region Status
+		private int? _Status;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int? Status 
+		{ 
+			get { return _Status; } 
+			set { _Status = value; } 
+		
+		}
+		#endregion
+		
     }
 	[Serializable]
 	public partial class MenuType

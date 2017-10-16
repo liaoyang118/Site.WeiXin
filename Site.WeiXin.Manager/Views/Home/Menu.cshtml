@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "微信后台管理系统_首页";
+    Layout = "~/Views/Shared/_Layout_Index.cshtml";
+}
+@using Site.WeiXin.DataAccess.Model;
+@using Site.Untity;
+@{
+
+    IList<Menu> list = ViewBag.list;
+}
+
+@section css{
+    @Styles.Render("~/bundles/css/bootstrap/template")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/js/bootstrap/template")
+
+    <script type="text/javascript">
+        var currentId = "";
+        var parentId = "";
+        $(function () {
+            $('#myModal').on('hidden.bs.modal', function (e) {
+                currentId = "";
+            })
+
+            $('#btn_deleteEdit').on('click', function (e) {
+                btn_deleteEdit();
+            })
+        })
+
+        function btn_delete(id,parentId) {
+            currentId = id;
+            parentId = parentId;
+            $("#myModal").modal({
+                backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
+            })
+        }
+
+        function btn_deleteEdit() {
+            $.ShowLoading("删除中...");
+            //验证通过
+            $.ajax({
+                url: "/Home/Delete",
+                type: "post",
+                dataType: "json",
+                data: {
+                    id: currentId,
+                    parentId: parentId
+                },
+                cache: false,
+                success: function (json) {
+                    $.HideLoading();
+                    if (json.success) {
+                        $.SuccessInfo(json.message.text, 1000);
+                        setTimeout(function () {
+                            top.location.href = "/home/menu";
+                        }, 2000);
+                    }
+                    else {
+                        $.WarningInfo(json.message.text);
+                    }
+                },
+                error: function (xhr, state, error) {
+                    $.HideLoading();
+
+                    $.ErrorInfo(json.message.text);
+                }
+            });
+
+
+            $('#myModal').modal('hide')
+        }
+
+
+    </script>
+}
+
+<div class="page-head">
+    <h2 class="pull-left"><i class="icon-th-list"></i> 菜单 </h2>
+    <!-- Breadcrumb -->
+    <div class="bread-crumb pull-right">
+        <a href="index.html"><i class="icon-home"></i> Home</a>
+        <!-- Divider -->
+        <span class="divider">/</span>
+        <a href="#" class="bread-current">Dashboard</a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div class="matter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <div class="widget-head">
+                        <div class="pull-left">菜单</div>
+                        <div class="widget-icons pull-right">
+                            <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="wclose"><i class="icon-remove"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content">
+
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>菜单名称</th>
+                                    <th>菜单类型</th>
+                                    <th>创建时间</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int num = 1;
+                                    foreach (Menu item in list)
+                                    {
+                                        <tr>
+                                            <td>@num</td>
+                                        <td>@Html.Raw(item.Name)</td>
+                                        <td>@item.Type</td>
+                                        <td>@item.CreateTime.Value.ToString("yyyy/MM/dd HH:mm:ss")</td>
+                                        <td>
+                                            @{
+                                                if ((int)SiteEnum.MenuState.正常 == item.Status)
+                                                {
+                                                    <span class="label label-success">正常</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="label label-danger">不可用</span>
+                                                }
+                                            }
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-xs btn-success"><i class="icon-ok"></i></button>
+                                            <button class="btn btn-xs btn-warning"><i class="icon-pencil"></i></button>
+                                            <!-- data-toggle="modal" data-target="#myModal" 自动绑定，使用这些属性 -->
+                                            <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id','@item.ParentId')" ><i class="icon-remove"></i></button>
+                                        </td>
+                                    </tr>
+                                     num++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                        <div class="widget-foot">
+                            <ul class="pagination pull-right">
+                                @*<li><a href="#">Prev</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">Next</a></li>*@
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+
+                    <!-- 模态框（Modal） -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">
+                                        删除
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    如果删除父菜单将一起删除下面的子菜单,确定要删除该菜单吗？
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        取消
+                                    </button>
+                                    <button type="button" id="btn_deleteEdit" class="btn btn-primary">
+                                        确定
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
