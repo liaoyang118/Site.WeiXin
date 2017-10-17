@@ -1,0 +1,159 @@
+﻿@using Site.WeiXin.DataAccess.Model;
+@using Site.Untity;
+@{ 
+    Menu obj = ViewBag.obj;
+}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+            </button>
+            <h4 class="modal-title" id="editModalLabel">@(obj.Id>0?"修改菜单":"新增菜单")</h4>
+        </div>
+        <div class="modal-body">
+            <div class="widget-content">
+                <div class="padd">
+                    <div class="form quick-post">
+                        <!-- Edit profile form (not working)-->
+                        <form class="form-horizontal" id="forms_edit">
+                            <!-- name -->
+                            <div class="form-group">
+                                <label class="control-label col-lg-3" for="title">菜单名称</label>
+                                <div class="col-lg-9">
+                                    <input type="text" name="name" class="form-control" id="name" value="@obj.Name">
+                                </div>
+                            </div>
+                            <!-- type -->
+                            <div class="form-group">
+                                <label class="control-label col-lg-3" for="content">点击类型</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="type" id="type" value="@obj.Type" />
+                                </div>
+                            </div>
+                            <!-- value -->
+                            <div class="form-group">
+                                <label class="control-label col-lg-3" for="content">值</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="value" id="value" value="@obj.Value" />
+                                </div>
+                            </div>
+                            <!-- levelCode -->
+                            <div class="form-group">
+                                <label class="control-label col-lg-3" for="content">层级编码</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="levelCode" id="levelCode" value="@obj.LevelCode" />
+                                </div>
+                            </div>
+                            <!-- Cateogry -->
+                            @*<div class="form-group">
+                                <label class="control-label col-lg-3">Category</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control">
+                                        <option value="">- Choose Cateogry -</option>
+                                        <option value="1">General</option>
+                                        <option value="2">News</option>
+                                        <option value="3">Media</option>
+                                        <option value="4">Funny</option>
+                                    </select>
+                                </div>
+                            </div>*@
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                取消
+            </button>
+            <button type="button" onclick="btn_EditSubmit();" class="btn btn-primary">
+                确定
+            </button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        //设置校验规则
+        $('form').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                name: {
+                    message: '菜单名称验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '菜单名称不能为空'
+                        }
+                    }
+                },
+                type: {
+                    validators: {
+                        notEmpty: {
+                            message: '点击类型不能为空'
+                        }
+                    }
+                },
+                value: {
+                    validators: {
+                        notEmpty: {
+                            message: 'key值不能为空'
+                        }
+                    }
+                },
+                levelCode: {
+                    validators: {
+                        notEmpty: {
+                            message: '层级编码不能为空'
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+    function btn_EditSubmit() {
+        var valiForm = $('#forms_edit').data('bootstrapValidator');
+        valiForm.validate();
+        if (valiForm.isValid()) {
+            $.ShowLoading("删除中...");
+            //验证通过
+            $.ajax({
+                url: "/Home/MenuEdit",
+                type: "post",
+                dataType: "json",
+                data: {
+                    id: currentId,
+                    parentId: parentId
+                },
+                cache: false,
+                success: function (json) {
+                    $.HideLoading();
+                    if (json.success) {
+                        $.SuccessInfo(json.message.text, 1000);
+                        $('#editModal').modal('hide')
+                        setTimeout(function () {
+                            top.location.reload();
+                        }, 2000);
+                    }
+                    else {
+                        $.WarningInfo(json.message.text);
+                    }
+                },
+                error: function (xhr, state, error) {
+                    $.HideLoading();
+                    $.ErrorInfo(json.message.text);
+                }
+            });
+        }
+
+    }
+
+</script>

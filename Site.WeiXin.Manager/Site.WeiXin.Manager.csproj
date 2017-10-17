@@ -283,6 +283,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_Index.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
+    <Content Include="Views\Home\MenuEditView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

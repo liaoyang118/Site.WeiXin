@@ -53,6 +53,37 @@ namespace Site.WeiXin.Manager.Controllers
             }
         }
 
+        public ActionResult MenuEditView(string id)
+        {
+            Menu obj = null;
+            if (!string.IsNullOrEmpty(id))
+            {
+                //修改
+                obj = MenuService.SelectObject(int.Parse(id));
+            }
+            else
+            {
+                //新增
+                obj = new Menu();
+            }
+
+            ViewBag.obj = obj;
+            return PartialView();
+        }
+
+        public ActionResult MenuEdit(Menu obj)
+        {
+            int result = 0;
+            if (result > 0)
+            {
+                return Json(UntityTool.JsonResult(true, "删除成功"));
+            }
+            else
+            {
+                return Json(UntityTool.JsonResult(true, "删除失败"));
+            }
+        }
+
 
     }
 }

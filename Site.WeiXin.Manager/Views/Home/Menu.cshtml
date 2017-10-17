@@ -12,17 +12,26 @@
 
 @section css{
     @Styles.Render("~/bundles/css/bootstrap/template")
+    <link href="~/Content/bootstrapValidator.min.css" rel="stylesheet" />
 }
 
 @section scripts{
     @Scripts.Render("~/bundles/js/bootstrap/template")
+    <script src="~/Scripts/bootstrapValidator.min.js"></script>
 
     <script type="text/javascript">
         var currentId = "";
         var parentId = "";
+        var editId = "";
         $(function () {
+            
             $('#myModal').on('hidden.bs.modal', function (e) {
                 currentId = "";
+            })
+
+            $('#editModal').on('hidden.bs.modal', function (e) {
+                editId = "";
+                $(this).removeData();
             })
 
             $('#btn_deleteEdit').on('click', function (e) {
@@ -30,7 +39,7 @@
             })
         })
 
-        function btn_delete(id,parentId) {
+        function btn_delete(id, parentId) {
             currentId = id;
             parentId = parentId;
             $("#myModal").modal({
@@ -38,6 +47,14 @@
             })
         }
 
+        function btn_edit(id) {            
+            editId = id;
+            $("#editModal").modal({
+                remote: "/Home/MenuEditView?id=" + id,
+                backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
+            })
+        }
+        
         function btn_deleteEdit() {
             $.ShowLoading("删除中...");
             //验证通过
@@ -68,12 +85,10 @@
                     $.ErrorInfo(json.message.text);
                 }
             });
-
-
+            
             $('#myModal').modal('hide')
         }
-
-
+        
     </script>
 }
 
@@ -81,10 +96,10 @@
     <h2 class="pull-left"><i class="icon-th-list"></i> 菜单 </h2>
     <!-- Breadcrumb -->
     <div class="bread-crumb pull-right">
-        <a href="index.html"><i class="icon-home"></i> Home</a>
+        <a href="index.html"><i class="icon-home"></i> 首页 </a>
         <!-- Divider -->
         <span class="divider">/</span>
-        <a href="#" class="bread-current">Dashboard</a>
+        <a href="#" class="bread-current">菜单</a>
     </div>
     <div class="clearfix"></div>
 </div>
@@ -97,6 +112,7 @@
                     <div class="widget-head">
                         <div class="pull-left">菜单</div>
                         <div class="widget-icons pull-right">
+                            <button class="btn btn-sm btn-success" onclick="btn_edit('');"><i class="icon-plus"></i>新增</button>
                             <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
                             <a href="#" class="wclose"><i class="icon-remove"></i></a>
                         </div>
@@ -122,30 +138,30 @@
                                     {
                                         <tr>
                                             <td>@num</td>
-                                        <td>@Html.Raw(item.Name)</td>
-                                        <td>@item.Type</td>
-                                        <td>@item.CreateTime.Value.ToString("yyyy/MM/dd HH:mm:ss")</td>
-                                        <td>
-                                            @{
-                                                if ((int)SiteEnum.MenuState.正常 == item.Status)
-                                                {
-                                                    <span class="label label-success">正常</span>
+                                            <td>@Html.Raw(item.Name)</td>
+                                            <td>@item.Type</td>
+                                            <td>@item.CreateTime.Value.ToString("yyyy/MM/dd HH:mm:ss")</td>
+                                            <td>
+                                                @{
+                                                    if ((int)SiteEnum.MenuState.正常 == item.Status)
+                                                    {
+                                                        <span class="label label-success">正常</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="label label-danger">不可用</span>
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    <span class="label label-danger">不可用</span>
-                                                }
-                                            }
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-xs btn-success"><i class="icon-ok"></i></button>
-                                            <button class="btn btn-xs btn-warning"><i class="icon-pencil"></i></button>
-                                            <!-- data-toggle="modal" data-target="#myModal" 自动绑定，使用这些属性 -->
-                                            <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id','@item.ParentId')" ><i class="icon-remove"></i></button>
-                                        </td>
-                                    </tr>
-                                     num++;
-                                    }
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs btn-success"><i class="icon-ok"></i></button>
+                                                <button class="btn btn-xs btn-warning" onclick="btn_edit(@item.Id);"><i class="icon-pencil"></i></button>
+                                                <!-- data-toggle="modal" data-target="#myModal" 自动绑定，使用这些属性 -->
+                                                <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id','@item.ParentId')"><i class="icon-remove"></i></button>
+                                            </td>
+                                        </tr>
+                                                        num++;
+                                                    }
                                 }
                             </tbody>
                         </table>
@@ -153,18 +169,18 @@
                         <div class="widget-foot">
                             <ul class="pagination pull-right">
                                 @*<li><a href="#">Prev</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">Next</a></li>*@
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">Next</a></li>*@
                             </ul>
                             <div class="clearfix"></div>
                         </div>
 
                     </div>
 
-                    <!-- 模态框（Modal） -->
+                    <!-- confirm 模态框（Modal） -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -189,6 +205,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- 编辑 模态框（Modal） -->
+                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                        
                     </div>
 
                 </div>
