@@ -47,10 +47,10 @@
             })
         }
 
-        function btn_edit(id) {            
+        function btn_edit(id,parentId) {            
             editId = id;
             $("#editModal").modal({
-                remote: "/Home/MenuEditView?id=" + id,
+                remote: "/Home/MenuEditView?id=" + id + "&parentId=" + parentId,
                 backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
             })
         }
@@ -73,7 +73,7 @@
                         $.SuccessInfo(json.message.text, 1000);
                         setTimeout(function () {
                             top.location.href = "/home/menu";
-                        }, 2000);
+                        }, 1000);
                     }
                     else {
                         $.WarningInfo(json.message.text);
@@ -112,7 +112,7 @@
                     <div class="widget-head">
                         <div class="pull-left">菜单</div>
                         <div class="widget-icons pull-right">
-                            <button class="btn btn-sm btn-success" onclick="btn_edit('');"><i class="icon-plus"></i>新增</button>
+                            <button class="btn btn-sm btn-success" onclick="btn_edit('','');"><i class="icon-plus"></i>新增</button>
                             <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
                             <a href="#" class="wclose"><i class="icon-remove"></i></a>
                         </div>
@@ -154,14 +154,17 @@
                                                 }
                                             </td>
                                             <td>
-                                                <button class="btn btn-xs btn-success"><i class="icon-ok"></i></button>
+                                                @if (item.LevelCode.Length == 6)
+                                                {
+                                                    <button class="btn btn-xs btn-success" onclick="btn_edit('','@item.Id');"><i class="icon-plus"></i></button>
+                                                }
                                                 <button class="btn btn-xs btn-warning" onclick="btn_edit(@item.Id);"><i class="icon-pencil"></i></button>
                                                 <!-- data-toggle="modal" data-target="#myModal" 自动绑定，使用这些属性 -->
                                                 <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id','@item.ParentId')"><i class="icon-remove"></i></button>
                                             </td>
                                         </tr>
-                                                        num++;
-                                                    }
+                                     num++;
+                                    }
                                 }
                             </tbody>
                         </table>

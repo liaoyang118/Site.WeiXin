@@ -1,7 +1,9 @@
 ﻿@using Site.WeiXin.DataAccess.Model;
 @using Site.Untity;
-@{ 
+@{
     Menu obj = ViewBag.obj;
+    int parentId = ViewBag.parentId == "" ? 1 : int.Parse(ViewBag.parentId);//此处需要注意，默认根节点ID为1
+    List<SelectListItem> selectList = ViewBag.selectList;
 }
 <div class="modal-dialog">
     <div class="modal-content">
@@ -9,7 +11,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                 &times;
             </button>
-            <h4 class="modal-title" id="editModalLabel">@(obj.Id>0?"修改菜单":"新增菜单")</h4>
+            <h4 class="modal-title" id="editModalLabel">@(obj.Id > 0 ? "修改菜单" : "新增菜单")</h4>
         </div>
         <div class="modal-body">
             <div class="widget-content">
@@ -26,13 +28,14 @@
                             </div>
                             <!-- type -->
                             <div class="form-group">
-                                <label class="control-label col-lg-3" for="content">点击类型</label>
+                                <label class="control-label col-lg-3">点击类型</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="type" id="type" value="@obj.Type" />
+                                    @Html.DropDownList("type", selectList, "--请选择--", new { id = "type", @class = "form-control" })
                                 </div>
                             </div>
+
                             <!-- value -->
-                            <div class="form-group">
+                            <div class="form-group" style="display:none;" id="txt_val">
                                 <label class="control-label col-lg-3" for="content">值</label>
                                 <div class="col-lg-9">
                                     <input type="text" class="form-control" name="value" id="value" value="@obj.Value" />
@@ -42,23 +45,10 @@
                             <div class="form-group">
                                 <label class="control-label col-lg-3" for="content">层级编码</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" name="levelCode" id="levelCode" value="@obj.LevelCode" />
+                                    <input type="text" class="form-control" disabled="disabled" name="levelCode" id="levelCode" value="@obj.LevelCode" />
                                 </div>
                             </div>
-                            <!-- Cateogry -->
-                            @*<div class="form-group">
-                                <label class="control-label col-lg-3">Category</label>
-                                <div class="col-lg-9">
-                                    <select class="form-control">
-                                        <option value="">- Choose Cateogry -</option>
-                                        <option value="1">General</option>
-                                        <option value="2">News</option>
-                                        <option value="3">Media</option>
-                                        <option value="4">Funny</option>
-                                    </select>
-                                </div>
-                            </div>*@
-                            
+
                         </form>
                     </div>
                 </div>
@@ -117,6 +107,15 @@
                 }
             }
         });
+
+        $("#type").change(function () {
+            var val = $(this).val();
+            if (val == "click") {
+                $("#txt_val").show();
+            } else {
+                $("#txt_val").hide();
+            }
+        });
     });
 
     function btn_EditSubmit() {
@@ -130,8 +129,12 @@
                 type: "post",
                 dataType: "json",
                 data: {
-                    id: currentId,
-                    parentId: parentId
+                    id:'@obj.Id',
+                    name: $("#name").val(),
+                    type: $("#type").val(),
+                    value: $("#value").val(),
+                    parentId:'@parentId',
+                    levelCode: $("#levelCode").val()
                 },
                 cache: false,
                 success: function (json) {
@@ -141,7 +144,7 @@
                         $('#editModal').modal('hide')
                         setTimeout(function () {
                             top.location.reload();
-                        }, 2000);
+                        }, 1000);
                     }
                     else {
                         $.WarningInfo(json.message.text);

@@ -110,7 +110,7 @@ namespace Site.WeiXin.DataAccess.Access
 		 public override int Update(GloblaToken obj)
 		 {
 			
-			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GloblaToken_DeleteById");
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GloblaToken_UpdateById");
 			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
 			db.AddInParameter(dbCmd, "@Token", DbType.String,obj.Token);
 			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
@@ -349,7 +349,7 @@ namespace Site.WeiXin.DataAccess.Access
 		 public override int Update(Menu obj)
 		 {
 			
-			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Menu_DeleteById");
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Menu_UpdateById");
 			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
 			db.AddInParameter(dbCmd, "@ParentId", DbType.Int32,obj.ParentId);
 			db.AddInParameter(dbCmd, "@Name", DbType.String,obj.Name);
@@ -591,7 +591,7 @@ namespace Site.WeiXin.DataAccess.Access
 		 public override int Update(MenuType obj)
 		 {
 			
-			DbCommand dbCmd = db.GetStoredProcCommand("Proc_MenuType_DeleteById");
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_MenuType_UpdateById");
 			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
 			db.AddInParameter(dbCmd, "@Type", DbType.String,obj.Type);
 			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
@@ -827,7 +827,7 @@ namespace Site.WeiXin.DataAccess.Access
 		 public override int Update(SystemUser obj)
 		 {
 			
-			DbCommand dbCmd = db.GetStoredProcCommand("Proc_SystemUser_DeleteById");
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_SystemUser_UpdateById");
 			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
 			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 			db.AddInParameter(dbCmd, "@Account", DbType.String,obj.Account);
@@ -1075,7 +1075,7 @@ namespace Site.WeiXin.DataAccess.Access
 		 public override int Update(User obj)
 		 {
 			
-			DbCommand dbCmd = db.GetStoredProcCommand("Proc_User_DeleteById");
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_User_UpdateById");
 			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
 			db.AddInParameter(dbCmd, "@OpenID", DbType.String,obj.OpenID);
 			db.AddInParameter(dbCmd, "@NickName", DbType.String,obj.NickName);

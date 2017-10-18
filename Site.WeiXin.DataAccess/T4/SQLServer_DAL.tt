@@ -147,7 +147,7 @@ namespace <#= DataAccessNamespaceStr #>
 			  {
 				if(column.IsIdentity)
 				{
-			#>DbCommand dbCmd = db.GetStoredProcCommand("Proc_<#=table.TableName#>_DeleteBy<#=column.ColumnName#>");
+			#>DbCommand dbCmd = db.GetStoredProcCommand("Proc_<#=table.TableName#>_UpdateBy<#=column.ColumnName#>");
 			db.AddInParameter(dbCmd, "@<#=column.ColumnName#>", DbType.<#=column.DbType#>,obj.<#=column.ColumnName#>);
 			<#
 				}

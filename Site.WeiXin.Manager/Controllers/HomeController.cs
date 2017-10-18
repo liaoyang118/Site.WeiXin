@@ -53,7 +53,7 @@ namespace Site.WeiXin.Manager.Controllers
             }
         }
 
-        public ActionResult MenuEditView(string id)
+        public ActionResult MenuEditView(string id, string parentId)
         {
             Menu obj = null;
             if (!string.IsNullOrEmpty(id))
@@ -67,21 +67,71 @@ namespace Site.WeiXin.Manager.Controllers
                 obj = new Menu();
             }
 
+            //查询菜单类型
+            List<MenuType> list = MenuTypeService.Select("").ToList();
+            List<SelectListItem> selectList = list.Select(t =>
+            {
+                return new SelectListItem()
+                {
+                    Text = string.Format("{0}({1})", t.Intro, t.Type),
+                    Value = t.Type,
+                    Selected = t.Type == obj.Type
+
+                };
+            }).ToList();
+
+
+
             ViewBag.obj = obj;
+            ViewBag.selectList = selectList;
+            ViewBag.parentId = parentId;
+
             return PartialView();
         }
 
         public ActionResult MenuEdit(Menu obj)
         {
             int result = 0;
-            if (result > 0)
+            if (obj.Id > 0)
             {
-                return Json(UntityTool.JsonResult(true, "删除成功"));
+                //修改
+                result = MenuService.Update(obj);
             }
             else
             {
-                return Json(UntityTool.JsonResult(true, "删除失败"));
+                obj.CreateTime = DateTime.Now;
+                obj.Status = (int)SiteEnum.MenuState.正常;
+                obj.Value = string.Empty;
+
+                //新增
+                result = MenuService.Insert(obj);
+                
             }
+
+            if (obj.Id > 0)
+            {
+                if (result > 0)
+                {
+                    return Json(UntityTool.JsonResult(true, "修改成功"));
+                }
+                else
+                {
+                    return Json(UntityTool.JsonResult(true, "修改失败"));
+                }
+            }
+            else
+            {
+                if (result > 0)
+                {
+                    return Json(UntityTool.JsonResult(true, "新增成功"));
+                }
+                else
+                {
+                    return Json(UntityTool.JsonResult(true, "新增失败"));
+                }
+            }
+
+
         }
 
 
