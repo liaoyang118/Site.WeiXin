@@ -94,8 +94,13 @@ namespace Site.WeiXin.Manager.Controllers
             int result = 0;
             if (obj.Id > 0)
             {
+                Menu info = MenuService.SelectObject(obj.Id);
+                info.Name = obj.Name ?? string.Empty;
+                info.Type = obj.Type ?? string.Empty;
+                info.Value = obj.Value ?? string.Empty;
+
                 //修改
-                result = MenuService.Update(obj);
+                result = MenuService.Update(info);
             }
             else
             {
@@ -105,7 +110,7 @@ namespace Site.WeiXin.Manager.Controllers
 
                 //新增
                 result = MenuService.Insert(obj);
-                
+
             }
 
             if (obj.Id > 0)

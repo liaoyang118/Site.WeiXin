@@ -35,7 +35,7 @@
                             </div>
 
                             <!-- value -->
-                            <div class="form-group" style="display:none;" id="txt_val">
+                            <div class="form-group" style="display:@(obj.Type == "click" ? "block" : "none");" id="txt_val">
                                 <label class="control-label col-lg-3" for="content">值</label>
                                 <div class="col-lg-9">
                                     <input type="text" class="form-control" name="value" id="value" value="@obj.Value" />
@@ -114,6 +114,8 @@
                 $("#txt_val").show();
             } else {
                 $("#txt_val").hide();
+                $("#value").val("");
+
             }
         });
     });
@@ -122,7 +124,7 @@
         var valiForm = $('#forms_edit').data('bootstrapValidator');
         valiForm.validate();
         if (valiForm.isValid()) {
-            $.ShowLoading("删除中...");
+            $.ShowLoading("提交中...");
             //验证通过
             $.ajax({
                 url: "/Home/MenuEdit",
@@ -152,7 +154,7 @@
                 },
                 error: function (xhr, state, error) {
                     $.HideLoading();
-                    $.ErrorInfo(json.message.text);
+                    $.ErrorInfo(error);
                 }
             });
         }
