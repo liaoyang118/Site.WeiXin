@@ -140,5 +140,22 @@ namespace Site.WeiXin.Manager.Controllers
         }
 
 
+        public ActionResult PublishButton()
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}", UntityTool.GetConfigValue("appID"), UntityTool.GetConfigValue("appsecret"));
+            string content = HttpTool.Get(url);
+
+            int result = 0;
+            if (result > 0)
+            {
+                return Json(UntityTool.JsonResult(true, "发布成功"));
+            }
+            else
+            {
+                return Json(UntityTool.JsonResult(true, "发布失败"));
+            }
+        }
+
+
     }
 }

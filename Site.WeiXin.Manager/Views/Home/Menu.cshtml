@@ -88,6 +88,32 @@
             
             $('#myModal').modal('hide')
         }
+
+        function btn_publish() {
+            $.ShowLoading("发布中...");
+            //验证通过
+            $.ajax({
+                url: "/Home/PublishButton",
+                type: "post",
+                dataType: "json",
+                data: {},
+                cache: false,
+                success: function (json) {
+                    $.HideLoading();
+                    if (json.success) {
+                        $.SuccessInfo(json.message.text, 1000);                        
+                    }
+                    else {
+                        $.WarningInfo(json.message.text);
+                    }
+                },
+                error: function (xhr, state, error) {
+                    $.HideLoading();
+
+                    $.ErrorInfo(json.message.text);
+                }
+            });            
+        }
         
     </script>
 }
