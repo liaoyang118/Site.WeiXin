@@ -25,5 +25,17 @@ namespace Site.Untity
             正常 = 0,
             不可用 = 1
         }
+
+        /// <summary>
+        /// Access_token 返回码
+        /// </summary>
+        public enum Access_tokenStatus
+        {
+            系统繁忙 = -1,
+            请求成功 = 0,
+            AppSecret错误 = 40001,
+            grant_type错误 = 40002,
+            IP黑名单 = 40164
+        }
     }
 }

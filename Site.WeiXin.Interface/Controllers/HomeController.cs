@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Site.WeiXin.DataAccess.Model;
 using Site.WeiXin.DataAccess.Service;
+using System.Text;
 
 namespace Site.WeiXin.Interface.Controllers
 {
@@ -15,26 +16,56 @@ namespace Site.WeiXin.Interface.Controllers
     public class HomeController : Controller
     {
         //验证请求是否合法,用于配置Url地址时验证
-        public ActionResult Index(string signature, string timestamp, string nonce, string echostr)
+        public ActionResult Index()
         {
-
-            LogHelp.Info(string.Format("{0},{1},{2},{3}", signature, timestamp, nonce, echostr));
-
-            bool isCheck = CheckSignature(signature, timestamp, nonce);
-            if (isCheck)
+            if (Request.HttpMethod == "POST")
             {
-                return Content(echostr);
+                if (CheckSignature())
+                {
+                    if (Request.InputStream.Length > 0)
+                    {
+                        byte[] bytes = new byte[Request.InputStream.Length];
+                        int result = Request.InputStream.Read(bytes, 0, bytes.Length);
+
+                        if (result > 0)
+                        {
+                            string requestStr = Encoding.UTF8.GetString(bytes);
+                            LogHelp.Info("接收消息:" + requestStr);
+                            string msg = WeiXinCommon.HandelRequest(requestStr);
+                            LogHelp.Info("返回消息:" + msg);
+                            return Content(msg);
+                        }
+                    }
+                }
+                else
+                {
+                    return Content("消息并非来自微信");
+                }
             }
             else
             {
-                return Content("");
+                //验证URL是否合法
+                if (CheckSignature())
+                {
+                    string echostr = Request["echostr"] ?? string.Empty;
+                    return Content(echostr);
+                }
+                else
+                {
+                    return Content("");
+                }
             }
-
+            return Content("");
         }
 
         //验证参数
-        private bool CheckSignature(string signature, string timestamp, string nonce)
+        private bool CheckSignature()
         {
+            string signature = Request["signature"] ?? string.Empty;
+            string timestamp = Request["timestamp"] ?? string.Empty;
+            string nonce = Request["nonce"] ?? string.Empty;
+            LogHelp.Info(string.Format("{0},{1},{2}", signature, timestamp, nonce));
+
             string token = Untity.UntityTool.GetConfigValue("token");
             string[] ArrTmp = { token, timestamp, nonce };
             Array.Sort(ArrTmp);
@@ -50,6 +81,6 @@ namespace Site.WeiXin.Interface.Controllers
                 return false;
             }
         }
-        
+
     }
 }

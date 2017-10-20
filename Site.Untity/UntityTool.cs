@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 
 namespace Site.Untity
 {
@@ -48,5 +51,15 @@ namespace Site.Untity
         }
 
 
+        public static int GetTimeStamp()
+        {
+            //TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            //return Convert.ToInt64(ts.TotalSeconds * 1000);
+
+            int intResult = 0;
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+            intResult = (int)(DateTime.Now - startTime).TotalSeconds;
+            return intResult;
+        }
     }
 }

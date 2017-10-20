@@ -23,5 +23,29 @@ namespace Site.Untity
             return content;
         }
 
+        public static string Post(string url, Dictionary<string, string> dic)
+        {
+            string content = string.Empty;
+            HttpContent requestContent = new FormUrlEncodedContent(dic);
+            HttpResponseMessage result = client.PostAsync(url, requestContent).Result;
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                content = result.Content.ReadAsStringAsync().Result;
+            }
+            return content;
+        }
+
+        public static string Post(string url, string param)
+        {
+            string content = string.Empty;
+            HttpContent requestContent = new StringContent(param);
+            HttpResponseMessage result = client.PostAsync(url, requestContent).Result;
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                content = result.Content.ReadAsStringAsync().Result;
+            }
+            return content;
+        }
+
     }
 }

@@ -12,8 +12,6 @@ namespace Site.WeiXin.Manager.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-
-
         public ActionResult Index()
         {
             return View();
@@ -106,7 +104,7 @@ namespace Site.WeiXin.Manager.Controllers
             {
                 obj.CreateTime = DateTime.Now;
                 obj.Status = (int)SiteEnum.MenuState.正常;
-                obj.Value = string.Empty;
+                obj.Value = obj.Value ?? string.Empty;
 
                 //新增
                 result = MenuService.Insert(obj);
@@ -142,18 +140,63 @@ namespace Site.WeiXin.Manager.Controllers
 
         public ActionResult PublishButton()
         {
-            string url = string.Format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}", UntityTool.GetConfigValue("appID"), UntityTool.GetConfigValue("appsecret"));
-            string content = HttpTool.Get(url);
-
-            int result = 0;
-            if (result > 0)
+            #region 拿取access_token
+            IList<GloblaToken> list = GloblaTokenService.Select(string.Format(" and AppId='{0}'", UntityTool.GetConfigValue("appID"), DateTime.Now));
+            string result = string.Empty;
+            if (list.Count > 0)
             {
-                return Json(UntityTool.JsonResult(true, "发布成功"));
+                GloblaToken info = list.FirstOrDefault();
+                if (info.ExpireTime > DateTime.Now)
+                {
+                    result = info.Token;
+                }
+                else
+                {
+                    bool isSuccess = UntityTool.GetHttpToken(out result);
+                    if (isSuccess)
+                    {
+                        //更新时间
+                        info.ExpireTime = DateTime.Now.AddHours(2);
+                        GloblaTokenService.Update(info);
+                    }
+                    else
+                    {
+                        return Json(UntityTool.JsonResult(false, result));
+                    }
+                }
             }
             else
             {
-                return Json(UntityTool.JsonResult(true, "发布失败"));
+                //获取新的access_token
+                bool isSuccess = UntityTool.GetHttpToken(out result);
+                if (isSuccess)
+                {
+                    //插入
+
+                    GloblaTokenService.Insert(new GloblaToken()
+                    {
+                        AppId = UntityTool.GetConfigValue("appID"),
+                        ExpireTime = DateTime.Now.AddHours(2),
+                        Token = result
+                    });
+
+                }
+                else
+                {
+                    return Json(UntityTool.JsonResult(false, result));
+                }
+
             }
+            #endregion
+
+            #region 组装按钮数据
+            IList<Menu> menuList = MenuService.SelectMenuList();//带有 &nbsp;
+            string btnParams = WeiXinCommon.GenerateButton(menuList.ToList());
+            string publishResult;
+            bool isPublishSuccess = UntityTool.PostBtn(result, btnParams, out publishResult);
+            #endregion
+
+            return Json(UntityTool.JsonResult(isPublishSuccess, publishResult));
         }
 
 

@@ -369,4 +369,75 @@ namespace Site.WeiXin.DataAccess.Service
 		#endregion
 
     }
+	public partial class UserMessageService
+    {
+
+        #region 01 UserMessage_Insert
+		 public static int Insert(UserMessage obj)
+		 {
+			using (var access = new UserMessageAccess())
+            {
+                return access.Insert(obj);
+            }
+		 }
+		#endregion
+		
+		#region 02 UserMessage_Delete
+		 public static int Delete(int id)
+		 {
+			using (var access = new UserMessageAccess())
+			{
+				return access.Delete(id);
+			}
+		}
+		#endregion
+
+		#region 03 UserMessage_Update
+		 public static int Update(UserMessage obj)
+		 {
+			
+			using (var access = new UserMessageAccess())
+			{
+				return access.Update(obj);
+			}
+		}
+		#endregion
+
+		#region 04 UserMessage_SelectObject
+		 public static UserMessage SelectObject(int id)
+		 {
+			
+			using (var access = new UserMessageAccess())
+			{
+				return access.SelectObject(id);
+			}
+		}
+		#endregion
+
+		#region 05 UserMessage_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以空格 and 开始</param>
+         /// <returns></returns>
+		 public static IList<UserMessage> Select(string whereStr)
+		 {
+			using (var access = new UserMessageAccess())
+			{
+				return access.Select(whereStr);
+			}
+		}
+		#endregion
+
+		#region 06 UserMessage_SelectPage
+		 public static IList<UserMessage> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			using (var access = new UserMessageAccess())
+			{
+				return access.SelectPage(cloumns,order,whereStr,pageIndex,pageSize, out rowCount);
+			}
+		}
+		#endregion
+
+    }
 }

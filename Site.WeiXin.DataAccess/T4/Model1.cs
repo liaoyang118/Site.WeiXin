@@ -496,5 +496,94 @@ namespace Site.WeiXin.DataAccess.Model
 		#endregion
 		
     }
+	[Serializable]
+	public partial class UserMessage
+    {
+        
+		#region Id
+		private int _Id;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int Id 
+		{ 
+			get { return _Id; } 
+			set { _Id = value; } 
+		
+		}
+		#endregion
+		
+		#region MessageType
+		private string _MessageType;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string MessageType 
+		{ 
+			get { return _MessageType; } 
+			set { _MessageType = value; } 
+		
+		}
+		#endregion
+		
+		#region OpenID
+		private string _OpenID;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string OpenID 
+		{ 
+			get { return _OpenID; } 
+			set { _OpenID = value; } 
+		
+		}
+		#endregion
+		
+		#region Content
+		private string _Content;
+       
+        /// <summary>
+        /// 整个请求内容
+        /// </summary>        
+        public string Content 
+		{ 
+			get { return _Content; } 
+			set { _Content = value; } 
+		
+		}
+		#endregion
+		
+		#region MsgId
+		private string _MsgId;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string MsgId 
+		{ 
+			get { return _MsgId; } 
+			set { _MsgId = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateTime
+		private DateTime _CreateTime;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public DateTime CreateTime 
+		{ 
+			get { return _CreateTime; } 
+			set { _CreateTime = value; } 
+		
+		}
+		#endregion
+		
+    }
 	
 }
