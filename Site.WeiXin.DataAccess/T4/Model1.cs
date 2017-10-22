@@ -398,12 +398,12 @@ namespace Site.WeiXin.DataAccess.Model
 		#endregion
 		
 		#region Sex
-		private bool? _Sex;
+		private int? _Sex;
        
         /// <summary>
-        /// 
+        /// 值为1时是男性，值为2时是女性，值为0时是未知
         /// </summary>        
-        public bool? Sex 
+        public int? Sex 
 		{ 
 			get { return _Sex; } 
 			set { _Sex = value; } 
@@ -467,16 +467,16 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
-		#region Subscribe_time
-		private DateTime? _Subscribe_time;
+		#region Subscribe_Time
+		private DateTime? _Subscribe_Time;
        
         /// <summary>
         /// 
         /// </summary>        
-        public DateTime? Subscribe_time 
+        public DateTime? Subscribe_Time 
 		{ 
-			get { return _Subscribe_time; } 
-			set { _Subscribe_time = value; } 
+			get { return _Subscribe_Time; } 
+			set { _Subscribe_Time = value; } 
 		
 		}
 		#endregion
@@ -491,6 +491,34 @@ namespace Site.WeiXin.DataAccess.Model
 		{ 
 			get { return _Unionid; } 
 			set { _Unionid = value; } 
+		
+		}
+		#endregion
+		
+		#region IsSubscribe
+		private bool? _IsSubscribe;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public bool? IsSubscribe 
+		{ 
+			get { return _IsSubscribe; } 
+			set { _IsSubscribe = value; } 
+		
+		}
+		#endregion
+		
+		#region UnSubscribe_Time
+		private DateTime? _UnSubscribe_Time;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public DateTime? UnSubscribe_Time 
+		{ 
+			get { return _UnSubscribe_Time; } 
+			set { _UnSubscribe_Time = value; } 
 		
 		}
 		#endregion
@@ -542,16 +570,16 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
-		#region Content
-		private string _Content;
+		#region XmlContent
+		private string _XmlContent;
        
         /// <summary>
         /// 整个请求内容
         /// </summary>        
-        public string Content 
+        public string XmlContent 
 		{ 
-			get { return _Content; } 
-			set { _Content = value; } 
+			get { return _XmlContent; } 
+			set { _XmlContent = value; } 
 		
 		}
 		#endregion
@@ -580,6 +608,20 @@ namespace Site.WeiXin.DataAccess.Model
 		{ 
 			get { return _CreateTime; } 
 			set { _CreateTime = value; } 
+		
+		}
+		#endregion
+		
+		#region ContentValue
+		private string _ContentValue;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string ContentValue 
+		{ 
+			get { return _ContentValue; } 
+			set { _ContentValue = value; } 
 		
 		}
 		#endregion

@@ -46,7 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HttpTool.cs" />
+    <Compile Include="WeiXinCore\Handle\ViewEvent.cs" />
     <Compile Include="WeiXinCore\Handle\HandleBase.cs" />
+    <Compile Include="WeiXinCore\Handle\ClickEvent.cs" />
+    <Compile Include="WeiXinCore\Handle\LocationEvent.cs" />
+    <Compile Include="WeiXinCore\Handle\ScanEvent.cs" />
+    <Compile Include="WeiXinCore\Handle\UnSubscribeEvent.cs" />
+    <Compile Include="WeiXinCore\Handle\SubscribeEvent.cs" />
     <Compile Include="WeiXinCore\Handle\TextMessageHandle.cs" />
     <Compile Include="WeiXinCore\WeiXinModel.cs" />
     <Compile Include="SiteEnum.cs" />

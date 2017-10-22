@@ -31,7 +31,9 @@ namespace Site.WeiXin.Interface.Controllers
                         {
                             string requestStr = Encoding.UTF8.GetString(bytes);
                             LogHelp.Info("接收消息:" + requestStr);
+
                             string msg = WeiXinCommon.HandelRequest(requestStr);
+
                             LogHelp.Info("返回消息:" + msg);
                             return Content(msg);
                         }
@@ -52,10 +54,10 @@ namespace Site.WeiXin.Interface.Controllers
                 }
                 else
                 {
-                    return Content("");
+                    return Content(WeiXinCommon.Success);
                 }
             }
-            return Content("");
+            return Content(WeiXinCommon.Success);
         }
 
         //验证参数

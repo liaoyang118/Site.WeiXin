@@ -1,0 +1,1367 @@
+
+日志时间：2017-10-22 11:10:58,204 [9] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 16:13:21,234 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 16:14:20,763 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+4d60eb35d1bf5104349722dfcd1df272281c2ec5,1508660051,832580465 
+
+日志时间：2017-10-22 16:14:20,763 [12] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+4d60eb35d1bf5104349722dfcd1df272281c2ec5,1508660051,832580465 
+
+日志时间：2017-10-22 16:14:20,791 [12] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660051</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[就很好]]></Content>
+<MsgId>6479645580270184041</MsgId>
+</xml> 
+
+日志时间：2017-10-22 16:14:20,791 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660051</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[就很好]]></Content>
+<MsgId>6479645580270184041</MsgId>
+</xml> 
+
+日志时间：2017-10-22 16:14:21,787 [12] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442856617876768</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:14:21,794 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442856617946843</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:16:06,075 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+fd87ca1a3462c2d1cf9e16ae07a9be4ade34628e,1508660164,733180878 
+
+日志时间：2017-10-22 16:16:06,075 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660164</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:16:07,169 [10] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Unexpected character encountered while parsing value: o. Path '', line 0, position 0. 
+
+日志时间：2017-10-22 16:16:07,185 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442857671851971</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:16:22,547 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+faefa3f20d7bf7a87d8ad0af24bbfd2fcdd0298c,1508660180,1077436695 
+
+日志时间：2017-10-22 16:16:22,548 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660180</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:16:22,556 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442857825569424</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:17:34,464 [12] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 16:18:04,388 [12] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+e7878970e801f1d1b1b95d1180c01282d98b0119,1508660282,1006116515 
+
+日志时间：2017-10-22 16:18:04,388 [12] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660282</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:18:23,647 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+e7878970e801f1d1b1b95d1180c01282d98b0119,1508660282,1006116515 
+
+日志时间：2017-10-22 16:18:23,648 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660282</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:18:23,661 [20] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+e7878970e801f1d1b1b95d1180c01282d98b0119,1508660282,1006116515 
+
+日志时间：2017-10-22 16:18:23,662 [20] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660282</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:18:36,724 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442859167242007</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:18:36,733 [12] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442859167332092</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:18:36,734 [20] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442859167332092</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:18:39,936 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+fd0ceaca821b684887c1ca54a874396aa66d089f,1508660318,1507088162 
+
+日志时间：2017-10-22 16:18:39,937 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660318</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:18:46,076 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+fd0ceaca821b684887c1ca54a874396aa66d089f,1508660318,1507088162 
+
+日志时间：2017-10-22 16:18:46,077 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660318</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:18:50,131 [20] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+fd0ceaca821b684887c1ca54a874396aa66d089f,1508660318,1507088162 
+
+日志时间：2017-10-22 16:18:50,131 [20] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660318</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:20:14,023 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442859779672272</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:20:38,158 [20] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442860052331114</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:20:51,247 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442860453090334</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:26:07,221 [20] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 16:26:20,272 [16] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+448d3bae6173095c0adf4feb9196b97a2059c270,1508660768,952494397 
+
+日志时间：2017-10-22 16:26:20,273 [16] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660768</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:26:20,398 [16] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442863803985697</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:26:51,617 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+cc0badd20198038be44ec50a41dda24e2568aebd,1508660809,1056984765 
+
+日志时间：2017-10-22 16:26:51,618 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508660809</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:26:51,641 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442864116416359</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:33:18,227 [19] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+c54d615ab7bcd6c23f5e12496e8813eeab707c8e,1508661194,84058807 
+
+日志时间：2017-10-22 16:33:18,278 [19] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508661194</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:33:18,782 [19] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+获取token：False 
+
+日志时间：2017-10-22 16:33:18,879 [19] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442867988795269</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:33:20,021 [19] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+e3420ab60a8fab675707d9070dd6a9785105b778,1508661188,1518566491 
+
+日志时间：2017-10-22 16:33:20,022 [19] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508661188</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:33:20,053 [19] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 16:33:20,054 [19] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 16:35:17,259 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+2494d7239b00a50840afa3b486ba47352b82fc14,1508661315,206963979 
+
+日志时间：2017-10-22 16:35:17,260 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508661315</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:35:17,277 [14] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 16:35:17,278 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 16:49:00,489 [28] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 16:49:00,489 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 16:49:01,286 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 16:49:32,827 [27] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+7fbdc2bab1386ef8fd6e97a79a28840327536460,1508662161,1677884097 
+
+日志时间：2017-10-22 16:49:32,828 [27] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508662160</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:49:32,963 [27] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：KnL3OEkey7Tw3SmcHRtRTfxyqWSYmtCDKhtcwqywqW3Y_WllIhYhj8Uxy8e-KwdF0X7VhgtexydPxTWPLPb-foBgU9yVFyssTIomw0knOchJ8pk8uiNf_9xfKXlVxXjCDCWbAIAXWQ 
+
+日志时间：2017-10-22 16:49:32,977 [27] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442877729776325</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:50:03,721 [27] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+8969ecb8053621c7026efc31ef0ecde7fe63c03e,1508662201,1782739954 
+
+日志时间：2017-10-22 16:50:03,722 [27] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508662201</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:50:03,745 [27] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 16:50:03,746 [27] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 16:50:11,329 [28] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+256adff14845f2e85edba816ecfbe589e118a06f,1508662209,482250535 
+
+日志时间：2017-10-22 16:50:11,330 [28] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508662209</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:50:11,344 [28] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：KnL3OEkey7Tw3SmcHRtRTfxyqWSYmtCDKhtcwqywqW3Y_WllIhYhj8Uxy8e-KwdF0X7VhgtexydPxTWPLPb-foBgU9yVFyssTIomw0knOchJ8pk8uiNf_9xfKXlVxXjCDCWbAIAXWQ 
+
+日志时间：2017-10-22 16:50:11,355 [28] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442878113551696</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:51:46,452 [28] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 16:51:52,182 [16] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+69add401b48e6023459343d4ec7f37f75f9bfa58,1508662310,721484920 
+
+日志时间：2017-10-22 16:51:52,183 [16] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508662310</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:51:52,299 [16] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 16:51:52,300 [16] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 16:51:57,911 [28] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+96c41676be2974139218d5028ede669807535491,1508662316,1067611152 
+
+日志时间：2017-10-22 16:51:57,912 [28] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508662316</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:51:57,949 [28] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：KnL3OEkey7Tw3SmcHRtRTfxyqWSYmtCDKhtcwqywqW3Y_WllIhYhj8Uxy8e-KwdF0X7VhgtexydPxTWPLPb-foBgU9yVFyssTIomw0knOchJ8pk8uiNf_9xfKXlVxXjCDCWbAIAXWQ 
+
+日志时间：2017-10-22 16:51:57,970 [28] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442879179709082</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 16:53:43,580 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 16:53:52,042 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+7882b21a7cc370d5592ea03add7910cb2f7bc9dc,1508662430,1614394147 
+
+日志时间：2017-10-22 16:53:52,043 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508662430</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:53:52,167 [14] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 16:53:52,167 [14] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 16:54:01,564 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+bc50c665f5d16b358aa825720277c87c915c3a06,1508662439,1442914377 
+
+日志时间：2017-10-22 16:54:01,565 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508662439</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 16:54:01,598 [10] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：KnL3OEkey7Tw3SmcHRtRTfxyqWSYmtCDKhtcwqywqW3Y_WllIhYhj8Uxy8e-KwdF0X7VhgtexydPxTWPLPb-foBgU9yVFyssTIomw0knOchJ8pk8uiNf_9xfKXlVxXjCDCWbAIAXWQ 
+
+日志时间：2017-10-22 16:54:01,742 [10] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取用户信息:{"errcode":42001,"errmsg":"access_token expired hint: [zzhAoa0440hsz5!]"} 
+
+日志时间：2017-10-22 16:54:01,872 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442880418723123</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 17:03:20,038 [28] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+c52bf0098e72ab647214ff02bf6e99502888a74e,1508662988,40889065 
+
+日志时间：2017-10-22 17:03:20,040 [28] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508662988</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:03:20,066 [28] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 17:03:20,066 [28] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 17:03:24,076 [19] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+c971997b790c3943688e2e75b8078470eed03c04,1508663002,728400542 
+
+日志时间：2017-10-22 17:03:24,077 [19] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508663002</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:03:24,312 [19] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-22 17:03:24,509 [19] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取用户信息:{"subscribe":1,"openid":"o0YXKt_EJTmDd7Xx3cxZGyGAU5hI","nickname":"廖杨","sex":1,"language":"zh_CN","city":"深圳","province":"广东","country":"中国","headimgurl":"http:\/\/wx.qlogo.cn\/mmopen\/DFKkehW3jyUomq6JvYwnZpncicWUe9ClXmIrdIVg4CmDTIWjc4yI8zHqyLV6NfX3nxgXuwpPnN7B9dqZMFwLiacIUKOlwWFGQG\/0","subscribe_time":1508663002,"remark":"","groupid":0,"tagid_list":[]} 
+
+日志时间：2017-10-22 17:03:24,629 [19] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取用户信息错误:Unexpected character encountered while parsing value: o. Path '', line 0, position 0. 
+
+日志时间：2017-10-22 17:03:24,641 [19] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442886046417874</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 17:22:32,950 [43] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 17:26:26,356 [38] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 17:26:56,508 [49] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+e893352ac832a48337ae7ae202c9bb8fde535670,1508664414,1862570971 
+
+日志时间：2017-10-22 17:26:56,509 [49] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508664414</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:26:56,642 [49] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 17:26:56,642 [49] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 17:28:13,118 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+b56b7a8af9cc6ce981c268d57ed4cfd17bf2543e,1508664491,1278954109 
+
+日志时间：2017-10-22 17:28:13,119 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508664491</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:28:13,159 [48] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-22 17:28:13,765 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442900937655837</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 17:31:42,466 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 17:31:49,966 [42] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+7ec307c8596829b90bb04446689842705990fd0d,1508664708,391634741 
+
+日志时间：2017-10-22 17:31:49,967 [42] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508664708</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:31:50,084 [42] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 17:31:50,085 [42] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 17:32:04,467 [41] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+ca61055dd4ecd4e7363f45cf018d85e280fea00f,1508664722,840359432 
+
+日志时间：2017-10-22 17:32:04,469 [41] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508664722</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:32:04,499 [41] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-22 17:32:04,958 [41] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+转换json对象{
+  "subscribe": 1,
+  "openid": "o0YXKt_EJTmDd7Xx3cxZGyGAU5hI",
+  "nickname": "廖杨",
+  "sex": 1,
+  "language": "zh_CN",
+  "city": "深圳",
+  "province": "广东",
+  "country": "中国",
+  "headimgurl": "http://wx.qlogo.cn/mmopen/DFKkehW3jyUomq6JvYwnZpncicWUe9ClXmIrdIVg4CmDTIWjc4yI8zHqyLV6NfX3nxgXuwpPnN7B9dqZMFwLiacIUKOlwWFGQG/0",
+  "subscribe_time": 1508664722,
+  "remark": "",
+  "groupid": 0,
+  "tagid_list": []
+} 
+
+日志时间：2017-10-22 17:32:05,130 [41] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442903251304714</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 17:33:44,809 [31] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+6f98a74daf0c67871ffab8ddeda4c13baaff7d53,1508664821,16071962 
+
+日志时间：2017-10-22 17:33:44,809 [52] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 17:33:44,840 [31] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508664821</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:33:44,951 [31] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 17:33:44,952 [31] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 17:33:46,321 [32] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 17:33:52,506 [42] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+e5f326888ef7a6c8ab5ac9d67cb2bc68dcffdb59,1508664830,1086743220 
+
+日志时间：2017-10-22 17:33:52,507 [42] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508664830</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:33:52,537 [42] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-22 17:33:52,918 [42] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+转换json对象o0YXKt_EJTmDd7Xx3cxZGyGAU5hI 
+
+日志时间：2017-10-22 17:33:53,088 [42] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442904330884567</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 17:38:03,674 [15] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 17:38:37,633 [55] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+d5525c15bbc72e2db4158dbdb638fbc4a05ee11e,1508665105,581468988 
+
+日志时间：2017-10-22 17:38:37,635 [55] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508665105</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:38:37,783 [55] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 17:38:37,783 [55] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 17:40:51,040 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 17:40:57,581 [55] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+f61f0bb9ce5fd1d4d5b92814463090788c24043d,1508665255,45647057 
+
+日志时间：2017-10-22 17:40:57,582 [55] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508665255</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:40:57,618 [55] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-22 17:40:58,286 [55] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+转换json对象廖杨 
+
+日志时间：2017-10-22 17:40:58,302 [55] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442908583024283</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 17:45:00,710 [60] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+b2bdc0d09e6279ce81b7e6def0cf1e15c6a93428,1508665498,2047231989 
+
+日志时间：2017-10-22 17:45:00,712 [60] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508665498</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:45:00,741 [60] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 17:45:00,742 [60] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 17:45:31,030 [66] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+1216c6cf041e4b7cdb0102b68a6d38cabb966e5f,1508665524,1947915727 
+
+日志时间：2017-10-22 17:45:31,030 [66] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508665524</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:45:31,264 [66] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-22 17:45:31,496 [66] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+转换json对象廖杨 
+
+日志时间：2017-10-22 17:45:31,551 [66] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442911315519719</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 17:47:11,924 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+6f19caa2872a52f6dbc4c559e8a7b81633b0899e,1508665630,1329863068 
+
+日志时间：2017-10-22 17:47:11,925 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508665630</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:47:11,936 [48] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 17:47:11,937 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 17:47:34,557 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+4f80db8bd17df5ea8272c836f50f356d3aeb796a,1508665652,1621066105 
+
+日志时间：2017-10-22 17:47:34,558 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508665652</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:47:34,567 [48] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-22 17:47:34,804 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+转换json对象廖杨 
+
+日志时间：2017-10-22 17:47:34,815 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442912548156813</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 17:50:35,624 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+02b6a6f53deb7874953d9c05d3ff7aac165f4684,1508665826,1049894347 
+
+日志时间：2017-10-22 17:50:35,654 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508665826</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:50:35,749 [48] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 17:50:35,750 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 17:50:37,836 [70] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+09904373a0e78b652e774d7a41d6e206e2097fc0,1508665836,1342373964 
+
+日志时间：2017-10-22 17:50:37,837 [70] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508665836</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:50:37,870 [70] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-22 17:50:38,261 [70] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+获取用户信息：{"subscribe":1,"openid":"o0YXKt_EJTmDd7Xx3cxZGyGAU5hI","nickname":"廖杨","sex":1,"language":"zh_CN","city":"深圳","province":"广东","country":"中国","headimgurl":"http:\/\/wx.qlogo.cn\/mmopen\/DFKkehW3jyUomq6JvYwnZpncicWUe9ClXmIrdIVg4CmDTIWjc4yI8zHqyLV6NfX3nxgXuwpPnN7B9dqZMFwLiacIUKOlwWFGQG\/0","subscribe_time":1508665836,"remark":"","groupid":0,"tagid_list":[]} 
+
+日志时间：2017-10-22 17:50:38,434 [70] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442914384346074</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 17:52:53,556 [69] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 17:52:53,556 [66] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 17:53:05,379 [69] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+376eea17c1dab45dfed40e4553aa2cd0d9e85dce,1508665978,1019396006 
+
+日志时间：2017-10-22 17:53:05,380 [69] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508665978</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:53:05,516 [69] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 17:53:05,516 [69] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 17:53:06,791 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+d10ec7834227796a7a8d6d79d629a072885b5b92,1508665985,534350666 
+
+日志时间：2017-10-22 17:53:06,792 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508665985</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:53:06,823 [48] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-22 17:53:07,432 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+获取用户信息：zh_CN 
+
+日志时间：2017-10-22 17:53:07,448 [48] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442915874484789</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 17:59:00,413 [73] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-10-22 17:59:42,042 [35] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+155b2ef4ea8f855e4580e9a20148a74353bf76c3,1508666380,1059911485 
+
+日志时间：2017-10-22 17:59:42,043 [35] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt3ytNwYdITXdqGph6JWEzUU]]></FromUserName>
+<CreateTime>1508666380</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 17:59:42,173 [35] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-22 17:59:42,769 [35] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt3ytNwYdITXdqGph6JWEzUU]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442919827696416</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 18:01:03,561 [55] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+886e022a4c864f70c9ccc77df8d925cee55a6d9e,1508666454,1250280104 
+
+日志时间：2017-10-22 18:01:03,592 [55] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508666454</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 18:01:03,701 [55] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+Incorrect syntax near the keyword 'and'. 
+
+日志时间：2017-10-22 18:01:03,702 [55] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-10-22 18:01:06,425 [66] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+3e157a72922f696ac015d58641e1e6943819f090,1508666464,179804365 
+
+日志时间：2017-10-22 18:01:06,425 [66] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1508666464</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-10-22 18:01:06,450 [66] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-22 18:01:07,058 [66] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636442920670583758</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[回复测试]]></Content></xml> 
+
+日志时间：2017-10-22 18:04:22,899 [61] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 

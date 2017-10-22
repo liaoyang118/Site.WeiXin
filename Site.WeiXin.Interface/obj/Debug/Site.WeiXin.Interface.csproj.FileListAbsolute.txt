@@ -112,3 +112,5 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\obj\Debug\Site
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\obj\Debug\Site.WeiXin.Interface.pdb
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Newtonsoft.Json.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Newtonsoft.Json.xml
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Newtonsoft.Json.dll
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Newtonsoft.Json.xml

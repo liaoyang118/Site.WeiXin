@@ -20,7 +20,8 @@ namespace Site.Untity.WeiXinCore.Handle
             {
                 TextMessageModel xmlObj = DeSerialize<TextMessageModel>(xml, Encoding.UTF8);
                 UserMessage info = new UserMessage();
-                info.Content = xml;
+                info.XmlContent = xml;
+                info.ContentValue = xmlObj.Content;
                 info.CreateTime = DateTime.Now;
                 info.MessageType = xmlObj.MsgType;
                 info.MsgId = xmlObj.MsgId;
@@ -28,19 +29,13 @@ namespace Site.Untity.WeiXinCore.Handle
                 UserMessageService.Insert(info);
 
                 //默认先回复文字
+                return string.Format(WeiXinCommon.TextFormat, xmlObj.FromUserName, xmlObj.ToUserName, DateTime.Now.Ticks, "回复测试");
 
-                return @"<xml>"
-                       + "<ToUserName><![CDATA[" + xmlObj.FromUserName + @"]]></ToUserName>"
-                       + "<FromUserName><![CDATA[" + xmlObj.ToUserName + @"]]></FromUserName >"
-                       + "<CreateTime>" + UntityTool.GetTimeStamp().ToString() + "</CreateTime>"
-                       + "<MsgType><![CDATA[text]]></MsgType>"
-                       + "<Content><![CDATA[回复你好]]></Content>"
-                       + "</xml>";
             }
             catch (Exception ex)
             {
                 LogHelp.Error(ex.Message);
-                return "";
+                return WeiXinCommon.Success;
             }
 
         }

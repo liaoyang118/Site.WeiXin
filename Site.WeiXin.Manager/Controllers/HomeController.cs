@@ -141,62 +141,27 @@ namespace Site.WeiXin.Manager.Controllers
         public ActionResult PublishButton()
         {
             #region 拿取access_token
-            IList<GloblaToken> list = GloblaTokenService.Select(string.Format(" and AppId='{0}'", UntityTool.GetConfigValue("appID"), DateTime.Now));
-            string result = string.Empty;
-            if (list.Count > 0)
-            {
-                GloblaToken info = list.FirstOrDefault();
-                if (info.ExpireTime > DateTime.Now)
-                {
-                    result = info.Token;
-                }
-                else
-                {
-                    bool isSuccess = UntityTool.GetHttpToken(out result);
-                    if (isSuccess)
-                    {
-                        //更新时间
-                        info.ExpireTime = DateTime.Now.AddHours(2);
-                        GloblaTokenService.Update(info);
-                    }
-                    else
-                    {
-                        return Json(UntityTool.JsonResult(false, result));
-                    }
-                }
-            }
-            else
-            {
-                //获取新的access_token
-                bool isSuccess = UntityTool.GetHttpToken(out result);
-                if (isSuccess)
-                {
-                    //插入
-
-                    GloblaTokenService.Insert(new GloblaToken()
-                    {
-                        AppId = UntityTool.GetConfigValue("appID"),
-                        ExpireTime = DateTime.Now.AddHours(2),
-                        Token = result
-                    });
-
-                }
-                else
-                {
-                    return Json(UntityTool.JsonResult(false, result));
-                }
-
-            }
+            string result;
+            bool isSuccess = WeiXinCommon.GetAccessToken(out result);
             #endregion
 
             #region 组装按钮数据
-            IList<Menu> menuList = MenuService.SelectMenuList();//带有 &nbsp;
-            string btnParams = WeiXinCommon.GenerateButton(menuList.ToList());
-            string publishResult;
-            bool isPublishSuccess = UntityTool.PostBtn(result, btnParams, out publishResult);
+            if (isSuccess)
+            {
+                IList<Menu> menuList = MenuService.SelectMenuList();//带有 &nbsp;
+                string btnParams = WeiXinCommon.GenerateButton(menuList.ToList());
+                string publishResult;
+                bool isPublishSuccess = WeiXinCommon.PostBtn(result, btnParams, out publishResult);
+
+                return Json(UntityTool.JsonResult(isPublishSuccess, publishResult));
+            }
+            else
+            {
+                return Json(UntityTool.JsonResult(false, result));
+            }
             #endregion
 
-            return Json(UntityTool.JsonResult(isPublishSuccess, publishResult));
+
         }
 
 

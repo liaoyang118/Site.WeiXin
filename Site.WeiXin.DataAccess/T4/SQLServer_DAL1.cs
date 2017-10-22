@@ -1032,13 +1032,15 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@OpenID", DbType.String,obj.OpenID);
 			db.AddInParameter(dbCmd, "@NickName", DbType.String,obj.NickName);
 			db.AddInParameter(dbCmd, "@HeadImg", DbType.String,obj.HeadImg);
-			db.AddInParameter(dbCmd, "@Sex", DbType.Boolean,obj.Sex);
+			db.AddInParameter(dbCmd, "@Sex", DbType.Int32,obj.Sex);
 			db.AddInParameter(dbCmd, "@Country", DbType.String,obj.Country);
 			db.AddInParameter(dbCmd, "@Province", DbType.String,obj.Province);
 			db.AddInParameter(dbCmd, "@City", DbType.String,obj.City);
 			db.AddInParameter(dbCmd, "@Language", DbType.String,obj.Language);
-			db.AddInParameter(dbCmd, "@Subscribe_time", DbType.DateTime,obj.Subscribe_time);
+			db.AddInParameter(dbCmd, "@Subscribe_Time", DbType.DateTime,obj.Subscribe_Time);
 			db.AddInParameter(dbCmd, "@Unionid", DbType.String,obj.Unionid);
+			db.AddInParameter(dbCmd, "@IsSubscribe", DbType.Boolean,obj.IsSubscribe);
+			db.AddInParameter(dbCmd, "@UnSubscribe_Time", DbType.DateTime,obj.UnSubscribe_Time);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -1080,13 +1082,15 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@OpenID", DbType.String,obj.OpenID);
 			db.AddInParameter(dbCmd, "@NickName", DbType.String,obj.NickName);
 			db.AddInParameter(dbCmd, "@HeadImg", DbType.String,obj.HeadImg);
-			db.AddInParameter(dbCmd, "@Sex", DbType.Boolean,obj.Sex);
+			db.AddInParameter(dbCmd, "@Sex", DbType.Int32,obj.Sex);
 			db.AddInParameter(dbCmd, "@Country", DbType.String,obj.Country);
 			db.AddInParameter(dbCmd, "@Province", DbType.String,obj.Province);
 			db.AddInParameter(dbCmd, "@City", DbType.String,obj.City);
 			db.AddInParameter(dbCmd, "@Language", DbType.String,obj.Language);
-			db.AddInParameter(dbCmd, "@Subscribe_time", DbType.DateTime,obj.Subscribe_time);
+			db.AddInParameter(dbCmd, "@Subscribe_Time", DbType.DateTime,obj.Subscribe_Time);
 			db.AddInParameter(dbCmd, "@Unionid", DbType.String,obj.Unionid);
+			db.AddInParameter(dbCmd, "@IsSubscribe", DbType.Boolean,obj.IsSubscribe);
+			db.AddInParameter(dbCmd, "@UnSubscribe_Time", DbType.DateTime,obj.UnSubscribe_Time);
 			
 			try
 			{ 
@@ -1206,13 +1210,15 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.OpenID = reader["OpenID"] == null ? default(string) : (string)reader["OpenID"];
 				obj.NickName = reader["NickName"] == null ? default(string) : (string)reader["NickName"];
 				obj.HeadImg = reader["HeadImg"] == null ? default(string) : (string)reader["HeadImg"];
-				obj.Sex = reader["Sex"] == null ? default(bool) : (bool)reader["Sex"];
+				obj.Sex = reader["Sex"] == null ? default(int) : (int)reader["Sex"];
 				obj.Country = reader["Country"] == null ? default(string) : (string)reader["Country"];
 				obj.Province = reader["Province"] == null ? default(string) : (string)reader["Province"];
 				obj.City = reader["City"] == null ? default(string) : (string)reader["City"];
 				obj.Language = reader["Language"] == null ? default(string) : (string)reader["Language"];
-				obj.Subscribe_time = reader["Subscribe_time"] == null ? default(DateTime) : (DateTime)reader["Subscribe_time"];
+				obj.Subscribe_Time = reader["Subscribe_Time"] == null ? default(DateTime) : (DateTime)reader["Subscribe_Time"];
 				obj.Unionid = reader["Unionid"] == null ? default(string) : (string)reader["Unionid"];
+				obj.IsSubscribe = reader["IsSubscribe"] == null ? default(bool) : (bool)reader["IsSubscribe"];
+				obj.UnSubscribe_Time = reader["UnSubscribe_Time"] == null ? default(DateTime) : (DateTime)reader["UnSubscribe_Time"];
 				
             }
             catch(Exception ex)
@@ -1287,9 +1293,10 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddOutParameter(dbCmd, "@Id", DbType.Int32,4);
 			db.AddInParameter(dbCmd, "@MessageType", DbType.String,obj.MessageType);
 			db.AddInParameter(dbCmd, "@OpenID", DbType.String,obj.OpenID);
-			db.AddInParameter(dbCmd, "@Content", DbType.String,obj.Content);
+			db.AddInParameter(dbCmd, "@XmlContent", DbType.String,obj.XmlContent);
 			db.AddInParameter(dbCmd, "@MsgId", DbType.String,obj.MsgId);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@ContentValue", DbType.String,obj.ContentValue);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -1330,9 +1337,10 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
 			db.AddInParameter(dbCmd, "@MessageType", DbType.String,obj.MessageType);
 			db.AddInParameter(dbCmd, "@OpenID", DbType.String,obj.OpenID);
-			db.AddInParameter(dbCmd, "@Content", DbType.String,obj.Content);
+			db.AddInParameter(dbCmd, "@XmlContent", DbType.String,obj.XmlContent);
 			db.AddInParameter(dbCmd, "@MsgId", DbType.String,obj.MsgId);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@ContentValue", DbType.String,obj.ContentValue);
 			
 			try
 			{ 
@@ -1451,9 +1459,10 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.Id = reader["Id"] == null ? default(int) : (int)reader["Id"];
 				obj.MessageType = reader["MessageType"] == null ? default(string) : (string)reader["MessageType"];
 				obj.OpenID = reader["OpenID"] == null ? default(string) : (string)reader["OpenID"];
-				obj.Content = reader["Content"] == null ? default(string) : (string)reader["Content"];
+				obj.XmlContent = reader["XmlContent"] == null ? default(string) : (string)reader["XmlContent"];
 				obj.MsgId = reader["MsgId"] == null ? default(string) : (string)reader["MsgId"];
 				obj.CreateTime = reader["CreateTime"] == null ? default(DateTime) : (DateTime)reader["CreateTime"];
+				obj.ContentValue = reader["ContentValue"] == null ? default(string) : (string)reader["ContentValue"];
 				
             }
             catch(Exception ex)

@@ -112,3 +112,7 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\obj\Debug\Site.W
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\obj\Debug\Site.WeiXin.Manager.csproj.CoreCompileInputs.cache
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\obj\Debug\Site.WeiXin.Manager.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\obj\Debug\Site.WeiXin.Manager.pdb
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\Site.Log.dll
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\log4net.dll
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\Site.Log.pdb
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\log4net.xml
