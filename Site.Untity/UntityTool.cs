@@ -61,5 +61,67 @@ namespace Site.Untity
             intResult = (int)(DateTime.Now - startTime).TotalSeconds;
             return intResult;
         }
+
+        /// <summary>
+        /// 生成分类列表分页Dome
+        /// </summary>
+        /// <returns></returns>
+        public static string CreateListPage(int pageSize, int pageIndex, int rowCount, string urlBase)
+        {
+            /*
+             <ul class="pagination pull-right">
+                                <li><a href="#">Prev</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">Next</a></li>
+              </ul>
+
+            */
+            string result = string.Empty;
+
+            string pageHtml = "<ul class=\"pagination pull-right\">{0}</ul>";
+            string a_url = string.Empty;
+            int totalPage = (int)Math.Ceiling(rowCount * 1.00 / pageSize * 1.00);
+            if (totalPage > 1)
+            {
+                if (pageIndex != 1)
+                {
+                    a_url += string.Format("<li><a href=\"{0}\">首页</a></li>\r\n", GetListUrl(1, urlBase));
+                    a_url += string.Format("<li><a href=\"{0}\">上一页</a></li>\r\n", GetListUrl(pageIndex - 1, urlBase));
+                }
+
+                for (int i = 1; i <= totalPage; i++)
+                {
+                    a_url += string.Format("<li><a href=\"{0}\" class=\"{2}\" >{1}</a></li>\r\n", "", i, i == pageIndex ? "cur" : "");
+                }
+
+                if (pageIndex != totalPage)
+                {
+                    a_url += string.Format("<li><a href=\"{0}\">下一页</a></li>\r\n", GetListUrl(pageIndex + 1, urlBase));
+                    a_url += string.Format("<li><a href=\"{0}\">尾页</a></li>\r\n", GetListUrl(totalPage, urlBase));
+                }
+
+                result = string.Format(pageHtml, a_url);
+            }
+
+            return result;
+        }
+
+        private static string GetListUrl(int current, string url)
+        {
+            string result = string.Empty;
+            if (url.Contains("?"))
+            {
+                result = url + "&page=" + current;
+            }
+            else
+            {
+                result = url + "?page=" + current;
+            }
+
+            return result;
+        }
     }
 }

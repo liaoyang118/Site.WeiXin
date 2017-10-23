@@ -25,6 +25,8 @@ namespace Site.Untity.WeiXinCore.Handle
                 info.OpenID = xmlObj.FromUserName;
                 info.Subscribe_Time = DateTime.Now;
                 info.IsSubscribe = true;
+                info.UnSubscribe_Time = DateTime.Now;
+
 
                 //获取用户信息
                 UserInfo wInfo;
@@ -39,7 +41,7 @@ namespace Site.Untity.WeiXinCore.Handle
                     info.NickName = wInfo.nickname;
                     info.Province = wInfo.province;
                     info.Sex = wInfo.sex;
-                    info.Unionid = wInfo.unionid;
+                    info.Unionid = wInfo.unionid ?? string.Empty;
                 }
                 UserService.Insert(info);
 

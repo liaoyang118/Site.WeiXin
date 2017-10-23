@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Site.Untity;
 using Site.WeiXin.DataAccess.Model;
 using Site.WeiXin.DataAccess.Service;
+using Site.WeiXin.DataAccess.Service.PartialService.Search;
 
 namespace Site.WeiXin.Manager.Controllers
 {
@@ -162,6 +163,48 @@ namespace Site.WeiXin.Manager.Controllers
             #endregion
 
 
+        }
+
+
+        public ActionResult UserList(string nickName, int? page)
+        {
+            UserSearchInfo search = new UserSearchInfo();
+            search.NickName = HttpUtility.UrlDecode(nickName);
+            int pageSize = 20;
+            int rowCount;
+            int pageIndex = page == null ? 1 : page.Value;
+            IList<User> list = UserService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
+
+
+            ViewBag.list = list;
+            ViewBag.nickName = HttpUtility.UrlDecode(nickName);
+
+            ViewBag.pageIndex = pageIndex;
+            ViewBag.pageSize = pageSize;
+            ViewBag.rowCount = rowCount;
+
+            return View();
+        }
+
+
+        public ActionResult MessageList(string content, int? page)
+        {
+            MessageSearchInfo search = new MessageSearchInfo();
+            search.ContentValue = HttpUtility.UrlDecode(content);
+            int pageSize = 20;
+            int rowCount;
+            int pageIndex = page == null ? 1 : page.Value;
+            IList<UserMessage> list = UserMessageService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
+
+
+            ViewBag.list = list;
+            ViewBag.content = HttpUtility.UrlDecode(content);
+
+            ViewBag.pageIndex = pageIndex;
+            ViewBag.pageSize = pageSize;
+            ViewBag.rowCount = rowCount;
+
+            return View();
         }
 
 

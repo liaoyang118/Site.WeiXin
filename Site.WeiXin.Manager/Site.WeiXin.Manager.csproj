@@ -254,6 +254,7 @@
     <Content Include="Log4Net.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Code\HelperHtml.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -287,6 +288,8 @@
     <Content Include="Views\Shared\_Layout_Index.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Home\MenuEditView.cshtml" />
+    <Content Include="Views\Home\UserList.cshtml" />
+    <Content Include="Views\Home\MessageList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
