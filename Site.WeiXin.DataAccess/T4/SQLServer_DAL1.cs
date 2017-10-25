@@ -230,10 +230,10 @@ namespace Site.WeiXin.DataAccess.Access
             try
             {
                 obj = new GloblaToken();
-				obj.Id = reader["Id"] == null ? default(int) : (int)reader["Id"];
-				obj.Token = reader["Token"] == null ? default(string) : (string)reader["Token"];
-				obj.AppId = reader["AppId"] == null ? default(string) : (string)reader["AppId"];
-				obj.ExpireTime = reader["ExpireTime"] == null ? default(DateTime) : (DateTime)reader["ExpireTime"];
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.Token = reader["Token"] == DBNull.Value ? default(string) : (string)reader["Token"];
+				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
+				obj.ExpireTime = reader["ExpireTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["ExpireTime"];
 				
             }
             catch(Exception ex)
@@ -473,14 +473,14 @@ namespace Site.WeiXin.DataAccess.Access
             try
             {
                 obj = new Menu();
-				obj.Id = reader["Id"] == null ? default(int) : (int)reader["Id"];
-				obj.ParentId = reader["ParentId"] == null ? default(int) : (int)reader["ParentId"];
-				obj.Name = reader["Name"] == null ? default(string) : (string)reader["Name"];
-				obj.Type = reader["Type"] == null ? default(string) : (string)reader["Type"];
-				obj.Value = reader["Value"] == null ? default(string) : (string)reader["Value"];
-				obj.CreateTime = reader["CreateTime"] == null ? default(DateTime) : (DateTime)reader["CreateTime"];
-				obj.LevelCode = reader["LevelCode"] == null ? default(string) : (string)reader["LevelCode"];
-				obj.Status = reader["Status"] == null ? default(int) : (int)reader["Status"];
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.ParentId = reader["ParentId"] == DBNull.Value ? default(int) : (int)reader["ParentId"];
+				obj.Name = reader["Name"] == DBNull.Value ? default(string) : (string)reader["Name"];
+				obj.Type = reader["Type"] == DBNull.Value ? default(string) : (string)reader["Type"];
+				obj.Value = reader["Value"] == DBNull.Value ? default(string) : (string)reader["Value"];
+				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
+				obj.LevelCode = reader["LevelCode"] == DBNull.Value ? default(string) : (string)reader["LevelCode"];
+				obj.Status = reader["Status"] == DBNull.Value ? default(int) : (int)reader["Status"];
 				
             }
             catch(Exception ex)
@@ -710,9 +710,9 @@ namespace Site.WeiXin.DataAccess.Access
             try
             {
                 obj = new MenuType();
-				obj.Id = reader["Id"] == null ? default(int) : (int)reader["Id"];
-				obj.Type = reader["Type"] == null ? default(string) : (string)reader["Type"];
-				obj.Intro = reader["Intro"] == null ? default(string) : (string)reader["Intro"];
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.Type = reader["Type"] == DBNull.Value ? default(string) : (string)reader["Type"];
+				obj.Intro = reader["Intro"] == DBNull.Value ? default(string) : (string)reader["Intro"];
 				
             }
             catch(Exception ex)
@@ -950,13 +950,13 @@ namespace Site.WeiXin.DataAccess.Access
             try
             {
                 obj = new SystemUser();
-				obj.Id = reader["Id"] == null ? default(int) : (int)reader["Id"];
-				obj.AppId = reader["AppId"] == null ? default(string) : (string)reader["AppId"];
-				obj.Account = reader["Account"] == null ? default(string) : (string)reader["Account"];
-				obj.Password = reader["Password"] == null ? default(string) : (string)reader["Password"];
-				obj.CreateTime = reader["CreateTime"] == null ? default(DateTime) : (DateTime)reader["CreateTime"];
-				obj.CreateUserName = reader["CreateUserName"] == null ? default(string) : (string)reader["CreateUserName"];
-				obj.AccountState = reader["AccountState"] == null ? default(int) : (int)reader["AccountState"];
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
+				obj.Account = reader["Account"] == DBNull.Value ? default(string) : (string)reader["Account"];
+				obj.Password = reader["Password"] == DBNull.Value ? default(string) : (string)reader["Password"];
+				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
+				obj.CreateUserName = reader["CreateUserName"] == DBNull.Value ? default(string) : (string)reader["CreateUserName"];
+				obj.AccountState = reader["AccountState"] == DBNull.Value ? default(int) : (int)reader["AccountState"];
 				
             }
             catch(Exception ex)
@@ -1195,10 +1195,12 @@ namespace Site.WeiXin.DataAccess.Access
                 throw new Exception(e.Message);
             }
 		}
-		#endregion
+        #endregion
+
+        
 
 
-		#region Object2Model
+        #region Object2Model
 
         public User Object2Model(IDataReader reader)
         {
@@ -1206,19 +1208,19 @@ namespace Site.WeiXin.DataAccess.Access
             try
             {
                 obj = new User();
-				obj.Id = reader["Id"] == null ? default(int) : (int)reader["Id"];
-				obj.OpenID = reader["OpenID"] == null ? default(string) : (string)reader["OpenID"];
-				obj.NickName = reader["NickName"] == null ? default(string) : (string)reader["NickName"];
-				obj.HeadImg = reader["HeadImg"] == null ? default(string) : (string)reader["HeadImg"];
-				obj.Sex = reader["Sex"] == null ? default(int) : (int)reader["Sex"];
-				obj.Country = reader["Country"] == null ? default(string) : (string)reader["Country"];
-				obj.Province = reader["Province"] == null ? default(string) : (string)reader["Province"];
-				obj.City = reader["City"] == null ? default(string) : (string)reader["City"];
-				obj.Language = reader["Language"] == null ? default(string) : (string)reader["Language"];
-				obj.Subscribe_Time = reader["Subscribe_Time"] == null ? default(DateTime) : (DateTime)reader["Subscribe_Time"];
-				obj.Unionid = reader["Unionid"] == null ? default(string) : (string)reader["Unionid"];
-				obj.IsSubscribe = reader["IsSubscribe"] == null ? default(bool) : (bool)reader["IsSubscribe"];
-				obj.UnSubscribe_Time = reader["UnSubscribe_Time"] == null ? default(DateTime) : (DateTime)reader["UnSubscribe_Time"];
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.OpenID = reader["OpenID"] == DBNull.Value ? default(string) : (string)reader["OpenID"];
+				obj.NickName = reader["NickName"] == DBNull.Value ? default(string) : (string)reader["NickName"];
+				obj.HeadImg = reader["HeadImg"] == DBNull.Value ? default(string) : (string)reader["HeadImg"];
+				obj.Sex = reader["Sex"] == DBNull.Value ? default(int) : (int)reader["Sex"];
+				obj.Country = reader["Country"] == DBNull.Value ? default(string) : (string)reader["Country"];
+				obj.Province = reader["Province"] == DBNull.Value ? default(string) : (string)reader["Province"];
+				obj.City = reader["City"] == DBNull.Value ? default(string) : (string)reader["City"];
+				obj.Language = reader["Language"] == DBNull.Value ? default(string) : (string)reader["Language"];
+				obj.Subscribe_Time = reader["Subscribe_Time"] == DBNull.Value ? default(DateTime) : (DateTime)reader["Subscribe_Time"];
+				obj.Unionid = reader["Unionid"] == DBNull.Value ? default(string) : (string)reader["Unionid"];
+				obj.IsSubscribe = reader["IsSubscribe"] == DBNull.Value ? default(bool) : (bool)reader["IsSubscribe"];
+				obj.UnSubscribe_Time = reader["UnSubscribe_Time"] == DBNull.Value ? default(DateTime) : (DateTime)reader["UnSubscribe_Time"];
 				
             }
             catch(Exception ex)
@@ -1456,13 +1458,13 @@ namespace Site.WeiXin.DataAccess.Access
             try
             {
                 obj = new UserMessage();
-				obj.Id = reader["Id"] == null ? default(int) : (int)reader["Id"];
-				obj.MessageType = reader["MessageType"] == null ? default(string) : (string)reader["MessageType"];
-				obj.OpenID = reader["OpenID"] == null ? default(string) : (string)reader["OpenID"];
-				obj.XmlContent = reader["XmlContent"] == null ? default(string) : (string)reader["XmlContent"];
-				obj.MsgId = reader["MsgId"] == null ? default(string) : (string)reader["MsgId"];
-				obj.CreateTime = reader["CreateTime"] == null ? default(DateTime) : (DateTime)reader["CreateTime"];
-				obj.ContentValue = reader["ContentValue"] == null ? default(string) : (string)reader["ContentValue"];
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.MessageType = reader["MessageType"] == DBNull.Value ? default(string) : (string)reader["MessageType"];
+				obj.OpenID = reader["OpenID"] == DBNull.Value ? default(string) : (string)reader["OpenID"];
+				obj.XmlContent = reader["XmlContent"] == DBNull.Value ? default(string) : (string)reader["XmlContent"];
+				obj.MsgId = reader["MsgId"] == DBNull.Value ? default(string) : (string)reader["MsgId"];
+				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
+				obj.ContentValue = reader["ContentValue"] == DBNull.Value ? default(string) : (string)reader["ContentValue"];
 				
             }
             catch(Exception ex)

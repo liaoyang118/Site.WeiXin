@@ -47,17 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Access\MySqlAccess.cs" />
-    <Compile Include="Access\SqlServerAccess.cs" />
     <Compile Include="Base\AccessBase.cs" />
+    <Compile Include="Model\UserMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\PartialService\Search\MessageSearchInfo.cs" />
     <Compile Include="Service\PartialService\Search\UserSearchInfo.cs" />
     <Compile Include="Service\PartialService\Search\SystemUserSearchInfo.cs" />
     <Compile Include="Service\PartialService\SystemUserService.cs" />
     <Compile Include="Service\PartialService\MenuService.cs" />
+    <Compile Include="Service\PartialService\UserMessageService.cs" />
     <Compile Include="Service\PartialService\UserService.cs" />
     <Compile Include="SqlServerAccess\PartialAccess\MenuAccess.cs" />
+    <Compile Include="SqlServerAccess\PartialAccess\UserMessageAccess.cs" />
     <Compile Include="SqlServerAccess\PartialAccess\UserAccess.cs" />
     <Compile Include="T4\Model1.cs">
       <AutoGen>True</AutoGen>
@@ -103,6 +104,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Access\" />
     <Folder Include="MySqlAccess\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -290,6 +290,7 @@
     <Content Include="Views\Home\MenuEditView.cshtml" />
     <Content Include="Views\Home\UserList.cshtml" />
     <Content Include="Views\Home\MessageList.cshtml" />
+    <Content Include="Views\Home\CustomerServiceList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

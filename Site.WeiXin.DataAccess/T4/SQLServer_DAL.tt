@@ -284,7 +284,7 @@ namespace <#= DataAccessNamespaceStr #>
                 obj = new <#=table.TableName#>();
 				<# foreach(DbColumn column in DbHelper.GetDbColumns(ConnectionString, DataBaseName, table.TableName))
 				  {
-				#>obj.<#=column.ColumnName#> = reader["<#=column.ColumnName#>"] == null ? default(<#=column.CSharpType#>) : (<#=column.CSharpType#>)reader["<#=column.ColumnName#>"];
+				#>obj.<#=column.ColumnName#> = reader["<#=column.ColumnName#>"] == DBNull.Value ? default(<#=column.CSharpType#>) : (<#=column.CSharpType#>)reader["<#=column.ColumnName#>"];
 				<#	
 				  }
 				#>

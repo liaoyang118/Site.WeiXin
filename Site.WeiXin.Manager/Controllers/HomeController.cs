@@ -191,10 +191,33 @@ namespace Site.WeiXin.Manager.Controllers
         {
             MessageSearchInfo search = new MessageSearchInfo();
             search.ContentValue = HttpUtility.UrlDecode(content);
+
             int pageSize = 20;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
-            IList<UserMessage> list = UserMessageService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
+            IList<UserMessage> list = UserMessageService.SelectPageExcuteSql("t1.*,t2.NickName,t2.HeadImg", "t1.CreateTime", "left join [User] t2 on t1.OpenID=t2.OpenID", pageIndex, pageSize, out rowCount);
+
+
+            ViewBag.list = list;
+            ViewBag.content = HttpUtility.UrlDecode(content);
+
+            ViewBag.pageIndex = pageIndex;
+            ViewBag.pageSize = pageSize;
+            ViewBag.rowCount = rowCount;
+
+            return View();
+        }
+
+
+        public ActionResult SourceList(string content, int? page)
+        {
+            MessageSearchInfo search = new MessageSearchInfo();
+            search.ContentValue = HttpUtility.UrlDecode(content);
+
+            int pageSize = 20;
+            int rowCount;
+            int pageIndex = page == null ? 1 : page.Value;
+            IList<UserMessage> list = UserMessageService.SelectPageExcuteSql("t1.*,t2.NickName,t2.HeadImg", "t1.CreateTime", "left join [User] t2 on t1.OpenID=t2.OpenID", pageIndex, pageSize, out rowCount);
 
 
             ViewBag.list = list;

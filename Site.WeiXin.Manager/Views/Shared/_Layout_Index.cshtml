@@ -244,7 +244,18 @@
                 <li><a href="/Home/Menu" class="@((controllerName == "home" && action == "menu") ? "open" : "")"><i class="icon-th-list"></i>菜单</a></li>
                 <li><a href="/Home/UserList" class="@((controllerName == "home" && action == "userlist") ? "open" : "")"><i class="icon-heart"></i>关注用户</a></li>
                 <li><a href="/Home/MessageList" class="@((controllerName == "home" && action == "messagelist") ? "open" : "")"><i class="icon-comments"></i>用户留言</a></li>
-                <li><a href="ui.html"><i class="icon-magic"></i>UI图标</a></li>
+                <li class="has_sub">
+                    <a href="#" class="@((controllerName == "content") ? "subdrop" : "")"><i class="icon-folder-open"></i>内容管理<span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+                    <ul style="display: none;">
+                        <li><a href="/Content/SourceList">素材管理</a></li>
+                        <li><a href="/Content/News">信息管理</a></li>
+                        <li><a href="error.html">错误</a></li>
+                        <li><a href="error-log.html">错误日志</a></li>
+                        <li><a href="calendar.html">日历</a></li>
+                        <li><a href="grid.html">网格</a></li>
+                    </ul>
+                </li>
+                <li><a href="/Home/SourceList class="@((controllerName == "home" && action == "sourcelist") ? "open" : "")""><i class="icon-magic"></i>素材管理</a></li>
                 <li><a href="calendar.html"><i class="icon-calendar"></i>日历</a></li>
             </ul>
         </div>
