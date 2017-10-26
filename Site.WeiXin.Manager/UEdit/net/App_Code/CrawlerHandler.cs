@@ -1,10 +1,10 @@
-﻿using Site.Service.UploadService;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using Site.Untity;
 
 /// <summary>
 /// Crawler 的摘要说明
@@ -34,8 +34,7 @@ public class CrawlerHandler : Handler
             {
                 state = x.State,
                 source = x.SourceUrl,
-                url = x.ServerUrl,
-                wcfSourceUrl = x.WcfSourceUrl
+                url = x.ServerUrl
             })
         });
     }
@@ -48,10 +47,6 @@ public class Crawler
     //抓取回来的图片，上传到服务后的缩略图地址
     public string ServerUrl { get; set; }
 
-    /// <summary>
-    /// 抓取回来的图片，上传到服务后的原图地址
-    /// </summary>
-    public string WcfSourceUrl { get; set; }
     public string State { get; set; }
 
     private HttpServerUtility Server { get; set; }
@@ -83,9 +78,8 @@ public class Crawler
                 State = "Url is not an image";
                 return this;
             }
-            
-            List<string> urlResult = new List<string>();
-            
+
+            string urlResult = string.Empty;
             try
             {
                 var stream = response.GetResponseStream();
@@ -106,7 +100,6 @@ public class Crawler
                 //调用站点上传服务
                 urlResult = UploadImageBySiteService(bytes);
 
-
                 State = "SUCCESS";
             }
             catch (Exception e)
@@ -114,23 +107,16 @@ public class Crawler
                 State = "抓取错误：" + e.Message;
             }
 
-            this.ServerUrl = urlResult[1];
-            this.WcfSourceUrl = urlResult[0];
+            this.ServerUrl = urlResult;
 
             return this;
         }
     }
 
-    private List<string> UploadImageBySiteService(byte[] imgData)
+    private string UploadImageBySiteService(byte[] imgData)
     {
-        string uploadConfigName = Config.GetString("imageUploadConfigName");
-        string uploadConfigSize = Config.GetString("imageUploadConfigSize");
-
-        List<string> abbreviationsConfig = new List<string>();
-        abbreviationsConfig.Add(uploadConfigSize);
-
-        List<string> result = UploadServiceClass.UploadImg(imgData, uploadConfigName, abbreviationsConfig, "jpg");
-
+        string result = string.Empty;
+        bool isSuccess = WeiXinCommon.AddArticalImage(imgData, "media", "jpg", out result);
         return result;
     }
 

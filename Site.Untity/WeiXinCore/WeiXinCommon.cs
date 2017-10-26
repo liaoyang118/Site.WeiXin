@@ -349,6 +349,8 @@ namespace Site.Untity
                         {
                             //更新时间
                             info.ExpireTime = DateTime.Now.AddHours(2);
+                            //跟新access_token
+                            info.Token = result;
                             GloblaTokenService.Update(info);
                         }
                     }
@@ -417,6 +419,153 @@ namespace Site.Untity
                 return false;
             }
         }
+
+        /// <summary>
+        /// 新增临时素材
+        /// </summary>
+        /// <param name="media_id"></param>
+        /// <param name="type">素材类型：image、voice、video、thumb</param>
+        /// <returns></returns>
+        public static bool AddTempMaterial(string type, string fileName, string ext, byte[] bytes, out string media_id)
+        {
+            media_id = string.Empty;
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/media/upload?access_token={0}&type={1}", access_token, type);
+                    string content = HttpTool.Post(url, fileName, ext, bytes);
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("media_id", out token);
+                        if (token != null)
+                        {
+                            //反序列化
+                            media_id = token.ToString();
+                            return true;
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errmsg", out token);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("获取用户信息错误:" + ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 新增永久素材
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="fileName"></param>
+        /// <param name="ext"></param>
+        /// <param name="bytes"></param>
+        /// <param name="media_id"></param>
+        /// <returns></returns>
+        public static bool AddPermanentMaterial(string type, string fileName, string ext, byte[] bytes, out string media_id)
+        {
+            media_id = string.Empty;
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/add_material??access_token={0}&type={1}", access_token, type);
+                    string content = HttpTool.Post(url, fileName, ext, bytes);
+                    //TODO:上传视频素材时需要POST另一个表单
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("media_id", out token);
+                        if (token != null)
+                        {
+                            //反序列化
+                            media_id = token.ToString();
+                            return true;
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errmsg", out token);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("获取用户信息错误:" + ex.Message);
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// 新增图文信息中的图片，返回图片地址
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="fileName"></param>
+        /// <param name="ext"></param>
+        /// <param name="imageUrl"></param>
+        /// <returns></returns>
+        public static bool AddArticalImage(byte[] bytes, string fileName, string ext, out string imageUrl)
+        {
+            imageUrl = string.Empty;
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token={0}", access_token);
+                    string content = HttpTool.Post(url, fileName, ext, bytes);
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("url", out token);
+                        if (token != null)
+                        {
+                            //反序列化
+                            imageUrl = token.ToString();
+                            return true;
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errmsg", out token);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("获取用户信息错误:" + ex.Message);
+                return false;
+            }
+        }
+
 
     }
 }

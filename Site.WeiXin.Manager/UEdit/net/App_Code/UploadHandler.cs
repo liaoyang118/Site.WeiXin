@@ -1,10 +1,10 @@
-﻿using Site.Service.UploadService;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using Site.Untity;
 
 /// <summary>
 /// UploadHandler 的摘要说明
@@ -63,15 +63,14 @@ public class UploadHandler : Handler
         }
 
         Result.OriginFileName = uploadFileName;
-        
+
 
         try
         {
             //调用站点上传服务
-            List<string> urlResult = UploadImageBySiteService(uploadFileBytes);
+            string urlResult = UploadImageBySiteService(uploadFileBytes);
             //修改为新地址
-            Result.Url = urlResult[1];//UploadConfig.RemoteServerHost + savePath;
-            Result.SourceUrl = urlResult[0];
+            Result.Url = urlResult;//UploadConfig.RemoteServerHost + savePath;
 
 
             Result.State = UploadState.Success;
@@ -88,14 +87,10 @@ public class UploadHandler : Handler
     }
 
 
-    private List<string> UploadImageBySiteService(byte[] imgData)
+    private string UploadImageBySiteService(byte[] imgData)
     {
-        string uploadConfigSize = Config.GetString("imageUploadConfigSize");
-        List<string> abbreviationsConfig = new List<string>();
-        abbreviationsConfig.Add(uploadConfigSize);
-
-        List<string> result = UploadServiceClass.UploadImg(imgData, UploadConfig.UploadConfigName, abbreviationsConfig, "jpg");
-
+        string result = string.Empty;
+        bool isSuccess = WeiXinCommon.AddArticalImage(imgData, "media", "jpg", out result);
         return result;
     }
 
@@ -107,8 +102,7 @@ public class UploadHandler : Handler
             url = Result.Url,
             title = Result.OriginFileName,
             original = Result.OriginFileName,
-            error = Result.ErrorMessage,
-            sourceUrl = Result.SourceUrl
+            error = Result.ErrorMessage
         });
     }
 
@@ -173,7 +167,7 @@ public class UploadConfig
     /// Base64 字符串所表示的文件名
     /// </summary>
     public string Base64Filename { get; set; }
-    
+
 
     /// <summary>
     /// 调用本地上传服务，使用的上传保存配置

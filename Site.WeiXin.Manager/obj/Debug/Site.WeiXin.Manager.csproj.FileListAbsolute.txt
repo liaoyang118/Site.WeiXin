@@ -69,7 +69,6 @@ E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\Newtonsoft.Json.dll
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\System.Web.Optimization.dll
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\WebGrease.dll
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\Antlr3.Runtime.pdb
-E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\Newtonsoft.Json.xml
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\System.Web.Optimization.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Site.WeiXin.Manager.dll.config
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Site.WeiXin.Manager.dll

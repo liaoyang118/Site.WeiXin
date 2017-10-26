@@ -13,7 +13,6 @@ E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.DataAccess\bin\Debug\Microsoft.Pract
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
-E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.DataAccess\obj\Debug\Site.WeiXin.DataAccess.csprojResolveAssemblyReference.cache
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.DataAccess\obj\Debug\Site.WeiXin.DataAccess.dll
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.DataAccess\obj\Debug\Site.WeiXin.DataAccess.pdb
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\bin\Debug\Site.WeiXin.DataAccess.dll

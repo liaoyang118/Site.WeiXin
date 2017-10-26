@@ -1,0 +1,65 @@
+
+日志时间：2017-10-26 21:39:01,698 [49] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取用户信息错误:未能加载文件或程序集“Site.WeiXin.DataAccess, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null”或它的某一个依赖项。系统找不到指定的文件。 
+
+日志时间：2017-10-26 21:44:46,055 [39] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取用户信息错误:未能加载文件或程序集“Site.WeiXin.DataAccess, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null”或它的某一个依赖项。系统找不到指定的文件。 
+
+日志时间：2017-10-26 21:46:43,155 [13] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token错误：未能加载文件或程序集“Microsoft.Practices.EnterpriseLibrary.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35”或它的某一个依赖项。系统找不到指定的文件。 
+
+日志时间：2017-10-26 21:47:16,211 [13] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token错误：未能加载文件或程序集“Microsoft.Practices.EnterpriseLibrary.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35”或它的某一个依赖项。系统找不到指定的文件。 
+
+日志时间：2017-10-26 21:49:18,863 [13] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：yFocy0dRrEriHEouNFhQ-A-5kUNtRnGm6P0m4y4yUbsYUzeB8ElP-pe0guIanta-ZVVvJN1YBKkGb0JEKZPdKn00Tk2WDRRaoOHBAIsguJNI7aczzmqxQqgi7MtRk-20XTXiAAAIEI 
+
+日志时间：2017-10-26 21:53:59,767 [7] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：DMfFdo8IZgaXXGBGeGQg4vIMX3g0wUB9A2Rl5t15UAGqeq2Ulhccuh2tBNJ_cZr6K9OUcMON64P_YASfVAG1S5uKNiBwcAibavTLj8ypOW-GJrYw9oB12CrujV3W9HKTPNMgAGAZXW 
+
+日志时间：2017-10-26 22:22:30,708 [19] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：DMfFdo8IZgaXXGBGeGQg4vIMX3g0wUB9A2Rl5t15UAGqeq2Ulhccuh2tBNJ_cZr6K9OUcMON64P_YASfVAG1S5uKNiBwcAibavTLj8ypOW-GJrYw9oB12CrujV3W9HKTPNMgAGAZXW 
+
+日志时间：2017-10-26 22:24:05,735 [19] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：DMfFdo8IZgaXXGBGeGQg4vIMX3g0wUB9A2Rl5t15UAGqeq2Ulhccuh2tBNJ_cZr6K9OUcMON64P_YASfVAG1S5uKNiBwcAibavTLj8ypOW-GJrYw9oB12CrujV3W9HKTPNMgAGAZXW 
+
+日志时间：2017-10-26 22:24:34,835 [19] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：DMfFdo8IZgaXXGBGeGQg4vIMX3g0wUB9A2Rl5t15UAGqeq2Ulhccuh2tBNJ_cZr6K9OUcMON64P_YASfVAG1S5uKNiBwcAibavTLj8ypOW-GJrYw9oB12CrujV3W9HKTPNMgAGAZXW 
+
+日志时间：2017-10-26 22:31:44,459 [19] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取用户信息错误:发生一个或多个错误。 
+
+日志时间：2017-10-26 22:34:57,626 [11] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：DMfFdo8IZgaXXGBGeGQg4vIMX3g0wUB9A2Rl5t15UAGqeq2Ulhccuh2tBNJ_cZr6K9OUcMON64P_YASfVAG1S5uKNiBwcAibavTLj8ypOW-GJrYw9oB12CrujV3W9HKTPNMgAGAZXW 
+
+日志时间：2017-10-26 22:40:35,278 [5] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：DMfFdo8IZgaXXGBGeGQg4vIMX3g0wUB9A2Rl5t15UAGqeq2Ulhccuh2tBNJ_cZr6K9OUcMON64P_YASfVAG1S5uKNiBwcAibavTLj8ypOW-GJrYw9oB12CrujV3W9HKTPNMgAGAZXW 
+
+日志时间：2017-10-26 22:54:05,389 [52] 
+日志级别：ERROR 
+日 志 类：info [(null)] 
+获取acess_token成功：DMfFdo8IZgaXXGBGeGQg4vIMX3g0wUB9A2Rl5t15UAGqeq2Ulhccuh2tBNJ_cZr6K9OUcMON64P_YASfVAG1S5uKNiBwcAibavTLj8ypOW-GJrYw9oB12CrujV3W9HKTPNMgAGAZXW 

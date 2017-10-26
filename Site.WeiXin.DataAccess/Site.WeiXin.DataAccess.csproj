@@ -109,4 +109,7 @@
     <Folder Include="MySqlAccess\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(TargetPath) E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\UEdit\net\Bin</PostBuildEvent>
+  </PropertyGroup>
 </Project>
