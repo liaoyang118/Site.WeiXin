@@ -57,7 +57,7 @@ namespace Site.Untity
             string content = string.Empty;
             MultipartFormDataContent requestContent = new MultipartFormDataContent();
             requestContent.Add(CreateFileContent(bytes, fileName + string.Format("{0}", ext.StartsWith(".") ? ext : "." + ext), "application/octet-stream"));
-            
+
             HttpResponseMessage result = client.PostAsync(url, requestContent).Result;
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -69,22 +69,14 @@ namespace Site.Untity
         private static ByteArrayContent CreateFileContent(byte[] bytes, string fileName, string contentType)
         {
             var fileContent = new ByteArrayContent(bytes);
-            //fileContent.Headers.Clear();
-            //fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
-            //{
-            //    Name = "\"media\"",//微信端上传文件固定是media,普通post为file
-            //    FileName = "\"" + fileName + "\""
-            //};
-            //fileContent.Headers.ContentType = new MediaTypeHeaderValue(contentType);
-
-
-            StreamContent sc = new StreamContent(new MemoryStream(bytes));
-            sc.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+            fileContent.Headers.Clear();
+            fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
             {
                 Name = "\"media\"",//微信端上传文件固定是media,普通post为file
                 FileName = "\"" + fileName + "\""
             };
-            sc.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+
 
             return fileContent;
         }
