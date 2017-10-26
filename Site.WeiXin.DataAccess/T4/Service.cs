@@ -14,6 +14,77 @@ using Site.WeiXin.DataAccess.Access;
 namespace Site.WeiXin.DataAccess.Service
 {
 
+	public partial class ArticleService
+    {
+
+        #region 01 Article_Insert
+		 public static int Insert(Article obj)
+		 {
+			using (var access = new ArticleAccess())
+            {
+                return access.Insert(obj);
+            }
+		 }
+		#endregion
+		
+		#region 02 Article_Delete
+		 public static int Delete(int id)
+		 {
+			using (var access = new ArticleAccess())
+			{
+				return access.Delete(id);
+			}
+		}
+		#endregion
+
+		#region 03 Article_Update
+		 public static int Update(Article obj)
+		 {
+			
+			using (var access = new ArticleAccess())
+			{
+				return access.Update(obj);
+			}
+		}
+		#endregion
+
+		#region 04 Article_SelectObject
+		 public static Article SelectObject(int id)
+		 {
+			
+			using (var access = new ArticleAccess())
+			{
+				return access.SelectObject(id);
+			}
+		}
+		#endregion
+
+		#region 05 Article_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以空格 and 开始</param>
+         /// <returns></returns>
+		 public static IList<Article> Select(string whereStr)
+		 {
+			using (var access = new ArticleAccess())
+			{
+				return access.Select(whereStr);
+			}
+		}
+		#endregion
+
+		#region 06 Article_SelectPage
+		 public static IList<Article> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			using (var access = new ArticleAccess())
+			{
+				return access.SelectPage(cloumns,order,whereStr,pageIndex,pageSize, out rowCount);
+			}
+		}
+		#endregion
+
+    }
 	public partial class GloblaTokenService
     {
 
@@ -78,6 +149,77 @@ namespace Site.WeiXin.DataAccess.Service
 		 public static IList<GloblaToken> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
 		 {
 			using (var access = new GloblaTokenAccess())
+			{
+				return access.SelectPage(cloumns,order,whereStr,pageIndex,pageSize, out rowCount);
+			}
+		}
+		#endregion
+
+    }
+	public partial class MaterialService
+    {
+
+        #region 01 Material_Insert
+		 public static int Insert(Material obj)
+		 {
+			using (var access = new MaterialAccess())
+            {
+                return access.Insert(obj);
+            }
+		 }
+		#endregion
+		
+		#region 02 Material_Delete
+		 public static int Delete(int id)
+		 {
+			using (var access = new MaterialAccess())
+			{
+				return access.Delete(id);
+			}
+		}
+		#endregion
+
+		#region 03 Material_Update
+		 public static int Update(Material obj)
+		 {
+			
+			using (var access = new MaterialAccess())
+			{
+				return access.Update(obj);
+			}
+		}
+		#endregion
+
+		#region 04 Material_SelectObject
+		 public static Material SelectObject(int id)
+		 {
+			
+			using (var access = new MaterialAccess())
+			{
+				return access.SelectObject(id);
+			}
+		}
+		#endregion
+
+		#region 05 Material_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以空格 and 开始</param>
+         /// <returns></returns>
+		 public static IList<Material> Select(string whereStr)
+		 {
+			using (var access = new MaterialAccess())
+			{
+				return access.Select(whereStr);
+			}
+		}
+		#endregion
+
+		#region 06 Material_SelectPage
+		 public static IList<Material> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			using (var access = new MaterialAccess())
 			{
 				return access.SelectPage(cloumns,order,whereStr,pageIndex,pageSize, out rowCount);
 			}

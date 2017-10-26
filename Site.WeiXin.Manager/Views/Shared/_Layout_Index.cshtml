@@ -246,8 +246,8 @@
                 <li><a href="/Home/MessageList" class="@((controllerName == "home" && action == "messagelist") ? "open" : "")"><i class="icon-comments"></i>用户留言</a></li>
                 <li class="has_sub">
                     <a href="#" class="@((controllerName == "content") ? "subdrop" : "")"><i class="icon-folder-open"></i>内容管理<span class="pull-right"><i class="icon-chevron-right"></i></span></a>
-                    <ul style="display: none;">
-                        <li><a href="/Content/SourceList">素材管理</a></li>
+                    <ul style="display:@(controllerName=="content"?"block":"none");">
+                        <li><a href="/Content/Index">素材管理</a></li>
                         <li><a href="/Content/News">信息管理</a></li>
                         <li><a href="error.html">错误</a></li>
                         <li><a href="error-log.html">错误日志</a></li>

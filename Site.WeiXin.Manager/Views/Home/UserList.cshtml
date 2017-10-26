@@ -165,9 +165,11 @@
                             </thead>
                             <tbody>
                                 @{
-                                    int num = 1;
-                                    foreach (User item in list)
+                                    if (list != null && list.Count > 0)
                                     {
+                                        int num = 1;
+                                        foreach (User item in list)
+                                        {
                                         <tr>
                                             <td>@num</td>
                                             <td>
@@ -181,7 +183,12 @@
                                             <td>@(item.IsSubscribe == true ? "是" : "否")</td>
                                             <td>@(item.IsSubscribe == true ? item.Subscribe_Time.Value.ToString("yyyy/MM/dd HH:mm:ss") : item.UnSubscribe_Time.Value.ToString("yyyy/MM/dd HH:mm:ss"))</td>
                                         </tr>
-                                        num++;
+                                            num++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="9">暂无任何数据</td></tr>
                                     }
                                 }
                             </tbody>

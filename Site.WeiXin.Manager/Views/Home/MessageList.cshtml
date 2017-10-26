@@ -161,9 +161,11 @@
                             </thead>
                             <tbody>
                                 @{
-                                    int num = 1;
-                                    foreach (UserMessage item in list)
+                                    if (list != null && list.Count > 0)
                                     {
+                                        int num = 1;
+                                        foreach (UserMessage item in list)
+                                        {
                                         <tr>
                                             <td>@num</td>
                                             <td>
@@ -173,7 +175,12 @@
                                             <td>@item.ContentValue</td>
                                             <td>@item.CreateTime.ToString("yyyy/MM/dd HH:mm:ss")</td>
                                         </tr>
-                                        num++;
+                                            num++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="5">暂无任何数据</td></tr>
                                     }
                                 }
                             </tbody>

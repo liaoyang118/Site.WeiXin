@@ -10,6 +10,151 @@ namespace Site.WeiXin.DataAccess.Model
 {
 
 	[Serializable]
+	public partial class Article
+    {
+        
+		#region Id
+		private int _Id;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int Id 
+		{ 
+			get { return _Id; } 
+			set { _Id = value; } 
+		
+		}
+		#endregion
+		
+		#region AuthorName
+		private string _AuthorName;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string AuthorName 
+		{ 
+			get { return _AuthorName; } 
+			set { _AuthorName = value; } 
+		
+		}
+		#endregion
+		
+		#region Title
+		private string _Title;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string Title 
+		{ 
+			get { return _Title; } 
+			set { _Title = value; } 
+		
+		}
+		#endregion
+		
+		#region ContentSourceUrl
+		private string _ContentSourceUrl;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string ContentSourceUrl 
+		{ 
+			get { return _ContentSourceUrl; } 
+			set { _ContentSourceUrl = value; } 
+		
+		}
+		#endregion
+		
+		#region ArticleContent
+		private string _ArticleContent;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string ArticleContent 
+		{ 
+			get { return _ArticleContent; } 
+			set { _ArticleContent = value; } 
+		
+		}
+		#endregion
+		
+		#region Intro
+		private string _Intro;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string Intro 
+		{ 
+			get { return _Intro; } 
+			set { _Intro = value; } 
+		
+		}
+		#endregion
+		
+		#region ShowCover
+		private int _ShowCover;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int ShowCover 
+		{ 
+			get { return _ShowCover; } 
+			set { _ShowCover = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateTime
+		private DateTime _CreateTime;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public DateTime CreateTime 
+		{ 
+			get { return _CreateTime; } 
+			set { _CreateTime = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateUserAccount
+		private string _CreateUserAccount;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string CreateUserAccount 
+		{ 
+			get { return _CreateUserAccount; } 
+			set { _CreateUserAccount = value; } 
+		
+		}
+		#endregion
+		
+		#region Statu
+		private int _Statu;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int Statu 
+		{ 
+			get { return _Statu; } 
+			set { _Statu = value; } 
+		
+		}
+		#endregion
+		
+    }
+	[Serializable]
 	public partial class GloblaToken
     {
         
@@ -65,6 +210,109 @@ namespace Site.WeiXin.DataAccess.Model
 		{ 
 			get { return _ExpireTime; } 
 			set { _ExpireTime = value; } 
+		
+		}
+		#endregion
+		
+    }
+	[Serializable]
+	public partial class Material
+    {
+        
+		#region Id
+		private int _Id;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int Id 
+		{ 
+			get { return _Id; } 
+			set { _Id = value; } 
+		
+		}
+		#endregion
+		
+		#region MaterialName
+		private string _MaterialName;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string MaterialName 
+		{ 
+			get { return _MaterialName; } 
+			set { _MaterialName = value; } 
+		
+		}
+		#endregion
+		
+		#region MaterialType
+		private string _MaterialType;
+       
+        /// <summary>
+        /// 图片、语音、视屏、缩略图
+        /// </summary>        
+        public string MaterialType 
+		{ 
+			get { return _MaterialType; } 
+			set { _MaterialType = value; } 
+		
+		}
+		#endregion
+		
+		#region Media_id
+		private string _Media_id;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string Media_id 
+		{ 
+			get { return _Media_id; } 
+			set { _Media_id = value; } 
+		
+		}
+		#endregion
+		
+		#region Url
+		private string _Url;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string Url 
+		{ 
+			get { return _Url; } 
+			set { _Url = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateTime
+		private DateTime _CreateTime;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public DateTime CreateTime 
+		{ 
+			get { return _CreateTime; } 
+			set { _CreateTime = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateUserAccount
+		private string _CreateUserAccount;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string CreateUserAccount 
+		{ 
+			get { return _CreateUserAccount; } 
+			set { _CreateUserAccount = value; } 
 		
 		}
 		#endregion

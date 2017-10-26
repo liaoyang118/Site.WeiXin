@@ -27,6 +27,16 @@ namespace Site.Untity
         }
 
         /// <summary>
+        /// 文章状态
+        /// </summary>
+        public enum ArticleState
+        {
+            通过 = 0,
+            不通过 = 1,
+            无效 = 2
+        }
+
+        /// <summary>
         /// Access_token 返回码
         /// </summary>
         public enum Access_tokenStatus

@@ -15,6 +15,259 @@ namespace Site.WeiXin.DataAccess.Access
 {
 
 	[Serializable]
+	public partial class ArticleAccess : AccessBase<Article>,IDisposable
+    {
+
+		Database db;
+
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
+        #region 00 IDisposable 实现
+        public ArticleAccess(string configName)
+        {
+			db = factory.Create(configName);
+        }
+
+        public ArticleAccess()
+        {
+            db = factory.Create("wxmanager");
+        }
+
+        //虚拟Idisposable 实现,手动调用的
+        public void Dispose()
+        {
+            //调用方法，释放资源
+            Dispose(true);
+            //通知GC，已经手动调用，不用调用析构函数了
+            System.GC.SuppressFinalize(this);
+        }
+
+        //重载方法，满足不同的调用，清理干净资源，提升性能
+        /// <summary>
+        /// true --手动调用，清理托管资源
+        /// false--GC 调用，把非托管资源一起清理掉
+        /// </summary>
+        /// <param name="isDispose"></param>
+        protected virtual void Dispose(bool isDispose)
+        {
+            if (isDispose)
+            {
+
+            }
+            //清理非托管资源，此处没有，所以直接ruturn
+            return;
+        }
+
+        //析构函数，供GC 调用
+        ~ArticleAccess()
+        {
+            Dispose(false);
+        }
+        #endregion
+
+
+        #region 01 Proc_Article_Insert
+		 public override int Insert(Article obj)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Article_Insert");
+			db.AddOutParameter(dbCmd, "@Id", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@AuthorName", DbType.String,obj.AuthorName);
+			db.AddInParameter(dbCmd, "@Title", DbType.String,obj.Title);
+			db.AddInParameter(dbCmd, "@ContentSourceUrl", DbType.String,obj.ContentSourceUrl);
+			db.AddInParameter(dbCmd, "@ArticleContent", DbType.String,obj.ArticleContent);
+			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
+			db.AddInParameter(dbCmd, "@ShowCover", DbType.Int32,obj.ShowCover);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@Statu", DbType.Int32,obj.Statu);
+						try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				//int Id = (int)dbCmd.Parameters["@Id"].Value;
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+		
+		#region 02 Proc_Article_Delete
+		 public override int Delete(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Article_DeleteById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 03 Proc_Article_Update
+		 public override int Update(Article obj)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Article_UpdateById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
+			db.AddInParameter(dbCmd, "@AuthorName", DbType.String,obj.AuthorName);
+			db.AddInParameter(dbCmd, "@Title", DbType.String,obj.Title);
+			db.AddInParameter(dbCmd, "@ContentSourceUrl", DbType.String,obj.ContentSourceUrl);
+			db.AddInParameter(dbCmd, "@ArticleContent", DbType.String,obj.ArticleContent);
+			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
+			db.AddInParameter(dbCmd, "@ShowCover", DbType.Int32,obj.ShowCover);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@Statu", DbType.Int32,obj.Statu);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 04 Proc_Article_SelectObject
+		 public override Article SelectObject(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Article_SelectById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			Article obj=null;
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						obj=Object2Model(reader);
+					}
+                }
+				return obj;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 05 Proc_Article_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
+		 public override IList<Article> Select(string whereStr)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Article_SelectList");
+			db.AddInParameter(dbCmd, "@whereStr", DbType.String,whereStr);
+			
+			IList<Article> list= new List<Article>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						Article obj= Object2Model(reader);
+						list.Add(obj);
+					}
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 06 Proc_Article_SelectPage
+		 public override IList<Article> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Article_SelectPage");
+			db.AddOutParameter(dbCmd, "@rowCount", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@cloumns", DbType.String,cloumns);
+			db.AddInParameter(dbCmd, "@pageIndex", DbType.Int32,pageIndex);
+			db.AddInParameter(dbCmd, "@pageSize", DbType.Int32,pageSize);
+			db.AddInParameter(dbCmd, "@orderBy", DbType.String,order);
+			db.AddInParameter(dbCmd, "@where", DbType.String,whereStr);
+
+			List<Article> list= new List<Article>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						Article obj= Object2Model(reader);
+						list.Add(obj);
+					}
+					reader.NextResult();
+					rowCount = (int)dbCmd.Parameters["@rowCount"].Value;
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+
+		#region Object2Model
+
+        public Article Object2Model(IDataReader reader)
+        {
+            Article obj = null;
+            try
+            {
+                obj = new Article();
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.AuthorName = reader["AuthorName"] == DBNull.Value ? default(string) : (string)reader["AuthorName"];
+				obj.Title = reader["Title"] == DBNull.Value ? default(string) : (string)reader["Title"];
+				obj.ContentSourceUrl = reader["ContentSourceUrl"] == DBNull.Value ? default(string) : (string)reader["ContentSourceUrl"];
+				obj.ArticleContent = reader["ArticleContent"] == DBNull.Value ? default(string) : (string)reader["ArticleContent"];
+				obj.Intro = reader["Intro"] == DBNull.Value ? default(string) : (string)reader["Intro"];
+				obj.ShowCover = reader["ShowCover"] == DBNull.Value ? default(int) : (int)reader["ShowCover"];
+				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
+				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
+				obj.Statu = reader["Statu"] == DBNull.Value ? default(int) : (int)reader["Statu"];
+				
+            }
+            catch(Exception ex)
+            {
+                obj = null;
+            }
+            return obj;
+        }
+
+
+
+        #endregion
+
+
+    }
+	[Serializable]
 	public partial class GloblaTokenAccess : AccessBase<GloblaToken>,IDisposable
     {
 
@@ -234,6 +487,250 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.Token = reader["Token"] == DBNull.Value ? default(string) : (string)reader["Token"];
 				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
 				obj.ExpireTime = reader["ExpireTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["ExpireTime"];
+				
+            }
+            catch(Exception ex)
+            {
+                obj = null;
+            }
+            return obj;
+        }
+
+
+
+        #endregion
+
+
+    }
+	[Serializable]
+	public partial class MaterialAccess : AccessBase<Material>,IDisposable
+    {
+
+		Database db;
+
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
+        #region 00 IDisposable 实现
+        public MaterialAccess(string configName)
+        {
+			db = factory.Create(configName);
+        }
+
+        public MaterialAccess()
+        {
+            db = factory.Create("wxmanager");
+        }
+
+        //虚拟Idisposable 实现,手动调用的
+        public void Dispose()
+        {
+            //调用方法，释放资源
+            Dispose(true);
+            //通知GC，已经手动调用，不用调用析构函数了
+            System.GC.SuppressFinalize(this);
+        }
+
+        //重载方法，满足不同的调用，清理干净资源，提升性能
+        /// <summary>
+        /// true --手动调用，清理托管资源
+        /// false--GC 调用，把非托管资源一起清理掉
+        /// </summary>
+        /// <param name="isDispose"></param>
+        protected virtual void Dispose(bool isDispose)
+        {
+            if (isDispose)
+            {
+
+            }
+            //清理非托管资源，此处没有，所以直接ruturn
+            return;
+        }
+
+        //析构函数，供GC 调用
+        ~MaterialAccess()
+        {
+            Dispose(false);
+        }
+        #endregion
+
+
+        #region 01 Proc_Material_Insert
+		 public override int Insert(Material obj)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Material_Insert");
+			db.AddOutParameter(dbCmd, "@Id", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@MaterialName", DbType.String,obj.MaterialName);
+			db.AddInParameter(dbCmd, "@MaterialType", DbType.String,obj.MaterialType);
+			db.AddInParameter(dbCmd, "@Media_id", DbType.String,obj.Media_id);
+			db.AddInParameter(dbCmd, "@Url", DbType.String,obj.Url);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+						try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				//int Id = (int)dbCmd.Parameters["@Id"].Value;
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+		
+		#region 02 Proc_Material_Delete
+		 public override int Delete(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Material_DeleteById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 03 Proc_Material_Update
+		 public override int Update(Material obj)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Material_UpdateById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
+			db.AddInParameter(dbCmd, "@MaterialName", DbType.String,obj.MaterialName);
+			db.AddInParameter(dbCmd, "@MaterialType", DbType.String,obj.MaterialType);
+			db.AddInParameter(dbCmd, "@Media_id", DbType.String,obj.Media_id);
+			db.AddInParameter(dbCmd, "@Url", DbType.String,obj.Url);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 04 Proc_Material_SelectObject
+		 public override Material SelectObject(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Material_SelectById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			Material obj=null;
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						obj=Object2Model(reader);
+					}
+                }
+				return obj;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 05 Proc_Material_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
+		 public override IList<Material> Select(string whereStr)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Material_SelectList");
+			db.AddInParameter(dbCmd, "@whereStr", DbType.String,whereStr);
+			
+			IList<Material> list= new List<Material>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						Material obj= Object2Model(reader);
+						list.Add(obj);
+					}
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 06 Proc_Material_SelectPage
+		 public override IList<Material> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_Material_SelectPage");
+			db.AddOutParameter(dbCmd, "@rowCount", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@cloumns", DbType.String,cloumns);
+			db.AddInParameter(dbCmd, "@pageIndex", DbType.Int32,pageIndex);
+			db.AddInParameter(dbCmd, "@pageSize", DbType.Int32,pageSize);
+			db.AddInParameter(dbCmd, "@orderBy", DbType.String,order);
+			db.AddInParameter(dbCmd, "@where", DbType.String,whereStr);
+
+			List<Material> list= new List<Material>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						Material obj= Object2Model(reader);
+						list.Add(obj);
+					}
+					reader.NextResult();
+					rowCount = (int)dbCmd.Parameters["@rowCount"].Value;
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+
+		#region Object2Model
+
+        public Material Object2Model(IDataReader reader)
+        {
+            Material obj = null;
+            try
+            {
+                obj = new Material();
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.MaterialName = reader["MaterialName"] == DBNull.Value ? default(string) : (string)reader["MaterialName"];
+				obj.MaterialType = reader["MaterialType"] == DBNull.Value ? default(string) : (string)reader["MaterialType"];
+				obj.Media_id = reader["Media_id"] == DBNull.Value ? default(string) : (string)reader["Media_id"];
+				obj.Url = reader["Url"] == DBNull.Value ? default(string) : (string)reader["Url"];
+				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
+				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
 				
             }
             catch(Exception ex)
@@ -1195,12 +1692,10 @@ namespace Site.WeiXin.DataAccess.Access
                 throw new Exception(e.Message);
             }
 		}
-        #endregion
-
-        
+		#endregion
 
 
-        #region Object2Model
+		#region Object2Model
 
         public User Object2Model(IDataReader reader)
         {
