@@ -68,7 +68,7 @@ public class UploadHandler : Handler
         try
         {
             //调用站点上传服务
-            string urlResult = UploadImageBySiteService(uploadFileBytes);
+            string urlResult = UploadImageBySiteService(uploadFileBytes, uploadFileName);
             //修改为新地址
             Result.Url = urlResult;//UploadConfig.RemoteServerHost + savePath;
 
@@ -87,10 +87,10 @@ public class UploadHandler : Handler
     }
 
 
-    private string UploadImageBySiteService(byte[] imgData)
+    private string UploadImageBySiteService(byte[] imgData, string fileName)
     {
         string result = string.Empty;
-        bool isSuccess = WeiXinCommon.AddArticalImage(imgData, "media", "jpg", out result);
+        bool isSuccess = WeiXinCommon.AddArticalImage(imgData, fileName, out result);
         return result;
     }
 

@@ -50,5 +50,16 @@ namespace Site.WeiXin.Manager.Controllers
 
             return PartialView();
         }
+
+        //[ValidateInput(false)]
+        //public ActionResult ContentEdit()
+        //{
+
+        //}
+        
+        public ActionResult Test()
+        {
+            return View();
+        }
     }
 }

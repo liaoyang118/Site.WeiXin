@@ -91,7 +91,6 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Microsoft.Pr
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Site.Untity.pdb
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Site.WeiXin.DataAccess.pdb
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Antlr3.Runtime.pdb
-E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Newtonsoft.Json.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\System.Web.Optimization.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\System.Web.Razor.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\System.Web.Webpages.xml

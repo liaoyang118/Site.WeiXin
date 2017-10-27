@@ -74,6 +74,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@AuthorName", DbType.String,obj.AuthorName);
 			db.AddInParameter(dbCmd, "@Title", DbType.String,obj.Title);
 			db.AddInParameter(dbCmd, "@ContentSourceUrl", DbType.String,obj.ContentSourceUrl);
+			db.AddInParameter(dbCmd, "@MediaId", DbType.String,obj.MediaId);
 			db.AddInParameter(dbCmd, "@ArticleContent", DbType.String,obj.ArticleContent);
 			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
 			db.AddInParameter(dbCmd, "@ShowCover", DbType.Int32,obj.ShowCover);
@@ -121,6 +122,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@AuthorName", DbType.String,obj.AuthorName);
 			db.AddInParameter(dbCmd, "@Title", DbType.String,obj.Title);
 			db.AddInParameter(dbCmd, "@ContentSourceUrl", DbType.String,obj.ContentSourceUrl);
+			db.AddInParameter(dbCmd, "@MediaId", DbType.String,obj.MediaId);
 			db.AddInParameter(dbCmd, "@ArticleContent", DbType.String,obj.ArticleContent);
 			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
 			db.AddInParameter(dbCmd, "@ShowCover", DbType.Int32,obj.ShowCover);
@@ -246,6 +248,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.AuthorName = reader["AuthorName"] == DBNull.Value ? default(string) : (string)reader["AuthorName"];
 				obj.Title = reader["Title"] == DBNull.Value ? default(string) : (string)reader["Title"];
 				obj.ContentSourceUrl = reader["ContentSourceUrl"] == DBNull.Value ? default(string) : (string)reader["ContentSourceUrl"];
+				obj.MediaId = reader["MediaId"] == DBNull.Value ? default(string) : (string)reader["MediaId"];
 				obj.ArticleContent = reader["ArticleContent"] == DBNull.Value ? default(string) : (string)reader["ArticleContent"];
 				obj.Intro = reader["Intro"] == DBNull.Value ? default(string) : (string)reader["Intro"];
 				obj.ShowCover = reader["ShowCover"] == DBNull.Value ? default(int) : (int)reader["ShowCover"];

@@ -69,6 +69,20 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region MediaId
+		private string _MediaId;
+       
+        /// <summary>
+        /// 缩略图素材ID
+        /// </summary>        
+        public string MediaId 
+		{ 
+			get { return _MediaId; } 
+			set { _MediaId = value; } 
+		
+		}
+		#endregion
+		
 		#region ArticleContent
 		private string _ArticleContent;
        

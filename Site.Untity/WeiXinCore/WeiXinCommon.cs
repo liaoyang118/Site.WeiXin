@@ -426,7 +426,7 @@ namespace Site.Untity
         /// <param name="media_id"></param>
         /// <param name="type">素材类型：image、voice、video、thumb</param>
         /// <returns></returns>
-        public static bool AddTempMaterial(string type, string fileName, string ext, byte[] bytes, out string media_id)
+        public static bool AddTempMaterial(string type, byte[] bytes, string fileName, out string media_id)
         {
             media_id = string.Empty;
             try
@@ -436,7 +436,7 @@ namespace Site.Untity
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/media/upload?access_token={0}&type={1}", access_token, type);
-                    string content = HttpTool.Post(url, fileName, ext, bytes);
+                    string content = HttpTool.Post(url, fileName, bytes);
                     if (!string.IsNullOrEmpty(content))
                     {
                         JObject obj = (JObject)JsonConvert.DeserializeObject(content);
@@ -475,7 +475,7 @@ namespace Site.Untity
         /// <param name="bytes"></param>
         /// <param name="media_id"></param>
         /// <returns></returns>
-        public static bool AddPermanentMaterial(string type, string fileName, string ext, byte[] bytes, out string media_id)
+        public static bool AddPermanentMaterial(string type, byte[] bytes, string fileName, out string media_id)
         {
             media_id = string.Empty;
             try
@@ -485,7 +485,7 @@ namespace Site.Untity
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/add_material??access_token={0}&type={1}", access_token, type);
-                    string content = HttpTool.Post(url, fileName, ext, bytes);
+                    string content = HttpTool.Post(url, fileName, bytes);
                     //TODO:上传视频素材时需要POST另一个表单
 
                     if (!string.IsNullOrEmpty(content))
@@ -526,7 +526,7 @@ namespace Site.Untity
         /// <param name="ext"></param>
         /// <param name="imageUrl"></param>
         /// <returns></returns>
-        public static bool AddArticalImage(byte[] bytes, string fileName, string ext, out string imageUrl)
+        public static bool AddArticalImage(byte[] bytes, string fileName, out string imageUrl)
         {
             imageUrl = string.Empty;
             try
@@ -536,7 +536,7 @@ namespace Site.Untity
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token={0}", access_token);
-                    string content = HttpTool.Post(url, fileName, ext, bytes);
+                    string content = HttpTool.Post(url, fileName, bytes);
                     if (!string.IsNullOrEmpty(content))
                     {
                         JObject obj = (JObject)JsonConvert.DeserializeObject(content);
