@@ -1,0 +1,38 @@
+﻿@using Site.WeiXin.DataAccess.Model;
+@using Site.Untity;
+@{
+    IList<UserMessage> list = ViewBag.list;
+}
+
+<!-- Comment button with number of latest comments count -->
+<li class="dropdown dropdown-big">
+    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+        <i class="icon-comments"></i> 公众号留言 <span class="label label-info">@list.Count</span>
+    </a>
+
+    <ul class="dropdown-menu">
+        <li>
+            <!-- Heading - h5 -->
+            <h5><i class="icon-comments"></i> 公众号留言 </h5>
+            <!-- Use hr tag to add border -->
+            <hr />
+        </li>
+        @foreach (UserMessage item in list)
+        {
+            <li>
+                <!-- List item heading h6 -->
+                <h6><a href="#">@item.ContentValue</a><span class="label label-warning pull-right">@item.CreateTime.ToString("HH:mm")</span></h6>
+                <div class="clearfix"></div>
+                <hr />
+            </li>
+        }
+        @if (list.Count > 0)
+        {
+            <li>
+                <div class="drop-foot">
+                    <a href="/Home/MessageList">查看所有</a>
+                </div>
+            </li>
+        }
+    </ul>
+</li>

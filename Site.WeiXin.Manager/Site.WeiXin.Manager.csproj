@@ -425,9 +425,6 @@
     <Content Include="UEdit\net\Bin\Microsoft.ApplicationInsights.dll" />
     <Content Include="UEdit\net\Bin\Microsoft.AspNet.TelemetryCorrelation.dll" />
     <Content Include="UEdit\net\Bin\Newtonsoft.Json.dll" />
-    <Content Include="UEdit\net\Bin\Site.Common.dll" />
-    <Content Include="UEdit\net\Bin\Site.Service.UploadService.dll" />
-    <Content Include="UEdit\net\Bin\System.Diagnostics.DiagnosticSource.dll" />
     <Content Include="UEdit\net\net.sln" />
     <Content Include="UEdit\themes\default\css\ueditor.css" />
     <Content Include="UEdit\themes\default\css\ueditor.min.css" />
@@ -584,6 +581,7 @@
     <Content Include="UEdit\third-party\video-js\font\vjs.ttf" />
     <Content Include="UEdit\third-party\video-js\font\vjs.woff" />
     <Content Include="Views\Content\Test.cshtml" />
+    <Content Include="Views\Home\NearMessage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

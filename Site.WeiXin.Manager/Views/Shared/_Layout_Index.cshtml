@@ -145,44 +145,9 @@
 
                     <!-- Buttons -->
                     <ul class="nav nav-pills">
-
-                        <!-- Comment button with number of latest comments count -->
-                        <li class="dropdown dropdown-big">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                                <i class="icon-comments"></i> 公众号留言 <span class="label label-info">6</span>
-                            </a>
-
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <!-- Heading - h5 -->
-                                    <h5><i class="icon-comments"></i> 公众号留言 </h5>
-                                    <!-- Use hr tag to add border -->
-                                    <hr />
-                                </li>
-                                <li>
-                                    <!-- List item heading h6 -->
-                                    <h6><a href="#">你好 :)</a> <span class="label label-warning pull-right">10:42</span></h6>
-                                    <div class="clearfix"></div>
-                                    <hr />
-                                </li>
-                                <li>
-                                    <h6><a href="#">你怎么样?</a> <span class="label label-warning pull-right">20:42</span></h6>
-                                    <div class="clearfix"></div>
-                                    <hr />
-                                </li>
-                                <li>
-                                    <h6><a href="#">你在干撒呢?</a> <span class="label label-warning pull-right">14:42</span></h6>
-                                    <div class="clearfix"></div>
-                                    <hr />
-                                </li>
-                                <li>
-                                    <div class="drop-foot">
-                                        <a href="/Home/MessageList">查看所有</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-
+                        @{
+                            Html.RenderAction("NearMessage", "Home");
+                        }
                     </ul>
 
                 </div>

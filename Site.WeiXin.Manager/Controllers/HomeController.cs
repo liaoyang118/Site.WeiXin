@@ -189,9 +189,6 @@ namespace Site.WeiXin.Manager.Controllers
 
         public ActionResult MessageList(string content, int? page)
         {
-            MessageSearchInfo search = new MessageSearchInfo();
-            search.ContentValue = HttpUtility.UrlDecode(content);
-
             int pageSize = 20;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
@@ -228,6 +225,15 @@ namespace Site.WeiXin.Manager.Controllers
             ViewBag.rowCount = rowCount;
 
             return View();
+        }
+
+
+        public ActionResult NearMessage()
+        {
+            IList<UserMessage> list = UserMessageService.Select(string.Format(" and MessageType='text' and CreateTime >='{0}'", DateTime.Now.AddHours(-2)));
+
+            ViewBag.list = list;
+            return PartialView();
         }
 
 

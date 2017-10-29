@@ -41,6 +41,8 @@
             $('#editModal').on('hidden.bs.modal', function (e) {
                 editId = "";
                 $(this).removeData();
+
+                UE.getEditor('editor').destroy();
             })
 
             $('#btn_deleteEdit').on('click', function (e) {
@@ -48,9 +50,8 @@
             })
         })
 
-        function btn_delete(id, parentId) {
+        function btn_delete(id) {
             currentId = id;
-            parentId = parentId;
             $("#myModal").modal({
                 backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
             })
@@ -68,12 +69,11 @@
             $.ShowLoading("删除中...");
             //验证通过
             $.ajax({
-                url: "/Home/Delete",
+                url: "/Content/Delete",
                 type: "post",
                 dataType: "json",
                 data: {
-                    id: currentId,
-                    parentId: parentId
+                    id: currentId
                 },
                 cache: false,
                 success: function (json) {
@@ -81,7 +81,7 @@
                     if (json.success) {
                         $.SuccessInfo(json.message.text, 1000);
                         setTimeout(function () {
-                            top.location.href = "/home/menu";
+                            top.location.href = "/Content/Index";
                         }, 1000);
                     }
                     else {
@@ -200,10 +200,10 @@
                                                 </td>
                                                 <td>
 
-                                                    <button class="btn btn-xs btn-success" onclick="btn_edit('','@item.Id');"><i class="icon-plus"></i></button>
-                                                    <button class="btn btn-xs btn-warning" onclick="btn_edit(@item.Id,'');"><i class="icon-pencil"></i></button>
+                                                    <button class="btn btn-xs btn-success" onclick="btn_check('@item.Id');"><i class=" icon-check"></i></button>
+                                                    <button class="btn btn-xs btn-warning" onclick="btn_edit(@item.Id);"><i class="icon-pencil"></i></button>
                                                     <!-- data-toggle="modal" data-target="#myModal" 自动绑定，使用这些属性 -->
-                                                    <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id','')"><i class="icon-remove"></i></button>
+                                                    <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id')"><i class="icon-remove"></i></button>
                                                 </td>
                                             </tr>
                                             num++;
@@ -237,7 +237,7 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    如果删除父菜单将一起删除下面的子菜单,确定要删除该菜单吗？
+                                    请问确定要删除该信息吗？
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">

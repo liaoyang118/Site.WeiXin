@@ -145,7 +145,7 @@ namespace Site.Untity
         public static string WebRequestPost(string url, string fileName, byte[] bf)
         {
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            request.Proxy = new WebProxy("127.0.0.1", 8888);
+            //request.Proxy = new WebProxy("127.0.0.1", 8888);
 
             CookieContainer cookieContainer = new CookieContainer();
             request.CookieContainer = cookieContainer;

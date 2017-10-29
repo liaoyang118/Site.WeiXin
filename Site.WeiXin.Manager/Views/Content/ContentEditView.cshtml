@@ -75,9 +75,7 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="tab2">
-                            <script id="editor" type="text/plain" style="width:100%;height:100%;">
-
-                            </script>
+                            <script id="editor" type="text/plain" style="width:100%;height:100%;">@Html.Raw(obj.ArticleContent)</script>
                         </div>
                     </div>
                 </div>
@@ -123,6 +121,13 @@
                             message: '作者不能为空'
                         }
                     }
+                },
+                mediaId: {
+                    validators: {
+                        notEmpty: {
+                            message: '封面ID不能为空'
+                        }
+                    }
                 }
             }
         });
@@ -157,16 +162,26 @@
         if (valiForm.isValid()) {
             $.ShowLoading("提交中...");
             //验证通过
+            var _content = ue.getContent();
+            if (_content.length <= 0) {
+                $.WarningInfo("详细不能为空");
+                return false;
+            }
+
             $.ajax({
                 url: "/Content/ArticleEdit",
                 type: "post",
                 dataType: "json",
                 data: {
                     id:'@obj.Id',
-                    title: $("#title").val(),
-                    authorName: $("#authorName").val(),
-                    contentSourceUrl: $("#contentSourceUrl").val(),
-                    intro: $("#Intro").val()
+                    Title: $("#title").val(),
+                    AuthorName: $("#authorName").val(),
+                    ContentSourceUrl: $("#contentSourceUrl").val(),
+                    Intro: $("#Intro").val(),
+                    ShowCover: $("#ShowCover").val(),
+                    MediaId: $("#mediaId").val(),
+                    ArticleContent: _content
+
                 },
                 cache: false,
                 success: function (json) {

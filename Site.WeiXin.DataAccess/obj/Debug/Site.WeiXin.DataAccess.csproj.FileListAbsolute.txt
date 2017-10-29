@@ -25,3 +25,4 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\obj\Debug\Sit
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\obj\Debug\Site.WeiXin.DataAccess.csproj.CoreCompileInputs.cache
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\obj\Debug\Site.WeiXin.DataAccess.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\obj\Debug\Site.WeiXin.DataAccess.pdb
+E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.DataAccess\obj\Debug\Site.WeiXin.DataAccess.csprojResolveAssemblyReference.cache
