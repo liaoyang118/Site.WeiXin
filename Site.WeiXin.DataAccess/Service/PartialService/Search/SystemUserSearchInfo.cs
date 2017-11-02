@@ -26,7 +26,7 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
             {
                 where.Add(string.Format("AccountState={0}", AccountState));
             }
-            return string.Format(" and {0}", string.Join(" and ", where.ToList()));
+            return string.Format(" where {0}", string.Join(" and ", where.ToList()));
         }
 
 

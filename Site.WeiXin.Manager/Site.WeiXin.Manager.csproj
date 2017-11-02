@@ -258,6 +258,8 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\jquery.toast.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="UEdit\dialogs\anchor\anchor.html" />
@@ -582,6 +584,9 @@
     <Content Include="UEdit\third-party\video-js\font\vjs.woff" />
     <Content Include="Views\Content\Test.cshtml" />
     <Content Include="Views\Home\NearMessage.cshtml" />
+    <Content Include="Scripts\jquery.form.min.js.map" />
+    <Content Include="Views\Content\MaterialList.cshtml" />
+    <Content Include="Views\Content\MaterialEditView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

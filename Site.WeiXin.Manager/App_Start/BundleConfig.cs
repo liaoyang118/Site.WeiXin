@@ -15,7 +15,9 @@ namespace Site.WeiXin.Manager
                         "~/Scripts/jquery-1.10.2.js",
                         "~/Scripts/bootstrap.min.js",
                         "~/Scripts/jquery.toast.js",
-                        "~/Scripts/Jquery.toast.customer.js"
+                        "~/Scripts/Jquery.toast.customer.js",
+                        "~/Scripts/jquery.form.js"
+
                         ));
 
             //bootstrap 模板脚本

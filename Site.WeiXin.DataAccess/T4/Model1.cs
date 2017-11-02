@@ -331,6 +331,20 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region Intro
+		private string _Intro;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string Intro 
+		{ 
+			get { return _Intro; } 
+			set { _Intro = value; } 
+		
+		}
+		#endregion
+		
     }
 	[Serializable]
 	public partial class Menu

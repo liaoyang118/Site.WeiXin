@@ -13,10 +13,10 @@ namespace Site.WeiXin.Manager.Controllers
     [Authorize]
     public class ContentController : Controller
     {
-        public ActionResult Index(string title, int? page)
+        public ActionResult Index(string key, int? page)
         {
             ArticleSearchInfo search = new ArticleSearchInfo();
-            search.Title = HttpUtility.UrlDecode(title);
+            search.Title = HttpUtility.UrlDecode(key);
             int pageSize = 20;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
@@ -24,7 +24,7 @@ namespace Site.WeiXin.Manager.Controllers
 
 
             ViewBag.list = list;
-            ViewBag.title = HttpUtility.UrlDecode(title);
+            ViewBag.key = HttpUtility.UrlDecode(key);
 
             ViewBag.pageIndex = pageIndex;
             ViewBag.pageSize = pageSize;
@@ -107,7 +107,7 @@ namespace Site.WeiXin.Manager.Controllers
         public ActionResult Delete(string id)
         {
             int result = 0;
-            if (string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(id))
             {
                 result = ArticleService.Delete(int.Parse(id));
             }
@@ -125,24 +125,66 @@ namespace Site.WeiXin.Manager.Controllers
         public ActionResult CheckArticle(string id, string status)
         {
             int result = 0;
-            if (string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(id))
             {
-                result = ArticleService.Delete(int.Parse(id));
+                Article info = ArticleService.SelectObject(int.Parse(id));
+                info.Statu = int.Parse(status);
+                result = ArticleService.Update(info);
             }
 
             if (result > 0)
             {
-                return Json(UntityTool.JsonResult(true, "删除成功"));
+                return Json(UntityTool.JsonResult(true, "审核成功"));
             }
             else
             {
-                return Json(UntityTool.JsonResult(true, "删除失败"));
+                return Json(UntityTool.JsonResult(true, "审核失败"));
             }
+        }
+
+        public ActionResult MaterialList(string key, int? page)
+        {
+            MaterialSearchInfo search = new MaterialSearchInfo();
+            search.MaterialName = HttpUtility.UrlDecode(key);
+            int pageSize = 20;
+            int rowCount;
+            int pageIndex = page == null ? 1 : page.Value;
+            IList<Material> list = MaterialService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
+
+
+            ViewBag.list = list;
+            ViewBag.key = HttpUtility.UrlDecode(key);
+
+            ViewBag.pageIndex = pageIndex;
+            ViewBag.pageSize = pageSize;
+            ViewBag.rowCount = rowCount;
+            return View();
+        }
+
+
+        public ActionResult MaterialEditView(string id)
+        {
+            Material obj = null;
+            if (!string.IsNullOrEmpty(id))
+            {
+                //修改
+                obj = MaterialService.SelectObject(int.Parse(id));
+            }
+            else
+            {
+                //新增
+                obj = new Material();
+            }
+
+            ViewBag.obj = obj;
+
+            return PartialView();
         }
 
         public ActionResult Test()
         {
             return View();
         }
+
     }
 }

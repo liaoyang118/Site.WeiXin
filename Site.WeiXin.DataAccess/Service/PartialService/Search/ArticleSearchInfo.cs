@@ -24,7 +24,7 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
 
             if (where.Count > 0)
             {
-                return string.Format(" and {0}", string.Join(" and ", where.ToList()));
+                return string.Format(" where {0}", string.Join(" and ", where.ToList()));
             }
             else
             {

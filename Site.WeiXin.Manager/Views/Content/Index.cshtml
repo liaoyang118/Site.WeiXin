@@ -8,7 +8,7 @@
 @{
 
     IList<Article> list = ViewBag.list;
-    string title = ViewBag.title;
+    string key = ViewBag.key;
 
     int pageIndex = ViewBag.pageIndex;
     int pageSize = ViewBag.pageSize;
@@ -36,23 +36,43 @@
 
             $('#myModal').on('hidden.bs.modal', function (e) {
                 currentId = "";
-            })
+            });
 
             $('#editModal').on('hidden.bs.modal', function (e) {
                 editId = "";
+                //移除表单数据
                 $(this).removeData();
-
+                //销毁富文本编辑器
                 UE.getEditor('editor').destroy();
-            })
+            });
+
+            $('#checkModal').on('hidden.bs.modal', function (e) {
+                currentId = "";
+            });
+
+
 
             $('#btn_deleteEdit').on('click', function (e) {
                 btn_deleteEdit();
             })
+
+            $("button[name='btn_check']").on('click', function (e) {
+                var status = $(this).attr("state");
+                btn_checkEdit(currentId, status);
+            })
+
         })
 
         function btn_delete(id) {
             currentId = id;
             $("#myModal").modal({
+                backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
+            })
+        }
+
+        function btn_check(id) {
+            currentId = id;
+            $("#checkModal").modal({
                 backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
             })
         }
@@ -91,26 +111,32 @@
                 error: function (xhr, state, error) {
                     $.HideLoading();
 
-                    $.ErrorInfo(json.message.text);
+                    $.ErrorInfo(error);
                 }
             });
 
             $('#myModal').modal('hide')
         }
 
-        function btn_publish() {
-            $.ShowLoading("发布中...");
-            //验证通过
+        function btn_checkEdit(id, status) {
+            $.ShowLoading("审核中...");
+            //审核
             $.ajax({
-                url: "/Home/PublishButton",
+                url: "/Content/CheckArticle",
                 type: "post",
                 dataType: "json",
-                data: {},
+                data: {
+                    id: id,
+                    status: status
+                },
                 cache: false,
                 success: function (json) {
                     $.HideLoading();
                     if (json.success) {
                         $.SuccessInfo(json.message.text, 1000);
+                        setTimeout(function () {
+                            top.location.href = "/Content/Index";
+                        }, 1000);
                     }
                     else {
                         $.WarningInfo(json.message.text);
@@ -119,9 +145,15 @@
                 error: function (xhr, state, error) {
                     $.HideLoading();
 
-                    $.ErrorInfo(json.message.text);
+                    $.ErrorInfo(error);
                 }
             });
+            $('#checkModal').modal('hide')
+        }
+
+        function btn_search() {
+            var _key = $("#title").val();
+            top.location.href = "/Content/Index?key=" + _key;
         }
 
     </script>
@@ -145,8 +177,16 @@
             <div class="col-md-12">
                 <div class="widget">
                     <div class="widget-head">
-                        <div class="pull-left">文章列表</div>
+                        <div class="pull-left form-inline">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="title" value="@key" placeholder="请输入标题">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-sm btn-default" onclick="btn_search()"><i class="icon-search"></i> 搜索</button>
+                            </div>
+                        </div>
                         <div class="widget-icons pull-right">
+
                             <button class="btn btn-sm btn-success" onclick="btn_edit('','');"><i class="icon-plus"></i>新增</button>
 
                             <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
@@ -199,26 +239,25 @@
                                                     }
                                                 </td>
                                                 <td>
-
-                                                    <button class="btn btn-xs btn-success" onclick="btn_check('@item.Id');"><i class=" icon-check"></i></button>
+                                                    <button class="btn btn-xs btn-success" onclick="btn_check('@item.Id');"><i class="icon-check"></i></button>
                                                     <button class="btn btn-xs btn-warning" onclick="btn_edit(@item.Id);"><i class="icon-pencil"></i></button>
                                                     <!-- data-toggle="modal" data-target="#myModal" 自动绑定，使用这些属性 -->
                                                     <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id')"><i class="icon-remove"></i></button>
                                                 </td>
                                             </tr>
-                                            num++;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <tr><td colspan="8">暂无任何数据</td></tr>
-                                    }
+                                                                num++;
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr><td colspan="8">暂无任何数据</td></tr>
+                                                        }
                                 }
                             </tbody>
                         </table>
 
                         <div class="widget-foot">
-                            @Html.Raw(UntityTool.CreateListPage(pageSize, pageIndex, rowCount, string.Format("/Home/UserList/{0}", title == "" ? "" : string.Format("?title={0}", HttpUtility.UrlEncode(title)))))
+                            @Html.Raw(UntityTool.CreateListPage(pageSize, pageIndex, rowCount, string.Format("/Home/UserList/{0}", key == "" ? "" : string.Format("?title={0}", HttpUtility.UrlEncode(key)))))
                             <div class="clearfix"></div>
                         </div>
 
@@ -254,6 +293,39 @@
                     <!-- 编辑 模态框（Modal） -->
                     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
 
+                    </div>
+
+                    <!-- check 模态框（Modal） -->
+                    <div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-labelledby="checkModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" id="checkModalLabel">
+                                        审核
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    请问选择审核状态？
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        取消
+                                    </button>
+                                    <button type="button" name="btn_check" state="1" class="btn btn-danger">
+                                        审核不通过
+                                    </button>
+                                    <button type="button" name="btn_check" state="0" class="btn btn-success">
+                                        审核通过
+                                    </button>
+                                    <button type="button" name="btn_check" state="2" class="btn btn-warning">
+                                        无效
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

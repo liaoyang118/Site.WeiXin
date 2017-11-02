@@ -50,6 +50,7 @@
     <Compile Include="Base\AccessBase.cs" />
     <Compile Include="Model\UserMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\PartialService\Search\MaterialSearchInfo.cs" />
     <Compile Include="Service\PartialService\Search\MessageSearchInfo.cs" />
     <Compile Include="Service\PartialService\Search\ArticleSearchInfo.cs" />
     <Compile Include="Service\PartialService\Search\UserSearchInfo.cs" />
@@ -110,6 +111,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\UEdit\net\Bin</PostBuildEvent>
+    <PostBuildEvent>copy $(TargetPath) E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\UEdit\net\Bin</PostBuildEvent>
   </PropertyGroup>
 </Project>

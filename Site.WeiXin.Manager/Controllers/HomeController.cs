@@ -166,10 +166,10 @@ namespace Site.WeiXin.Manager.Controllers
         }
 
 
-        public ActionResult UserList(string nickName, int? page)
+        public ActionResult UserList(string key, int? page)
         {
             UserSearchInfo search = new UserSearchInfo();
-            search.NickName = HttpUtility.UrlDecode(nickName);
+            search.NickName = HttpUtility.UrlDecode(key);
             int pageSize = 20;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
@@ -177,7 +177,7 @@ namespace Site.WeiXin.Manager.Controllers
 
 
             ViewBag.list = list;
-            ViewBag.nickName = HttpUtility.UrlDecode(nickName);
+            ViewBag.nickName = HttpUtility.UrlDecode(key);
 
             ViewBag.pageIndex = pageIndex;
             ViewBag.pageSize = pageSize;
@@ -187,16 +187,23 @@ namespace Site.WeiXin.Manager.Controllers
         }
 
 
-        public ActionResult MessageList(string content, int? page)
+        public ActionResult MessageList(string key, int? page)
         {
             int pageSize = 20;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
-            IList<UserMessage> list = UserMessageService.SelectPageExcuteSql("t1.*,t2.NickName,t2.HeadImg", "t1.CreateTime", "left join [User] t2 on t1.OpenID=t2.OpenID", pageIndex, pageSize, out rowCount);
+
+            string where = string.Empty;
+            if (!string.IsNullOrEmpty(key))
+            {
+                where = string.Format(" and t1.ContentValue like '{0}' ", key);
+            }
+
+            IList<UserMessage> list = UserMessageService.SelectPageExcuteSql("t1.*,t2.NickName,t2.HeadImg", "t1.CreateTime", "left join [User] t2 on t1.OpenID=t2.OpenID where t1.MessageType='text'" + where, pageIndex, pageSize, out rowCount);
 
 
             ViewBag.list = list;
-            ViewBag.content = HttpUtility.UrlDecode(content);
+            ViewBag.content = HttpUtility.UrlDecode(key);
 
             ViewBag.pageIndex = pageIndex;
             ViewBag.pageSize = pageSize;
@@ -204,29 +211,7 @@ namespace Site.WeiXin.Manager.Controllers
 
             return View();
         }
-
-
-        public ActionResult SourceList(string content, int? page)
-        {
-            MessageSearchInfo search = new MessageSearchInfo();
-            search.ContentValue = HttpUtility.UrlDecode(content);
-
-            int pageSize = 20;
-            int rowCount;
-            int pageIndex = page == null ? 1 : page.Value;
-            IList<UserMessage> list = UserMessageService.SelectPageExcuteSql("t1.*,t2.NickName,t2.HeadImg", "t1.CreateTime", "left join [User] t2 on t1.OpenID=t2.OpenID", pageIndex, pageSize, out rowCount);
-
-
-            ViewBag.list = list;
-            ViewBag.content = HttpUtility.UrlDecode(content);
-
-            ViewBag.pageIndex = pageIndex;
-            ViewBag.pageSize = pageSize;
-            ViewBag.rowCount = rowCount;
-
-            return View();
-        }
-
+        
 
         public ActionResult NearMessage()
         {

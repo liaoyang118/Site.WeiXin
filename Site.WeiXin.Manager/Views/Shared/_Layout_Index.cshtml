@@ -8,8 +8,11 @@
     @Styles.Render("~/Content/css/base")
 
 
+    @Scripts.Render("~/bundles/js/base")
+
     @RenderSection("css", false)
     @RenderSection("head", false)
+
 
     @{
         string action = ViewContext.RouteData.Values["Action"].ToString().ToLower();
@@ -213,7 +216,7 @@
                     <a href="#" class="@((controllerName == "content") ? "subdrop" : "")"><i class="icon-folder-open"></i>内容管理<span class="pull-right"><i class="icon-chevron-right"></i></span></a>
                     <ul style="display:@(controllerName=="content"?"block":"none");">
                         <li><a href="/Content/Index">文章管理</a></li>
-                        <li><a href="/Content/News">素材管理</a></li>
+                        <li><a href="/Content/MaterialList">素材管理</a></li>
                         <li><a href="error.html">错误</a></li>
                         <li><a href="error-log.html">错误日志</a></li>
                         <li><a href="calendar.html">日历</a></li>
@@ -252,8 +255,7 @@
     <!-- Scroll to top -->
     <span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span>
 
-    @Scripts.Render("~/bundles/js/base")
-    @RenderSection("scripts", false)
 
+    @RenderSection("scripts", false)
 </body>
 </html>

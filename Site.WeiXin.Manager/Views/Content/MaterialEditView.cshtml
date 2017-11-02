@@ -1,0 +1,195 @@
+﻿@using Site.WeiXin.DataAccess.Model;
+@using Site.Untity;
+@{
+    Material obj = ViewBag.obj;
+}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+            </button>
+            <h4 class="modal-title" id="editModalLabel">@(obj.Id > 0 ? "修改素材" : "新增素材")</h4>
+        </div>
+        <div class="modal-body">
+            <div class="widget-content">
+                <div class="tabbable" style="margin-bottom: 18px;">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">基本信息</a></li>
+                        <li class=""><a href="#tab2" data-toggle="tab">文章内容</a></li>
+                    </ul>
+                    <div class="tab-content" style="padding-bottom: 9px;">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="padd">
+                                <div class="form quick-post">
+                                    <!-- Edit profile form (not working)-->
+                                    <form class="form-horizontal" enctype="multipart/form-data" id="forms_edit" method="post" action="/Content/MaterialEdit">
+                                        <!-- title -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="MaterialName">素材名称</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" name="MaterialName" class="form-control" id="MaterialName" value="@obj.MaterialName">
+                                            </div>
+                                        </div>
+                                        <!-- Intro -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="Intro">简介</label>
+                                            <div class="col-lg-9">
+                                                <textarea class="form-control" rows="5" name="Intro" id="Intro">@obj.Intro</textarea>
+                                            </div>
+                                        </div>
+
+                                        <!-- 选择素材 -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="Intro">选择文件</label>
+                                            <div class="col-lg-9">
+                                                <input id="lefile" name="lefile" type="file" style="display:none">
+                                                <div class="input-append">
+                                                    <input id="txt_filename" name="txt_filename" class="input-large" type="text" style="height:30px;">
+                                                    <a class="btn btn-primary" onclick="$('input[id=lefile]').click();">选择文件</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 素材类型 -->
+                                        <div class="form-group" id="txt_val">
+                                            <label class="control-label col-lg-3" for="MaterialType">素材类型</label>
+                                            <div class="col-lg-9">
+                                                <div class="btn-group">
+                                                    <button type="button" value="image" class="btn btn-default">图片</button>
+                                                    <button type="button" value="voice" class="btn btn-default">语音</button>
+                                                    <button type="button" value="video" class="btn btn-default">视频</button>
+                                                    <button type="button" value="thumb" class="btn btn-default">缩略图</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                取消
+            </button>
+            <button type="button" onclick="btn_EditSubmit();" class="btn btn-primary">
+                确定
+            </button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(function () {
+
+        $("input[id='lefile']").change(function () {
+            $('#txt_filename').val($(this).val());
+        });
+
+        //设置校验规则
+        $('form').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                MaterialName: {
+                    validators: {
+                        notEmpty: {
+                            message: '素材名称不能为空'
+                        }
+                    }
+                },
+                Intro: {
+                    validators: {
+                        notEmpty: {
+                            message: '简介不能为空'
+                        }
+                    }
+                }
+            }
+        });
+
+    });
+
+    function btn_EditSubmit() {
+        var valiForm = $('#forms_edit').data('bootstrapValidator');
+        valiForm.validate();
+        if (valiForm.isValid()) {
+            $.ShowLoading("提交中...");
+
+            //$('#forms_edit').submit(function () {
+            //    $(this).ajaxSubmit(function (responseText, statusText) {
+            //        console.log(responseText);
+
+            //        $.HideLoading();
+            //        if (json.success) {
+            //            $.SuccessInfo(json.message.text, 1000);
+            //            $('#editModal').modal('hide')
+            //            setTimeout(function () {
+            //                top.location.reload();
+            //            }, 1000);
+            //        }
+            //        else {
+            //            $.WarningInfo(json.message.text);
+            //        }
+            //    });
+            //    return false; //阻止表单默认提交
+            //});
+
+            //$('#forms_edit').ajaxForm(function () {
+            //    $('#output1').html("提交成功！欢迎下次再来！").show();
+            //}); 
+            $('#forms_edit').submit();
+
+            //验证通过
+            @*$.ajax({
+                url: "/Content/ArticleEdit",
+                type: "post",
+                dataType: "json",
+                data: {
+                    id:'@obj.Id',
+                    Title: $("#title").val(),
+                    AuthorName: $("#authorName").val(),
+                    ContentSourceUrl: $("#contentSourceUrl").val(),
+                    Intro: $("#Intro").val(),
+                    ShowCover: $("#ShowCover").val(),
+                    MediaId: $("#mediaId").val(),
+                    ArticleContent: _content
+
+                },
+                cache: false,
+                success: function (json) {
+                    $.HideLoading();
+                    if (json.success) {
+                        $.SuccessInfo(json.message.text, 1000);
+                        $('#editModal').modal('hide')
+                        setTimeout(function () {
+                            top.location.reload();
+                        }, 1000);
+                    }
+                    else {
+                        $.WarningInfo(json.message.text);
+                    }
+                },
+                error: function (xhr, state, error) {
+                    $.HideLoading();
+                    $.ErrorInfo(error);
+                }
+            });*@
+        }
+    }
+
+</script>
