@@ -215,7 +215,7 @@ namespace Site.WeiXin.Manager.Controllers
 
         public ActionResult NearMessage()
         {
-            IList<UserMessage> list = UserMessageService.Select(string.Format(" and MessageType='text' and CreateTime >='{0}'", DateTime.Now.AddHours(-2)));
+            IList<UserMessage> list = UserMessageService.Select(string.Format(" where MessageType='text' and CreateTime >='{0}'", DateTime.Now.AddHours(-2)));
 
             ViewBag.list = list;
             return PartialView();

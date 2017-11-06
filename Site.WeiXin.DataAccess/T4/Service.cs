@@ -63,7 +63,7 @@ namespace Site.WeiXin.DataAccess.Service
 		/// <summary>
          /// 
          /// </summary>
-         /// <param name="whereStr">以空格 and 开始</param>
+         /// <param name="whereStr">以where 开始</param>
          /// <returns></returns>
 		 public static IList<Article> Select(string whereStr)
 		 {
@@ -134,7 +134,7 @@ namespace Site.WeiXin.DataAccess.Service
 		/// <summary>
          /// 
          /// </summary>
-         /// <param name="whereStr">以空格 and 开始</param>
+         /// <param name="whereStr">以where 开始</param>
          /// <returns></returns>
 		 public static IList<GloblaToken> Select(string whereStr)
 		 {
@@ -205,7 +205,7 @@ namespace Site.WeiXin.DataAccess.Service
 		/// <summary>
          /// 
          /// </summary>
-         /// <param name="whereStr">以空格 and 开始</param>
+         /// <param name="whereStr">以where 开始</param>
          /// <returns></returns>
 		 public static IList<Material> Select(string whereStr)
 		 {
@@ -276,7 +276,7 @@ namespace Site.WeiXin.DataAccess.Service
 		/// <summary>
          /// 
          /// </summary>
-         /// <param name="whereStr">以空格 and 开始</param>
+         /// <param name="whereStr">以where 开始</param>
          /// <returns></returns>
 		 public static IList<Menu> Select(string whereStr)
 		 {
@@ -347,7 +347,7 @@ namespace Site.WeiXin.DataAccess.Service
 		/// <summary>
          /// 
          /// </summary>
-         /// <param name="whereStr">以空格 and 开始</param>
+         /// <param name="whereStr">以where 开始</param>
          /// <returns></returns>
 		 public static IList<MenuType> Select(string whereStr)
 		 {
@@ -418,7 +418,7 @@ namespace Site.WeiXin.DataAccess.Service
 		/// <summary>
          /// 
          /// </summary>
-         /// <param name="whereStr">以空格 and 开始</param>
+         /// <param name="whereStr">以where 开始</param>
          /// <returns></returns>
 		 public static IList<SystemUser> Select(string whereStr)
 		 {
@@ -489,7 +489,7 @@ namespace Site.WeiXin.DataAccess.Service
 		/// <summary>
          /// 
          /// </summary>
-         /// <param name="whereStr">以空格 and 开始</param>
+         /// <param name="whereStr">以where 开始</param>
          /// <returns></returns>
 		 public static IList<User> Select(string whereStr)
 		 {
@@ -560,7 +560,7 @@ namespace Site.WeiXin.DataAccess.Service
 		/// <summary>
          /// 
          /// </summary>
-         /// <param name="whereStr">以空格 and 开始</param>
+         /// <param name="whereStr">以where 开始</param>
          /// <returns></returns>
 		 public static IList<UserMessage> Select(string whereStr)
 		 {

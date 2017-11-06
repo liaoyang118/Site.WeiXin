@@ -76,7 +76,7 @@ namespace <#= ServiceNamespaceStr #>
 		/// <summary>
          /// 
          /// </summary>
-         /// <param name="whereStr">以空格 and 开始</param>
+         /// <param name="whereStr">以where 开始</param>
          /// <returns></returns>
 		 public static IList<<#=table.TableName#>> Select(string whereStr)
 		 {
