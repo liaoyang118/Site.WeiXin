@@ -345,6 +345,20 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region Expire
+		private string _Expire;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string Expire 
+		{ 
+			get { return _Expire; } 
+			set { _Expire = value; } 
+		
+		}
+		#endregion
+		
     }
 	[Serializable]
 	public partial class Menu

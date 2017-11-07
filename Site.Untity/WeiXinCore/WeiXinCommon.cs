@@ -123,10 +123,6 @@ namespace Site.Untity
             }
         }
 
-
-
-
-
         /// <summary>
         /// 回复成功消息
         /// </summary>
@@ -141,6 +137,43 @@ namespace Site.Untity
 
         #endregion
 
+        #region 图文素材格式
+
+        /// <summary>
+        /// 单个图文素材格式
+        /// title,thumb_media_id,author,digest,show_cover_pic,content,content_source_url
+        /// </summary>
+        public static string ImageContentFormat
+        {
+            get
+            {
+                return "{" +
+                    "\"title\": {0}," +
+                    "\"thumb_media_id\": {1}," +
+                    "\"author\": {2}," +
+                    "\"digest\": {3}," +
+                    "\"show_cover_pic\": {4}," +
+                    "\"content\": {5}," +
+                    "\"content_source_url\":{6}}";
+            }
+        }
+
+        /// <summary>
+        /// 图文素材参数格式
+        /// ImageContentFormat 逗号隔开
+        /// </summary>
+        public static string ImageContentListFormat
+        {
+            get
+            {
+                return "{\"articles\": [{0}]}";
+            }
+        }
+
+
+
+
+        #endregion
 
         public static string GenerateButton(List<Menu> list)
         {
@@ -148,6 +181,35 @@ namespace Site.Untity
             string btnFormat = "{\"button\":[**]}";
             string btnArr = GetString(list, "");
             result = btnFormat.Replace("**", btnArr);
+            return result;
+        }
+
+        public static string GenerateImageContentBody(IList<Article> list)
+        {
+            string result = string.Empty;
+            try
+            {
+                List<string> items = new List<string>();
+                string articleStr = string.Empty;
+                foreach (Article item in list)
+                {
+                    articleStr = string.Format(ImageContentFormat,
+                                                        item.Title,
+                                                        item.MediaId,
+                                                        item.AuthorName,
+                                                        item.Intro,
+                                                        item.ShowCover,
+                                                        item.ArticleContent,
+                                                        item.ContentSourceUrl);
+                    items.Add(articleStr);
+                }
+                result = string.Format(ImageContentListFormat, string.Join(",", items));
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("组装图文素材参数主体信息错误:" + ex.Message);
+            }
+
             return result;
         }
 
@@ -332,7 +394,7 @@ namespace Site.Untity
             result = string.Empty;
             try
             {
-                IList<GloblaToken> list = GloblaTokenService.Select(string.Format(" and AppId='{0}'", UntityTool.GetConfigValue("appID"), DateTime.Now));
+                IList<GloblaToken> list = GloblaTokenService.Select(string.Format(" where AppId='{0}'", UntityTool.GetConfigValue("appID"), DateTime.Now));
                 bool isSuccess = false;
                 if (list.Count > 0)
                 {
@@ -512,11 +574,58 @@ namespace Site.Untity
             }
             catch (Exception ex)
             {
-                LogHelp.Error("获取用户信息错误:" + ex.Message);
+                LogHelp.Error("新增永久素材错误:" + ex.Message);
                 return false;
             }
         }
 
+
+        /// <summary>
+        /// 新增永久图文素材
+        /// </summary>
+        /// <param name="body">图文素材组装好的body内容</param>
+        /// <returns></returns>
+        public static bool AddPermanentMaterial(string body, out string media_id)
+        {
+            media_id = string.Empty;
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/add_news?access_token={0}", access_token);
+                    string content = HttpTool.Post(url, body);
+                    //TODO:上传视频素材时需要POST另一个表单
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("media_id", out token);
+                        if (token != null)
+                        {
+                            //反序列化
+                            media_id = token.ToString();
+                            return true;
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errmsg", out token);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("新增永久图文素材错误:" + ex.Message);
+                return false;
+            }
+        }
 
         /// <summary>
         /// 新增图文信息中的图片，返回图片地址
@@ -566,6 +675,51 @@ namespace Site.Untity
             }
         }
 
+        /// <summary>
+        /// 删除永久素材
+        /// </summary>
+        /// <param name="media_id"></param>
+        /// <returns></returns>
+        public static bool DeletePermanentMaterial(string media_id)
+        {
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/del_material?access_token={0}", access_token);
+                    string content = HttpTool.Post(url, "{\"media_id\":" + media_id + "}");
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("errcode", out token);
+                        if (token != null)
+                        {
+                            //反序列化
+                            if (token.ToString() == "0")
+                            {
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errmsg", out token);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("删除永久素材错误:" + ex.Message);
+                return false;
+            }
+        }
 
     }
 }

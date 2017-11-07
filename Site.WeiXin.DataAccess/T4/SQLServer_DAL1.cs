@@ -569,6 +569,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
 			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
+			db.AddInParameter(dbCmd, "@Expire", DbType.String,obj.Expire);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -614,6 +615,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
 			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
+			db.AddInParameter(dbCmd, "@Expire", DbType.String,obj.Expire);
 			
 			try
 			{ 
@@ -737,6 +739,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
 				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
 				obj.Intro = reader["Intro"] == DBNull.Value ? default(string) : (string)reader["Intro"];
+				obj.Expire = reader["Expire"] == DBNull.Value ? default(string) : (string)reader["Expire"];
 				
             }
             catch(Exception ex)

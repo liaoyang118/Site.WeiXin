@@ -74,6 +74,7 @@ namespace Site.WeiXin.Manager.Controllers
                 obj.MediaId = obj.MediaId ?? string.Empty;
                 obj.CreateTime = DateTime.Now;
                 obj.CreateUserAccount = User.Identity.Name;
+                obj.ContentSourceUrl = obj.ContentSourceUrl ?? string.Empty;
 
                 //新增
                 result = ArticleService.Insert(obj);
@@ -161,7 +162,6 @@ namespace Site.WeiXin.Manager.Controllers
             return View();
         }
 
-
         public ActionResult MaterialEditView(string id)
         {
             Material obj = null;
@@ -180,6 +180,130 @@ namespace Site.WeiXin.Manager.Controllers
 
             return PartialView();
         }
+
+        public ActionResult MaterialEdit(int id)
+        {
+            string type = Request["MaterialType"] ?? string.Empty;
+            string intro = Request["Intro"] ?? string.Empty;
+            string name = Request["MaterialName"] ?? string.Empty;
+            string expire = Request["expire"] ?? string.Empty;//temp 临时，long 永久
+
+            Material info = null;
+            int result = 0;
+            if (id > 0)
+            {
+                //info = MaterialService.SelectObject(id);
+            }
+            else
+            {
+                info = new Material();
+                info.CreateTime = DateTime.Now;
+                info.CreateUserAccount = User.Identity.Name;
+            }
+
+            info.Intro = intro;
+            info.MaterialName = name;
+            info.MaterialType = type;
+            info.Url = string.Empty;
+
+            bool isSuccess = false;
+            string media_id = string.Empty;
+            //图文
+            if (type == "imageContent")
+            {
+                string imageContentIds = Request["imageContentIds"] ?? string.Empty;
+                IList<Article> list = ArticleService.Select(string.Format(" where Id in ({0})", imageContentIds));
+                string body = WeiXinCommon.GenerateImageContentBody(list);
+                isSuccess = WeiXinCommon.AddPermanentMaterial(body, out media_id);
+            }
+            else if (type == "image")
+            {
+                //上传多媒体资料到微信服务器
+                HttpPostedFileBase file = Request.Files["lefile"] ?? null;
+                if (file != null)
+                {
+                    byte[] bytes = new byte[file.ContentLength];
+                    file.InputStream.Read(bytes, 0, bytes.Length);
+                    if (expire == "temp")
+                    {
+                        isSuccess = WeiXinCommon.AddTempMaterial(type, bytes, file.FileName, out media_id);
+                    }
+                    else
+                    {
+                        isSuccess = WeiXinCommon.AddPermanentMaterial(type, bytes, file.FileName, out media_id);
+                    }
+                }
+                else
+                {
+                    return Json(UntityTool.JsonResult(false, "图片为空"));
+                }
+            }
+            if (isSuccess)
+            {
+                info.Media_id = media_id;
+                if (id > 0)
+                {
+                    //result = MaterialService.Update(info);
+                    if (result > 0)
+                    {
+                        return Json(UntityTool.JsonResult(true, "修改成功"));
+                    }
+                    else
+                    {
+                        return Json(UntityTool.JsonResult(true, "修改失败"));
+                    }
+                }
+                else
+                {
+                    //新增
+                    result = MaterialService.Insert(info);
+                    if (result > 0)
+                    {
+                        return Json(UntityTool.JsonResult(true, "新增成功"));
+                    }
+                    else
+                    {
+                        return Json(UntityTool.JsonResult(true, "新增失败"));
+                    }
+                }
+            }
+            else
+            {
+                return Json(UntityTool.JsonResult(false, "上传素材出错"));
+            }
+        }
+
+        public ActionResult MaterialDelete(int id, string mediaId)
+        {
+            int result = MaterialService.Delete(id);
+            if (!string.IsNullOrEmpty(mediaId))
+            {
+                WeiXinCommon.DeletePermanentMaterial(mediaId);
+            }
+
+            if (result > 0)
+            {
+                return Json(UntityTool.JsonResult(true, "删除成功"));
+            }
+            else
+            {
+                return Json(UntityTool.JsonResult(false, "删除失败"));
+            }
+        }
+
+        public ActionResult MaterialContentSearch(string key)
+        {
+            ArticleSearchInfo search = new ArticleSearchInfo();
+            search.Title = HttpUtility.UrlDecode(key);
+            int rowCount;
+            IList<Article> list = ArticleService.SelectPage("*", search.OrderBy, search.ToWhereString(), 1, 8, out rowCount);
+
+
+            ViewBag.list = list;
+
+            return PartialView();
+        }
+
 
         public ActionResult Test()
         {

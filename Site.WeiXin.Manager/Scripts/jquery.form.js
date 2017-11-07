@@ -955,7 +955,8 @@
 	 * passes the options argument along after properly binding events for submit elements and
 	 * the form itself.
 	 */
-	$.fn.ajaxForm = function(options, data, dataType, onSuccess) {
+    $.fn.ajaxForm = function (options, data, dataType, onSuccess) {
+        
 		if (typeof options === 'string' || (options === false && arguments.length > 0)) {
 			options = {
 				'url'      : options,

@@ -587,6 +587,8 @@
     <Content Include="Scripts\jquery.form.min.js.map" />
     <Content Include="Views\Content\MaterialList.cshtml" />
     <Content Include="Views\Content\MaterialEditView.cshtml" />
+    <Content Include="Scripts\Jquery.Extend.js" />
+    <Content Include="Views\Content\MaterialContentSearch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

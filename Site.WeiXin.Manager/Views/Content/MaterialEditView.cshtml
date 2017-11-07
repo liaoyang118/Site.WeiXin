@@ -16,7 +16,7 @@
                 <div class="tabbable" style="margin-bottom: 18px;">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1" data-toggle="tab">基本信息</a></li>
-                        <li class=""><a href="#tab2" data-toggle="tab">文章内容</a></li>
+                        <li class="" id="tab_imageContent" style="display:none;"><a href="#tab2" data-toggle="tab">图文素材库</a></li>
                     </ul>
                     <div class="tab-content" style="padding-bottom: 9px;">
                         <div class="tab-pane active" id="tab1">
@@ -40,12 +40,12 @@
                                         </div>
 
                                         <!-- 选择素材 -->
-                                        <div class="form-group">
+                                        <div class="form-group" id="input_file">
                                             <label class="control-label col-lg-3" for="Intro">选择文件</label>
                                             <div class="col-lg-9">
                                                 <input id="lefile" name="lefile" type="file" style="display:none">
                                                 <div class="input-append">
-                                                    <input id="txt_filename" name="txt_filename" class="input-large" type="text" style="height:30px;">
+                                                    <input id="txt_filename" disabled="disabled" name="txt_filename" class="input-large" type="text" style="height:30px;">
                                                     <a class="btn btn-primary" onclick="$('input[id=lefile]').click();">选择文件</a>
                                                 </div>
                                             </div>
@@ -56,19 +56,71 @@
                                             <label class="control-label col-lg-3" for="MaterialType">素材类型</label>
                                             <div class="col-lg-9">
                                                 <div class="btn-group">
-                                                    <button type="button" value="image" class="btn btn-default">图片</button>
+                                                    <button type="button" value="image" class="btn btn-primary">图片</button>
                                                     <button type="button" value="voice" class="btn btn-default">语音</button>
                                                     <button type="button" value="video" class="btn btn-default">视频</button>
                                                     <button type="button" value="thumb" class="btn btn-default">缩略图</button>
+                                                    <button type="button" value="imageContent" class="btn btn-default">图文</button>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- 有效期 -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="expire">时效</label>
+                                            <div class="col-lg-9">
+                                                <div class="btn-group">
+                                                    <button type="button" expire="temp" class="btn btn-primary">临时</button>
+                                                    <button type="button" expire="long" class="btn btn-default">永久</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <input type="hidden" name="id" value="@obj.Id" />
+                                        <input type="hidden" name="MaterialType" id="MaterialType" value="image" />
+                                        <input type="hidden" name="expire" id="expire" value="temp" />
+                                        <input type="hidden" name="imageContentIds" id="imageContentIds" value="" />
                                     </form>
                                 </div>
 
                             </div>
                         </div>
                         <div class="tab-pane" id="tab2">
+                            <div class="alert alert-warning" style="margin-bottom:0px;">
+                                <span style="color:red;">1.此处仅显示文章管理中状态为【通过】的信息。</span><br />
+                                <span style="color:red;">2.一个图文消息支持1到8条图文。</span><br />
+                                <span style="color:red;">3.输入想要查找的文章标题，最多显示8条。</span>
+                            </div>
+                            <div class="widget">
+                                <div class="widget-head">
+                                    <div class="pull-left form-inline">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="search_title" value="" placeholder="请输入标题">
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-sm btn-default" onclick="btn_searchContent()"><i class="icon-search"></i> 搜索</button>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="widget-content referrer">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th><input type="checkbox" name="chkall" id="chkall" value="" /></th>
+
+                                                <th>标题</th>
+                                                <th>简介</th>
+                                                <th>作者</th>
+                                                <th>创建时间</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="body_tr"></tbody>
+                                    </table>
+                                </div>
+
+                            </div>
 
                         </div>
                     </div>
@@ -88,12 +140,49 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
 
     $(function () {
 
         $("input[id='lefile']").change(function () {
             $('#txt_filename').val($(this).val());
+        });
+
+        $("button[value]").click(function () {
+            var _type = $(this).attr("value");
+            if (_type == "imageContent") {
+                $("button[expire='long']").click();
+                $("button[expire]").attr("disabled", "disabled");
+                $("#input_file").hide();
+                $("#tab_imageContent").show();
+
+            }
+            else {
+                $("button[expire]").removeAttr("disabled");
+                $("#input_file").show();
+            }
+            $("button[value]").removeClass("btn-primary").addClass("btn-default");
+            $(this).addClass("btn-primary");
+            $("#MaterialType").val(_type);
+        });
+
+        $("button[expire]").click(function () {
+            var expire = $(this).attr("value");
+            $("button[expire]").removeClass("btn-primary").addClass("btn-default");
+            $(this).addClass("btn-primary");
+            $("#expire").val(expire);
+        });
+
+        $("#tab_imageContent").click(function () {
+            var valiForm = $('#forms_edit').data('bootstrapValidator');
+            valiForm.validate();
+            if (valiForm.isValid()) {
+                return true;
+            }
+            else {
+                return false;
+            }
         });
 
         //设置校验规则
@@ -121,7 +210,6 @@
                 }
             }
         });
-
     });
 
     function btn_EditSubmit() {
@@ -130,36 +218,24 @@
         if (valiForm.isValid()) {
             $.ShowLoading("提交中...");
 
-            //$('#forms_edit').submit(function () {
-            //    $(this).ajaxSubmit(function (responseText, statusText) {
-            //        console.log(responseText);
-
-            //        $.HideLoading();
-            //        if (json.success) {
-            //            $.SuccessInfo(json.message.text, 1000);
-            //            $('#editModal').modal('hide')
-            //            setTimeout(function () {
-            //                top.location.reload();
-            //            }, 1000);
-            //        }
-            //        else {
-            //            $.WarningInfo(json.message.text);
-            //        }
-            //    });
-            //    return false; //阻止表单默认提交
-            //});
-
-            //$('#forms_edit').ajaxForm(function () {
-            //    $('#output1').html("提交成功！欢迎下次再来！").show();
-            //}); 
+            initiIds();
+            var _imageContentIds = $("#imageContentIds").val();
+            if (!_imageContentIds) {
+                $.WarningInfo("请选择图文素材内的文章消息", 2000);
+                return false;
+            }
 
             //jquery.form 插件
-            $("#forms_edit").ajaxForm({
+            $("#forms_edit").ajaxSubmit({
                 //定义返回JSON数据，还包括xml和script格式,必须指定表单的action和method
                 dataType: 'json',
                 success: function (json) {
+                    $.HideLoading();
                     if (json.success) {
                         $.SuccessInfo(json.message.text, 1000);
+                        setTimeout(function () {
+                            top.location.reload();
+                        }, 1000);
                     }
                     else {
                         $.WarningInfo(json.message.text, 1000);
@@ -170,46 +246,41 @@
                     $.ErrorInfo(error);
                 }
             });
-
-
-            //$('#forms_edit').submit();
-
-            //验证通过
-            @*$.ajax({
-                url: "/Content/ArticleEdit",
-                type: "post",
-                dataType: "json",
-                data: {
-                    id:'@obj.Id',
-                    Title: $("#title").val(),
-                    AuthorName: $("#authorName").val(),
-                    ContentSourceUrl: $("#contentSourceUrl").val(),
-                    Intro: $("#Intro").val(),
-                    ShowCover: $("#ShowCover").val(),
-                    MediaId: $("#mediaId").val(),
-                    ArticleContent: _content
-
-                },
-                cache: false,
-                success: function (json) {
-                    $.HideLoading();
-                    if (json.success) {
-                        $.SuccessInfo(json.message.text, 1000);
-                        $('#editModal').modal('hide')
-                        setTimeout(function () {
-                            top.location.reload();
-                        }, 1000);
-                    }
-                    else {
-                        $.WarningInfo(json.message.text);
-                    }
-                },
-                error: function (xhr, state, error) {
-                    $.HideLoading();
-                    $.ErrorInfo(error);
-                }
-            });*@
         }
+    }
+
+    function btn_searchContent() {
+        var _title = $("#search_title").val();
+        $.ajax({
+            url: "/Content/MaterialContentSearch",
+            type: "get",
+            dataType: "html",
+            data: {
+                key: _title
+            },
+            cache: false,
+            success: function (html) {
+                $.HideLoading();
+                $("#body_tr").html(html);
+            },
+            error: function (xhr, state, error) {
+                $.HideLoading();
+                $.ErrorInfo(error);
+            }
+        });
+    };
+
+    function initiIds() {
+        var arr = $("input[name^='chk_']:checked");
+        var ids = "";
+        $.each(arr, function (i, e) {
+            ids += $(e).val();
+            if (ids.length > 0) {
+                ids += ",";
+            }
+
+        });
+        $("#imageContentIds").val(ids);
     }
 
 </script>

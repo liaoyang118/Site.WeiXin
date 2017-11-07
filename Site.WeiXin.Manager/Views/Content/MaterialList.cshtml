@@ -26,7 +26,7 @@
 
     <script type="text/javascript">
         var currentId = "";
-        var parentId = "";
+        var mediaId = "";
         var editId = "";
         $(function () {
 
@@ -57,8 +57,9 @@
 
         })
 
-        function btn_delete(id) {
+        function btn_delete(id, mediaId) {
             currentId = id;
+            mediaId = mediaId;
             $("#myModal").modal({
                 backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
             })
@@ -83,11 +84,12 @@
             $.ShowLoading("删除中...");
             //验证通过
             $.ajax({
-                url: "/Content/Delete",
+                url: "/Content/MaterialDelete",
                 type: "post",
                 dataType: "json",
                 data: {
-                    id: currentId
+                    id: currentId,
+                    mediaId: mediaId
                 },
                 cache: false,
                 success: function (json) {
@@ -95,7 +97,7 @@
                     if (json.success) {
                         $.SuccessInfo(json.message.text, 1000);
                         setTimeout(function () {
-                            top.location.href = "/Content/Index";
+                            top.location.href = "/Content/MaterialList";
                         }, 1000);
                     }
                     else {
@@ -147,7 +149,7 @@
 
         function btn_search() {
             var _key = $("#title").val();
-            top.location.href = "/Content/Index?key=" + _key;
+            top.location.href = "/Content/MaterialList?key=" + _key;
         }
 
     </script>
@@ -169,6 +171,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="widget">
+                    <div class="alert alert-warning" style="margin-bottom:0px;">
+                        <h5>1.此处的所有素材上传后都有media_Id，主要用于设置群发消息和设置图文消息封面。</h5>
+                        <h5>2.关键字回复，需要额外处理，此处不起作用。</h5>
+                    </div>
                     <div class="widget-head">
                         <div class="pull-left form-inline">
                             <div class="form-group">
@@ -196,6 +202,7 @@
                                     <th>素材类型</th>
                                     <th>MediaId</th>
                                     <th>图片素材url</th>
+                                    <th>素材时效</th>
                                     <th>创建用户</th>
                                     <th>创建时间</th>
                                     <th>操作</th>
@@ -215,29 +222,30 @@
                                                 <td>@item.MaterialType</td>
                                                 <td>@item.Media_id</td>
                                                 <td>@item.Url</td>
+                                                <td>@(item.Expire=="temp"?"临时":"永久")</td>
                                                 <td>@item.CreateUserAccount</td>
                                                 <td>@item.CreateTime.ToString("yyyy/MM/dd HH:mm:ss")</td>
                                                 <td>
 
-                                                    <button class="btn btn-xs btn-success" onclick="btn_check('@item.Id');"><i class=" icon-check"></i></button>
-                                                    <button class="btn btn-xs btn-warning" onclick="btn_edit(@item.Id);"><i class="icon-pencil"></i></button>
-                                                    <!-- data-toggle="modal" data-target="#myModal" 自动绑定，使用这些属性 -->
-                                                    <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id')"><i class="icon-remove"></i></button>
+                                                    @*<button class="btn btn-xs btn-success" onclick="btn_check('@item.Id');"><i class=" icon-check"></i></button>*@
+                                                    @*<button class="btn btn-xs btn-warning" onclick="btn_edit(@item.Id);"><i class="icon-pencil"></i></button>*@
+                                                    <!---->
+                                                    <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id','@(item.Expire=="temp"?"":item.Media_id)')"><i class="icon-remove"></i></button>
                                                 </td>
                                             </tr>
-                                                                num++;
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            <tr><td colspan="9">暂无任何数据</td></tr>
-                                                        }
+                                            num++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="9">暂无任何数据</td></tr>
+                                    }
                                 }
                             </tbody>
                         </table>
 
                         <div class="widget-foot">
-                            @Html.Raw(UntityTool.CreateListPage(pageSize, pageIndex, rowCount, string.Format("/Home/UserList/{0}", key == "" ? "" : string.Format("?title={0}", HttpUtility.UrlEncode(key)))))
+                            @Html.Raw(UntityTool.CreateListPage(pageSize, pageIndex, rowCount, string.Format("/Content/MaterialList/{0}", key == "" ? "" : string.Format("?key={0}", HttpUtility.UrlEncode(key)))))
                             <div class="clearfix"></div>
                         </div>
 
@@ -256,7 +264,7 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    请问确定要删除该信息吗？
+                                    删除素材后对应的素材将失效，请问确定要删除该素材吗？
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">
