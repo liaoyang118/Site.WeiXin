@@ -50,6 +50,7 @@
     <Compile Include="Base\AccessBase.cs" />
     <Compile Include="Model\UserMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\PartialService\Search\KeyWordsReplySearchInfo.cs" />
     <Compile Include="Service\PartialService\Search\MaterialSearchInfo.cs" />
     <Compile Include="Service\PartialService\Search\MessageSearchInfo.cs" />
     <Compile Include="Service\PartialService\Search\ArticleSearchInfo.cs" />

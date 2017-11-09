@@ -6,26 +6,20 @@ using System.Threading.Tasks;
 
 namespace Site.WeiXin.DataAccess.Service.PartialService.Search
 {
-    public class MaterialSearchInfo
+    public class KeyWordsReplySearchInfo
     {
         public string OrderBy = "CreateTime desc";
 
-        public string MaterialName { get; set; }
-        public string MaterialType { get; set; }
+        public string KeyWords { get; set; }
 
 
 
         public string ToWhereString()
         {
             List<string> where = new List<string>();
-            if (!string.IsNullOrEmpty(MaterialName))
+            if (!string.IsNullOrEmpty(KeyWords))
             {
-                where.Add(string.Format("MaterialName like N'%{0}%'", MaterialName));
-            }
-
-            if (!string.IsNullOrEmpty(MaterialType))
-            {
-                where.Add(string.Format("MaterialType = N'{0}'", MaterialType));
+                where.Add(string.Format("KeyWords like N'%{0}%'", KeyWords));
             }
 
             if (where.Count > 0)

@@ -25,7 +25,7 @@ namespace Site.Log
 
         public static void Error(string content)
         {
-            InfoLogger.Error(content);
+            ErrorLogger.Error(content);
         }
 
 

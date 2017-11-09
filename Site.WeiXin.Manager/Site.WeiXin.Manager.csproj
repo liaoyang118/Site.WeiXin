@@ -539,6 +539,7 @@
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ReplyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -556,7 +557,6 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -589,6 +589,10 @@
     <Content Include="Views\Content\MaterialEditView.cshtml" />
     <Content Include="Scripts\Jquery.Extend.js" />
     <Content Include="Views\Content\MaterialContentSearch.cshtml" />
+    <Content Include="Views\Reply\KeyWordList.cshtml" />
+    <Content Include="Views\Reply\ReplyEditView.cshtml" />
+    <Content Include="Views\Reply\MaterialContent.cshtml" />
+    <Content Include="Views\Reply\ArticleContent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

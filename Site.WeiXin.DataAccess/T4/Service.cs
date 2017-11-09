@@ -156,6 +156,77 @@ namespace Site.WeiXin.DataAccess.Service
 		#endregion
 
     }
+	public partial class KeyWordsReplyService
+    {
+
+        #region 01 KeyWordsReply_Insert
+		 public static int Insert(KeyWordsReply obj)
+		 {
+			using (var access = new KeyWordsReplyAccess())
+            {
+                return access.Insert(obj);
+            }
+		 }
+		#endregion
+		
+		#region 02 KeyWordsReply_Delete
+		 public static int Delete(int id)
+		 {
+			using (var access = new KeyWordsReplyAccess())
+			{
+				return access.Delete(id);
+			}
+		}
+		#endregion
+
+		#region 03 KeyWordsReply_Update
+		 public static int Update(KeyWordsReply obj)
+		 {
+			
+			using (var access = new KeyWordsReplyAccess())
+			{
+				return access.Update(obj);
+			}
+		}
+		#endregion
+
+		#region 04 KeyWordsReply_SelectObject
+		 public static KeyWordsReply SelectObject(int id)
+		 {
+			
+			using (var access = new KeyWordsReplyAccess())
+			{
+				return access.SelectObject(id);
+			}
+		}
+		#endregion
+
+		#region 05 KeyWordsReply_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以where 开始</param>
+         /// <returns></returns>
+		 public static IList<KeyWordsReply> Select(string whereStr)
+		 {
+			using (var access = new KeyWordsReplyAccess())
+			{
+				return access.Select(whereStr);
+			}
+		}
+		#endregion
+
+		#region 06 KeyWordsReply_SelectPage
+		 public static IList<KeyWordsReply> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			using (var access = new KeyWordsReplyAccess())
+			{
+				return access.SelectPage(cloumns,order,whereStr,pageIndex,pageSize, out rowCount);
+			}
+		}
+		#endregion
+
+    }
 	public partial class MaterialService
     {
 

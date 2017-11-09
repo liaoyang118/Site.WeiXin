@@ -506,6 +506,253 @@ namespace Site.WeiXin.DataAccess.Access
 
     }
 	[Serializable]
+	public partial class KeyWordsReplyAccess : AccessBase<KeyWordsReply>,IDisposable
+    {
+
+		Database db;
+
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
+        #region 00 IDisposable 实现
+        public KeyWordsReplyAccess(string configName)
+        {
+			db = factory.Create(configName);
+        }
+
+        public KeyWordsReplyAccess()
+        {
+            db = factory.Create("wxmanager");
+        }
+
+        //虚拟Idisposable 实现,手动调用的
+        public void Dispose()
+        {
+            //调用方法，释放资源
+            Dispose(true);
+            //通知GC，已经手动调用，不用调用析构函数了
+            System.GC.SuppressFinalize(this);
+        }
+
+        //重载方法，满足不同的调用，清理干净资源，提升性能
+        /// <summary>
+        /// true --手动调用，清理托管资源
+        /// false--GC 调用，把非托管资源一起清理掉
+        /// </summary>
+        /// <param name="isDispose"></param>
+        protected virtual void Dispose(bool isDispose)
+        {
+            if (isDispose)
+            {
+
+            }
+            //清理非托管资源，此处没有，所以直接ruturn
+            return;
+        }
+
+        //析构函数，供GC 调用
+        ~KeyWordsReplyAccess()
+        {
+            Dispose(false);
+        }
+        #endregion
+
+
+        #region 01 Proc_KeyWordsReply_Insert
+		 public override int Insert(KeyWordsReply obj)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_KeyWordsReply_Insert");
+			db.AddOutParameter(dbCmd, "@Id", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@KeyWords", DbType.String,obj.KeyWords);
+			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
+			db.AddInParameter(dbCmd, "@ReplyType", DbType.String,obj.ReplyType);
+			db.AddInParameter(dbCmd, "@ReplyContent", DbType.String,obj.ReplyContent);
+			db.AddInParameter(dbCmd, "@Statu", DbType.Int32,obj.Statu);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+						try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				//int Id = (int)dbCmd.Parameters["@Id"].Value;
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+		
+		#region 02 Proc_KeyWordsReply_Delete
+		 public override int Delete(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_KeyWordsReply_DeleteById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 03 Proc_KeyWordsReply_Update
+		 public override int Update(KeyWordsReply obj)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_KeyWordsReply_UpdateById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
+			db.AddInParameter(dbCmd, "@KeyWords", DbType.String,obj.KeyWords);
+			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
+			db.AddInParameter(dbCmd, "@ReplyType", DbType.String,obj.ReplyType);
+			db.AddInParameter(dbCmd, "@ReplyContent", DbType.String,obj.ReplyContent);
+			db.AddInParameter(dbCmd, "@Statu", DbType.Int32,obj.Statu);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 04 Proc_KeyWordsReply_SelectObject
+		 public override KeyWordsReply SelectObject(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_KeyWordsReply_SelectById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			KeyWordsReply obj=null;
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						obj=Object2Model(reader);
+					}
+                }
+				return obj;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 05 Proc_KeyWordsReply_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
+		 public override IList<KeyWordsReply> Select(string whereStr)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_KeyWordsReply_SelectList");
+			db.AddInParameter(dbCmd, "@whereStr", DbType.String,whereStr);
+			
+			IList<KeyWordsReply> list= new List<KeyWordsReply>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						KeyWordsReply obj= Object2Model(reader);
+						list.Add(obj);
+					}
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 06 Proc_KeyWordsReply_SelectPage
+		 public override IList<KeyWordsReply> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_KeyWordsReply_SelectPage");
+			db.AddOutParameter(dbCmd, "@rowCount", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@cloumns", DbType.String,cloumns);
+			db.AddInParameter(dbCmd, "@pageIndex", DbType.Int32,pageIndex);
+			db.AddInParameter(dbCmd, "@pageSize", DbType.Int32,pageSize);
+			db.AddInParameter(dbCmd, "@orderBy", DbType.String,order);
+			db.AddInParameter(dbCmd, "@where", DbType.String,whereStr);
+
+			List<KeyWordsReply> list= new List<KeyWordsReply>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						KeyWordsReply obj= Object2Model(reader);
+						list.Add(obj);
+					}
+					reader.NextResult();
+					rowCount = (int)dbCmd.Parameters["@rowCount"].Value;
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+
+		#region Object2Model
+
+        public KeyWordsReply Object2Model(IDataReader reader)
+        {
+            KeyWordsReply obj = null;
+            try
+            {
+                obj = new KeyWordsReply();
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.KeyWords = reader["KeyWords"] == DBNull.Value ? default(string) : (string)reader["KeyWords"];
+				obj.Intro = reader["Intro"] == DBNull.Value ? default(string) : (string)reader["Intro"];
+				obj.ReplyType = reader["ReplyType"] == DBNull.Value ? default(string) : (string)reader["ReplyType"];
+				obj.ReplyContent = reader["ReplyContent"] == DBNull.Value ? default(string) : (string)reader["ReplyContent"];
+				obj.Statu = reader["Statu"] == DBNull.Value ? default(int) : (int)reader["Statu"];
+				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
+				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
+				
+            }
+            catch(Exception ex)
+            {
+                obj = null;
+            }
+            return obj;
+        }
+
+
+
+        #endregion
+
+
+    }
+	[Serializable]
 	public partial class MaterialAccess : AccessBase<Material>,IDisposable
     {
 

@@ -230,6 +230,123 @@ namespace Site.WeiXin.DataAccess.Model
 		
     }
 	[Serializable]
+	public partial class KeyWordsReply
+    {
+        
+		#region Id
+		private int _Id;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int Id 
+		{ 
+			get { return _Id; } 
+			set { _Id = value; } 
+		
+		}
+		#endregion
+		
+		#region KeyWords
+		private string _KeyWords;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string KeyWords 
+		{ 
+			get { return _KeyWords; } 
+			set { _KeyWords = value; } 
+		
+		}
+		#endregion
+		
+		#region Intro
+		private string _Intro;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string Intro 
+		{ 
+			get { return _Intro; } 
+			set { _Intro = value; } 
+		
+		}
+		#endregion
+		
+		#region ReplyType
+		private string _ReplyType;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string ReplyType 
+		{ 
+			get { return _ReplyType; } 
+			set { _ReplyType = value; } 
+		
+		}
+		#endregion
+		
+		#region ReplyContent
+		private string _ReplyContent;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string ReplyContent 
+		{ 
+			get { return _ReplyContent; } 
+			set { _ReplyContent = value; } 
+		
+		}
+		#endregion
+		
+		#region Statu
+		private int _Statu;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int Statu 
+		{ 
+			get { return _Statu; } 
+			set { _Statu = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateTime
+		private DateTime _CreateTime;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public DateTime CreateTime 
+		{ 
+			get { return _CreateTime; } 
+			set { _CreateTime = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateUserAccount
+		private string _CreateUserAccount;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string CreateUserAccount 
+		{ 
+			get { return _CreateUserAccount; } 
+			set { _CreateUserAccount = value; } 
+		
+		}
+		#endregion
+		
+    }
+	[Serializable]
 	public partial class Material
     {
         

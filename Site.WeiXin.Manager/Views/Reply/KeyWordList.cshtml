@@ -1,13 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "素材管理";
+    ViewBag.Title = "被动回复管理";
     Layout = "~/Views/Shared/_Layout_Index.cshtml";
 }
 @using Site.WeiXin.DataAccess.Model;
 @using Site.Untity;
 @{
 
-    IList<Material> list = ViewBag.list;
+    IList<KeyWordsReply> list = ViewBag.list;
     string key = ViewBag.key;
 
     int pageIndex = ViewBag.pageIndex;
@@ -57,9 +57,8 @@
 
         })
 
-        function btn_delete(id, mediaId) {
+        function btn_delete(id) {
             currentId = id;
-            mediaId = mediaId;
             $("#myModal").modal({
                 backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
             })
@@ -75,7 +74,7 @@
         function btn_edit(id) {
             editId = id;
             $("#editModal").modal({
-                remote: "/Content/MaterialEditView?id=" + id,
+                remote: "/Reply/ReplyEditView?id=" + id,
                 backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
             })
         }
@@ -84,12 +83,11 @@
             $.ShowLoading("删除中...");
             //验证通过
             $.ajax({
-                url: "/Content/MaterialDelete",
+                url: "/Reply/ReplyDelete",
                 type: "post",
                 dataType: "json",
                 data: {
-                    id: currentId,
-                    mediaId: mediaId
+                    id: currentId
                 },
                 cache: false,
                 success: function (json) {
@@ -97,7 +95,7 @@
                     if (json.success) {
                         $.SuccessInfo(json.message.text, 1000);
                         setTimeout(function () {
-                            top.location.href = "/Content/MaterialList";
+                            top.location.href = "/Reply/KeyWordList";
                         }, 1000);
                     }
                     else {
@@ -118,7 +116,7 @@
             $.ShowLoading("审核中...");
             //审核
             $.ajax({
-                url: "/Content/CheckArticle",
+                url: "/Reply/CheckReply",
                 type: "post",
                 dataType: "json",
                 data: {
@@ -131,7 +129,7 @@
                     if (json.success) {
                         $.SuccessInfo(json.message.text, 1000);
                         setTimeout(function () {
-                            top.location.href = "/Content/Index";
+                            top.location.href = "/Reply/KeyWordList";
                         }, 1000);
                     }
                     else {
@@ -149,19 +147,19 @@
 
         function btn_search() {
             var _key = $("#title").val();
-            top.location.href = "/Content/MaterialList?key=" + _key;
+            top.location.href = "/Reply/KeyWordList?key=" + _key;
         }
 
     </script>
 }
 <div class="page-head">
-    <h2 class="pull-left"><i class="icon-th-list"></i> 素材管理 </h2>
+    <h2 class="pull-left"><i class="icon-th-list"></i> 回复管理 </h2>
     <!-- Breadcrumb -->
     <div class="bread-crumb pull-right">
         <a href="/"><i class="icon-home"></i> 首页 </a>
         <!-- Divider -->
         <span class="divider">/</span>
-        <a href="#" class="bread-current">素材管理</a>
+        <a href="#" class="bread-current">回复管理</a>
     </div>
     <div class="clearfix"></div>
 </div>
@@ -172,13 +170,12 @@
             <div class="col-md-12">
                 <div class="widget">
                     <div class="alert alert-warning" style="margin-bottom:0px;">
-                        <h5>1.此处的所有素材上传后都有media_Id，主要用于设置群发消息和设置图文消息封面。</h5>
-                        <h5>2.关键字回复，需要额外处理，此处不起作用。</h5>
+                        <h5>1.设置关键字回复，关键字之间用空格隔开。</h5>
                     </div>
                     <div class="widget-head">
                         <div class="pull-left form-inline">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="title" value="@key" placeholder="请输入素材名称">
+                                <input type="text" class="form-control" id="title" value="@key" placeholder="请输入关键字">
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-sm btn-default" onclick="btn_search()"><i class="icon-search"></i> 搜索</button>
@@ -197,12 +194,10 @@
                             <thead>
                                 <tr>
                                     <th>编号</th>
-                                    <th>素材名称</th>
-                                    <th>素材简介</th>
-                                    <th>素材类型</th>
-                                    <th>MediaId</th>
-                                    <th>图片素材url</th>
-                                    <th>素材时效</th>
+                                    <th>关键字</th>
+                                    <th>回复简介</th>
+                                    <th>回复类型</th>
+                                    <th>状态</th>
                                     <th>创建用户</th>
                                     <th>创建时间</th>
                                     <th>操作</th>
@@ -213,26 +208,61 @@
                                     if (list != null && list.Count > 0)
                                     {
                                         int num = 1;
-                                        foreach (Material item in list)
+                                        foreach (KeyWordsReply item in list)
                                         {
                                             <tr>
                                                 <td>@num</td>
-                                                <td>@item.MaterialName</td>
+                                                <td>@item.KeyWords</td>
                                                 <td>@item.Intro</td>
-                                                <td>@item.MaterialType</td>
-                                                <td>@item.Media_id</td>
-                                                <td>@item.Url</td>
-                                                <td>@(item.Expire=="temp"?"临时":"永久")</td>
+                                                <td>
+                                                    @{ 
+                                                        string type = string.Empty;
+                                                        switch (item.ReplyType)
+                                                        {
+                                                            case "text":
+                                                                type = "文本";
+                                                                break;
+                                                            case "image":
+                                                                type = "图片";
+                                                                break;
+                                                            case "voice":
+                                                                type = "语音";
+                                                                break;
+                                                            case "video":
+                                                                type = "视频";
+                                                                break;
+                                                            case "music":
+                                                                type = "音乐";
+                                                                break;
+                                                            case "imageContent":
+                                                                type = "图文";
+                                                                break;
+                                                        }
+                                                    }
+                                                    @type
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        if ((int)SiteEnum.ArticleState.通过 == item.Statu)
+                                                        {
+                                                            <span class="label label-success">通过</span>
+                                                        }
+                                                        else if ((int)SiteEnum.ArticleState.不通过 == item.Statu)
+                                                        {
+                                                            <span class="label label-danger">不通过</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="label label-warning">无效</span>
+                                                        }
+                                                    }
+                                                </td>
                                                 <td>@item.CreateUserAccount</td>
                                                 <td>@item.CreateTime.ToString("yyyy/MM/dd HH:mm:ss")</td>
                                                 <td>
-                                                    @if (item.MaterialType == "imageContent")
-                                                    {
-                                                        <button class="btn btn-xs btn-warning" onclick="btn_edit(@item.Id);"><i class="icon-pencil"></i></button>
-                                                    }
-                                                    @*<button class="btn btn-xs btn-success" onclick="btn_check('@item.Id');"><i class=" icon-check"></i></button>*@
-                                                    <!---->
-                                                    <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id','@(item.Expire=="temp"?"":item.Media_id)')"><i class="icon-remove"></i></button>
+                                                    <button class="btn btn-xs btn-success" onclick="btn_check('@item.Id');"><i class=" icon-check"></i></button>
+                                                    <button class="btn btn-xs btn-warning" onclick="btn_edit(@item.Id);"><i class="icon-pencil"></i></button>
+                                                    <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id')"><i class="icon-remove"></i></button>
                                                 </td>
                                             </tr>
                                             num++;
@@ -247,7 +277,7 @@
                         </table>
 
                         <div class="widget-foot">
-                            @Html.Raw(UntityTool.CreateListPage(pageSize, pageIndex, rowCount, string.Format("/Content/MaterialList/{0}", key == "" ? "" : string.Format("?key={0}", HttpUtility.UrlEncode(key)))))
+                            @Html.Raw(UntityTool.CreateListPage(pageSize, pageIndex, rowCount, string.Format("/Reply/KeyWordList/{0}", key == "" ? "" : string.Format("?key={0}", HttpUtility.UrlEncode(key)))))
                             <div class="clearfix"></div>
                         </div>
 
@@ -324,4 +354,3 @@
 
     </div>
 </div>
-

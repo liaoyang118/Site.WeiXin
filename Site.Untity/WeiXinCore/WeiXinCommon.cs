@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using Site.WeiXin.DataAccess.Service;
 using Site.Log;
+using System.Web;
 
 namespace Site.Untity
 {
@@ -42,13 +43,14 @@ namespace Site.Untity
             get
             {
                 return @"<xml>
-                        <ToUserName><![CDATA[{0}]]></ToUserName>
-                        <FromUserName><![CDATA[{1}]]></FromUserName>
-                        <CreateTime>{2}</CreateTime>
-                        <MsgType><![CDATA[image]]></MsgType>
-                        <Image>
-                        <MediaId><![CDATA[{3}]]></MediaId>
-                        </Image></xml>";
+                      <ToUserName><![CDATA[{0}]]></ToUserName>
+                      <FromUserName><![CDATA[{1}]]></FromUserName>
+                      <CreateTime>{2}</CreateTime>
+                      <MsgType><![CDATA[image]]></MsgType>
+                      <Image>
+                      <MediaId><![CDATA[{3}]]></MediaId>
+                      </Image>
+                  </xml>";
             }
         }
 
@@ -65,9 +67,7 @@ namespace Site.Untity
                         <FromUserName><![CDATA[{1}]]></FromUserName>
                         <CreateTime>{2}</CreateTime>
                         <MsgType><![CDATA[voice]]></MsgType>
-                        <Image>
-                        <MediaId><![CDATA[{3}]]></MediaId>
-                        </Image></xml>";
+                        <Voice><MediaId><![CDATA[{3}]]></MediaId></Voice></xml>";
             }
         }
 
@@ -90,9 +90,32 @@ namespace Site.Untity
         }
 
         /// <summary>
+        /// 回复音乐信息格式 {0},openId,{1}公众号 微信号，{2}时间戳，{3}Title，{4},Description,{5}MusicUrl，{6}高音质音乐链接，{7}ThumbMediaId 缩略图ID
+        /// </summary>
+        public static string MusicFormat
+        {
+            get
+            {
+                return @"<xml>
+                        <ToUserName><![CDATA[{0}]]></ToUserName>
+                        <FromUserName><![CDATA[{1}]]></FromUserName>
+                        <CreateTime>{2}</CreateTime>
+                        <MsgType><![CDATA[music]]></MsgType>
+                        <Music>
+                        <Title><![CDATA[{3}]]></Title>
+                        <Description><![CDATA[{4}]]></Description>
+                        <MusicUrl><![CDATA[{5}]]></MusicUrl>
+                        <HQMusicUrl><![CDATA[{6}]]></HQMusicUrl>
+                        <ThumbMediaId><![CDATA[{7}]]></ThumbMediaId>
+                        </Music>
+                        </xml>";
+            }
+        }
+
+        /// <summary>
         /// 回复图文信息格式，{0},openId,{1}公众号 微信号，{2}时间戳，{3}图文条数，限制为8条以内{4}单条图文信息格式
         /// </summary>
-        public static string ImageTextFormat
+        public static string BatchImageContentReplyFormat
         {
             get
             {
@@ -110,7 +133,7 @@ namespace Site.Untity
         /// <summary>
         /// 图文信息,单条图文格式，{0}标题,{1}描述，{2}图片链接，较好的效果为大图360*200，小图200*200，{3}图文消息跳转链接
         /// </summary>
-        public static string ItemFormat
+        public static string SignImageContentReplyFormat
         {
             get
             {
@@ -147,34 +170,48 @@ namespace Site.Untity
         {
             get
             {
-                return "{" +
-                    "\"title\": {0}," +
-                    "\"thumb_media_id\": {1}," +
-                    "\"author\": {2}," +
-                    "\"digest\": {3}," +
+                return "{{" +
+                    "\"title\": \"{0}\"," +
+                    "\"thumb_media_id\": \"{1}\"," +
+                    "\"author\": \"{2}\"," +
+                    "\"digest\": \"{3}\"," +
                     "\"show_cover_pic\": {4}," +
-                    "\"content\": {5}," +
-                    "\"content_source_url\":{6}}";
+                    "\"content\": \"{5}\"," +
+                    "\"content_source_url\":\"{6}\"}}";
             }
         }
 
         /// <summary>
-        /// 图文素材参数格式
+        /// 新增图文素材参数格式
         /// ImageContentFormat 逗号隔开
         /// </summary>
         public static string ImageContentListFormat
         {
             get
             {
-                return "{\"articles\": [{0}]}";
+                return "{{\"articles\": [{0}]}}";
+            }
+        }
+
+        /// <summary>
+        /// 更新图文素材 参数格式 media_id,index,ImageContentFormat
+        /// </summary>
+        public static string UpdateImageContentFormat
+        {
+            get
+            {
+                return "{{\"media_id\":\"{0}\", \"index\":{1},\"articles\": {{{2}}}}}";
             }
         }
 
 
-
-
         #endregion
 
+        /// <summary>
+        /// 生成菜单 参数格式
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static string GenerateButton(List<Menu> list)
         {
             string result = string.Empty;
@@ -184,6 +221,11 @@ namespace Site.Untity
             return result;
         }
 
+        /// <summary>
+        /// 生成新增多图文素材 参数格式
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static string GenerateImageContentBody(IList<Article> list)
         {
             string result = string.Empty;
@@ -199,11 +241,45 @@ namespace Site.Untity
                                                         item.AuthorName,
                                                         item.Intro,
                                                         item.ShowCover,
-                                                        item.ArticleContent,
+                                                        HttpUtility.HtmlDecode(HttpUtility.UrlEncode(item.ArticleContent)),
                                                         item.ContentSourceUrl);
                     items.Add(articleStr);
                 }
                 result = string.Format(ImageContentListFormat, string.Join(",", items));
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("组装图文素材参数主体信息错误:" + ex.Message);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 生成 更新多图文素材 参数格式
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="media_id"></param>
+        /// <param name="index">需要更新多图文素材中的素材的索引，从0开始</param>
+        /// <returns></returns>
+        public static string GenerateUpdateImageContentBody(Article info, string media_id, int index)
+        {
+            string result = string.Empty;
+            try
+            {
+                List<string> items = new List<string>();
+                string articleStr = string.Empty;
+
+                articleStr = string.Format(ImageContentFormat,
+                                                    info.Title,
+                                                    info.MediaId,
+                                                    info.AuthorName,
+                                                    info.Intro,
+                                                    info.ShowCover,
+                                                    HttpUtility.HtmlDecode(HttpUtility.UrlEncode(info.ArticleContent)),
+                                                    info.ContentSourceUrl);
+
+                result = string.Format(UpdateImageContentFormat, media_id, index, articleStr);
             }
             catch (Exception ex)
             {
@@ -380,8 +456,16 @@ namespace Site.Untity
                     }
                     else
                     {
-                        obj.TryGetValue("errmsg", out token);
-                        result = token.ToString();
+                        try
+                        {
+                            int errorCode = int.Parse(token.ToString());
+                            result = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                        }
+                        catch
+                        {
+                            result = token.ToString();
+                        }
+
                         return false;
                     }
                 }
@@ -468,7 +552,20 @@ namespace Site.Untity
                         else
                         {
                             //失败
-                            obj.TryGetValue("errmsg", out token);
+                            obj.TryGetValue("errcode", out token);
+
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("获取用户信息错误:" + error);
                             return false;
                         }
                     }
@@ -514,7 +611,21 @@ namespace Site.Untity
                         else
                         {
                             //失败
-                            obj.TryGetValue("errmsg", out token);
+                            obj.TryGetValue("errcode", out token);
+
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("新增临时素材错误:" + error);
+
                             return false;
                         }
                     }
@@ -523,7 +634,7 @@ namespace Site.Untity
             }
             catch (Exception ex)
             {
-                LogHelp.Error("获取用户信息错误:" + ex.Message);
+                LogHelp.Error("新增临时素材错误:" + ex.Message);
                 return false;
             }
         }
@@ -546,7 +657,7 @@ namespace Site.Untity
                 bool isSuccess = GetAccessToken(out access_token);
                 if (isSuccess)
                 {
-                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/add_material??access_token={0}&type={1}", access_token, type);
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/add_material?access_token={0}&type={1}", access_token, type);
                     string content = HttpTool.Post(url, fileName, bytes);
                     //TODO:上传视频素材时需要POST另一个表单
 
@@ -565,7 +676,20 @@ namespace Site.Untity
                         else
                         {
                             //失败
-                            obj.TryGetValue("errmsg", out token);
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("新增永久素材错误:" + error);
+
                             return false;
                         }
                     }
@@ -613,7 +737,19 @@ namespace Site.Untity
                         else
                         {
                             //失败
-                            obj.TryGetValue("errmsg", out token);
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("新增永久图文素材错误:" + error);
                             return false;
                         }
                     }
@@ -623,6 +759,66 @@ namespace Site.Untity
             catch (Exception ex)
             {
                 LogHelp.Error("新增永久图文素材错误:" + ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 更新永久图文素材中的内容，一次只更新一篇内容，多图文消息时，需要指定更新图文消息的index
+        /// </summary>
+        /// <param name="body">更新图文素材组装好的body内容</param>
+        /// <returns></returns>
+        public static bool EditPermanentMaterial(string body)
+        {
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/update_news?access_token={0}", access_token);
+                    string content = HttpTool.Post(url, body);
+                    //TODO:上传视频素材时需要POST另一个表单
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("errcode", out token);
+                        if (token != null)
+                        {
+                            //反序列化
+                            if (token.ToString() == "0")
+                            {
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("更新永久图文素材中的内容错误:" + error);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("更新永久图文素材中的内容错误:" + ex.Message);
                 return false;
             }
         }
@@ -661,7 +857,19 @@ namespace Site.Untity
                         else
                         {
                             //失败
-                            obj.TryGetValue("errmsg", out token);
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("新增图文信息中的图片错误:" + error);
                             return false;
                         }
                     }
@@ -670,7 +878,7 @@ namespace Site.Untity
             }
             catch (Exception ex)
             {
-                LogHelp.Error("获取用户信息错误:" + ex.Message);
+                LogHelp.Error("新增图文信息中的图片错误:" + ex.Message);
                 return false;
             }
         }
@@ -707,7 +915,19 @@ namespace Site.Untity
                         else
                         {
                             //失败
-                            obj.TryGetValue("errmsg", out token);
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("删除永久素材错误:" + error);
                             return false;
                         }
                     }

@@ -13,7 +13,14 @@ namespace Site.Untity
 
     public class HttpTool
     {
-        static HttpClient client = new HttpClient();
+        //fiddler 代理
+        static HttpClientHandler handler = new HttpClientHandler()
+        {
+            Proxy = new WebProxy("127.0.0.1", 8888),//8888 fiddler 端口
+            UseProxy = true
+        };
+
+        static HttpClient client = new HttpClient(handler);
 
         public static string Get(string url)
         {
@@ -145,7 +152,7 @@ namespace Site.Untity
         public static string WebRequestPost(string url, string fileName, byte[] bf)
         {
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            //request.Proxy = new WebProxy("127.0.0.1", 8888);
+            request.Proxy = new WebProxy("127.0.0.1", 8888);
 
             CookieContainer cookieContainer = new CookieContainer();
             request.CookieContainer = cookieContainer;

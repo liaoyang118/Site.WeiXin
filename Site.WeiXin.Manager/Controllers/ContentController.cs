@@ -13,6 +13,7 @@ namespace Site.WeiXin.Manager.Controllers
     [Authorize]
     public class ContentController : Controller
     {
+        #region 01 文章管理
         public ActionResult Index(string key, int? page)
         {
             ArticleSearchInfo search = new ArticleSearchInfo();
@@ -142,7 +143,9 @@ namespace Site.WeiXin.Manager.Controllers
                 return Json(UntityTool.JsonResult(true, "审核失败"));
             }
         }
+        #endregion
 
+        #region 02 素材管理
         public ActionResult MaterialList(string key, int? page)
         {
             MaterialSearchInfo search = new MaterialSearchInfo();
@@ -188,11 +191,14 @@ namespace Site.WeiXin.Manager.Controllers
             string name = Request["MaterialName"] ?? string.Empty;
             string expire = Request["expire"] ?? string.Empty;//temp 临时，long 永久
 
+            //修改图文素材的索引 默认为0
+            string index = Request["index"] ?? string.Empty;
+
             Material info = null;
             int result = 0;
             if (id > 0)
             {
-                //info = MaterialService.SelectObject(id);
+                info = MaterialService.SelectObject(id);
             }
             else
             {
@@ -205,18 +211,31 @@ namespace Site.WeiXin.Manager.Controllers
             info.MaterialName = name;
             info.MaterialType = type;
             info.Url = string.Empty;
+            info.Expire = expire;
 
             bool isSuccess = false;
             string media_id = string.Empty;
-            //图文
+            //图文 -- 只有图文能修改
             if (type == "imageContent")
             {
+                //新增
                 string imageContentIds = Request["imageContentIds"] ?? string.Empty;
                 IList<Article> list = ArticleService.Select(string.Format(" where Id in ({0})", imageContentIds));
+
                 string body = WeiXinCommon.GenerateImageContentBody(list);
-                isSuccess = WeiXinCommon.AddPermanentMaterial(body, out media_id);
+                if (id > 0)
+                {
+                    //修改
+                    body = WeiXinCommon.GenerateUpdateImageContentBody(list.FirstOrDefault(), info.Media_id, int.Parse(index));
+                    isSuccess = WeiXinCommon.EditPermanentMaterial(body);
+                }
+                else
+                {
+                    //新增
+                    isSuccess = WeiXinCommon.AddPermanentMaterial(body, out media_id);
+                }
             }
-            else if (type == "image")
+            else
             {
                 //上传多媒体资料到微信服务器
                 HttpPostedFileBase file = Request.Files["lefile"] ?? null;
@@ -240,10 +259,9 @@ namespace Site.WeiXin.Manager.Controllers
             }
             if (isSuccess)
             {
-                info.Media_id = media_id;
                 if (id > 0)
                 {
-                    //result = MaterialService.Update(info);
+                    result = MaterialService.Update(info);
                     if (result > 0)
                     {
                         return Json(UntityTool.JsonResult(true, "修改成功"));
@@ -256,6 +274,7 @@ namespace Site.WeiXin.Manager.Controllers
                 else
                 {
                     //新增
+                    info.Media_id = media_id;
                     result = MaterialService.Insert(info);
                     if (result > 0)
                     {
@@ -303,8 +322,8 @@ namespace Site.WeiXin.Manager.Controllers
 
             return PartialView();
         }
-
-
+        #endregion
+        
         public ActionResult Test()
         {
             return View();

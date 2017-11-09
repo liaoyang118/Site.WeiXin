@@ -28,8 +28,17 @@ namespace Site.Untity.WeiXinCore.Handle
                 info.OpenID = xmlObj.FromUserName;
                 UserMessageService.Insert(info);
 
-                //默认先回复文字
-                return string.Format(WeiXinCommon.TextFormat, xmlObj.FromUserName, xmlObj.ToUserName, DateTime.Now.Ticks, "回复测试");
+                //优先处理关键字，如没有关键字则回复默认信息
+                IList<KeyWordsReply> list = KeyWordsReplyService.Select(string.Format(" where KeyWords like N'%{0}%' and Statu={1} order by CreateTime", xmlObj.Content, (int)SiteEnum.ArticleState.通过));
+                if (list.Count > 0)
+                {
+                    KeyWordsReply kInfo = list.FirstOrDefault();
+                    return string.Format(kInfo.ReplyContent, xmlObj.FromUserName, xmlObj.ToUserName, DateTime.Now.Ticks);
+                }
+                else
+                {
+                    return WeiXinCommon.Success;
+                }
 
             }
             catch (Exception ex)

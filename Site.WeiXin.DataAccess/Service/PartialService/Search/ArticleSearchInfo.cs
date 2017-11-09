@@ -11,6 +11,7 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
         public string OrderBy = "CreateTime desc";
 
         public string Title { get; set; }
+        public int? Statu { get; set; }
 
 
 
@@ -20,6 +21,11 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
             if (!string.IsNullOrEmpty(Title))
             {
                 where.Add(string.Format("Title like N'%{0}%'", Title));
+            }
+
+            if (Statu != null)
+            {
+                where.Add(string.Format("Statu = {0}", Statu));
             }
 
             if (where.Count > 0)
