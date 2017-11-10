@@ -1748,3 +1748,12 @@ footer .copy{
 		display: none;
 	}
 }
+
+
+/*自定义样式*/
+
+/*分页*/
+.pagination .cur {
+    background-color: #f5f5f5;
+    color: #000;
+}

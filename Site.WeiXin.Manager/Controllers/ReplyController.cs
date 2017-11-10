@@ -71,7 +71,7 @@ namespace Site.WeiXin.Manager.Controllers
             {
                 info = new KeyWordsReply();
                 info.CreateTime = DateTime.Now;
-                info.CreateUserAccount = User.Identity.Name;
+                info.CreateUserAccount = UntityTool.CurrentUser.Account;
             }
 
             info.Intro = intro;
@@ -87,7 +87,7 @@ namespace Site.WeiXin.Manager.Controllers
                 foreach (Article item in list)
                 {
                     //TODO: 第三方图片地址和文章链接地址
-                    sb.AppendFormat(WeiXinCommon.SignImageContentReplyFormat, item.Title, item.Intro, "", item.ContentSourceUrl);
+                    sb.AppendFormat(WeiXinCommon.SignImageContentReplyFormat, item.Title, item.Intro, item.CoverSrc, item.ContentSourceUrl);
                 }
 
                 contentFormat = WeiXinCommon.BatchImageContentReplyFormat.Replace("{3}", list.Count.ToString())

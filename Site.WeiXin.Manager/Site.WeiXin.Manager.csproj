@@ -52,6 +52,8 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -255,12 +257,18 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Code\HelperHtml.cshtml" />
+    <Content Include="Config\service.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\jquery.toast.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="UEdit\dialogs\anchor\anchor.html" />
     <Content Include="UEdit\dialogs\attachment\attachment.css" />
@@ -593,6 +601,7 @@
     <Content Include="Views\Reply\ReplyEditView.cshtml" />
     <Content Include="Views\Reply\MaterialContent.cshtml" />
     <Content Include="Views\Reply\ArticleContent.cshtml" />
+    <Content Include="Views\Home\Subscribe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -613,6 +622,9 @@
       <Project>{89fb9241-f677-4a7a-a9b0-a60d9a686f8e}</Project>
       <Name>Site.WeiXin.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

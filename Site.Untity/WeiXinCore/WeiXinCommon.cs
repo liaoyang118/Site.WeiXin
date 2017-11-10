@@ -241,7 +241,7 @@ namespace Site.Untity
                                                         item.AuthorName,
                                                         item.Intro,
                                                         item.ShowCover,
-                                                        HttpUtility.HtmlDecode(HttpUtility.UrlEncode(item.ArticleContent)),
+                                                        "内容测试",//HttpUtility.HtmlDecode(HttpUtility.UrlEncode(item.ArticleContent)),
                                                         item.ContentSourceUrl);
                     items.Add(articleStr);
                 }

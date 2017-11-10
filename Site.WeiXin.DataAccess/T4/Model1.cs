@@ -125,6 +125,20 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region CoverSrc
+		private string _CoverSrc;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string CoverSrc 
+		{ 
+			get { return _CoverSrc; } 
+			set { _CoverSrc = value; } 
+		
+		}
+		#endregion
+		
 		#region CreateTime
 		private DateTime _CreateTime;
        

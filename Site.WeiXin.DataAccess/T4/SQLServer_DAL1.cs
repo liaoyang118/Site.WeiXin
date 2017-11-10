@@ -78,6 +78,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@ArticleContent", DbType.String,obj.ArticleContent);
 			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
 			db.AddInParameter(dbCmd, "@ShowCover", DbType.Int32,obj.ShowCover);
+			db.AddInParameter(dbCmd, "@CoverSrc", DbType.String,obj.CoverSrc);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
 			db.AddInParameter(dbCmd, "@Statu", DbType.Int32,obj.Statu);
@@ -126,6 +127,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@ArticleContent", DbType.String,obj.ArticleContent);
 			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
 			db.AddInParameter(dbCmd, "@ShowCover", DbType.Int32,obj.ShowCover);
+			db.AddInParameter(dbCmd, "@CoverSrc", DbType.String,obj.CoverSrc);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
 			db.AddInParameter(dbCmd, "@Statu", DbType.Int32,obj.Statu);
@@ -252,6 +254,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.ArticleContent = reader["ArticleContent"] == DBNull.Value ? default(string) : (string)reader["ArticleContent"];
 				obj.Intro = reader["Intro"] == DBNull.Value ? default(string) : (string)reader["Intro"];
 				obj.ShowCover = reader["ShowCover"] == DBNull.Value ? default(int) : (int)reader["ShowCover"];
+				obj.CoverSrc = reader["CoverSrc"] == DBNull.Value ? default(string) : (string)reader["CoverSrc"];
 				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
 				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
 				obj.Statu = reader["Statu"] == DBNull.Value ? default(int) : (int)reader["Statu"];

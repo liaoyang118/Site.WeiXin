@@ -7,6 +7,12 @@ using System.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using Site.WeiXin.DataAccess.Model;
+using System.Web;
+using Site.WeiXin.DataAccess.Service;
+using Site.WeiXin.DataAccess.Service.PartialService.Search;
+using Site.Service.UploadService.UploadService;
+using Site.Common;
 
 namespace Site.Untity
 {
@@ -94,7 +100,7 @@ namespace Site.Untity
 
                 for (int i = 1; i <= totalPage; i++)
                 {
-                    a_url += string.Format("<li><a href=\"{0}\" class=\"{2}\" >{1}</a></li>\r\n", "", i, i == pageIndex ? "cur" : "");
+                    a_url += string.Format("<li><a href=\"{0}\" class=\"{2}\" >{1}</a></li>\r\n", GetListUrl(i, urlBase), i, i == pageIndex ? "cur" : "");
                 }
 
                 if (pageIndex != totalPage)
@@ -123,5 +129,59 @@ namespace Site.Untity
 
             return result;
         }
+
+        /// <summary>
+        /// 当前登录用户
+        /// </summary>
+        public static SystemUser CurrentUser
+        {
+            set
+            {
+                HttpContext.Current.Session["user"] = value;
+            }
+            get
+            {
+                if (HttpContext.Current.Session["user"] != null)
+                {
+                    return (SystemUser)HttpContext.Current.Session["user"];
+                }
+                else
+                {
+                    string name = HttpContext.Current.User.Identity.Name;
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        SystemUserSearchInfo search = new SystemUserSearchInfo
+                        {
+                            Account = name,
+                            AccountState = (int)SiteEnum.AccountState.正常
+                        };
+                        IList<SystemUser> list = SystemUserService.Select(search.ToWhereString());
+                        return list.FirstOrDefault();
+                    }
+                    return null;
+                }
+            }
+        }
+
+        #region 图片上传 WCF服务
+
+        /// <summary>
+        /// 上传图片
+        /// </summary>
+        /// <param name="imgDatas">二进制数据</param>
+        /// <param name="configName">文件保存路径配置名称 WeiXinUpload </param>
+        /// <param name="sizeConfig">缩略尺寸设置：尺寸设置 360*200（大）、200*200（小） 不使用水印图片</param>
+        /// <param name="imgExt">扩展名</param>
+        /// <param name="thumbModel">"s",整图缩放;"c",裁剪; 默认为裁剪</param>
+        /// <returns>原图地址(0)和缩略图地址(1)</returns>
+        public static List<string> UploadImg(byte[] imgDatas, string configName, List<string> sizeConfig, string imgExt, string thumbModel = "c")
+        {
+            IUploadService channel = Entity.CreateChannel<IUploadService>(Site.Common.SiteEnum.SiteService.UploadService);
+            var result = channel.UploadImg(imgDatas, configName, sizeConfig, imgExt, thumbModel);
+            (channel as IDisposable).Dispose();
+            return result;
+        }
+
+        #endregion
     }
 }

@@ -56,6 +56,25 @@ namespace Site.WeiXin.Manager.Controllers
         public ActionResult ArticleEdit(Article obj)
         {
             int result = 0;
+
+            //文件
+            HttpPostedFileBase file = Request.Files["lefile"] ?? null;
+            List<string> urls = new List<string>();
+            if (file != null)
+            {
+                byte[] bytes = new byte[file.ContentLength];
+                file.InputStream.Read(bytes, 0, bytes.Length);
+                string ext = System.IO.Path.GetExtension(file.FileName);
+                string[] allowExt = new string[] { ".jpg", ".png", ".bpm" };
+                if (!allowExt.Contains(ext))
+                {
+                    return Json(UntityTool.JsonResult(false, "不支持该文件格式"));
+                }
+
+                urls = UntityTool.UploadImg(bytes, "WeiXinUpload", new List<string>() { "360*200" }, ext);
+            }
+
+
             if (obj.Id > 0)
             {
                 Article info = ArticleService.SelectObject(obj.Id);
@@ -67,6 +86,11 @@ namespace Site.WeiXin.Manager.Controllers
                 info.ShowCover = obj.ShowCover;
                 info.Title = obj.Title;
 
+                if (urls.Count > 1)
+                {
+                    info.CoverSrc = urls[1];
+                }
+
                 //修改
                 result = ArticleService.Update(info);
             }
@@ -76,10 +100,13 @@ namespace Site.WeiXin.Manager.Controllers
                 obj.CreateTime = DateTime.Now;
                 obj.CreateUserAccount = User.Identity.Name;
                 obj.ContentSourceUrl = obj.ContentSourceUrl ?? string.Empty;
+                if (urls.Count > 1)
+                {
+                    obj.CoverSrc = urls[1];
+                }
 
                 //新增
                 result = ArticleService.Insert(obj);
-
             }
 
             if (obj.Id > 0)
@@ -254,7 +281,7 @@ namespace Site.WeiXin.Manager.Controllers
                 }
                 else
                 {
-                    return Json(UntityTool.JsonResult(false, "图片为空"));
+                    return Json(UntityTool.JsonResult(false, "素材内容为空"));
                 }
             }
             if (isSuccess)
@@ -323,9 +350,11 @@ namespace Site.WeiXin.Manager.Controllers
             return PartialView();
         }
         #endregion
-        
+
         public ActionResult Test()
         {
+
+            ViewBag.name = User.Identity.Name;
             return View();
         }
 

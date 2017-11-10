@@ -12,8 +12,7 @@
 
     @RenderSection("css", false)
     @RenderSection("head", false)
-
-
+    
     @{
         string action = ViewContext.RouteData.Values["Action"].ToString().ToLower();
         string controllerName = ViewContext.RouteData.Values["controller"].ToString().ToLower();
@@ -159,33 +158,9 @@
 
                 <div class="col-md-4">
                     <div class="header-data">
-
-                        <!-- Traffic data -->
-                        <div class="hdata">
-                            <div class="mcol-left">
-                                <!-- Icon with red background -->
-                                <i class="icon-signal bred"></i>
-                            </div>
-                            <div class="mcol-right">
-                                <!-- Number of visitors -->
-                                <p><a href="#">7000</a> <em>总粉丝</em></p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-
-                        <!-- Members data -->
-                        <div class="hdata">
-                            <div class="mcol-left">
-                                <!-- Icon with blue background -->
-                                <i class="icon-user bblue"></i>
-                            </div>
-                            <div class="mcol-right">
-                                <!-- Number of visitors -->
-                                <p><a href="#">3000</a> <em>当日粉</em></p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-
+                        @{
+                            Html.RenderAction("Subscribe", "Home");
+                        }
                     </div>
                 </div>
 
@@ -217,15 +192,12 @@
                     <ul style="display:@(controllerName=="content"?"block":"none");">
                         <li><a href="/Content/Index">文章管理</a></li>
                         <li><a href="/Content/MaterialList">素材管理</a></li>
-                        <li><a href="error.html">错误</a></li>
-                        <li><a href="error-log.html">错误日志</a></li>
-                        <li><a href="calendar.html">日历</a></li>
-                        <li><a href="grid.html">网格</a></li>
                     </ul>
                 </li>
                 <li><a href="/Reply/KeyWordList" class="@((controllerName == "reply" && action == "keywordlist") ? "open" : "")"><i class="icon-tags"></i>回复管理</a></li>
                 
-                <li><a href="calendar.html"><i class="icon-calendar"></i>日历</a></li>
+                <li><a href="/Content/Test"><i class="icon-user"></i>系统用户管理</a></li>
+                <li><a href="/Content/Test"><i class="icon-calendar"></i>客服管理</a></li>
             </ul>
         </div>
 

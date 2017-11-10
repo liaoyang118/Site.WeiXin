@@ -221,6 +221,14 @@ namespace Site.WeiXin.Manager.Controllers
             return PartialView();
         }
 
-
+        public ActionResult Subscribe()
+        {
+            IList<User> list = UserService.Select(" where IsSubscribe=1");
+            var todayCount = list.Where(u => u.Subscribe_Time.Value.ToString("yyyyMMdd") == DateTime.Now.ToString("yyyyMMdd")).Count();
+            
+            ViewBag.total = list.Count;
+            ViewBag.todayCount = todayCount;
+            return PartialView();
+        }
     }
 }

@@ -38,3 +38,6 @@ E:\liaoyang\Project\Site.WeiXin\Site.Untity\bin\Debug\Newtonsoft.Json.xml
 E:\liaoyang\Project\Site.WeiXin\Site.Untity\bin\Debug\log4net.xml
 E:\liaoyang\Project\Site.WeiXin\Site.Untity\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
 E:\liaoyang\Project\Site.WeiXin\Site.Untity\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Debug\Site.Untity.dll.config
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Debug\Site.Common.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Debug\Site.Service.UploadService.dll

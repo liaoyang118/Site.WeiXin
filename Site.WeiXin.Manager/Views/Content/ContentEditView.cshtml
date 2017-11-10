@@ -23,19 +23,32 @@
                             <div class="padd">
                                 <div class="form quick-post">
                                     <!-- Edit profile form (not working)-->
-                                    <form class="form-horizontal" id="forms_edit">
+                                    <form class="form-horizontal" enctype="multipart/form-data"  id="forms_edit" action="/Content/ArticleEdit" method="post" >
                                         <!-- title -->
                                         <div class="form-group">
                                             <label class="control-label col-lg-3" for="article_title">标题</label>
                                             <div class="col-lg-9">
-                                                <input type="text" name="article_title" class="form-control" id="article_title" value="@obj.Title">
+                                                <input type="text" name="Title" class="form-control" id="article_title" value="@obj.Title">
                                             </div>
                                         </div>
                                         <!-- 作者 -->
                                         <div class="form-group">
                                             <label class="control-label col-lg-3" for="authorName">作者</label>
                                             <div class="col-lg-9">
-                                                <input type="text" name="authorName" class="form-control" id="authorName" value="@obj.AuthorName">
+                                                <input type="text" name="AuthorName" class="form-control" id="authorName" value="@obj.AuthorName">
+                                            </div>
+                                        </div>
+                                        <!-- 封面设置 -->
+                                        <div class="form-group" id="input_file">
+                                            <label class="control-label col-lg-3" for="Intro">
+                                            封面设置<br />
+                                            用于回复</label>
+                                            <div class="col-lg-9">
+                                                <input id="lefile" name="lefile" type="file" style="display:none">
+                                                <div class="input-append">
+                                                    <input id="txt_filename" disabled="disabled" name="txt_filename" class="input-large" type="text" style="height:30px;">
+                                                    <a class="btn btn-primary" onclick="$('input[id=lefile]').click();">选择文件</a>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -43,7 +56,7 @@
                                         <div class="form-group" id="txt_val">
                                             <label class="control-label col-lg-3" for="contentSourceUrl">原文地址</label>
                                             <div class="col-lg-9">
-                                                <input type="text" class="form-control" name="contentSourceUrl" id="contentSourceUrl" value="@obj.ContentSourceUrl" />
+                                                <input type="text" class="form-control" name="ContentSourceUrl" id="contentSourceUrl" value="@obj.ContentSourceUrl" />
                                             </div>
                                         </div>
                                         <!-- Intro -->
@@ -53,6 +66,17 @@
                                                 <textarea class="form-control" rows="5" name="Intro" id="Intro">@obj.Intro</textarea>
                                             </div>
                                         </div>
+                                        <!--文章封面的素材ID-->
+                                        <div class="form-group" id="pic_mediaId">
+                                            <label class="control-label col-lg-3" for="mediaId">
+                                            素材ID<br/>
+                                            用于群发
+                                            </label>
+                                            <div class="col-lg-9">
+                                                <input type="text" class="form-control" name="MediaId" id="mediaId" value="@obj.MediaId" />
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <label class="control-label col-lg-3" for="ShowCover">显示封面</label>
                                             <div class="col-lg-9">
@@ -62,13 +86,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--文章封面的素材ID-->
-                                        <div class="form-group" style="display:none;" id="pic_mediaId">
-                                            <label class="control-label col-lg-3" for="mediaId">素材ID</label>
-                                            <div class="col-lg-9">
-                                                <input type="text" class="form-control" name="mediaId" id="mediaId" value="@obj.MediaId" />
-                                            </div>
-                                        </div>
+                                        <input type="hidden" name="id" value="@obj.Id" />
+
                                     </form>
                                 </div>
 
@@ -142,12 +161,10 @@
             if (_check==1) {
                 $("#btn_switch").removeClass("switch-on switch-animate").addClass("switch-off switch-animate");
                 $("#ShowCover").val(0);
-                $("#pic_mediaId").hide();
             }
             else {
                 $("#btn_switch").removeClass("switch-off switch-animate").addClass("switch-on switch-animate");
                 $("#ShowCover").val(1);
-                $("#pic_mediaId").show();
             }
         });
 
@@ -156,6 +173,9 @@
             zIndex: 1100 //编辑器层级的基数,默认是900,bootstrap 1100
         });
 
+        $("input[id='lefile']").change(function () {
+            $('#txt_filename').val($(this).val());
+        });
 
 
     });
@@ -172,7 +192,32 @@
                 return false;
             }
 
-            $.ajax({
+            //jquery.form 插件
+            $("#forms_edit").ajaxSubmit({
+                //定义返回JSON数据，还包括xml和script格式,必须指定表单的action和method
+                dataType: 'json',
+                data: {
+                    ArticleContent: _content
+                },
+                success: function (json) {
+                    $.HideLoading();
+                    if (json.success) {
+                        $.SuccessInfo(json.message.text, 1000);
+                        setTimeout(function () {
+                            top.location.reload();
+                        }, 1000);
+                    }
+                    else {
+                        $.WarningInfo(json.message.text, 1000);
+                    }
+                },
+                error: function (xhr, xhrText, error) {
+                    $.HideLoading();
+                    $.ErrorInfo(error);
+                }
+            });
+
+            @*$.ajax({
                 url: "/Content/ArticleEdit",
                 type: "post",
                 dataType: "json",
@@ -205,7 +250,7 @@
                     $.HideLoading();
                     $.ErrorInfo(error);
                 }
-            });
+            });*@
         }
 
     }
