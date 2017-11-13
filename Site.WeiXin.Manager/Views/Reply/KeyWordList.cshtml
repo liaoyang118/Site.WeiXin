@@ -193,14 +193,14 @@
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>编号</th>
+                                    <th style="width:40px;">编号</th>
                                     <th>关键字</th>
                                     <th>回复简介</th>
-                                    <th>回复类型</th>
-                                    <th>状态</th>
-                                    <th>创建用户</th>
-                                    <th>创建时间</th>
-                                    <th>操作</th>
+                                    <th style="width:70px;">回复类型</th>
+                                    <th style="width:40px;">状态</th>
+                                    <th style="width:100px;">创建用户</th>
+                                    <th style="width:130px;">创建时间</th>
+                                    <th style="width:100px;">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -214,7 +214,7 @@
                                                 <td>@num</td>
                                                 <td>@item.KeyWords</td>
                                                 <td>@item.Intro</td>
-                                                <td>
+                                                <td style="text-align:center;">
                                                     @{ 
                                                         string type = string.Empty;
                                                         switch (item.ReplyType)
@@ -257,8 +257,8 @@
                                                         }
                                                     }
                                                 </td>
-                                                <td>@item.CreateUserAccount</td>
-                                                <td>@item.CreateTime.ToString("yyyy/MM/dd HH:mm:ss")</td>
+                                                <td style="text-align:center;">@item.CreateUserAccount</td>
+                                                <td style="text-align:center;">@item.CreateTime.ToString("yyyy/MM/dd HH:mm:ss")</td>
                                                 <td>
                                                     <button class="btn btn-xs btn-success" onclick="btn_check('@item.Id');"><i class=" icon-check"></i></button>
                                                     <button class="btn btn-xs btn-warning" onclick="btn_edit(@item.Id);"><i class="icon-pencil"></i></button>

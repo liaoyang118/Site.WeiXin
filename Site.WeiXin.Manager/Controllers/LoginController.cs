@@ -8,6 +8,7 @@ using Site.WeiXin.DataAccess.Model;
 using Site.Untity;
 using Site.WeiXin.DataAccess.Service.PartialService.Search;
 using System.Web.Security;
+using Site.WeiXin.Manager.Common;
 
 namespace Site.WeiXin.Manager.Controllers
 {
@@ -41,7 +42,7 @@ namespace Site.WeiXin.Manager.Controllers
                     string md5Str = UntityTool.Md5_32(pwd);
                     if (md5Str == uInfo.Password)
                     {
-                        UntityTool.CurrentUser = uInfo;
+                        HttpContextUntity.CurrentUser = uInfo;
                         string remenber = Request["remenber"] ?? string.Empty;
 
                         #region ticket 方法
@@ -59,15 +60,9 @@ namespace Site.WeiXin.Manager.Controllers
                         }
                         //使用加入了userdata的新cookie 
                         Response.Cookies.Add(cookie);
-
-
-
+                        //取值
                         //((System.Web.Security.FormsIdentity)this.Context.User.Identity).Ticket.UserData
                         #endregion
-
-
-                        //FormsAuthentication.SetAuthCookie(name, remenber == "" ? false : true);
-
                         return RedirectToAction("index", "home");
                     }
                     else

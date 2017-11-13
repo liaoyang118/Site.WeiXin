@@ -22,6 +22,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -98,7 +99,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\HttpContextUntity.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filder\IdentityAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -124,6 +127,24 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Site.BT.DataAccess\Site.BT.DataAccess.csproj">
+      <Project>{8e2598a4-a3af-44a4-a08a-6ff80ef37dea}</Project>
+      <Name>Site.BT.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Site.Log\Site.Log.csproj">
+      <Project>{0c392cbc-eb97-40cd-9d61-b02f5da8218d}</Project>
+      <Name>Site.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Site.Untity\Site.Untity.csproj">
+      <Project>{37795c68-ae6c-4f55-917d-f5744c69f6a1}</Project>
+      <Name>Site.Untity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Site.WeiXin.DataAccess\Site.WeiXin.DataAccess.csproj">
+      <Project>{89fb9241-f677-4a7a-a9b0-a60d9a686f8e}</Project>
+      <Name>Site.WeiXin.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

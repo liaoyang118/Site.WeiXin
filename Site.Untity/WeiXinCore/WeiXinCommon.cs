@@ -241,7 +241,7 @@ namespace Site.Untity
                                                         item.AuthorName,
                                                         item.Intro,
                                                         item.ShowCover,
-                                                        "内容测试",//HttpUtility.HtmlDecode(HttpUtility.UrlEncode(item.ArticleContent)),
+                                                        HttpUtility.HtmlDecode(HttpUtility.UrlEncode(item.ArticleContent)),
                                                         item.ContentSourceUrl);
                     items.Add(articleStr);
                 }
@@ -940,6 +940,124 @@ namespace Site.Untity
                 return false;
             }
         }
+
+        #region 网页授权
+
+        /// <summary>
+        /// 通过code换取网页授权access_token,该access_token与基础支持中的access_token不同，该access_token只用在网页授权获取用户信息
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="openid"></param>
+        /// <param name="access_token"></param>
+        /// <param name="scope">授权的作用域</param>
+        /// <returns></returns>
+        public static bool GetIdentityAccessToken(string code, out string openid, out string access_token, out string scope)
+        {
+            openid = string.Empty;
+            access_token = string.Empty;
+            scope = string.Empty;
+            try
+            {
+                string url = string.Format("https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret={0}&code={1}&grant_type=authorization_code ", UntityTool.GetConfigValue("appsecret"), code);
+                string content = HttpTool.Get(url);
+                if (!string.IsNullOrEmpty(content))
+                {
+                    JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                    JToken token;
+                    obj.TryGetValue("access_token", out token);
+                    if (token != null)
+                    {
+                        access_token = token.ToString();
+                        //openid
+                        obj.TryGetValue("openid", out token);
+                        openid = token.ToString();
+                        //scope
+                        obj.TryGetValue("scope", out token);
+                        openid = token.ToString();
+                        return true;
+                    }
+                    else
+                    {
+                        //失败
+                        obj.TryGetValue("errcode", out token);
+
+                        string error = string.Empty;
+                        try
+                        {
+                            int errorCode = int.Parse(token.ToString());
+                            error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                        }
+                        catch
+                        {
+                            obj.TryGetValue("errmsg", out token);
+                            error = token.ToString();
+                        }
+                        LogHelp.Error("网页授权获取用户access_token、openid错误:" + error);
+                        return false;
+                    }
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("网页授权获取用户access_token、openid错误:" + ex.Message);
+                return false;
+            }
+        }
+
+        public static bool GetIdentityUserInfo(string openid, string access_token, out IdentityUserInfo uInfo)
+        {
+            uInfo = null;
+            try
+            {
+                string url = string.Format("https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}&lang=zh_CN", access_token, openid);
+                string content = HttpTool.Get(url);
+                if (!string.IsNullOrEmpty(content))
+                {
+                    JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                    JToken token;
+                    obj.TryGetValue("openid", out token);
+                    if (token != null)
+                    {
+                        //反序列化用户
+                        uInfo = JsonConvert.DeserializeObject<IdentityUserInfo>(content);
+                        return true;
+                    }
+                    else
+                    {
+                        //失败
+                        obj.TryGetValue("errcode", out token);
+
+                        string error = string.Empty;
+                        try
+                        {
+                            int errorCode = int.Parse(token.ToString());
+                            error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                        }
+                        catch
+                        {
+                            obj.TryGetValue("errmsg", out token);
+                            error = token.ToString();
+                        }
+                        LogHelp.Error("网页授权获取用户信息错误:" + error);
+                        return false;
+                    }
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("网页授权获取用户信息错误:" + ex.Message);
+                return false;
+            }
+        }
+
+
+        #endregion
 
     }
 }

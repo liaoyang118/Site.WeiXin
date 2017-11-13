@@ -17,15 +17,31 @@
             <!-- Use hr tag to add border -->
             <hr />
         </li>
-        @foreach (UserMessage item in list)
-        {
-            <li>
-                <!-- List item heading h6 -->
-                <h6><a href="#">@item.ContentValue</a><span class="label label-warning pull-right">@item.CreateTime.ToString("HH:mm")</span></h6>
-                <div class="clearfix"></div>
-                <hr />
-            </li>
+        @{ 
+            if (list.Count > 0)
+            {
+                foreach (UserMessage item in list)
+                {
+                <li>
+                    <!-- List item heading h6 -->
+                    <h6><a href="javascript:void(0);">@item.ContentValue</a><span class="label label-warning pull-right">@item.CreateTime.ToString("HH:mm")</span></h6>
+                    <div class="clearfix"></div>
+                    <hr />
+                </li>
+                }
+            }
+            else
+            {
+                <li>
+                    <!-- List item heading h6 -->
+                    <h6><a href="javascript:void(0);">暂无留言</a></h6>
+                    <div class="clearfix"></div>
+                    <hr />
+                </li>
+            }
         }
+
+
         @if (list.Count > 0)
         {
             <li>

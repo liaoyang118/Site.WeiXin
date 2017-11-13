@@ -8,6 +8,7 @@ using Site.WeiXin.DataAccess.Model;
 using Site.WeiXin.DataAccess.Service;
 using Site.WeiXin.DataAccess.Service.PartialService.Search;
 using System.Text;
+using Site.WeiXin.Manager.Common;
 
 namespace Site.WeiXin.Manager.Controllers
 {
@@ -18,7 +19,7 @@ namespace Site.WeiXin.Manager.Controllers
         {
             KeyWordsReplySearchInfo search = new KeyWordsReplySearchInfo();
             search.KeyWords = HttpUtility.UrlDecode(key);
-            int pageSize = 20;
+            int pageSize = 15;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
             IList<KeyWordsReply> list = KeyWordsReplyService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
@@ -71,7 +72,7 @@ namespace Site.WeiXin.Manager.Controllers
             {
                 info = new KeyWordsReply();
                 info.CreateTime = DateTime.Now;
-                info.CreateUserAccount = UntityTool.CurrentUser.Account;
+                info.CreateUserAccount = HttpContextUntity.CurrentUser.Account;
             }
 
             info.Intro = intro;
@@ -177,7 +178,7 @@ namespace Site.WeiXin.Manager.Controllers
                 search.Title = HttpUtility.UrlDecode(key);
                 search.Statu = (int)SiteEnum.ArticleState.通过;
 
-                int pageSize = 20;
+                int pageSize = 15;
                 int rowCount;
                 int pageIndex = page == null ? 1 : page.Value;
                 IList<Article> list = ArticleService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);

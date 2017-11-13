@@ -1,0 +1,10 @@
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Site.BT.DataAccess.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Site.BT.DataAccess.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\obj\Debug\Site.BT.DataAccess.csproj.CoreCompileInputs.cache
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\obj\Debug\Site.BT.DataAccess.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\obj\Debug\Site.BT.DataAccess.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\obj\Debug\Site.BT.DataAccess.csprojResolveAssemblyReference.cache

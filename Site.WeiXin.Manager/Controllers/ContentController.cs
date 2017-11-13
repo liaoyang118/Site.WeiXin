@@ -18,7 +18,7 @@ namespace Site.WeiXin.Manager.Controllers
         {
             ArticleSearchInfo search = new ArticleSearchInfo();
             search.Title = HttpUtility.UrlDecode(key);
-            int pageSize = 20;
+            int pageSize = 15;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
             IList<Article> list = ArticleService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
@@ -177,7 +177,7 @@ namespace Site.WeiXin.Manager.Controllers
         {
             MaterialSearchInfo search = new MaterialSearchInfo();
             search.MaterialName = HttpUtility.UrlDecode(key);
-            int pageSize = 20;
+            int pageSize = 15;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
             IList<Material> list = MaterialService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);

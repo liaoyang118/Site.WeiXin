@@ -85,6 +85,7 @@
     <None Include="T4\params.ttinclude" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="T4\Func.sql" />
     <Content Include="T4\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.cs</LastGenOutput>

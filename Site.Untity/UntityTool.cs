@@ -1,16 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using Site.WeiXin.DataAccess.Model;
-using System.Web;
-using Site.WeiXin.DataAccess.Service;
-using Site.WeiXin.DataAccess.Service.PartialService.Search;
 using Site.Service.UploadService.UploadService;
 using Site.Common;
 
@@ -129,40 +119,7 @@ namespace Site.Untity
 
             return result;
         }
-
-        /// <summary>
-        /// 当前登录用户
-        /// </summary>
-        public static SystemUser CurrentUser
-        {
-            set
-            {
-                HttpContext.Current.Session["user"] = value;
-            }
-            get
-            {
-                if (HttpContext.Current.Session["user"] != null)
-                {
-                    return (SystemUser)HttpContext.Current.Session["user"];
-                }
-                else
-                {
-                    string name = HttpContext.Current.User.Identity.Name;
-                    if (!string.IsNullOrEmpty(name))
-                    {
-                        SystemUserSearchInfo search = new SystemUserSearchInfo
-                        {
-                            Account = name,
-                            AccountState = (int)SiteEnum.AccountState.正常
-                        };
-                        IList<SystemUser> list = SystemUserService.Select(search.ToWhereString());
-                        return list.FirstOrDefault();
-                    }
-                    return null;
-                }
-            }
-        }
-
+        
         #region 图片上传 WCF服务
 
         /// <summary>

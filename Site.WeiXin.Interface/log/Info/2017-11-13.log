@@ -1,0 +1,127 @@
+
+日志时间：2017-11-13 17:20:58,731 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+9e507bbe4f4186786fa91b64d228651d577b9303,1510564856,985770628 
+
+日志时间：2017-11-13 17:20:58,781 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1510564855</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[http://localhost:8892/Home/UserList]]></Content>
+<MsgId>6487826651155832403</MsgId>
+</xml> 
+
+日志时间：2017-11-13 17:20:59,073 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-11-13 17:22:37,008 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+743d02055a823aeabf6b047e6c3ab2dd1a40de8e,1510564957,1095567156 
+
+日志时间：2017-11-13 17:22:37,009 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1510564957</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[<a href=" "></a >]]></Content>
+<MsgId>6487827089242496616</MsgId>
+</xml> 
+
+日志时间：2017-11-13 17:22:37,014 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-11-13 17:22:52,148 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+adcbadd4c15c14a8059c8ff7a16ad56dfd61586e,1510564972,888926265 
+
+日志时间：2017-11-13 17:22:52,148 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1510564972</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[<a href="http://localhost:8892/Home/UserList">dd</ a>]]></Content>
+<MsgId>6487827153667006058</MsgId>
+</xml> 
+
+日志时间：2017-11-13 17:22:52,153 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-11-13 18:13:58,739 [6] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+2050c67336a963d401d62670e72cdb35b6327ca9,1510568037,1682520623 
+
+日志时间：2017-11-13 18:13:58,762 [6] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1510568036</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[ 图文]]></Content>
+<MsgId>6487840313446802028</MsgId>
+</xml> 
+
+日志时间：2017-11-13 18:13:58,838 [6] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-11-13 18:14:24,912 [6] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-11-13 18:15:10,485 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+f25ca9ef08e26373beb373242f6bfea59cca8606,1510568111,117773620 
+
+日志时间：2017-11-13 18:15:10,485 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1510568110</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[图文]]></Content>
+<MsgId>6487840631274381942</MsgId>
+</xml> 
+
+日志时间：2017-11-13 18:15:10,494 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636461937104943386</CreateTime>
+                        <MsgType><![CDATA[news]]></MsgType>
+                        <ArticleCount>2</ArticleCount>
+                        <Articles><item>
+                         <Title><![CDATA[阿斯蒂芬]]></Title> 
+                         <Description><![CDATA[阿斯蒂芬三房]]></Description>
+                         <PicUrl><![CDATA[]]></PicUrl>
+                         <Url><![CDATA[http://www.baidu.com]]></Url>
+                         </item><item>
+                         <Title><![CDATA[啊是打发士大夫]]></Title> 
+                         <Description><![CDATA[啊是打发士大夫]]></Description>
+                         <PicUrl><![CDATA[http://wimg.jsonyang.com/2017/11/fecdc645-3470-41_360x200.jpg]]></PicUrl>
+                         <Url><![CDATA[http://www.baidu.com]]></Url>
+                         </item></Articles>
+                        </xml> 

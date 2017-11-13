@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
+    <title>微信后台管理系统_@ViewBag.Title</title>
 
     @Styles.Render("~/Content/css/base")
 
@@ -109,13 +109,13 @@
                 <ul class="nav navbar-nav pull-right">
                     <li class="dropdown pull-right">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="icon-user"></i> 管理员 <b class="caret"></b>
+                            <i class="icon-user"></i>当前用户：@User.Identity.Name<b class="caret"></b>
                         </a>
 
                         <!-- Dropdown menu -->
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="icon-user"></i> 资料</a></li>
-                            <li><a href="#"><i class="icon-cogs"></i> 设置</a></li>
+                            @*<li><a href="#"><i class="icon-user"></i> 资料</a></li>
+                            <li><a href="#"><i class="icon-cogs"></i> 设置</a></li>*@
                             <li><a href="/Login/LoginOut"><i class="icon-off"></i> 退出</a></li>
                         </ul>
                     </li>
@@ -136,8 +136,8 @@
                 <div class="col-md-4">
                     <!-- Logo. -->
                     <div class="logo">
-                        <h1><a href="#">微信<span class="bold"></span></a></h1>
-                        <p class="meta">后台管理系统</p>
+                        <h1><a href="#">宇扬<span class="bold"></span></a></h1>
+                        <p class="meta">微信管理系统</p>
                     </div>
                     <!-- Logo ends -->
                 </div>
@@ -196,8 +196,8 @@
                 </li>
                 <li><a href="/Reply/KeyWordList" class="@((controllerName == "reply" && action == "keywordlist") ? "open" : "")"><i class="icon-tags"></i>回复管理</a></li>
                 
-                <li><a href="/Content/Test"><i class="icon-user"></i>系统用户管理</a></li>
-                <li><a href="/Content/Test"><i class="icon-calendar"></i>客服管理</a></li>
+                <li><a href="/System/UserList"  class="@((controllerName == "system" && action == "userlist") ? "open" : "")"><i class="icon-user"></i>系统用户</a></li>
+                <li><a href="/Content/Test"><i class="icon-headphones"></i>客服管理</a></li>
             </ul>
         </div>
 
@@ -218,7 +218,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- Copyright info -->
-                    <p class="copy">Copyright &copy; 2012 | <a href="#">Your Site</a> </p>
+                    <p class="copy">Copyright &copy; 2017 | <a href="/">宇扬微信管理系统</a> </p>
                 </div>
             </div>
         </div>

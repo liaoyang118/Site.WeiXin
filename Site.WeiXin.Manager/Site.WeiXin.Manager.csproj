@@ -220,6 +220,7 @@
     <Content Include="PageTemplate\style\bootstrap.css" />
     <Content Include="PageTemplate\style\font-awesome.css" />
     <Content Include="PageTemplate\style\fullcalendar.css" />
+    <Content Include="PageTemplate\style\images\none.png" />
     <Content Include="PageTemplate\style\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="PageTemplate\style\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
     <Content Include="PageTemplate\style\images\ui-bg_flat_10_000000_40x100.png" />
@@ -544,10 +545,12 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\HttpContextUntity.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReplyController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -602,6 +605,8 @@
     <Content Include="Views\Reply\MaterialContent.cshtml" />
     <Content Include="Views\Reply\ArticleContent.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />
+    <Content Include="Views\System\UserList.cshtml" />
+    <Content Include="Views\System\UserEditView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

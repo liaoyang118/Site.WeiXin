@@ -170,7 +170,7 @@ namespace Site.WeiXin.Manager.Controllers
         {
             UserSearchInfo search = new UserSearchInfo();
             search.NickName = HttpUtility.UrlDecode(key);
-            int pageSize = 20;
+            int pageSize = 15;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
             IList<User> list = UserService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
@@ -189,7 +189,7 @@ namespace Site.WeiXin.Manager.Controllers
 
         public ActionResult MessageList(string key, int? page)
         {
-            int pageSize = 20;
+            int pageSize = 15;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
 
@@ -199,7 +199,7 @@ namespace Site.WeiXin.Manager.Controllers
                 where = string.Format(" and t1.ContentValue like '{0}' ", key);
             }
 
-            IList<UserMessage> list = UserMessageService.SelectPageExcuteSql("t1.*,t2.NickName,t2.HeadImg", "t1.CreateTime", "left join [User] t2 on t1.OpenID=t2.OpenID where t1.MessageType='text'" + where, pageIndex, pageSize, out rowCount);
+            IList<UserMessage> list = UserMessageService.SelectPageExcuteSql("t1.*,t2.NickName,t2.HeadImg", "t1.CreateTime DESC", "left join [User] t2 on t1.OpenID=t2.OpenID where t1.MessageType='text'" + where, pageIndex, pageSize, out rowCount);
 
 
             ViewBag.list = list;
