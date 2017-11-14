@@ -958,7 +958,7 @@ namespace Site.Untity
             scope = string.Empty;
             try
             {
-                string url = string.Format("https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret={0}&code={1}&grant_type=authorization_code ", UntityTool.GetConfigValue("appsecret"), code);
+                string url = string.Format("https://api.weixin.qq.com/sns/oauth2/access_token?appid={0}&secret={1}&code={2}&grant_type=authorization_code ", UntityTool.GetConfigValue("appID"), UntityTool.GetConfigValue("appsecret"), code);
                 string content = HttpTool.Get(url);
                 if (!string.IsNullOrEmpty(content))
                 {
@@ -974,7 +974,7 @@ namespace Site.Untity
                         openid = token.ToString();
                         //scope
                         obj.TryGetValue("scope", out token);
-                        openid = token.ToString();
+                        scope = token.ToString();
                         return true;
                     }
                     else

@@ -1,0 +1,32 @@
+
+日志时间：2017-11-14 10:09:29,107 [12] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-11-14 11:12:26,773 [6] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-11-14 16:36:31,592 [6] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+9812b39272f3e5ac8a93060af33c2a9a986d2e0b,1510648590,1107188756 
+
+日志时间：2017-11-14 16:36:31,606 [6] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1510648590</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://127.0.0.1:8895/]]></EventKey>
+<MenuId>443863457</MenuId>
+</xml> 
+
+日志时间：2017-11-14 16:36:31,709 [6] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 

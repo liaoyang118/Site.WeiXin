@@ -12,9 +12,9 @@ namespace Site.BT.Manager.Common
     public class HttpContextUntity
     {
         /// <summary>
-        /// 当前登录用户
+        /// 当前网页授权微信用户
         /// </summary>
-        public static BusinessUser CurrentUser
+        public static IdentityUserInfo CurrentUser
         {
             set
             {
@@ -24,24 +24,11 @@ namespace Site.BT.Manager.Common
             {
                 if (HttpContext.Current.Session["user"] != null)
                 {
-                    return (BusinessUser)HttpContext.Current.Session["user"];
+                    return (IdentityUserInfo)HttpContext.Current.Session["user"];
                 }
-                else
-                {
-                    string name = HttpContext.Current.User.Identity.Name;
-                    if (!string.IsNullOrEmpty(name))
-                    {
-                        BusinessUserSearchInfo search = new BusinessUserSearchInfo
-                        {
-                            Account = name,
-                            AccountState = (int)SiteEnum.AccountState.正常
-                        };
-                        IList<BusinessUser> list = BusinessUserService.Select(search.ToWhereString());
-                        return list.FirstOrDefault();
-                    }
-                    return null;
-                }
+                return null;
             }
         }
+
     }
 }
