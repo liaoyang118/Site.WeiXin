@@ -1,0 +1,8 @@
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\bin\Release\Site.Log.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\bin\Release\Site.Log.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\bin\Release\log4net.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\bin\Release\log4net.xml
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\obj\Release\Site.Log.csprojResolveAssemblyReference.cache
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\obj\Release\Site.Log.csproj.CoreCompileInputs.cache
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\obj\Release\Site.Log.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\obj\Release\Site.Log.pdb

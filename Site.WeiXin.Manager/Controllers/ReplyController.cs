@@ -87,7 +87,6 @@ namespace Site.WeiXin.Manager.Controllers
                 IList<Article> list = ArticleService.Select(string.Format(" where Id in ({0})", imageContentIds));
                 foreach (Article item in list)
                 {
-                    //TODO: 第三方图片地址和文章链接地址
                     sb.AppendFormat(WeiXinCommon.SignImageContentReplyFormat, item.Title, item.Intro, item.CoverSrc, item.ContentSourceUrl);
                 }
 

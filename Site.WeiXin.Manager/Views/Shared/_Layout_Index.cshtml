@@ -6,9 +6,15 @@
     <title>微信后台管理系统_@ViewBag.Title</title>
 
     @Styles.Render("~/Content/css/base")
-
-
     @Scripts.Render("~/bundles/js/base")
+    <!--修正小屏幕中操作按钮过多换行-->
+    <style type="text/css">
+        @@media (max-width: 767px) {
+            td .btn {
+                margin-top: 3px;
+            }
+        }
+    </style>
 
     @RenderSection("css", false)
     @RenderSection("head", false)
@@ -27,10 +33,10 @@
             <!-- Menu button for smallar screens -->
             <div class="navbar-header">
                 <button class="navbar-toggle btn-navbar" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                    <span>菜单</span>
+                    <span>更多</span>
                 </button>
                 <!-- Site name for smallar screens -->
-                <a href="index.html" class="navbar-brand hidden-lg">首页</a>
+                <a href="/" class="navbar-brand hidden-lg">首页</a>
             </div>
 
             <!-- Navigation starts -->
@@ -175,7 +181,7 @@
 
         <!-- Sidebar -->
         <div class="sidebar">
-            <div class="sidebar-dropdown"><a href="#">导航</a></div>
+            <div class="sidebar-dropdown"><a href="#">菜单</a></div>
 
             <!--- Sidebar navigation -->
             <!-- If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation. -->
@@ -197,7 +203,7 @@
                 <li><a href="/Reply/KeyWordList" class="@((controllerName == "reply" && action == "keywordlist") ? "open" : "")"><i class="icon-tags"></i>回复管理</a></li>
                 
                 <li><a href="/System/UserList"  class="@((controllerName == "system" && action == "userlist") ? "open" : "")"><i class="icon-user"></i>系统用户</a></li>
-                <li><a href="/Content/Test"><i class="icon-headphones"></i>客服管理</a></li>
+                <li><a href="/System/CustomerList" class="@((controllerName == "system" && action == "customerlist") ? "open" : "")"><i class="icon-headphones"></i>客服管理</a></li>
             </ul>
         </div>
 

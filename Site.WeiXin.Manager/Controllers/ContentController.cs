@@ -70,7 +70,7 @@ namespace Site.WeiXin.Manager.Controllers
                 {
                     return Json(UntityTool.JsonResult(false, "不支持该文件格式"));
                 }
-
+                //大图 360*200，小图200*200
                 urls = UntityTool.UploadImg(bytes, "WeiXinUpload", new List<string>() { "360*200" }, ext);
             }
 
@@ -245,7 +245,6 @@ namespace Site.WeiXin.Manager.Controllers
             //图文 -- 只有图文能修改
             if (type == "imageContent")
             {
-                //新增
                 string imageContentIds = Request["imageContentIds"] ?? string.Empty;
                 IList<Article> list = ArticleService.Select(string.Format(" where Id in ({0})", imageContentIds));
 
@@ -350,13 +349,6 @@ namespace Site.WeiXin.Manager.Controllers
             return PartialView();
         }
         #endregion
-
-        public ActionResult Test()
-        {
-
-            ViewBag.name = User.Identity.Name;
-            return View();
-        }
-
+        
     }
 }

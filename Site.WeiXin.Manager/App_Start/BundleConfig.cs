@@ -10,6 +10,9 @@ namespace Site.WeiXin.Manager
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
+            //防止发布后样式只加载 min,样式丢失
+            BundleTable.EnableOptimizations = false;
+
             //jquery 基础版本和 bootstrap,message
             bundles.Add(new ScriptBundle("~/bundles/js/base").Include(
                         "~/Scripts/jquery-1.10.2.js",

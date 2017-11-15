@@ -1,0 +1,1555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+此文件由 Web 项目的发布/打包过程使用。可以通过编辑此 MSBuild 文件
+自定义此过程的行为。为了解与此相关的更多内容，请访问 https://go.microsoft.com/fwlink/?LinkID=208121。 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Release\PublishOutput</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="App_Code/HelperHtml.cshtml">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>11/02/2017 14:47:57</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Data.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/Site.Common.dll">
+      <publishTime>10/26/2017 13:28:33</publishTime>
+    </File>
+    <File Include="bin/Site.Log.dll">
+      <publishTime>11/15/2017 14:17:08</publishTime>
+    </File>
+    <File Include="bin/Site.Log.pdb">
+      <publishTime>11/15/2017 14:17:08</publishTime>
+    </File>
+    <File Include="bin/Site.Service.UploadService.dll">
+      <publishTime>10/26/2017 15:18:11</publishTime>
+    </File>
+    <File Include="bin/Site.Untity.dll">
+      <publishTime>11/15/2017 14:17:09</publishTime>
+    </File>
+    <File Include="bin/Site.Untity.dll.config">
+      <publishTime>11/10/2017 17:48:42</publishTime>
+    </File>
+    <File Include="bin/Site.Untity.pdb">
+      <publishTime>11/15/2017 14:17:09</publishTime>
+    </File>
+    <File Include="bin/Site.WeiXin.DataAccess.dll">
+      <publishTime>11/15/2017 14:17:08</publishTime>
+    </File>
+    <File Include="bin/Site.WeiXin.DataAccess.pdb">
+      <publishTime>11/15/2017 14:17:08</publishTime>
+    </File>
+    <File Include="bin/Site.WeiXin.Manager.dll">
+      <publishTime>11/15/2017 19:27:29</publishTime>
+    </File>
+    <File Include="bin/Site.WeiXin.Manager.pdb">
+      <publishTime>11/15/2017 19:27:29</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>11/02/2017 14:47:57</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>01/28/2015 04:02:22</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>01/28/2015 04:02:34</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Webpages.Deployment.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Webpages.Razor.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Webpages.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="Config/service.config">
+      <publishTime>11/10/2017 17:50:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Content/bootstrapValidator.min.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Content/jquery.toast.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>11/07/2017 15:44:10</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Log4Net.config">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>11/02/2017 14:57:55</publishTime>
+    </File>
+    <File Include="PageTemplate/calendar.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/charts.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/error-log.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/error.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/font/fontawesome-webfont.woff">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/forms.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/gallery.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/grid.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/back.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/black.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/cleditor/buttons.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/cleditor/toolbar.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/cream.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/delete.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/icons/android.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/icons/chrome.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/icons/firefox.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/icons/ie.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/icons/ios.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/icons/linux.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/icons/mac.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/icons/metro.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/icons/opera.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/icons/safari.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/icons/windows.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/main-back.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/s1.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/s10.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/s2.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/s3.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/s4.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/s5.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/s6.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/s7.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/s8.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/s9.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/t1.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/t10.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/t2.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/t3.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/t4.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/t5.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/t6.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/t7.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/t8.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/photos/t9.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/dark_rounded/btnNext.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/dark_rounded/btnPrevious.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/dark_rounded/contentPattern.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/dark_rounded/loader.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/dark_rounded/sprite.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/dark_square/btnNext.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/dark_square/btnPrevious.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/dark_square/loader.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/dark_square/sprite.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/default/default_thumb.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/default/loader.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/default/sprite.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/default/sprite_next.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/default/sprite_prev.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/default/sprite_x.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/default/sprite_y.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/facebook/btnNext.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/facebook/btnPrevious.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/facebook/contentPatternBottom.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/facebook/contentPatternLeft.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/facebook/contentPatternRight.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/facebook/contentPatternTop.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/facebook/default_thumbnail.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/facebook/loader.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/facebook/sprite.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/light_rounded/btnNext.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/light_rounded/btnPrevious.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/light_rounded/loader.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/light_rounded/sprite.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/light_square/btnNext.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/light_square/btnPrevious.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/prettyPhoto/light_square/sprite.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/star.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/user-big.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/img/user.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/index.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/invoice.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/bootstrap-datetimepicker.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/bootstrap-switch.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/bootstrap.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/charts.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/custom.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/excanvas.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/filter.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/fullcalendar.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/html5shim.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/jquery-ui-1.9.2.custom.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/jquery.cleditor.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/jquery.flot.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/jquery.flot.pie.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/jquery.flot.resize.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/jquery.flot.stack.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/jquery.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/jquery.noty.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/jquery.prettyPhoto.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/jquery.rateit.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/layouts/bottom.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/layouts/top.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/layouts/topRight.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/sparklines.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/js/themes/default.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/login.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/media.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/post.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/profile.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/register.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/statement.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/bootstrap-datetimepicker.min.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/bootstrap-switch.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/bootstrap.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/font-awesome.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/fullcalendar.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/none.png">
+      <publishTime>11/13/2017 16:54:13</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-bg_diagonals-thick_18_b81900_40x40.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-bg_diagonals-thick_20_666666_40x40.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-bg_flat_10_000000_40x100.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-bg_glass_100_f6f6f6_1x400.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-bg_glass_100_fdf5ce_1x400.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-bg_gloss-wave_35_f6a828_500x100.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-bg_highlight-soft_100_eeeeee_1x100.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-bg_highlight-soft_75_ffe45c_1x100.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-icons_222222_256x240.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-icons_228ef1_256x240.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-icons_ef8c08_256x240.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-icons_ffd27a_256x240.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/images/ui-icons_ffffff_256x240.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/jquery-ui.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/jquery.cleditor.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/prettyPhoto.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/rateit.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/style/style.css">
+      <publishTime>11/10/2017 16:05:22</publishTime>
+    </File>
+    <File Include="PageTemplate/style/widgets.css">
+      <publishTime>11/13/2017 16:18:44</publishTime>
+    </File>
+    <File Include="PageTemplate/support.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/tables.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/ui.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/widgets1.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/widgets2.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="PageTemplate/widgets3.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/bootstrapValidator.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/Jquery.Extend.js">
+      <publishTime>11/07/2017 10:39:07</publishTime>
+    </File>
+    <File Include="Scripts/jquery.form.js">
+      <publishTime>11/07/2017 10:56:23</publishTime>
+    </File>
+    <File Include="Scripts/jquery.form.min.js">
+      <publishTime>11/02/2017 14:57:55</publishTime>
+    </File>
+    <File Include="Scripts/jquery.form.min.js.map">
+      <publishTime>11/02/2017 14:57:54</publishTime>
+    </File>
+    <File Include="Scripts/Jquery.toast.customer.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery.toast.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>11/10/2017 13:47:23</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>11/10/2017 13:47:23</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>11/10/2017 13:47:23</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>11/10/2017 13:47:23</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/anchor/anchor.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/attachment.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/attachment.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/attachment.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_chm.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_default.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_doc.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_exe.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_jpg.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_mp3.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_mv.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_pdf.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_ppt.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_psd.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_rar.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_txt.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/fileTypeImages/icon_xls.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/images/alignicon.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/images/alignicon.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/images/bg.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/images/file-icons.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/images/file-icons.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/images/icons.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/images/icons.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/images/image.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/images/progress.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/images/success.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/attachment/images/success.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/background/background.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/background/background.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/background/background.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/background/images/bg.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/background/images/success.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/charts/chart.config.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/charts/charts.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/charts/charts.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/charts/charts.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/charts/images/charts0.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/charts/images/charts1.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/charts/images/charts2.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/charts/images/charts3.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/charts/images/charts4.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/charts/images/charts5.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/emotion.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/emotion.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/emotion.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/images/0.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/images/bface.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/images/cface.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/images/fface.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/images/jxface2.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/images/neweditor-tab-bg.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/images/tface.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/images/wface.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/emotion/images/yface.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/gmap/gmap.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/help/help.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/help/help.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/help/help.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/image/image.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/image/image.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/image/image.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/image/images/alignicon.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/image/images/bg.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/image/images/icons.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/image/images/icons.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/image/images/image.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/image/images/progress.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/image/images/success.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/image/images/success.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/insertframe/insertframe.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/internal.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/link/link.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/map/map.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/map/show.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/music/music.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/music/music.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/music/music.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/preview/preview.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/addimg.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/brush.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/delimg.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/delimgH.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/empty.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/emptyH.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/eraser.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/redo.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/redoH.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/scale.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/scaleH.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/size.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/undo.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/images/undoH.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/scrawl.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/scrawl.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/scrawl/scrawl.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/searchreplace/searchreplace.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/searchreplace/searchreplace.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/snapscreen/snapscreen.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/spechars/spechars.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/spechars/spechars.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/table/dragicon.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/table/edittable.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/table/edittable.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/table/edittable.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/table/edittd.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/table/edittip.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/template/config.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/template/images/bg.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/template/images/pre0.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/template/images/pre1.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/template/images/pre2.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/template/images/pre3.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/template/images/pre4.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/template/template.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/template/template.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/template/template.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/bg.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/center_focus.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/file-icons.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/file-icons.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/icons.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/icons.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/image.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/left_focus.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/none_focus.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/progress.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/right_focus.jpg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/success.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/images/success.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/video.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/video.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/video/video.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/webapp/webapp.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/wordimage/fClipboard_ueditor.swf">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/wordimage/imageUploader.swf">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/wordimage/tangram.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/wordimage/wordimage.html">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/dialogs/wordimage/wordimage.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/en.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/addimage.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/alldeletebtnhoverskin.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/alldeletebtnupskin.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/background.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/button.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/copy.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/deletedisable.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/deleteenable.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/listbackground.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/localimage.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/music.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/rotateleftdisable.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/rotateleftenable.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/rotaterightdisable.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/rotaterightenable.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/en/images/upload.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/zh-cn/images/copy.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/zh-cn/images/localimage.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/zh-cn/images/music.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/zh-cn/images/upload.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/lang/zh-cn/zh-cn.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/net/Bin/Microsoft.AI.Web.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/net/Bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/net/Bin/Microsoft.AspNet.TelemetryCorrelation.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/net/Bin/Newtonsoft.Json.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/net/config.json">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/net/controller.ashx">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/net/net.sln">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/net/README.md">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/net/Web.config">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/css/ueditor.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/css/ueditor.min.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/dialogbase.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/anchor.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/arrow.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/arrow_down.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/arrow_up.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/button-bg.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/cancelbutton.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/charts.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/cursor_h.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/cursor_h.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/cursor_v.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/cursor_v.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/dialog-title-bg.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/filescan.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/highlighted.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/icons-all.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/icons.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/icons.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/loaderror.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/loading.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/lock.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/neweditor-tab-bg.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/pagebreak.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/scale.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/sortable.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/spacer.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/sparator_v.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/table-cell-align.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/tangram-colorpicker.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/toolbar_bg.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/unhighlighted.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/upload.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/videologo.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/word.gif">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/default/images/wordpaste.png">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/themes/iframe.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/codemirror/codemirror.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/codemirror/codemirror.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/adapters/mootools-adapter.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/adapters/mootools-adapter.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/adapters/prototype-adapter.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/adapters/prototype-adapter.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/adapters/standalone-framework.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/adapters/standalone-framework.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/highcharts-more.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/highcharts-more.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/highcharts.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/highcharts.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/annotations.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/annotations.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/canvas-tools.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/canvas-tools.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/data.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/data.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/drilldown.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/drilldown.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/exporting.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/exporting.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/funnel.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/funnel.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/heatmap.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/heatmap.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/map.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/map.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/no-data-to-display.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/modules/no-data-to-display.src.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/themes/dark-blue.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/themes/dark-green.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/themes/gray.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/themes/grid.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/highcharts/themes/skies.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/jquery-1.10.2.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/jquery-1.10.2.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/jquery-1.10.2.min.map">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/snapscreen/UEditorSnapscreen.exe">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/SyntaxHighlighter/shCore.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/SyntaxHighlighter/shCoreDefault.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/video-js/font/vjs.eot">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/video-js/font/vjs.svg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/video-js/font/vjs.ttf">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/video-js/font/vjs.woff">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/video-js/video-js.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/video-js/video-js.min.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/video-js/video-js.swf">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/video-js/video.dev.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/video-js/video.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/Uploader.swf">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/webuploader.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/webuploader.custom.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/webuploader.custom.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/webuploader.flashonly.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/webuploader.flashonly.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/webuploader.html5only.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/webuploader.html5only.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/webuploader.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/webuploader.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/webuploader.withoutimage.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/webuploader/webuploader.withoutimage.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/xss.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/zeroclipboard/ZeroClipboard.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/zeroclipboard/ZeroClipboard.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/third-party/zeroclipboard/ZeroClipboard.swf">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/ueditor.all.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/ueditor.all.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="UEdit/ueditor.config.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Views/Common/Test.cshtml">
+      <publishTime>11/15/2017 19:04:59</publishTime>
+    </File>
+    <File Include="Views/Content/ContentEditView.cshtml">
+      <publishTime>11/15/2017 16:49:04</publishTime>
+    </File>
+    <File Include="Views/Content/Index.cshtml">
+      <publishTime>11/15/2017 18:33:18</publishTime>
+    </File>
+    <File Include="Views/Content/MaterialContentSearch.cshtml">
+      <publishTime>11/07/2017 17:30:30</publishTime>
+    </File>
+    <File Include="Views/Content/MaterialEditView.cshtml">
+      <publishTime>11/15/2017 14:16:37</publishTime>
+    </File>
+    <File Include="Views/Content/MaterialList.cshtml">
+      <publishTime>11/15/2017 18:35:30</publishTime>
+    </File>
+    <File Include="Views/Content/Test.cshtml">
+      <publishTime>11/13/2017 15:30:31</publishTime>
+    </File>
+    <File Include="Views/Home/CustomerServiceList.cshtml">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Views/Home/Menu.cshtml">
+      <publishTime>11/15/2017 18:28:31</publishTime>
+    </File>
+    <File Include="Views/Home/MenuEditView.cshtml">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Views/Home/MessageList.cshtml">
+      <publishTime>11/15/2017 18:32:15</publishTime>
+    </File>
+    <File Include="Views/Home/NearMessage.cshtml">
+      <publishTime>11/13/2017 14:48:35</publishTime>
+    </File>
+    <File Include="Views/Home/Subscribe.cshtml">
+      <publishTime>11/10/2017 11:25:00</publishTime>
+    </File>
+    <File Include="Views/Home/UserList.cshtml">
+      <publishTime>11/15/2017 18:25:25</publishTime>
+    </File>
+    <File Include="Views/Login/Index.cshtml">
+      <publishTime>11/14/2017 17:55:54</publishTime>
+    </File>
+    <File Include="Views/Reply/ArticleContent.cshtml">
+      <publishTime>11/10/2017 15:59:56</publishTime>
+    </File>
+    <File Include="Views/Reply/KeyWordList.cshtml">
+      <publishTime>11/15/2017 18:36:56</publishTime>
+    </File>
+    <File Include="Views/Reply/MaterialContent.cshtml">
+      <publishTime>11/09/2017 15:13:03</publishTime>
+    </File>
+    <File Include="Views/Reply/ReplyEditView.cshtml">
+      <publishTime>11/15/2017 13:51:12</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout_Index.cshtml">
+      <publishTime>11/15/2017 19:27:18</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout_Login.cshtml">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Views/System/ResetPwdView.cshtml">
+      <publishTime>11/15/2017 19:02:02</publishTime>
+    </File>
+    <File Include="Views/System/UserEditView.cshtml">
+      <publishTime>11/13/2017 15:25:13</publishTime>
+    </File>
+    <File Include="Views/System/UserList.cshtml">
+      <publishTime>11/15/2017 18:59:21</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>11/09/2017 14:16:32</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>11/15/2017 19:27:30</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

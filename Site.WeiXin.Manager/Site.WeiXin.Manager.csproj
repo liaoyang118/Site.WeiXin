@@ -103,6 +103,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrapValidator.min.css" />
     <Content Include="Content\jquery.toast.css" />
+    <Content Include="favicon.ico" />
     <Content Include="PageTemplate\calendar.html" />
     <Content Include="PageTemplate\charts.html" />
     <Content Include="PageTemplate\error-log.html" />
@@ -259,6 +260,7 @@
     </Content>
     <Content Include="App_Code\HelperHtml.cshtml" />
     <Content Include="Config\service.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -585,7 +587,6 @@
     <Content Include="Views\Content\Index.cshtml" />
     <Content Include="Views\Content\ContentEditView.cshtml" />
     <Content Include="UEdit\net\config.json" />
-    <Content Include="UEdit\net\Config\service.config" />
     <Content Include="UEdit\net\controller.ashx" />
     <Content Include="UEdit\net\README.md" />
     <Content Include="UEdit\net\Web.config" />
@@ -593,7 +594,7 @@
     <Content Include="UEdit\third-party\video-js\font\vjs.eot" />
     <Content Include="UEdit\third-party\video-js\font\vjs.ttf" />
     <Content Include="UEdit\third-party\video-js\font\vjs.woff" />
-    <Content Include="Views\Content\Test.cshtml" />
+    <Content Include="Views\Common\Test.cshtml" />
     <Content Include="Views\Home\NearMessage.cshtml" />
     <Content Include="Scripts\jquery.form.min.js.map" />
     <Content Include="Views\Content\MaterialList.cshtml" />
@@ -607,6 +608,7 @@
     <Content Include="Views\Home\Subscribe.cshtml" />
     <Content Include="Views\System\UserList.cshtml" />
     <Content Include="Views\System\UserEditView.cshtml" />
+    <Content Include="Views\System\ResetPwdView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

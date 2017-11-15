@@ -156,5 +156,39 @@ namespace Site.WeiXin.Manager.Controllers
             }
         }
 
+        public ActionResult ResetPwdView(int id)
+        {
+            ViewBag.id = id;
+            return PartialView();
+        }
+
+        public ActionResult ResetPwdEdit(int id,string pwd)
+        {
+            int result = 0;
+            if (id > 0)
+            {
+                SystemUser info = SystemUserService.SelectObject(id);
+                info.Password = UntityTool.Md5_32(pwd);
+                
+                result = SystemUserService.Update(info);
+            }
+
+            if (result > 0)
+            {
+                return Json(UntityTool.JsonResult(true, "修改成功"));
+            }
+            else
+            {
+                return Json(UntityTool.JsonResult(true, "修改失败"));
+            }
+        }
+
+        public ActionResult CustomerList()
+        {
+            ViewBag.name = User.Identity.Name;
+
+            return View("~/Views/Common/Test.cshtml");
+        }
+
     }
 }

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+此文件由 Web 项目的发布/打包过程使用。可以通过编辑此 MSBuild 文件
+自定义此过程的行为。为了解与此相关的更多内容，请访问 https://go.microsoft.com/fwlink/?LinkID=208121。 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Release\PublishOutput</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/log4net.dll">
+      <publishTime>11/02/2017 14:47:57</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Data.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/Site.BT.DataAccess.dll">
+      <publishTime>11/15/2017 14:40:42</publishTime>
+    </File>
+    <File Include="bin/Site.BT.DataAccess.pdb">
+      <publishTime>11/15/2017 14:40:42</publishTime>
+    </File>
+    <File Include="bin/Site.BT.dll">
+      <publishTime>11/15/2017 14:40:42</publishTime>
+    </File>
+    <File Include="bin/Site.BT.pdb">
+      <publishTime>11/15/2017 14:40:42</publishTime>
+    </File>
+    <File Include="bin/Site.Common.dll">
+      <publishTime>10/26/2017 13:28:33</publishTime>
+    </File>
+    <File Include="bin/Site.Log.dll">
+      <publishTime>11/15/2017 14:17:08</publishTime>
+    </File>
+    <File Include="bin/Site.Log.pdb">
+      <publishTime>11/15/2017 14:17:08</publishTime>
+    </File>
+    <File Include="bin/Site.Service.UploadService.dll">
+      <publishTime>10/26/2017 15:18:11</publishTime>
+    </File>
+    <File Include="bin/Site.Untity.dll">
+      <publishTime>11/15/2017 14:17:09</publishTime>
+    </File>
+    <File Include="bin/Site.Untity.dll.config">
+      <publishTime>11/10/2017 17:48:42</publishTime>
+    </File>
+    <File Include="bin/Site.Untity.pdb">
+      <publishTime>11/15/2017 14:17:09</publishTime>
+    </File>
+    <File Include="bin/Site.WeiXin.DataAccess.dll">
+      <publishTime>11/15/2017 14:17:08</publishTime>
+    </File>
+    <File Include="bin/Site.WeiXin.DataAccess.pdb">
+      <publishTime>11/15/2017 14:17:08</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>01/28/2015 04:02:22</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>01/28/2015 04:02:34</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Webpages.Deployment.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Webpages.Razor.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Webpages.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Content/bootstrapValidator.min.css">
+      <publishTime>11/14/2017 14:38:16</publishTime>
+    </File>
+    <File Include="Content/jquery.toast.css">
+      <publishTime>11/14/2017 14:38:16</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/bootstrapValidator.min.js">
+      <publishTime>11/14/2017 14:37:43</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery.form.js">
+      <publishTime>11/14/2017 14:37:43</publishTime>
+    </File>
+    <File Include="Scripts/jquery.form.min.js">
+      <publishTime>11/14/2017 14:37:43</publishTime>
+    </File>
+    <File Include="Scripts/jquery.form.min.js.map">
+      <publishTime>11/14/2017 14:37:43</publishTime>
+    </File>
+    <File Include="Scripts/Jquery.toast.customer.js">
+      <publishTime>11/14/2017 14:37:43</publishTime>
+    </File>
+    <File Include="Scripts/jquery.toast.js">
+      <publishTime>11/14/2017 14:37:43</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>11/14/2017 17:54:20</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>11/14/2017 17:54:20</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>11/14/2017 17:54:20</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>11/14/2017 17:54:20</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Views/Error/Index.cshtml">
+      <publishTime>11/14/2017 14:17:21</publishTime>
+    </File>
+    <File Include="Views/Error/Test.cshtml">
+      <publishTime>11/14/2017 18:19:51</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>11/14/2017 18:18:42</publishTime>
+    </File>
+    <File Include="Views/Login/BindingAccount.cshtml">
+      <publishTime>11/14/2017 18:04:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>11/14/2017 18:36:09</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>11/02/2017 14:47:56</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>11/09/2017 14:16:13</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>11/15/2017 14:40:42</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

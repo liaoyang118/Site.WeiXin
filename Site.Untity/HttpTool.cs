@@ -13,14 +13,26 @@ namespace Site.Untity
 
     public class HttpTool
     {
+        static HttpClient client = null;
         //fiddler 代理
-        static HttpClientHandler handler = new HttpClientHandler()
+        static bool IsProxy = bool.Parse(UntityTool.GetConfigValue("IsProxy"));
+        static HttpTool()
         {
-            Proxy = new WebProxy("127.0.0.1", 8888),//8888 fiddler 端口
-            UseProxy = true
-        };
+            if (IsProxy)
+            {
+                client = new HttpClient(new HttpClientHandler()
+                {
+                    Proxy = new WebProxy("127.0.0.1", 8888),//8888 fiddler 端口
+                    UseProxy = true
+                });
+            }
+            else
+            {
+                client = new HttpClient();
+            }
+        }
 
-        static HttpClient client = new HttpClient(handler);
+
 
         public static string Get(string url)
         {
@@ -152,7 +164,12 @@ namespace Site.Untity
         public static string WebRequestPost(string url, string fileName, byte[] bf)
         {
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            request.Proxy = new WebProxy("127.0.0.1", 8888);
+
+            if (IsProxy)
+            {
+                request.Proxy = new WebProxy("127.0.0.1", 8888);
+            }
+
 
             CookieContainer cookieContainer = new CookieContainer();
             request.CookieContainer = cookieContainer;

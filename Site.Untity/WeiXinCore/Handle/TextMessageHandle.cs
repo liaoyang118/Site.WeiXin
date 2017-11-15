@@ -37,7 +37,17 @@ namespace Site.Untity.WeiXinCore.Handle
                 }
                 else
                 {
-                    return WeiXinCommon.Success;
+                    //优先执行默认回复，如没有则不处理
+                    list = KeyWordsReplyService.Select(string.Format(" where KeyWords like N'%{0}%' and Statu={1} order by CreateTime", "默认", (int)SiteEnum.ArticleState.通过));
+                    if (list.Count > 0)
+                    {
+                        KeyWordsReply kInfo = list.FirstOrDefault();
+                        return string.Format(kInfo.ReplyContent, xmlObj.FromUserName, xmlObj.ToUserName, DateTime.Now.Ticks);
+                    }
+                    else
+                    {
+                        return WeiXinCommon.Success;
+                    }
                 }
 
             }

@@ -1,0 +1,56 @@
+﻿@using Site.WeiXin.DataAccess.Model;
+@using Site.Untity;
+@{
+    IList<Material> list = ViewBag.list;
+
+    int pageIndex = ViewBag.pageIndex;
+    int pageSize = ViewBag.pageSize;
+    int rowCount = ViewBag.rowCount;
+}
+
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th><input type="checkbox" name="chkall" id="chkall" value="" /></th>
+            <th>素材名称</th>
+            <th>素材简介</th>
+            <th>素材时效</th>
+            <th>创建时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (list != null && list.Count > 0)
+            {
+                int num = 1;
+                foreach (Material item in list)
+                {
+                    <tr>
+                        <td><input class="checkbox" type="checkbox" name="chk_@num" id="chk_@num" value="@item.Id" /></td>
+                        <td>@item.MaterialName</td>
+                        <td>@item.Intro</td>
+                        <td>@(item.Expire == "temp" ? "临时" : "永久")</td>
+                        <td>@item.CreateTime.ToString("yyyy/MM/dd HH:mm:ss")</td>
+                    </tr>
+                    num++;
+                }
+            }
+            else
+            {
+                <tr><td colspan="5">暂无任何数据</td></tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#chkall").click(function () {
+            var _val = $(this).prop("checked");
+            $("input[name^='chk_']").prop("checked", _val);
+        });
+    });
+</script>

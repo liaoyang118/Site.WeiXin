@@ -7,6 +7,7 @@ using Site.BT.Controllers;
 using Site.BT.DataAccess.Model;
 using Site.BT.DataAccess.Service;
 using Site.BT.Manager.Common;
+using Site.Log;
 using Site.Untity;
 using Site.WeiXin.DataAccess.Model;
 using Site.WeiXin.DataAccess.Service;
@@ -79,6 +80,7 @@ namespace Site.BT.Filder
                             {
                                 //网页授权获取用户信息错误，导航到错误页面
                                 filterContext.Result = new RedirectResult("/Error/Index");
+                                LogHelp.Info("网页授权获取用户信息错误");
                                 return;
                             }
                         }
@@ -129,6 +131,7 @@ namespace Site.BT.Filder
                     {
                         //网页授权获取openid错误，导航到错误页面
                         filterContext.Result = new RedirectResult("/Error/Index");
+                        LogHelp.Info("网页授权获取openid错误");
                         return;
                     }
                 }
