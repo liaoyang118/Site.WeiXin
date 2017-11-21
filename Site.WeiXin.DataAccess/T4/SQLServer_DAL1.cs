@@ -1991,6 +1991,241 @@ namespace Site.WeiXin.DataAccess.Access
 
     }
 	[Serializable]
+	public partial class UserGroupAccess : AccessBase<UserGroup>,IDisposable
+    {
+
+		Database db;
+
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
+        #region 00 IDisposable 实现
+        public UserGroupAccess(string configName)
+        {
+			db = factory.Create(configName);
+        }
+
+        public UserGroupAccess()
+        {
+            db = factory.Create("wxmanager");
+        }
+
+        //虚拟Idisposable 实现,手动调用的
+        public void Dispose()
+        {
+            //调用方法，释放资源
+            Dispose(true);
+            //通知GC，已经手动调用，不用调用析构函数了
+            System.GC.SuppressFinalize(this);
+        }
+
+        //重载方法，满足不同的调用，清理干净资源，提升性能
+        /// <summary>
+        /// true --手动调用，清理托管资源
+        /// false--GC 调用，把非托管资源一起清理掉
+        /// </summary>
+        /// <param name="isDispose"></param>
+        protected virtual void Dispose(bool isDispose)
+        {
+            if (isDispose)
+            {
+
+            }
+            //清理非托管资源，此处没有，所以直接ruturn
+            return;
+        }
+
+        //析构函数，供GC 调用
+        ~UserGroupAccess()
+        {
+            Dispose(false);
+        }
+        #endregion
+
+
+        #region 01 Proc_UserGroup_Insert
+		 public override int Insert(UserGroup obj)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserGroup_Insert");
+			db.AddOutParameter(dbCmd, "@Id", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@TagId", DbType.String,obj.TagId);
+			db.AddInParameter(dbCmd, "@OpenId", DbType.String,obj.OpenId);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+						try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				//int Id = (int)dbCmd.Parameters["@Id"].Value;
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+		
+		#region 02 Proc_UserGroup_Delete
+		 public override int Delete(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserGroup_DeleteById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 03 Proc_UserGroup_Update
+		 public override int Update(UserGroup obj)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserGroup_UpdateById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
+			db.AddInParameter(dbCmd, "@TagId", DbType.String,obj.TagId);
+			db.AddInParameter(dbCmd, "@OpenId", DbType.String,obj.OpenId);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 04 Proc_UserGroup_SelectObject
+		 public override UserGroup SelectObject(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserGroup_SelectById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			UserGroup obj=null;
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						obj=Object2Model(reader);
+					}
+                }
+				return obj;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 05 Proc_UserGroup_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
+		 public override IList<UserGroup> Select(string whereStr)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserGroup_SelectList");
+			db.AddInParameter(dbCmd, "@whereStr", DbType.String,whereStr);
+			
+			IList<UserGroup> list= new List<UserGroup>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						UserGroup obj= Object2Model(reader);
+						list.Add(obj);
+					}
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 06 Proc_UserGroup_SelectPage
+		 public override IList<UserGroup> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserGroup_SelectPage");
+			db.AddOutParameter(dbCmd, "@rowCount", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@cloumns", DbType.String,cloumns);
+			db.AddInParameter(dbCmd, "@pageIndex", DbType.Int32,pageIndex);
+			db.AddInParameter(dbCmd, "@pageSize", DbType.Int32,pageSize);
+			db.AddInParameter(dbCmd, "@orderBy", DbType.String,order);
+			db.AddInParameter(dbCmd, "@where", DbType.String,whereStr);
+
+			List<UserGroup> list= new List<UserGroup>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						UserGroup obj= Object2Model(reader);
+						list.Add(obj);
+					}
+					reader.NextResult();
+					rowCount = (int)dbCmd.Parameters["@rowCount"].Value;
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+
+		#region Object2Model
+
+        public UserGroup Object2Model(IDataReader reader)
+        {
+            UserGroup obj = null;
+            try
+            {
+                obj = new UserGroup();
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.TagId = reader["TagId"] == DBNull.Value ? default(string) : (string)reader["TagId"];
+				obj.OpenId = reader["OpenId"] == DBNull.Value ? default(string) : (string)reader["OpenId"];
+				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
+				
+            }
+            catch(Exception ex)
+            {
+                obj = null;
+            }
+            return obj;
+        }
+
+
+
+        #endregion
+
+
+    }
+	[Serializable]
 	public partial class UserMessageAccess : AccessBase<UserMessage>,IDisposable
     {
 
@@ -2219,6 +2454,244 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.MsgId = reader["MsgId"] == DBNull.Value ? default(string) : (string)reader["MsgId"];
 				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
 				obj.ContentValue = reader["ContentValue"] == DBNull.Value ? default(string) : (string)reader["ContentValue"];
+				
+            }
+            catch(Exception ex)
+            {
+                obj = null;
+            }
+            return obj;
+        }
+
+
+
+        #endregion
+
+
+    }
+	[Serializable]
+	public partial class UserTagAccess : AccessBase<UserTag>,IDisposable
+    {
+
+		Database db;
+
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
+        #region 00 IDisposable 实现
+        public UserTagAccess(string configName)
+        {
+			db = factory.Create(configName);
+        }
+
+        public UserTagAccess()
+        {
+            db = factory.Create("wxmanager");
+        }
+
+        //虚拟Idisposable 实现,手动调用的
+        public void Dispose()
+        {
+            //调用方法，释放资源
+            Dispose(true);
+            //通知GC，已经手动调用，不用调用析构函数了
+            System.GC.SuppressFinalize(this);
+        }
+
+        //重载方法，满足不同的调用，清理干净资源，提升性能
+        /// <summary>
+        /// true --手动调用，清理托管资源
+        /// false--GC 调用，把非托管资源一起清理掉
+        /// </summary>
+        /// <param name="isDispose"></param>
+        protected virtual void Dispose(bool isDispose)
+        {
+            if (isDispose)
+            {
+
+            }
+            //清理非托管资源，此处没有，所以直接ruturn
+            return;
+        }
+
+        //析构函数，供GC 调用
+        ~UserTagAccess()
+        {
+            Dispose(false);
+        }
+        #endregion
+
+
+        #region 01 Proc_UserTag_Insert
+		 public override int Insert(UserTag obj)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserTag_Insert");
+			db.AddOutParameter(dbCmd, "@Id", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@TagName", DbType.String,obj.TagName);
+			db.AddInParameter(dbCmd, "@TagId", DbType.String,obj.TagId);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+						try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				//int Id = (int)dbCmd.Parameters["@Id"].Value;
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+		
+		#region 02 Proc_UserTag_Delete
+		 public override int Delete(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserTag_DeleteById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 03 Proc_UserTag_Update
+		 public override int Update(UserTag obj)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserTag_UpdateById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
+			db.AddInParameter(dbCmd, "@TagName", DbType.String,obj.TagName);
+			db.AddInParameter(dbCmd, "@TagId", DbType.String,obj.TagId);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 04 Proc_UserTag_SelectObject
+		 public override UserTag SelectObject(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserTag_SelectById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			UserTag obj=null;
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						obj=Object2Model(reader);
+					}
+                }
+				return obj;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 05 Proc_UserTag_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
+		 public override IList<UserTag> Select(string whereStr)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserTag_SelectList");
+			db.AddInParameter(dbCmd, "@whereStr", DbType.String,whereStr);
+			
+			IList<UserTag> list= new List<UserTag>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						UserTag obj= Object2Model(reader);
+						list.Add(obj);
+					}
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 06 Proc_UserTag_SelectPage
+		 public override IList<UserTag> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_UserTag_SelectPage");
+			db.AddOutParameter(dbCmd, "@rowCount", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@cloumns", DbType.String,cloumns);
+			db.AddInParameter(dbCmd, "@pageIndex", DbType.Int32,pageIndex);
+			db.AddInParameter(dbCmd, "@pageSize", DbType.Int32,pageSize);
+			db.AddInParameter(dbCmd, "@orderBy", DbType.String,order);
+			db.AddInParameter(dbCmd, "@where", DbType.String,whereStr);
+
+			List<UserTag> list= new List<UserTag>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						UserTag obj= Object2Model(reader);
+						list.Add(obj);
+					}
+					reader.NextResult();
+					rowCount = (int)dbCmd.Parameters["@rowCount"].Value;
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+
+		#region Object2Model
+
+        public UserTag Object2Model(IDataReader reader)
+        {
+            UserTag obj = null;
+            try
+            {
+                obj = new UserTag();
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.TagName = reader["TagName"] == DBNull.Value ? default(string) : (string)reader["TagName"];
+				obj.TagId = reader["TagId"] == DBNull.Value ? default(string) : (string)reader["TagId"];
+				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
+				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
 				
             }
             catch(Exception ex)

@@ -19,3 +19,4 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\bin\Debug\log4net.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\obj\Debug\Site.Log.csproj.CoreCompileInputs.cache
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\obj\Debug\Site.Log.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\obj\Debug\Site.Log.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Log\obj\Debug\Site.Log.csprojResolveAssemblyReference.cache

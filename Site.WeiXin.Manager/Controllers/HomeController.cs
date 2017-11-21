@@ -48,7 +48,7 @@ namespace Site.WeiXin.Manager.Controllers
             }
             else
             {
-                return Json(UntityTool.JsonResult(true, "删除失败"));
+                return Json(UntityTool.JsonResult(false, "删除失败"));
             }
         }
 
@@ -120,7 +120,7 @@ namespace Site.WeiXin.Manager.Controllers
                 }
                 else
                 {
-                    return Json(UntityTool.JsonResult(true, "修改失败"));
+                    return Json(UntityTool.JsonResult(false, "修改失败"));
                 }
             }
             else
@@ -131,7 +131,7 @@ namespace Site.WeiXin.Manager.Controllers
                 }
                 else
                 {
-                    return Json(UntityTool.JsonResult(true, "新增失败"));
+                    return Json(UntityTool.JsonResult(false, "新增失败"));
                 }
             }
 
@@ -164,29 +164,7 @@ namespace Site.WeiXin.Manager.Controllers
 
 
         }
-
-
-        public ActionResult UserList(string key, int? page)
-        {
-            UserSearchInfo search = new UserSearchInfo();
-            search.NickName = HttpUtility.UrlDecode(key);
-            int pageSize = 15;
-            int rowCount;
-            int pageIndex = page == null ? 1 : page.Value;
-            IList<User> list = UserService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
-
-
-            ViewBag.list = list;
-            ViewBag.nickName = HttpUtility.UrlDecode(key);
-
-            ViewBag.pageIndex = pageIndex;
-            ViewBag.pageSize = pageSize;
-            ViewBag.rowCount = rowCount;
-
-            return View();
-        }
-
-
+        
         public ActionResult MessageList(string key, int? page)
         {
             int pageSize = 15;
@@ -212,7 +190,7 @@ namespace Site.WeiXin.Manager.Controllers
             return View();
         }
         
-
+        //最近留言
         public ActionResult NearMessage()
         {
             IList<UserMessage> list = UserMessageService.Select(string.Format(" where MessageType='text' and CreateTime >='{0}'", DateTime.Now.AddHours(-2)));
@@ -221,6 +199,7 @@ namespace Site.WeiXin.Manager.Controllers
             return PartialView();
         }
 
+        //今日关注
         public ActionResult Subscribe()
         {
             IList<User> list = UserService.Select(" where IsSubscribe=1");

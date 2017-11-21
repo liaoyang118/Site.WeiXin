@@ -946,6 +946,67 @@ namespace Site.WeiXin.DataAccess.Model
 		
     }
 	[Serializable]
+	public partial class UserGroup
+    {
+        
+		#region Id
+		private int _Id;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int Id 
+		{ 
+			get { return _Id; } 
+			set { _Id = value; } 
+		
+		}
+		#endregion
+		
+		#region TagId
+		private string _TagId;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string TagId 
+		{ 
+			get { return _TagId; } 
+			set { _TagId = value; } 
+		
+		}
+		#endregion
+		
+		#region OpenId
+		private string _OpenId;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string OpenId 
+		{ 
+			get { return _OpenId; } 
+			set { _OpenId = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateTime
+		private DateTime _CreateTime;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public DateTime CreateTime 
+		{ 
+			get { return _CreateTime; } 
+			set { _CreateTime = value; } 
+		
+		}
+		#endregion
+		
+    }
+	[Serializable]
 	public partial class UserMessage
     {
         
@@ -1043,6 +1104,81 @@ namespace Site.WeiXin.DataAccess.Model
 		{ 
 			get { return _ContentValue; } 
 			set { _ContentValue = value; } 
+		
+		}
+		#endregion
+		
+    }
+	[Serializable]
+	public partial class UserTag
+    {
+        
+		#region Id
+		private int _Id;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int Id 
+		{ 
+			get { return _Id; } 
+			set { _Id = value; } 
+		
+		}
+		#endregion
+		
+		#region TagName
+		private string _TagName;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string TagName 
+		{ 
+			get { return _TagName; } 
+			set { _TagName = value; } 
+		
+		}
+		#endregion
+		
+		#region TagId
+		private string _TagId;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string TagId 
+		{ 
+			get { return _TagId; } 
+			set { _TagId = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateUserAccount
+		private string _CreateUserAccount;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string CreateUserAccount 
+		{ 
+			get { return _CreateUserAccount; } 
+			set { _CreateUserAccount = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateTime
+		private DateTime _CreateTime;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public DateTime CreateTime 
+		{ 
+			get { return _CreateTime; } 
+			set { _CreateTime = value; } 
 		
 		}
 		#endregion

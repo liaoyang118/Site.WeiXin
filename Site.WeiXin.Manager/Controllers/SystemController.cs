@@ -189,6 +189,5 @@ namespace Site.WeiXin.Manager.Controllers
 
             return View("~/Views/Common/Test.cshtml");
         }
-
     }
 }

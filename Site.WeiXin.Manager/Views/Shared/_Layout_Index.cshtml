@@ -191,7 +191,13 @@
                     <a href="/"  class="@((controllerName == "home" && action == "index") ? "open" : "")"><i class="icon-home"></i> 首页</a>
                 </li>
                 <li><a href="/Home/Menu" class="@((controllerName == "home" && action == "menu") ? "open" : "")"><i class="icon-th-list"></i>菜单</a></li>
-                <li><a href="/Home/UserList" class="@((controllerName == "home" && action == "userlist") ? "open" : "")"><i class="icon-heart"></i>关注用户</a></li>
+                <li class="has_sub">
+                    <a href="#" class="@((controllerName == "fans") ? "subdrop" : "")"><i class="icon-heart"></i>粉丝管理<span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+                    <ul style="display:@(controllerName=="fans"?"block":"none");">
+                        <li><a href="/Fans/UserList">关注用户</a></li>
+                        <li><a href="/Fans/UserMark">用户标签</a></li>
+                    </ul>
+                </li>
                 <li><a href="/Home/MessageList" class="@((controllerName == "home" && action == "messagelist") ? "open" : "")"><i class="icon-comments"></i>用户留言</a></li>
                 <li class="has_sub">
                     <a href="#" class="@((controllerName == "content") ? "subdrop" : "")"><i class="icon-folder-open"></i>内容管理<span class="pull-right"><i class="icon-chevron-right"></i></span></a>
@@ -204,6 +210,7 @@
                 
                 <li><a href="/System/UserList"  class="@((controllerName == "system" && action == "userlist") ? "open" : "")"><i class="icon-user"></i>系统用户</a></li>
                 <li><a href="/System/CustomerList" class="@((controllerName == "system" && action == "customerlist") ? "open" : "")"><i class="icon-headphones"></i>客服管理</a></li>
+                <li><a href="/GroupSending/Index" class="@((controllerName == "groupsending" && action == "index") ? "open" : "")"><i class="icon-volume-up"></i>群发管理</a></li>
             </ul>
         </div>
 

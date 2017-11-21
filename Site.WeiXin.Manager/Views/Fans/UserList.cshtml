@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "微信后台管理系统_关注用户";
+    Layout = "~/Views/Shared/_Layout_Index.cshtml";
+}
+@using Site.WeiXin.DataAccess.Model;
+@using Site.Untity;
+@{
+
+    IList<User> list = ViewBag.list;
+    string nickName = ViewBag.nickName;
+
+    int pageIndex = ViewBag.pageIndex;
+    int pageSize = ViewBag.pageSize;
+    int rowCount = ViewBag.rowCount;
+}
+
+@section css{
+    @Styles.Render("~/bundles/css/bootstrap/template")
+    <link href="~/Content/bootstrapValidator.min.css" rel="stylesheet" />
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/js/bootstrap/template")
+    <script src="~/Scripts/bootstrapValidator.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            $('#editModal').on('hidden.bs.modal', function (e) {
+                //移除表单数据
+                $(this).removeData();
+            });
+
+            $("#chkall").click(function () {
+                var _val = $(this).prop("checked");
+                $("input[name^='chk_']").prop("checked", _val);
+            });
+        })
+
+        function btn_group() {
+            initiIds();
+            var openIds = $("#openIds").val();
+            if (openIds.length == 0) {
+                $.ErrorInfo("请选择粉丝", 1000);
+                return false;
+            }
+            $("#editModal").modal({
+                remote: "/Fans/MarkGroupView?openIds=" + openIds,
+                backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
+            })
+        }
+
+        function initiIds() {
+            var arr = $("input[name^='chk_']:checked");
+            var ids = [];
+            $.each(arr, function (i, e) {
+                ids.push($(e).val());
+            });
+            $("#openIds").val(ids.join(","));
+        }
+
+        function btn_MarkList(openId) {
+            $("#editModal").modal({
+                remote: "/Fans/UserMarkList?openId=" + openId,
+                backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
+            })
+        }
+
+
+        function btn_search() {
+            var _key = $("#title").val();
+            top.location.href = "/Fans/UserList?key=" + _key;
+        }
+
+    </script>
+}
+
+<div class="page-head">
+    <h2 class="pull-left"><i class="icon-th-list"></i> 关注用户 </h2>
+    <!-- Breadcrumb -->
+    <div class="bread-crumb pull-right">
+        <a href="index.html"><i class="icon-home"></i> 首页 </a>
+        <!-- Divider -->
+        <span class="divider">/</span>
+        <a href="#" class="bread-current">关注用户</a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div class="matter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <div class="widget-head">
+                        <div class="pull-left form-inline">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="title" value="@nickName" placeholder="请输入昵称">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-sm btn-default" onclick="btn_search()"><i class="icon-search"></i> 搜索</button>
+                            </div>
+                        </div>
+                        <div class="widget-icons pull-right">
+                            <button class="btn btn-sm btn-default" onclick="btn_group();"><i class="icon-group"></i>分组</button>
+                            <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="wclose"><i class="icon-remove"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content referrer">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width:40px;"><input type="checkbox" name="chkall" id="chkall" value="" /></th>
+                                    <th style="text-align:center;width:60px;">头像</th>
+                                    <th>昵称</th>
+                                    <th style="width:60px;">性别</th>
+                                    <th>国家</th>
+                                    <th>城市</th>
+                                    <th>省份</th>
+                                    <th>是否关注</th>
+                                    <th class="hidden-xs" style="width:130px;">关注/取关时间</th>
+                                    <th style="width:60px;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    if (list != null && list.Count > 0)
+                                    {
+                                        int num = 1;
+                                        foreach (User item in list)
+                                        {
+                                            <tr>
+                                                <td><input class="checkbox" type="checkbox" name="chk_@num" id="chk_@num" value="@item.OpenID" /></td>
+                                                <td>
+                                                    <img src="@item.HeadImg" alt="">
+                                                </td>
+                                                <td>@item.NickName</td>
+                                                <td>@(item.Sex == 1 ? "男" : (item.Sex == 2 ? "女" : "未知"))</td>
+                                                <td>@item.Country</td>
+                                                <td>@item.City</td>
+                                                <td>@item.Province</td>
+                                                <td>@(item.IsSubscribe == true ? "是" : "否")</td>
+                                                <td class="hidden-xs">@(item.IsSubscribe == true ? item.Subscribe_Time.Value.ToString("yyyy/MM/dd HH:mm:ss") : item.UnSubscribe_Time.Value.ToString("yyyy/MM/dd HH:mm:ss"))</td>
+                                                <td>
+                                                    <button class="btn btn-xs btn-primary" onclick="btn_MarkList('@item.OpenID');">标签</button>
+                                                </td>
+                                            </tr>
+                                            num++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="10">暂无任何数据</td></tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="openIds" id="openIds" value="" />
+
+                        <div class="widget-foot">
+                            @Html.Raw(UntityTool.CreateListPage(pageSize, pageIndex, rowCount, string.Format("/Fans/UserList/{0}", nickName == "" ? "" : string.Format("?nickName={0}", HttpUtility.UrlEncode(nickName)))))
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+
+                    <!-- 编辑 模态框（Modal） -->
+                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

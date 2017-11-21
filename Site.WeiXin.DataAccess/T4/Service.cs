@@ -582,6 +582,77 @@ namespace Site.WeiXin.DataAccess.Service
 		#endregion
 
     }
+	public partial class UserGroupService
+    {
+
+        #region 01 UserGroup_Insert
+		 public static int Insert(UserGroup obj)
+		 {
+			using (var access = new UserGroupAccess())
+            {
+                return access.Insert(obj);
+            }
+		 }
+		#endregion
+		
+		#region 02 UserGroup_Delete
+		 public static int Delete(int id)
+		 {
+			using (var access = new UserGroupAccess())
+			{
+				return access.Delete(id);
+			}
+		}
+		#endregion
+
+		#region 03 UserGroup_Update
+		 public static int Update(UserGroup obj)
+		 {
+			
+			using (var access = new UserGroupAccess())
+			{
+				return access.Update(obj);
+			}
+		}
+		#endregion
+
+		#region 04 UserGroup_SelectObject
+		 public static UserGroup SelectObject(int id)
+		 {
+			
+			using (var access = new UserGroupAccess())
+			{
+				return access.SelectObject(id);
+			}
+		}
+		#endregion
+
+		#region 05 UserGroup_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以where 开始</param>
+         /// <returns></returns>
+		 public static IList<UserGroup> Select(string whereStr)
+		 {
+			using (var access = new UserGroupAccess())
+			{
+				return access.Select(whereStr);
+			}
+		}
+		#endregion
+
+		#region 06 UserGroup_SelectPage
+		 public static IList<UserGroup> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			using (var access = new UserGroupAccess())
+			{
+				return access.SelectPage(cloumns,order,whereStr,pageIndex,pageSize, out rowCount);
+			}
+		}
+		#endregion
+
+    }
 	public partial class UserMessageService
     {
 
@@ -646,6 +717,77 @@ namespace Site.WeiXin.DataAccess.Service
 		 public static IList<UserMessage> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
 		 {
 			using (var access = new UserMessageAccess())
+			{
+				return access.SelectPage(cloumns,order,whereStr,pageIndex,pageSize, out rowCount);
+			}
+		}
+		#endregion
+
+    }
+	public partial class UserTagService
+    {
+
+        #region 01 UserTag_Insert
+		 public static int Insert(UserTag obj)
+		 {
+			using (var access = new UserTagAccess())
+            {
+                return access.Insert(obj);
+            }
+		 }
+		#endregion
+		
+		#region 02 UserTag_Delete
+		 public static int Delete(int id)
+		 {
+			using (var access = new UserTagAccess())
+			{
+				return access.Delete(id);
+			}
+		}
+		#endregion
+
+		#region 03 UserTag_Update
+		 public static int Update(UserTag obj)
+		 {
+			
+			using (var access = new UserTagAccess())
+			{
+				return access.Update(obj);
+			}
+		}
+		#endregion
+
+		#region 04 UserTag_SelectObject
+		 public static UserTag SelectObject(int id)
+		 {
+			
+			using (var access = new UserTagAccess())
+			{
+				return access.SelectObject(id);
+			}
+		}
+		#endregion
+
+		#region 05 UserTag_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以where 开始</param>
+         /// <returns></returns>
+		 public static IList<UserTag> Select(string whereStr)
+		 {
+			using (var access = new UserTagAccess())
+			{
+				return access.Select(whereStr);
+			}
+		}
+		#endregion
+
+		#region 06 UserTag_SelectPage
+		 public static IList<UserTag> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			using (var access = new UserTagAccess())
 			{
 				return access.SelectPage(cloumns,order,whereStr,pageIndex,pageSize, out rowCount);
 			}

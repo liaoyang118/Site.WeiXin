@@ -204,8 +204,53 @@ namespace Site.Untity
             }
         }
 
+        /// <summary>
+        /// 新增标签 参数格式
+        /// </summary>
+        public static string MarkFormat
+        {
+            get
+            {
+                return "{{\"tag\":{{\"name\" : \"{0}\"}}}}";
+            }
+        }
+        /// <summary>
+        /// 删除标签 参数格式
+        /// </summary>
+        public static string MarkDeleteFormat
+        {
+            get
+            {
+                return "{{\"tag\":{{\"id\" : \"{0}\"}}}}";
+            }
+        }
+
+        /// <summary>
+        /// 修改标签 参数格式 id,name
+        /// </summary>
+        public static string MarkEditFormat
+        {
+            get
+            {
+                return "{{\"tag\":{{\"id\" : \"{0}\",\"name\" : \"{1}\"}}}}";
+            }
+        }
+
+        /// <summary>
+        /// 批量为用户打标签 openid,tagid
+        /// </summary>
+        public static string BatchMarkFormat
+        {
+            get
+            {
+                return "{{\"openid_list\":[{0}],\"tagid\":{1}}}";
+            }
+        }
+
 
         #endregion
+
+        #region 参数生成
 
         /// <summary>
         /// 生成菜单 参数格式
@@ -289,116 +334,21 @@ namespace Site.Untity
             return result;
         }
 
-        private static string GetString(List<Menu> list, string subBtn)
+        /// <summary>
+        /// 生成 批量给用户打标签 参数格式
+        /// </summary>
+        /// <param name="openIds"></param>
+        /// <param name="tagId"></param>
+        /// <returns></returns>
+        public static string GenerateBatchMarkBody(List<string> openIds, string tagId)
         {
-            string btnALL = "";
-            string btn = "";
-            List<Menu> subList = new List<Menu>();
-            foreach (Menu item in list)
-            {
-                //避免重复菜单出现
-                if (list.Where(t => t.Id == item.ParentId).ToList().Count > 0 && item.ParentId != 1)//ID 为1的，为顶级根元素
-                {
-                    continue;
-                }
-                subList = list.Where(t => t.ParentId == item.Id).ToList();
-                if (subList.Count > 0)
-                {
-                    btn = "{\"name\":\"" + item.Name.Replace("&nbsp;", "") + "\",\"sub_button\":[**]}";//**占位
-                    //递归调用
-                    btn = GetString(subList, btn);
-                }
-                else
-                {
-                    if (item.Type == "click" || item.Type == "scancode_push" || item.Type == "scancode_waitmsg" || item.Type == "pic_sysphoto" || item.Type == "pic_photo_or_album" || item.Type == "pic_weixin" || item.Type == "location_select")
-                    {
-                        btn = "{\"type\":\"" + item.Type + "\",\"name\":\"" + item.Name.Replace("&nbsp;", "") + "\", \"key\":\"" + item.Value + "\"}";
-                    }
-                    else if (item.Type == "view")
-                    {
-                        btn = "{\"type\":\"view\",\"name\":\"" + item.Name.Replace("&nbsp;", "") + "\", \"url\":\"" + item.Value + "\"}";
-                    }
-                    else if (item.Type == "media_id" || item.Type == "view_limited")
-                    {
-                        btn = "{\"type\":\"view\",\"name\":\"" + item.Name.Replace("&nbsp;", "") + "\", \"media_id\":\"" + item.Value + "\"}";
-                    }
-                }
-                if (!string.IsNullOrEmpty(btnALL))
-                {
-                    btnALL += ",";
-                }
-                btnALL += btn;
-            }
-            if (string.IsNullOrEmpty(subBtn))
-            {
-                return btnALL;
-            }
-            else
-            {
-                return subBtn.Replace("**", btnALL);
-            }
+            string ids = string.Join(",", openIds.Select(u => { return string.Format("\"{0}\"", u); }).ToList());
+            return string.Format(BatchMarkFormat, ids, tagId);
         }
 
-        public static string HandelRequest(string xmlContent)
-        {
-            string result = "";
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xmlContent);
-            HandleBase baseHandle = null;
-            string type = doc.GetElementsByTagName("MsgType")[0].InnerText;
-            switch (type)
-            {
-                //消息
-                case "text"://文本消息
-                    baseHandle = new TextMessageHandle();
-                    break;
-                case "image"://图片消息
-                    break;
-                case "voice"://语音消息
-                    break;
-                case "video"://视频消息
-                    break;
-                case "shortvideo"://小视频消息
-                    break;
-                case "location"://地理位置消息
-                    break;
-                case "link"://链接消息
-                    break;
-                //事件
-                case "event":
-                    string eventName = doc.GetElementsByTagName("Event")[0].InnerText;
-                    switch (eventName)
-                    {
-                        case "subscribe":
-                            baseHandle = new SubscribeEvent();
-                            break;
-                        case "unsubscribe":
-                            baseHandle = new UnSubscribeEvent();
-                            break;
-                        case "SCAN"://关注用户扫二维码
-                            baseHandle = new ScanEvent();
-                            break;
-                        case "LOCATION":
-                            baseHandle = new LocationEvent();
-                            break;
-                        case "CLICK":
-                            baseHandle = new ClickEvent();
-                            break;
-                        case "VIEW":
-                            baseHandle = new ViewEvent();
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                default:
-                    baseHandle = new TextMessageHandle();
-                    break;
-            }
+        #endregion
 
-            result = baseHandle.Handle(xmlContent);
-            return result;
-        }
+        #region 用户信息、菜单
 
         private static bool GetHttpToken(out string result)
         {
@@ -471,6 +421,56 @@ namespace Site.Untity
                 }
             }
             return false;
+        }
+
+        private static string GetString(List<Menu> list, string subBtn)
+        {
+            string btnALL = "";
+            string btn = "";
+            List<Menu> subList = new List<Menu>();
+            foreach (Menu item in list)
+            {
+                //避免重复菜单出现
+                if (list.Where(t => t.Id == item.ParentId).ToList().Count > 0 && item.ParentId != 1)//ID 为1的，为顶级根元素
+                {
+                    continue;
+                }
+                subList = list.Where(t => t.ParentId == item.Id).ToList();
+                if (subList.Count > 0)
+                {
+                    btn = "{\"name\":\"" + item.Name.Replace("&nbsp;", "") + "\",\"sub_button\":[**]}";//**占位
+                    //递归调用
+                    btn = GetString(subList, btn);
+                }
+                else
+                {
+                    if (item.Type == "click" || item.Type == "scancode_push" || item.Type == "scancode_waitmsg" || item.Type == "pic_sysphoto" || item.Type == "pic_photo_or_album" || item.Type == "pic_weixin" || item.Type == "location_select")
+                    {
+                        btn = "{\"type\":\"" + item.Type + "\",\"name\":\"" + item.Name.Replace("&nbsp;", "") + "\", \"key\":\"" + item.Value + "\"}";
+                    }
+                    else if (item.Type == "view")
+                    {
+                        btn = "{\"type\":\"view\",\"name\":\"" + item.Name.Replace("&nbsp;", "") + "\", \"url\":\"" + item.Value + "\"}";
+                    }
+                    else if (item.Type == "media_id" || item.Type == "view_limited")
+                    {
+                        btn = "{\"type\":\"view\",\"name\":\"" + item.Name.Replace("&nbsp;", "") + "\", \"media_id\":\"" + item.Value + "\"}";
+                    }
+                }
+                if (!string.IsNullOrEmpty(btnALL))
+                {
+                    btnALL += ",";
+                }
+                btnALL += btn;
+            }
+            if (string.IsNullOrEmpty(subBtn))
+            {
+                return btnALL;
+            }
+            else
+            {
+                return subBtn.Replace("**", btnALL);
+            }
         }
 
         public static bool GetAccessToken(out string result)
@@ -578,6 +578,9 @@ namespace Site.Untity
                 return false;
             }
         }
+        #endregion
+
+        #region 素材管理
 
         /// <summary>
         /// 新增临时素材
@@ -906,7 +909,6 @@ namespace Site.Untity
                         obj.TryGetValue("errcode", out token);
                         if (token != null)
                         {
-                            //反序列化
                             if (token.ToString() == "0")
                             {
                                 return true;
@@ -940,6 +942,9 @@ namespace Site.Untity
                 return false;
             }
         }
+
+
+        #endregion
 
         #region 网页授权
 
@@ -1057,6 +1062,355 @@ namespace Site.Untity
         }
 
 
+        #endregion
+
+        #region 标签管理
+        public static bool AddMark(string markName, out string id)
+        {
+            id = string.Empty;
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/create?access_token={0}", access_token);
+                    string content = HttpTool.Post(url, string.Format(MarkFormat, markName));
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("tag", out token);
+                        if (token != null)
+                        {
+                            obj = (JObject)JsonConvert.DeserializeObject(token.ToString());
+                            obj.TryGetValue("id", out token);
+                            id = token.ToString();
+                            return true;
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("新增标签错误:" + error);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("新增标签错误:" + ex.Message);
+                return false;
+            }
+        }
+
+        public static bool DeleteMark(string markId)
+        {
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/delete?access_token={0}", access_token);
+                    string content = HttpTool.Post(url, string.Format(MarkDeleteFormat, markId));
+
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("errcode", out token);
+                        if (token != null)
+                        {
+                            if (token.ToString() == "0")
+                            {
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("删除标签错误:" + error);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("删除标签错误:" + ex.Message);
+                return false;
+            }
+        }
+
+        public static bool EditMark(string markId, string markName)
+        {
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/update?access_token={0}", access_token);
+                    string content = HttpTool.Post(url, string.Format(MarkEditFormat, markId, markName));
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("errcode", out token);
+                        if (token != null)
+                        {
+                            if (token.ToString() == "0")
+                            {
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("修改标签错误:" + error);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("修改标签错误:" + ex.Message);
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region 分组管理
+
+        /// <summary>
+        /// 批量为用户打标签
+        /// </summary>
+        /// <param name="openIds"></param>
+        /// <param name="tagId"></param>
+        /// <returns></returns>
+        public static bool BatchUserMark(List<string> openIds, string tagId)
+        {
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token={0}", access_token);
+                    string content = HttpTool.Post(url, GenerateBatchMarkBody(openIds, tagId));
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("errcode", out token);
+                        if (token != null)
+                        {
+                            if (token.ToString() == "0")
+                            {
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("批量给用户打标签错误:" + error);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("批量给用户打标签错误:" + ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 批量为用户取消标签
+        /// </summary>
+        /// <param name="openIds"></param>
+        /// <param name="tagId"></param>
+        /// <returns></returns>
+        public static bool DeleteBatchUserMark(List<string> openIds, string tagId)
+        {
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token={0}", access_token);
+                    string content = HttpTool.Post(url, GenerateBatchMarkBody(openIds, tagId));
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("errcode", out token);
+                        if (token != null)
+                        {
+                            if (token.ToString() == "0")
+                            {
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("新增标签错误:" + error);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("新增标签错误:" + ex.Message);
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region 接口处理--入口
+        public static string HandelRequest(string xmlContent)
+        {
+            string result = "";
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xmlContent);
+            HandleBase baseHandle = null;
+            string type = doc.GetElementsByTagName("MsgType")[0].InnerText;
+            switch (type)
+            {
+                //消息
+                case "text"://文本消息
+                    baseHandle = new TextMessageHandle();
+                    break;
+                case "image"://图片消息
+                    break;
+                case "voice"://语音消息
+                    break;
+                case "video"://视频消息
+                    break;
+                case "shortvideo"://小视频消息
+                    break;
+                case "location"://地理位置消息
+                    break;
+                case "link"://链接消息
+                    break;
+                //事件
+                case "event":
+                    string eventName = doc.GetElementsByTagName("Event")[0].InnerText;
+                    switch (eventName)
+                    {
+                        case "subscribe":
+                            baseHandle = new SubscribeEvent();
+                            break;
+                        case "unsubscribe":
+                            baseHandle = new UnSubscribeEvent();
+                            break;
+                        case "SCAN"://关注用户扫二维码
+                            baseHandle = new ScanEvent();
+                            break;
+                        case "LOCATION":
+                            baseHandle = new LocationEvent();
+                            break;
+                        case "CLICK":
+                            baseHandle = new ClickEvent();
+                            break;
+                        case "VIEW":
+                            baseHandle = new ViewEvent();
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    baseHandle = new TextMessageHandle();
+                    break;
+            }
+
+            result = baseHandle.Handle(xmlContent);
+            return result;
+        }
         #endregion
 
     }

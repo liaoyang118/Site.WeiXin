@@ -272,6 +272,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Jquery_Pagination.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="UEdit\dialogs\anchor\anchor.html" />
     <Content Include="UEdit\dialogs\attachment\attachment.css" />
@@ -549,6 +550,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\HttpContextUntity.cs" />
     <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\FansController.cs" />
+    <Compile Include="Controllers\GroupSendingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReplyController.cs" />
@@ -581,7 +584,7 @@
     <Content Include="Views\Shared\_Layout_Index.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Home\MenuEditView.cshtml" />
-    <Content Include="Views\Home\UserList.cshtml" />
+    <Content Include="Views\Fans\UserList.cshtml" />
     <Content Include="Views\Home\MessageList.cshtml" />
     <Content Include="Views\Home\CustomerServiceList.cshtml" />
     <Content Include="Views\Content\Index.cshtml" />
@@ -609,6 +612,13 @@
     <Content Include="Views\System\UserList.cshtml" />
     <Content Include="Views\System\UserEditView.cshtml" />
     <Content Include="Views\System\ResetPwdView.cshtml" />
+    <Content Include="Views\GroupSending\Index.cshtml" />
+    <Content Include="Views\Fans\UserMark.cshtml" />
+    <Content Include="Views\Fans\UserMarkEditView.cshtml" />
+    <Content Include="Views\Fans\MarkGroupView.cshtml" />
+    <Content Include="Views\Fans\SearchMarkList.cshtml" />
+    <Content Include="Views\Fans\UserMarkList.cshtml" />
+    <Content Include="Views\Fans\UserMarkListView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
