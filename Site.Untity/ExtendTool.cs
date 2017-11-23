@@ -18,5 +18,25 @@ namespace Site.Untity
             }
             return result;
         }
+
+        public static bool ToBool(this string value, bool defaultValue)
+        {
+            bool result = false;
+            bool isSuccess = bool.TryParse(value, out result);
+            if (!isSuccess)
+            {
+                return defaultValue;
+            }
+            return result;
+        }
+
+        public static int ToInt32(this bool value)
+        {
+            if (value)
+            {
+                return 1;
+            }
+            return 0;
+        }
     }
 }

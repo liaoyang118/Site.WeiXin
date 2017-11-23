@@ -509,6 +509,259 @@ namespace Site.WeiXin.DataAccess.Access
 
     }
 	[Serializable]
+	public partial class GroupSendAccess : AccessBase<GroupSend>,IDisposable
+    {
+
+		Database db;
+
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
+        #region 00 IDisposable 实现
+        public GroupSendAccess(string configName)
+        {
+			db = factory.Create(configName);
+        }
+
+        public GroupSendAccess()
+        {
+            db = factory.Create("wxmanager");
+        }
+
+        //虚拟Idisposable 实现,手动调用的
+        public void Dispose()
+        {
+            //调用方法，释放资源
+            Dispose(true);
+            //通知GC，已经手动调用，不用调用析构函数了
+            System.GC.SuppressFinalize(this);
+        }
+
+        //重载方法，满足不同的调用，清理干净资源，提升性能
+        /// <summary>
+        /// true --手动调用，清理托管资源
+        /// false--GC 调用，把非托管资源一起清理掉
+        /// </summary>
+        /// <param name="isDispose"></param>
+        protected virtual void Dispose(bool isDispose)
+        {
+            if (isDispose)
+            {
+
+            }
+            //清理非托管资源，此处没有，所以直接ruturn
+            return;
+        }
+
+        //析构函数，供GC 调用
+        ~GroupSendAccess()
+        {
+            Dispose(false);
+        }
+        #endregion
+
+
+        #region 01 Proc_GroupSend_Insert
+		 public override int Insert(GroupSend obj)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GroupSend_Insert");
+			db.AddOutParameter(dbCmd, "@Id", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@SendType", DbType.String,obj.SendType);
+			db.AddInParameter(dbCmd, "@SendName", DbType.String,obj.SendName);
+			db.AddInParameter(dbCmd, "@MessageType", DbType.String,obj.MessageType);
+			db.AddInParameter(dbCmd, "@Media_Id", DbType.String,obj.Media_Id);
+			db.AddInParameter(dbCmd, "@IsToAll", DbType.Boolean,obj.IsToAll);
+			db.AddInParameter(dbCmd, "@TagId", DbType.String,obj.TagId);
+			db.AddInParameter(dbCmd, "@SendStatu", DbType.Int32,obj.SendStatu);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+						try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				//int Id = (int)dbCmd.Parameters["@Id"].Value;
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+		
+		#region 02 Proc_GroupSend_Delete
+		 public override int Delete(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GroupSend_DeleteById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 03 Proc_GroupSend_Update
+		 public override int Update(GroupSend obj)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GroupSend_UpdateById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
+			db.AddInParameter(dbCmd, "@SendType", DbType.String,obj.SendType);
+			db.AddInParameter(dbCmd, "@SendName", DbType.String,obj.SendName);
+			db.AddInParameter(dbCmd, "@MessageType", DbType.String,obj.MessageType);
+			db.AddInParameter(dbCmd, "@Media_Id", DbType.String,obj.Media_Id);
+			db.AddInParameter(dbCmd, "@IsToAll", DbType.Boolean,obj.IsToAll);
+			db.AddInParameter(dbCmd, "@TagId", DbType.String,obj.TagId);
+			db.AddInParameter(dbCmd, "@SendStatu", DbType.Int32,obj.SendStatu);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 04 Proc_GroupSend_SelectObject
+		 public override GroupSend SelectObject(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GroupSend_SelectById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			GroupSend obj=null;
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						obj=Object2Model(reader);
+					}
+                }
+				return obj;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 05 Proc_GroupSend_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
+		 public override IList<GroupSend> Select(string whereStr)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GroupSend_SelectList");
+			db.AddInParameter(dbCmd, "@whereStr", DbType.String,whereStr);
+			
+			IList<GroupSend> list= new List<GroupSend>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						GroupSend obj= Object2Model(reader);
+						list.Add(obj);
+					}
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 06 Proc_GroupSend_SelectPage
+		 public override IList<GroupSend> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GroupSend_SelectPage");
+			db.AddOutParameter(dbCmd, "@rowCount", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@cloumns", DbType.String,cloumns);
+			db.AddInParameter(dbCmd, "@pageIndex", DbType.Int32,pageIndex);
+			db.AddInParameter(dbCmd, "@pageSize", DbType.Int32,pageSize);
+			db.AddInParameter(dbCmd, "@orderBy", DbType.String,order);
+			db.AddInParameter(dbCmd, "@where", DbType.String,whereStr);
+
+			List<GroupSend> list= new List<GroupSend>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						GroupSend obj= Object2Model(reader);
+						list.Add(obj);
+					}
+					reader.NextResult();
+					rowCount = (int)dbCmd.Parameters["@rowCount"].Value;
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+
+		#region Object2Model
+
+        public GroupSend Object2Model(IDataReader reader)
+        {
+            GroupSend obj = null;
+            try
+            {
+                obj = new GroupSend();
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.SendType = reader["SendType"] == DBNull.Value ? default(string) : (string)reader["SendType"];
+				obj.SendName = reader["SendName"] == DBNull.Value ? default(string) : (string)reader["SendName"];
+				obj.MessageType = reader["MessageType"] == DBNull.Value ? default(string) : (string)reader["MessageType"];
+				obj.Media_Id = reader["Media_Id"] == DBNull.Value ? default(string) : (string)reader["Media_Id"];
+				obj.IsToAll = reader["IsToAll"] == DBNull.Value ? default(bool) : (bool)reader["IsToAll"];
+				obj.TagId = reader["TagId"] == DBNull.Value ? default(string) : (string)reader["TagId"];
+				obj.SendStatu = reader["SendStatu"] == DBNull.Value ? default(int) : (int)reader["SendStatu"];
+				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
+				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
+				
+            }
+            catch(Exception ex)
+            {
+                obj = null;
+            }
+            return obj;
+        }
+
+
+
+        #endregion
+
+
+    }
+	[Serializable]
 	public partial class KeyWordsReplyAccess : AccessBase<KeyWordsReply>,IDisposable
     {
 

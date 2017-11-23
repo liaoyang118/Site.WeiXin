@@ -156,6 +156,77 @@ namespace Site.WeiXin.DataAccess.Service
 		#endregion
 
     }
+	public partial class GroupSendService
+    {
+
+        #region 01 GroupSend_Insert
+		 public static int Insert(GroupSend obj)
+		 {
+			using (var access = new GroupSendAccess())
+            {
+                return access.Insert(obj);
+            }
+		 }
+		#endregion
+		
+		#region 02 GroupSend_Delete
+		 public static int Delete(int id)
+		 {
+			using (var access = new GroupSendAccess())
+			{
+				return access.Delete(id);
+			}
+		}
+		#endregion
+
+		#region 03 GroupSend_Update
+		 public static int Update(GroupSend obj)
+		 {
+			
+			using (var access = new GroupSendAccess())
+			{
+				return access.Update(obj);
+			}
+		}
+		#endregion
+
+		#region 04 GroupSend_SelectObject
+		 public static GroupSend SelectObject(int id)
+		 {
+			
+			using (var access = new GroupSendAccess())
+			{
+				return access.SelectObject(id);
+			}
+		}
+		#endregion
+
+		#region 05 GroupSend_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以where 开始</param>
+         /// <returns></returns>
+		 public static IList<GroupSend> Select(string whereStr)
+		 {
+			using (var access = new GroupSendAccess())
+			{
+				return access.Select(whereStr);
+			}
+		}
+		#endregion
+
+		#region 06 GroupSend_SelectPage
+		 public static IList<GroupSend> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			using (var access = new GroupSendAccess())
+			{
+				return access.SelectPage(cloumns,order,whereStr,pageIndex,pageSize, out rowCount);
+			}
+		}
+		#endregion
+
+    }
 	public partial class KeyWordsReplyService
     {
 

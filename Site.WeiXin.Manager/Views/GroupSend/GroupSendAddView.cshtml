@@ -1,0 +1,393 @@
+﻿@using Site.WeiXin.DataAccess.Model;
+@using Site.Untity;
+@{
+    GroupSend obj = ViewBag.obj;
+}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+            </button>
+            <h4 class="modal-title" id="editModalLabel">新增群发</h4>
+        </div>
+        <div class="modal-body">
+            <div class="widget-content">
+                <div class="tabbable" style="margin-bottom: 18px;">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">基本信息</a></li>
+                        <li class="" id="tab_received"><a href="#tab2" data-toggle="tab">接收群体</a></li>
+                        <li class="" id="tab_imageContent" ><a href="#tab3" data-toggle="tab">素材库</a></li>
+                    </ul>
+                    <div class="tab-content" style="padding-bottom: 9px;">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="padd">
+                                <div class="form quick-post">
+                                    <!-- Edit profile form (not working)-->
+                                    <form class="form-horizontal" id="forms_edit" method="post" action="/GroupSend/GroupSendEdit">
+                                        <!-- title -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="SendName">群发名称</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" name="SendName" class="form-control" id="SendName" value="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="txt_content">文本</label>
+                                            <div class="col-lg-9">
+                                                <textarea class="form-control" rows="5" name="txt_content" id="txt_content"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <!-- 群发类型 -->
+                                        <div class="form-group" id="txt_val">
+                                            <label class="control-label col-lg-3">群发类型</label>
+                                            <div class="col-lg-9">
+                                                <div class="btn-group">
+                                                    <button type="button" mType="text"  value="text" class="btn btn-primary">文本</button>
+                                                    <button type="button" mType="image" value="image" class="btn btn-default">图片</button>
+                                                    <button type="button" mType="voice" value="voice" class="btn btn-default">语音</button>
+                                                    <button type="button" mType="video" value="mpvideo" class="btn btn-default">视频</button>
+                                                    <button type="button" mType="" value="wxcard" class="btn btn-default">卡券</button>
+                                                    <button type="button" mType="imageContent" value="mpnews" class="btn btn-default">图文</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 群发渠道 -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" >群发渠道</label>
+                                            <div class="col-lg-9">
+                                                <div class="btn-group">
+                                                    <button type="button" channel="openid" class="btn btn-primary">用户</button>
+                                                    <button type="button" channel="tag" class="btn btn-default">标签</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- IsToAll -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="IsToAll">历史消息</label>
+                                            <div class="col-lg-9">
+                                                <div class="make-switch has-switch" id="toggle-state-switch">
+                                                    <input type="hidden" id="IsToAll" name="IsToAll" value="0" />
+                                                    <div id="btn_switch" class="switch-off switch-animate" ><input type="checkbox"><span class="switch-left switch-success">ON</span><label>&nbsp;</label><span class="switch-right switch-warning">OFF</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--消息类型-->
+                                        <input type="hidden" name="MessageType" id="MessageType" value="text" />
+                                        <!--素材类型-->
+                                        <input type="hidden" name="MaterialType" id="MaterialType" value="text" />
+                                        <!--接收群体-->
+                                        <input type="hidden" name="selectIds" id="selectIds" value="" />
+                                        <!--素材-->
+                                        <input type="hidden" name="imageContentIds" id="imageContentIds" value="" />
+                                        <!--发送类型-->
+                                        <input type="hidden" name="channel" id="channel" value="openid" />
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                            <div class="alert alert-warning" style="margin-bottom:0px;">
+                                <span style="color:red;">1.标签选择一次最少1个，最多选择20个。</span><br />
+                                <span style="color:red;">2.用户选择一次最少2个，最多选择10000个。</span>
+                            </div>
+                            <div class="widget">
+                                <div class="widget-head">
+                                    <div class="pull-left form-inline">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="search_title" value="" placeholder="请输入名称">
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-sm btn-default" onclick="btn_searchList()"><i class="icon-search"></i> 搜索</button>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div id="div_list" class="widget-content referrer">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane" id="tab3">
+                            <div class="alert alert-warning" style="margin-bottom:0px;">
+                                <span style="color:red;">1.图文消息支持1到8条图文。其它类型回复只能有一条。</span><br />
+                                <span style="color:red;">2.回复的非文本消息，【官方测试号】上只能用永久素材，临时素材则无效。</span>
+                            </div>
+                            <div class="widget">
+                                <div class="widget-head">
+                                    <div class="pull-left form-inline">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="search_Material" value="" placeholder="请输入标题">
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-sm btn-default" onclick="btn_searchContent()"><i class="icon-search"></i> 搜索</button>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div id="ContentList" class="widget-content referrer">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                取消
+            </button>
+            <button type="button" onclick="btn_EditSubmit();" class="btn btn-primary">
+                确定
+            </button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var querys = { page: 1, pagesize: 15 };
+
+    $(function () {
+        $("button[value]").click(function () {
+            var _type = $(this).attr("value");
+            if (_type != "text") {
+                $("#txt_content").attr("disabled", "disabled");
+            } else {
+                $("#txt_content").removeAttr("disabled");
+            }
+            $("button[value]").removeClass("btn-primary").addClass("btn-default");
+            $(this).addClass("btn-primary");
+            $("#MessageType").val(_type);
+            $("#MaterialType").val($(this).attr("mType"));
+        });
+
+        $("button[channel]").click(function () {
+            var _channel = $(this).attr("channel");
+            $("button[channel]").removeClass("btn-primary").addClass("btn-default");
+            $(this).addClass("btn-primary");
+            $("#channel").val(_channel);
+        });
+
+        $("#tab_received").click(function () {
+            var valiForm = $('#forms_edit').data('bootstrapValidator');
+            valiForm.validate();
+            if (valiForm.isValid()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+
+        $("#tab_imageContent").click(function () {
+            var valiForm = $('#forms_edit').data('bootstrapValidator');
+            valiForm.validate();
+            if (valiForm.isValid()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+
+        $('#toggle-state-switch').click(function () {
+            var _check = $("#IsToAll").val()
+            console.log(_check);
+            if (_check == 1) {
+                $("#btn_switch").removeClass("switch-on switch-animate").addClass("switch-off switch-animate");
+                $("#IsToAll").val(0);
+            }
+            else {
+                $("#btn_switch").removeClass("switch-off switch-animate").addClass("switch-on switch-animate");
+                $("#IsToAll").val(1);
+            }
+        });
+
+        //设置校验规则
+        $('form').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                SendName: {
+                    validators: {
+                        notEmpty: {
+                            message: '群发名称不能为空'
+                        }
+                    }
+                },
+                txt_content: {
+                    validators: {
+                        notEmpty: {
+                            message: '文本不能为空'
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+    function btn_EditSubmit() {
+        var valiForm = $('#forms_edit').data('bootstrapValidator');
+        valiForm.validate();
+        if (valiForm.isValid()) {
+            $.ShowLoading("提交中...");
+
+
+            //验证接收群体
+            var _channel = $("#channel").val();
+            var arr = $("input[name^='chk_s_']:checked");
+            if (arr.length > 20 && _channel == "tag") {
+                $.WarningInfo("标签只能选择20项", 2000);
+                $.HideLoading();
+                return false;
+            }
+            if (arr.length > 10000 && _channel == "openid") {
+                $.WarningInfo("用户只能选择1万个", 2000);
+                $.HideLoading();
+                return false;
+            }
+            initiIds(arr);
+            var _type = $("#MessageType").val();
+            if (_type != "text") {
+                var _selectIds = $("#selectIds").val();
+                if (!_selectIds) {
+                    $.WarningInfo("请选择接收群体", 2000);
+                    $.HideLoading();
+                    return false;
+                }
+            }
+
+            //验证素材
+            var _mtype = $("#MaterialType").val();
+            var marr = $("input[name^='chk_m_']:checked");
+            if (marr.length > 1 && _mtype != "imageContent") {
+                $.WarningInfo("非图文项,素材只能选择一项", 2000);
+                $.HideLoading();
+                return false;
+            }
+            initiMaterialIds(marr);
+            if (_type != "text") {
+                var _selectIds = $("#imageContentIds").val();
+                if (!_selectIds) {
+                    $.WarningInfo("请选择素材", 2000);
+                    $.HideLoading();
+                    return false;
+                }
+            }
+
+
+            //jquery.form 插件
+            $("#forms_edit").ajaxSubmit({
+                //定义返回JSON数据，还包括xml和script格式,必须指定表单的action和method
+                dataType: 'json',
+                success: function (json) {
+                    $.HideLoading();
+                    if (json.success) {
+                        $.SuccessInfo(json.message.text, 1000);
+                        setTimeout(function () {
+                            top.location.reload();
+                        }, 1000);
+                    }
+                    else {
+                        $.WarningInfo(json.message.text, 1000);
+                    }
+                },
+                error: function (xhr, xhrText, error) {
+                    $.HideLoading();
+                    $.ErrorInfo(error);
+                }
+            });
+        }
+    }
+    
+    //接收群体
+    function initiIds(arr) {
+        var ids = [];
+        $.each(arr, function (i, e) {
+            ids.push($(e).val());
+        });
+        $("#selectIds").val(ids.join(","));
+    }
+
+    //素材
+    function initiMaterialIds(arr) {
+        var ids = [];
+        $.each(arr, function (i, e) {
+            ids.push($(e).val());
+        });
+        $("#imageContentIds").val(ids.join(","));
+    }
+
+    function btn_searchList(type) {
+        querys.key = $("#search_title").val();
+        LoadList(1);
+    }
+
+    function LoadList() {
+        $.ShowLoading("查询中...");
+        var _title = $("#search_title").val();
+        var _channel = $("#channel").val();
+        var _type = $("#MessageType").val();
+
+        querys.key = _title;
+        querys.type = _type;
+        querys.channel = _channel;
+
+        $.ajax({
+            url: "/GroupSend/GroupSendSelectListView",
+            type: "get",
+            dataType: "html",
+            data: querys,
+            cache: false,
+            success: function (html) {
+                $.HideLoading();
+                $("#div_list").html(html);
+            },
+            error: function (xhr, state, error) {
+                $.HideLoading();
+                $.ErrorInfo(error);
+            }
+        });
+    };
+
+    function btn_searchContent() {
+        var _title = $("#search_title").val();
+        var _type = $("#MaterialType").val();
+
+        $.ajax({
+            url: "/GroupSend/GroupSendMaterialSearch",
+            type: "get",
+            dataType: "html",
+            data: {
+                key: _title,
+                type: _type
+            },
+            cache: false,
+            success: function (html) {
+                $.HideLoading();
+                $("#ContentList").html(html);
+            },
+            error: function (xhr, state, error) {
+                $.HideLoading();
+                $.ErrorInfo(error);
+            }
+        });
+    };
+
+</script>

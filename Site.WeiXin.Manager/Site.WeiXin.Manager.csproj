@@ -551,7 +551,7 @@
     <Compile Include="Common\HttpContextUntity.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\FansController.cs" />
-    <Compile Include="Controllers\GroupSendingController.cs" />
+    <Compile Include="Controllers\GroupSendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReplyController.cs" />
@@ -612,13 +612,18 @@
     <Content Include="Views\System\UserList.cshtml" />
     <Content Include="Views\System\UserEditView.cshtml" />
     <Content Include="Views\System\ResetPwdView.cshtml" />
-    <Content Include="Views\GroupSending\Index.cshtml" />
+    <Content Include="Views\GroupSend\Index.cshtml" />
     <Content Include="Views\Fans\UserMark.cshtml" />
     <Content Include="Views\Fans\UserMarkEditView.cshtml" />
     <Content Include="Views\Fans\MarkGroupView.cshtml" />
     <Content Include="Views\Fans\SearchMarkList.cshtml" />
     <Content Include="Views\Fans\UserMarkList.cshtml" />
     <Content Include="Views\Fans\UserMarkListView.cshtml" />
+    <Content Include="Views\GroupSend\GroupSendAddView.cshtml" />
+    <Content Include="Views\GroupSend\UserListView.cshtml" />
+    <Content Include="Views\GroupSend\TagListView.cshtml" />
+    <Content Include="Views\GroupSend\GroupSendArticleContent.cshtml" />
+    <Content Include="Views\GroupSend\GroupSendMaterialContent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

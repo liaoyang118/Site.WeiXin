@@ -11,6 +11,7 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
         public string OrderBy = "Subscribe_Time desc";
 
         public string NickName { get; set; }
+        public bool? IsSubscribe { get; set; }
 
 
 
@@ -20,6 +21,10 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
             if (!string.IsNullOrEmpty(NickName))
             {
                 where.Add(string.Format("NickName like N'%{0}%'", NickName));
+            }
+            if (IsSubscribe != null)
+            {
+                where.Add(string.Format("IsSubscribe = {0}", IsSubscribe == true ? 1 : 0));
             }
 
             if (where.Count > 0)

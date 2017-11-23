@@ -244,6 +244,151 @@ namespace Site.WeiXin.DataAccess.Model
 		
     }
 	[Serializable]
+	public partial class GroupSend
+    {
+        
+		#region Id
+		private int _Id;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int Id 
+		{ 
+			get { return _Id; } 
+			set { _Id = value; } 
+		
+		}
+		#endregion
+		
+		#region SendType
+		private string _SendType;
+       
+        /// <summary>
+        /// 发送类型，根据openId发送，还是根据tagId发送
+        /// </summary>        
+        public string SendType 
+		{ 
+			get { return _SendType; } 
+			set { _SendType = value; } 
+		
+		}
+		#endregion
+		
+		#region SendName
+		private string _SendName;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string SendName 
+		{ 
+			get { return _SendName; } 
+			set { _SendName = value; } 
+		
+		}
+		#endregion
+		
+		#region MessageType
+		private string _MessageType;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string MessageType 
+		{ 
+			get { return _MessageType; } 
+			set { _MessageType = value; } 
+		
+		}
+		#endregion
+		
+		#region Media_Id
+		private string _Media_Id;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string Media_Id 
+		{ 
+			get { return _Media_Id; } 
+			set { _Media_Id = value; } 
+		
+		}
+		#endregion
+		
+		#region IsToAll
+		private bool _IsToAll;
+       
+        /// <summary>
+        /// 是否记录到用户的历史记录中
+        /// </summary>        
+        public bool IsToAll 
+		{ 
+			get { return _IsToAll; } 
+			set { _IsToAll = value; } 
+		
+		}
+		#endregion
+		
+		#region TagId
+		private string _TagId;
+       
+        /// <summary>
+        /// 按标签发送时赋值
+        /// </summary>        
+        public string TagId 
+		{ 
+			get { return _TagId; } 
+			set { _TagId = value; } 
+		
+		}
+		#endregion
+		
+		#region SendStatu
+		private int _SendStatu;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int SendStatu 
+		{ 
+			get { return _SendStatu; } 
+			set { _SendStatu = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateUserAccount
+		private string _CreateUserAccount;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string CreateUserAccount 
+		{ 
+			get { return _CreateUserAccount; } 
+			set { _CreateUserAccount = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateTime
+		private DateTime _CreateTime;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public DateTime CreateTime 
+		{ 
+			get { return _CreateTime; } 
+			set { _CreateTime = value; } 
+		
+		}
+		#endregion
+		
+    }
+	[Serializable]
 	public partial class KeyWordsReply
     {
         
