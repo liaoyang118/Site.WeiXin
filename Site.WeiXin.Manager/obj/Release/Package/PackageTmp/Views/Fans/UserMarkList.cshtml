@@ -1,0 +1,104 @@
+﻿@using Site.WeiXin.DataAccess.Model;
+@using Site.Untity;
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+            </button>
+            <h4 class="modal-title" id="editModalLabel">用户标签</h4>
+        </div>
+        <div class="modal-body">
+            <div class="widget-content">
+                <div class="tabbable" style="margin-bottom: 18px;">
+                    <div class="form quick-post">
+                        <div class="widget">
+                            <div class="widget-head">
+                                <div class="pull-left form-inline">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="search_title" value="" placeholder="请输入标签名">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-sm btn-default" onclick="btn_searchMark()"><i class="icon-search"></i>搜索</button>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div id="div_list" class="widget-content referrer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    var querys = { page: 1, pagesize: 15 };
+    $(function () {
+        LoadList(1);
+    });
+
+
+    function btn_searchMark(type) {
+        querys.key = $("#search_title").val();
+        LoadList(1);
+    }
+
+    function LoadList() {
+        $.ShowLoading("查询中...");
+        querys.openId = '@ViewBag.openId';
+        $.ajax({
+            url: "/Fans/UserMarkListView",
+            type: "get",
+            dataType: "html",
+            data: querys,
+            cache: false,
+            success: function (html) {
+                $.HideLoading();
+                $("#div_list").html(html);
+            },
+            error: function (xhr, state, error) {
+                $.HideLoading();
+                $.ErrorInfo(error, 2000);
+            }
+        });
+    };
+
+
+    function btn_DeleteUseGroup(openId,tagId,id) {
+        $.ShowLoading("提交中...");
+        $.ajax({
+            url: "/Fans/DeleteUserMark",
+            type: "post",
+            dataType: "json",
+            data: {
+                openIds: openId,
+                tagId: tagId,
+                id:id
+            },
+            cache: false,
+            success: function (json) {
+                $.HideLoading();
+                if (json.success) {
+                    $.SuccessInfo(json.message.text, 2000);
+                    setTimeout(function () {
+                        LoadList(2);
+                    }, 1000)
+                }
+                else {
+                    $.WarningInfo(json.message.text);
+                }
+            },
+            error: function (xhr, state, error) {
+                $.HideLoading();
+                $.ErrorInfo(error, 2000);
+            }
+        });
+    }
+
+</script>

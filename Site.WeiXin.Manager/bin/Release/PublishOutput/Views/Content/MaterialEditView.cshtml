@@ -177,7 +177,7 @@
         });
 
         $("button[expire]").click(function () {
-            var expire = $(this).attr("value");
+            var expire = $(this).attr("expire");
             $("button[expire]").removeClass("btn-primary").addClass("btn-default");
             $(this).addClass("btn-primary");
             $("#expire").val(expire);

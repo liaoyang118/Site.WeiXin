@@ -886,7 +886,6 @@ namespace Site.Untity
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/add_news?access_token={0}", access_token);
                     string content = HttpTool.Post(url, body);
-                    //TODO:上传视频素材时需要POST另一个表单
 
                     if (!string.IsNullOrEmpty(content))
                     {
@@ -944,7 +943,6 @@ namespace Site.Untity
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/update_news?access_token={0}", access_token);
                     string content = HttpTool.Post(url, body);
-                    //TODO:上传视频素材时需要POST另一个表单
 
                     if (!string.IsNullOrEmpty(content))
                     {

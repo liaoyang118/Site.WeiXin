@@ -36,7 +36,7 @@
 
                             <!-- value -->
                             <div class="form-group" id="txt_val">
-                                <label class="control-label col-lg-3" for="content">值</label>
+                                <label class="control-label col-lg-3" for="value">值</label>
                                 <div class="col-lg-9">
                                     <input type="text" class="form-control" name="value" id="value" value="@obj.Value" />
                                 </div>
@@ -68,6 +68,42 @@
 <script type="text/javascript">
     $(function () {
         //设置校验规则
+
+        var fields = {
+            name: {
+                message: '菜单名称验证失败',
+                validators: {
+                    notEmpty: {
+                        message: '菜单名称不能为空'
+                    }
+                }
+            },
+            type: {
+                validators: {
+                    notEmpty: {
+                        message: '点击类型不能为空'
+                    }
+                }
+            },
+            levelCode: {
+                validators: {
+                    notEmpty: {
+                        message: '层级编码不能为空'
+                    }
+                }
+            }
+        };
+
+        if ('@parentId' != 1) {
+            fields.value = {
+                validators: {
+                    notEmpty: {
+                        message: 'Key或Url不能为空'
+                    }
+                }
+            };
+        }
+
         $('form').bootstrapValidator({
             message: 'This value is not valid',
             feedbackIcons: {
@@ -75,30 +111,7 @@
                 invalid: 'glyphicon glyphicon-remove',
                 validating: 'glyphicon glyphicon-refresh'
             },
-            fields: {
-                name: {
-                    message: '菜单名称验证失败',
-                    validators: {
-                        notEmpty: {
-                            message: '菜单名称不能为空'
-                        }
-                    }
-                },
-                type: {
-                    validators: {
-                        notEmpty: {
-                            message: '点击类型不能为空'
-                        }
-                    }
-                },
-                levelCode: {
-                    validators: {
-                        notEmpty: {
-                            message: '层级编码不能为空'
-                        }
-                    }
-                }
-            }
+            fields: fields
         });
     });
 
