@@ -56,15 +56,11 @@ namespace Site.WeiXin.Manager.Controllers
             //mpnews、text、voice、image、mpvideo、wxcard
             string type = Request["MessageType"] ?? string.Empty;//消息类型 图文，图片，文本... 【注意此处类型和素材类型不同】
             string channel = Request["channel"] ?? string.Empty;//群发类型 openid、tag
-            string selectIds = Request["selectIds"] ?? string.Empty;//接收群体ids
-            string imageContentIds = Request["imageContentIds"] ?? string.Empty;//素材ids
+            string selectIds = Request["selectIds"] ?? string.Empty;//接收群体ids,openid可以多个，tagid只有一个
+            string materialId = Request["materialId"] ?? string.Empty;//素材id
             string text = Request["txt_content"] ?? string.Empty;//文本
 
-            int result = 0;
-
-
             GroupSend info = new GroupSend();
-
             info.CreateTime = DateTime.Now;
             info.CreateUserAccount = HttpContextUntity.CurrentUser.Account;
             info.IsToAll = IsToAll;
@@ -72,80 +68,161 @@ namespace Site.WeiXin.Manager.Controllers
             info.SendName = name;
             info.SendType = channel;
 
-            string contentFormat = string.Empty;
+            string contentBody = string.Empty;
+            string groupFormat = string.Empty;
             if (channel == "openid")
             {
-                //图文
-                if (type == "mpnews")
-                {
-                    StringBuilder sb = new StringBuilder();
-                    IList<Article> list = ArticleService.Select(string.Format(" where Id in ({0})", imageContentIds));
-                    foreach (Article item in list)
-                    {
-                        sb.AppendFormat(WeiXinCommon.SignImageContentReplyFormat, item.Title, item.Intro, item.CoverSrc, item.ContentSourceUrl);
-                    }
-
-                    contentFormat = WeiXinCommon.BatchImageContentReplyFormat.Replace("{3}", list.Count.ToString())
-                                                                             .Replace("{4}", sb.ToString());
-                }
+                IList<string> openIds = UserService.Select(string.Format(" where Id in ({0})", selectIds)).Select(u => { return string.Format("\"{0}\"", u.OpenID); }).ToList();
+                groupFormat = string.Format(WeiXinCommon.OpenIdGroupFormat, string.Join(",", openIds));
             }
-            else if(channel == "tag")
+            else if (channel == "tag")
+            {
+                groupFormat = string.Format(WeiXinCommon.TagIdGroupFormat, IsToAll, selectIds);
+                info.TagId = selectIds;
+            }
+
+            Material mInfo = MaterialService.SelectObject(materialId.ToInt32(0));
+            int clientMsgId = UntityTool.GetTimeStamp();
+            switch (type)
+            {
+                case "mpnews":
+                    contentBody = string.Format(WeiXinCommon.GroupSendNewsFormat, groupFormat, mInfo.Media_id, clientMsgId);
+                    break;
+                case "text":
+                    contentBody = string.Format(WeiXinCommon.GroupSendTextFormat, groupFormat, text, clientMsgId);
+                    break;
+                case "voice":
+                    contentBody = string.Format(WeiXinCommon.GroupSendVoiceFormat, groupFormat, mInfo.Media_id, clientMsgId);
+                    break;
+                case "image":
+                    contentBody = string.Format(WeiXinCommon.GroupSendImageFormat, groupFormat, mInfo.Media_id, clientMsgId);
+                    break;
+                case "mpvideo": //TODO:视频群发特殊处理
+                    contentBody = string.Format(WeiXinCommon.GroupSendVideoFormat, groupFormat, "", clientMsgId);
+                    break;
+                case "wxcard": //TODO:卡券群发特殊处理
+                    contentBody = string.Format(WeiXinCommon.GroupSendCardFormat, groupFormat, "", clientMsgId);
+                    break;
+            }
+
+            int result = 0;
+            string msg_id, msg_data_id;
+            bool isSuccess = WeiXinCommon.GroupSendMessage(channel, type, contentBody, out msg_id, out msg_data_id);
+            if (isSuccess)
             {
 
+                info.Media_Id = mInfo.Media_id;
+                info.Msg_data_id = msg_data_id;
+                info.Msg_id = msg_id;
+                info.SendStatu = (int)SiteEnum.GroupSendState.成功;
+
+                result = GroupSendService.Insert(info);
             }
-            ////图文
-            //if (type == "mpnews")
-            //{
-            //    StringBuilder sb = new StringBuilder();
-            //    IList<Article> list = ArticleService.Select(string.Format(" where Id in ({0})", imageContentIds));
-            //    foreach (Article item in list)
-            //    {
-            //        sb.AppendFormat(WeiXinCommon.SignImageContentReplyFormat, item.Title, item.Intro, item.CoverSrc, item.ContentSourceUrl);
-            //    }
-
-            //    contentFormat = WeiXinCommon.BatchImageContentReplyFormat.Replace("{3}", list.Count.ToString())
-            //                                                             .Replace("{4}", sb.ToString());
-            //}
-            //else
-            //{
-            //    if (type == "text")
-            //    {
-            //        contentFormat = WeiXinCommon.TextFormat.Replace("{3}", text);
-            //    }
-            //    else
-            //    {
-            //        Material mInfo = MaterialService.SelectObject(int.Parse(imageContentIds));
-            //        switch (type)
-            //        {
-            //            case "image":
-            //                contentFormat = WeiXinCommon.ImageFormat.Replace("{3}", mInfo.Media_id);
-            //                break;
-            //            case "voice":
-            //                contentFormat = WeiXinCommon.VoiceFormat.Replace("{3}", mInfo.Media_id);
-            //                break;
-            //            case "video":
-            //                contentFormat = WeiXinCommon.VideoFormat.Replace("{3}", mInfo.Media_id);
-            //                break;
-            //            case "music":
-            //                contentFormat = WeiXinCommon.MusicFormat.Replace("{3}", mInfo.MaterialName)
-            //                                                        .Replace("{4}", mInfo.Intro)
-            //                                                        .Replace("{5}", mInfo.Url)
-            //                                                        .Replace("{6}", "")
-            //                                                        .Replace("{7}", mInfo.Media_id);
-            //                break;
-            //        }
-            //    }
-            //}
 
 
-            result = GroupSendService.Insert(info);
             if (result > 0)
             {
                 return Json(UntityTool.JsonResult(true, "新增成功"));
             }
             else
             {
-                return Json(UntityTool.JsonResult(true, "新增失败"));
+                return Json(UntityTool.JsonResult(false, "新增失败"));
+            }
+        }
+
+        public ActionResult GroupSendPreviewEdit()
+        {
+            string name = Request["SendName"] ?? string.Empty;//群发名称
+            bool IsToAll = Request["IsToAll"].ToBool(false);//是否记录客户端历史记录
+
+            //mpnews、text、voice、image、mpvideo、wxcard
+            string type = Request["MessageType"] ?? string.Empty;//消息类型 图文，图片，文本... 【注意此处类型和素材类型不同】
+            string channel = Request["channel"] ?? string.Empty;//群发类型 openid、tag
+            string selectIds = Request["selectIds"] ?? string.Empty;//接收群体ids,openid可以多个，tagid只有一个
+            string materialId = Request["materialId"] ?? string.Empty;//素材id
+            string text = Request["txt_content"] ?? string.Empty;//文本
+
+            GroupSend info = new GroupSend();
+            info.CreateTime = DateTime.Now;
+            info.CreateUserAccount = HttpContextUntity.CurrentUser.Account;
+            info.IsToAll = IsToAll;
+            info.MessageType = type;
+            info.SendName = name;
+            info.SendType = channel;
+
+            string contentBody = string.Empty;
+            string groupFormat = string.Empty;
+            if (channel == "openid")
+            {
+                User uInfo = UserService.Select(string.Format(" where Id = {0}", selectIds)).FirstOrDefault();
+                groupFormat = string.Format(WeiXinCommon.OpenIdGroupPreviewFormat, uInfo.OpenID);
+            }
+            Material mInfo = MaterialService.Select(string.Format(" where Media_id = N'{0}'", materialId)).FirstOrDefault();
+            int clientMsgId = UntityTool.GetTimeStamp();
+            switch (type)
+            {
+                case "mpnews":
+                    contentBody = string.Format(WeiXinCommon.GroupSendNewsPreviewFormat, groupFormat, mInfo.Media_id, clientMsgId);
+                    break;
+                case "text":
+                    contentBody = string.Format(WeiXinCommon.GroupSendTextFormat, groupFormat, text, clientMsgId);
+                    break;
+                case "voice":
+                    contentBody = string.Format(WeiXinCommon.GroupSendVoiceFormat, groupFormat, mInfo.Media_id, clientMsgId);
+                    break;
+                case "image":
+                    contentBody = string.Format(WeiXinCommon.GroupSendImageFormat, groupFormat, mInfo.Media_id, clientMsgId);
+                    break;
+                case "mpvideo": //TODO:视频群发特殊处理
+                    contentBody = string.Format(WeiXinCommon.GroupSendVideoFormat, groupFormat, "", clientMsgId);
+                    break;
+                case "wxcard": //TODO:卡券群发特殊处理
+                    contentBody = string.Format(WeiXinCommon.GroupSendCardFormat, groupFormat, "", clientMsgId);
+                    break;
+            }
+
+            string msg_id, msg_data_id;
+            bool isSuccess = WeiXinCommon.GroupSendMessage(channel, type, contentBody, out msg_id, out msg_data_id, true);
+
+            //预览记录不记入数据库
+            //if (isSuccess)
+            //{
+
+            //    info.Media_Id = mInfo.Media_id;
+            //    info.Msg_data_id = msg_data_id;
+            //    info.Msg_id = msg_id;
+            //    info.SendStatu = (int)SiteEnum.GroupSendState.成功;
+
+            //    result = GroupSendService.Insert(info);
+            //}
+
+
+            if (isSuccess)
+            {
+                return Json(UntityTool.JsonResult(true, "预览发送成功"));
+            }
+            else
+            {
+                return Json(UntityTool.JsonResult(false, "预览发送失败"));
+            }
+        }
+
+
+        public ActionResult GroupSendDelete(int id, string msg_id, int index)
+        {
+            bool isSuccess = WeiXinCommon.DeleteGroupSend(msg_id, index);
+            int result = 0;
+            if (isSuccess)
+            {
+                result = GroupSendService.Delete(id);
+            }
+            if (result > 0)
+            {
+                return Json(UntityTool.JsonResult(true, "删除成功"));
+            }
+            else
+            {
+                return Json(UntityTool.JsonResult(false, "删除失败"));
             }
         }
 
@@ -162,7 +239,7 @@ namespace Site.WeiXin.Manager.Controllers
                 search.NickName = HttpUtility.UrlDecode(key);
                 search.IsSubscribe = true;
 
-                
+
 
                 IList<User> list = UserService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
 
@@ -182,7 +259,7 @@ namespace Site.WeiXin.Manager.Controllers
                 search.TagName = HttpUtility.UrlDecode(key);
 
                 IList<UserTag> list = UserTagService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
-                
+
                 ViewBag.pageIndex = pageIndex;
                 ViewBag.pageSize = pageSize;
                 ViewBag.rowCount = rowCount;
@@ -195,46 +272,25 @@ namespace Site.WeiXin.Manager.Controllers
 
         public ActionResult GroupSendMaterialSearch(string key, string type, int? page)
         {
-            //图文
-            if (type == "imageContent")
-            {
-                ArticleSearchInfo search = new ArticleSearchInfo();
-                search.Title = HttpUtility.UrlDecode(key);
-                search.Statu = (int)SiteEnum.ArticleState.通过;
 
-                int pageSize = 15;
-                int rowCount;
-                int pageIndex = page == null ? 1 : page.Value;
-                IList<Article> list = ArticleService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
+            MaterialSearchInfo search = new MaterialSearchInfo();
+            search.MaterialName = HttpUtility.UrlDecode(key);
+            search.MaterialType = type;
 
-
-                ViewBag.pageIndex = pageIndex;
-                ViewBag.pageSize = pageSize;
-                ViewBag.rowCount = rowCount;
-
-                ViewBag.list = list;
-                return PartialView("GroupSendArticleContent");
-            }
-            else
-            {
-                MaterialSearchInfo search = new MaterialSearchInfo();
-                search.MaterialName = HttpUtility.UrlDecode(key);
-                search.MaterialType = type;
-
-                int pageSize = 20;
-                int rowCount;
-                int pageIndex = page == null ? 1 : page.Value;
-                IList<Material> list = MaterialService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
+            int pageSize = 20;
+            int rowCount;
+            int pageIndex = page == null ? 1 : page.Value;
+            IList<Material> list = MaterialService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
 
 
 
-                ViewBag.pageIndex = pageIndex;
-                ViewBag.pageSize = pageSize;
-                ViewBag.rowCount = rowCount;
+            ViewBag.pageIndex = pageIndex;
+            ViewBag.pageSize = pageSize;
+            ViewBag.rowCount = rowCount;
 
-                ViewBag.list = list;
-                return PartialView("GroupSendMaterialContent");
-            }
+            ViewBag.list = list;
+            return PartialView("GroupSendMaterialContent");
+
         }
     }
 }

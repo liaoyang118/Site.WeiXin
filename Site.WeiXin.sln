@@ -26,6 +26,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Site.BT.DataAccess", "Site.BT.DataAccess\Site.BT.DataAccess.csproj", "{8E2598A4-A3AF-44A4-A08A-6FF80EF37DEA}"
 EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -73,7 +76,7 @@ Global
 		{8E2598A4-A3AF-44A4-A08A-6FF80EF37DEA} = {0CE4E259-6484-40F3-8261-F75C9081D522}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
 		SolutionGuid = {24512D1F-D77E-45F2-8A20-7861B26A0B3E}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
 	EndGlobalSection
 EndGlobal

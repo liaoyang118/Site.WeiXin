@@ -261,6 +261,10 @@ namespace Site.WeiXin.Manager.Controllers
                     isSuccess = WeiXinCommon.AddPermanentMaterial(body, out media_id);
                 }
             }
+            else if(type == "video")//视频需要特殊处理
+            {
+                //TODO:视频素材处理
+            }
             else
             {
                 //上传多媒体资料到微信服务器

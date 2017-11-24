@@ -387,6 +387,34 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region Msg_id
+		private string _Msg_id;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string Msg_id 
+		{ 
+			get { return _Msg_id; } 
+			set { _Msg_id = value; } 
+		
+		}
+		#endregion
+		
+		#region Msg_data_id
+		private string _Msg_data_id;
+       
+        /// <summary>
+        /// 群发图文消息时有效
+        /// </summary>        
+        public string Msg_data_id 
+		{ 
+			get { return _Msg_data_id; } 
+			set { _Msg_data_id = value; } 
+		
+		}
+		#endregion
+		
     }
 	[Serializable]
 	public partial class KeyWordsReply

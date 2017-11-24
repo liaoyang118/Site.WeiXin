@@ -26,16 +26,15 @@
 
     <script type="text/javascript">
         var currentId = "";
-        var mediaId = "";
-        var editId = "";
+        var msg_id = "";
         $(function () {
 
             $('#myModal').on('hidden.bs.modal', function (e) {
                 currentId = "";
+                msg_id = "";
             });
 
             $('#editModal').on('hidden.bs.modal', function (e) {
-                editId = "";
                 //移除表单数据
                 $(this).removeData();
             });
@@ -43,25 +42,22 @@
             $('#checkModal').on('hidden.bs.modal', function (e) {
                 currentId = "";
             });
-
-
-
+            
             $('#btn_deleteEdit').on('click', function (e) {
                 btn_deleteEdit();
             })
             
         })
 
-        function btn_delete(id, mediaId) {
+        function btn_delete(id, msg_id) {
             currentId = id;
-            mediaId = mediaId;
+            msg_id = msg_id;
             $("#myModal").modal({
                 backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
             })
         }
        
         function btn_edit(id) {
-            editId = id;
             $("#editModal").modal({
                 remote: "/GroupSend/GroupSendAddView?id=" + id,
                 backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
@@ -72,12 +68,12 @@
             $.ShowLoading("删除中...");
             //验证通过
             $.ajax({
-                url: "/Content/MaterialDelete",
+                url: "/GroupSend/GroupSendDelete",
                 type: "post",
                 dataType: "json",
                 data: {
                     id: currentId,
-                    mediaId: mediaId
+                    msg_id: msg_id
                 },
                 cache: false,
                 success: function (json) {
@@ -128,6 +124,8 @@
                 <div class="widget">
                     <div class="alert alert-warning" style="margin-bottom:0px;">
                         <h5>1.群发记录，只保留标签群发的标签，OpenId群发，不记录OpenId。</h5>
+                        <h5>2.订阅号，群发每天一次；服务号，群发每天100次，用户每月只能接收4条；群发预览，每天100次。。</h5>
+                        <h5>3.历史消息，表示此次群发进入接受者的历史消息列表中。</h5>
                     </div>
                     <div class="widget-head">
                         <div class="pull-left form-inline">
@@ -180,13 +178,28 @@
                                                 <td>@item.MessageType</td>
                                                 <td class="hidden-xs">@item.Media_Id</td>
                                                 <td class="hidden-xs">@(item.IsToAll == true ? "是" : "否")</td>
-                                                <td>@item.SendStatu</td>
+                                                <td>
+                                                    @{
+                                                        if (item.SendStatu == (int)SiteEnum.GroupSendState.成功)
+                                                        {
+                                                            <span class="label label-success">成功</span>
+                                                        }
+                                                        else if(item.SendStatu == (int)SiteEnum.GroupSendState.失败)
+                                                        {
+                                                            <span class="label label-warning">失败</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="label label-primary">发送中</span>
+                                                        }
+                                                    }
+                                                </td>
                                                 <td class="hidden-xs">@item.CreateUserAccount</td>
                                                 <td class="hidden-xs">@item.CreateTime.ToString("yyyy/MM/dd HH:mm:ss")</td>
                                                 <td>
                                                     @if (item.MessageType == "imageContent"|| item.MessageType == "mpvideo")
                                                     {
-                                                        <button class="btn btn-xs btn-warning" onclick="btn_delete(@item.Id);"><i class="icon-remove"></i></button>
+                                                        <button class="btn btn-xs btn-warning" onclick="btn_delete(@item.Id,'@item.Msg_id');"><i class="icon-remove"></i></button>
                                                     }
                                                 </td>
                                             </tr>
@@ -221,7 +234,16 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    删除素材后对应的素材将失效，请问确定要删除该素材吗？
+                                    删除图文素材后对应的访问页面将失效，请问确定要删除该素材吗？<br />
+                                    <div class="alert alert-warning" style="margin-bottom:0px;">
+                                        <span>1.删除图文时需要指定删除的文章在图文消息中的位置，从1开始；0表示全部删除。</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-3" for="SendName">删除索引</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" name="txt_index" class="form-control" id="txt_index" value="0">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">

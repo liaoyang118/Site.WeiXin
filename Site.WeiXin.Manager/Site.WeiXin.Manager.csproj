@@ -622,7 +622,6 @@
     <Content Include="Views\GroupSend\GroupSendAddView.cshtml" />
     <Content Include="Views\GroupSend\UserListView.cshtml" />
     <Content Include="Views\GroupSend\TagListView.cshtml" />
-    <Content Include="Views\GroupSend\GroupSendArticleContent.cshtml" />
     <Content Include="Views\GroupSend\GroupSendMaterialContent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

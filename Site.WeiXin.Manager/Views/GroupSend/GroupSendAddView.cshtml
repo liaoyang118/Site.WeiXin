@@ -84,7 +84,7 @@
                                         <!--接收群体-->
                                         <input type="hidden" name="selectIds" id="selectIds" value="" />
                                         <!--素材-->
-                                        <input type="hidden" name="imageContentIds" id="imageContentIds" value="" />
+                                        <input type="hidden" name="materialId" id="materialId" value="" />
                                         <!--发送类型-->
                                         <input type="hidden" name="channel" id="channel" value="openid" />
                                     </form>
@@ -151,6 +151,9 @@
             </button>
             <button type="button" onclick="btn_EditSubmit();" class="btn btn-primary">
                 确定
+            </button>
+            <button type="button" onclick="btn_PreviewSubmit();" class="btn btn-success">
+                预览
             </button>
         </div>
     </div>
@@ -248,10 +251,10 @@
         if (valiForm.isValid()) {
             $.ShowLoading("提交中...");
 
-
             //验证接收群体
             var _channel = $("#channel").val();
             var arr = $("input[name^='chk_s_']:checked");
+
             if (arr.length > 20 && _channel == "tag") {
                 $.WarningInfo("标签只能选择20项", 2000);
                 $.HideLoading();
@@ -276,14 +279,14 @@
             //验证素材
             var _mtype = $("#MaterialType").val();
             var marr = $("input[name^='chk_m_']:checked");
-            if (marr.length > 1 && _mtype != "imageContent") {
-                $.WarningInfo("非图文项,素材只能选择一项", 2000);
+            if (marr.length > 1) {
+                $.WarningInfo("群发素材只能选择一项", 2000);
                 $.HideLoading();
                 return false;
             }
             initiMaterialIds(marr);
             if (_type != "text") {
-                var _selectIds = $("#imageContentIds").val();
+                var _selectIds = $("#materialId").val();
                 if (!_selectIds) {
                     $.WarningInfo("请选择素材", 2000);
                     $.HideLoading();
@@ -315,7 +318,96 @@
             });
         }
     }
-    
+
+    //预览
+    function btn_PreviewSubmit()
+    {
+        var valiForm = $('#forms_edit').data('bootstrapValidator');
+        valiForm.validate();
+        if (valiForm.isValid()) {
+            $.ShowLoading("提交中...");
+
+            //验证接收群体
+            var _channel = $("#channel").val();
+            var arr = $("input[name^='chk_s_']:checked");
+
+            if (_channel == "tag") {
+                $.WarningInfo("预览只能选择用户", 2000);
+                $.HideLoading();
+                return false;
+            }
+            if (arr.length > 1 && _channel == "openid") {
+                $.WarningInfo("预览用户只能选择1个", 2000);
+                $.HideLoading();
+                return false;
+            }
+            initiIds(arr);
+            var _type = $("#MessageType").val();
+            if (_type != "text") {
+                var _selectIds = $("#selectIds").val();
+                if (!_selectIds) {
+                    $.WarningInfo("请选择接收群体", 2000);
+                    $.HideLoading();
+                    return false;
+                }
+            }
+
+            //验证素材
+            var _mtype = $("#MaterialType").val();
+            var marr = $("input[name^='chk_m_']:checked");
+            if (marr.length > 1) {
+                $.WarningInfo("群发素材只能选择一项", 2000);
+                $.HideLoading();
+                return false;
+            }
+            initiMaterialIds(marr);
+            if (_type != "text") {
+                var _selectIds = $("#materialId").val();
+                if (!_selectIds) {
+                    $.WarningInfo("请选择素材", 2000);
+                    $.HideLoading();
+                    return false;
+                }
+            }
+
+            $.ajax({
+                url: "/GroupSend/GroupSendPreviewEdit",
+                type: "post",
+                dataType: "json",
+                data: {
+                    name: $("#SendName").val(),
+                    IsToAll: $("#IsToAll").val(),
+                    MessageType: $("#MessageType").val(),
+                    channel: $("#channel").val(),
+                    selectIds: $("#selectIds").val(),
+                    materialId: $("#materialId").val(),
+                    MediaId: $("#mediaId").val(),
+                    text: $("#txt_content").val()
+                },
+                cache: false,
+                success: function (json) {
+                    $.HideLoading();
+                    if (json.success) {
+                        $.SuccessInfo(json.message.text, 1000);
+                    }
+                    else {
+                        $.WarningInfo(json.message.text, 1000);
+                    }
+                },
+                error: function (xhr, state, error) {
+                    $.HideLoading();
+                    $.ErrorInfo(error);
+                }
+            });
+
+
+
+
+
+        }
+    }
+
+
     //接收群体
     function initiIds(arr) {
         var ids = [];
@@ -331,7 +423,7 @@
         $.each(arr, function (i, e) {
             ids.push($(e).val());
         });
-        $("#imageContentIds").val(ids.join(","));
+        $("#materialId").val(ids.join(","));
     }
 
     function btn_searchList(type) {

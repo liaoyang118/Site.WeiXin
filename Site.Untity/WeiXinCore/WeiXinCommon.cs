@@ -160,6 +160,169 @@ namespace Site.Untity
 
         #endregion
 
+        #region 群发消息格式
+
+        /// <summary>
+        /// 图文 {0}：OpenIdGroupFormat/TagIdGroupFormat，{1}：media_id,{2}clientmsgid 
+        /// </summary>
+        public static string GroupSendNewsFormat
+        {
+            get
+            {
+                return "{{{0},\"mpnews\":{{\"media_id\":\"{1}\"}},\"msgtype\":\"mpnews\"，\"send_ignore_reprint\":0,\"clientmsgid\":\"{2}\"}}";
+            }
+        }
+
+        /// <summary>
+        /// 文本 {0}：OpenIdGroupFormat/TagIdGroupFormat，{1}：content,{2}clientmsgid 
+        /// </summary>
+        public static string GroupSendTextFormat
+        {
+            get
+            {
+                return "{{{0},\"text\":{{\"content\":\"{1}\"}},\"msgtype\":\"text\",\"clientmsgid\":\"{2}\"}}";
+            }
+        }
+
+        /// <summary>
+        /// 语音 {0}：OpenIdGroupFormat/TagIdGroupFormat，{1}：media_id,{2}clientmsgid 
+        /// </summary>
+        public static string GroupSendVoiceFormat
+        {
+            get
+            {
+                return "{{{0},\"voice\":{{\"media_id\":\"{1}\"}},\"msgtype\":\"voice\",\"clientmsgid\":\"{2}\"}}";
+            }
+        }
+
+        /// <summary>
+        /// 图片 {0}：OpenIdGroupFormat/TagIdGroupFormat，{1}：media_id,{2}clientmsgid 
+        /// </summary>
+        public static string GroupSendImageFormat
+        {
+            get
+            {
+                return "{{{0},\"image\":{{\"media_id\":\"{1}\"}},\"msgtype\":\"image\",\"clientmsgid\":\"{2}\"}}";
+            }
+        }
+
+        /// <summary>
+        /// 卡券 {0}：OpenIdGroupFormat/TagIdGroupFormat，{1}：card_id,{2}clientmsgid 
+        /// </summary>
+        public static string GroupSendCardFormat
+        {
+            get
+            {
+                return "{{{0},\"wxcard\":{{\"card_id\":\"{1}\"}},\"msgtype\":\"wxcard\",\"clientmsgid\":\"{2}\"}}";
+            }
+        }
+
+        /// <summary>
+        /// 视频 
+        /// {0}：OpenIdGroupFormat/TagIdGroupFormat，
+        /// {1}：media_id 此处的media_id，不是上传视频获取的media_id，是需要额外在请求一次返回新的media_id
+        /// {2}clientmsgid 
+        /// </summary>
+        public static string GroupSendVideoFormat
+        {
+            get
+            {
+                return "{{{0},\"mpvideo\":{{\"media_id\":\"{1}\"}},\"msgtype\":\"mpvideo\",\"clientmsgid\":\"{2}\"}}";
+            }
+        }
+
+        /// <summary>
+        /// 群发消息删除 {0}msg_id,{1}article_idx
+        /// </summary>
+        public static string GroupSendDeleteFormat
+        {
+            get
+            {
+                return "{{\"msg_id\":{0},\"article_idx\":{1}}}";
+            }
+        }
+
+        #region 标签组成
+
+        /// <summary>
+        /// 按TagId 群发，{0}：is_to_all，{1}：tag_id
+        /// </summary>
+        public static string TagIdGroupFormat
+        {
+            get
+            {
+                return "\"filter\":{{\"is_to_all\":{0},\"tag_id\":{1}}}";
+            }
+        }
+
+
+        #endregion
+
+        #region openid组成
+
+        /// <summary>
+        /// 按openId群发消息，{0}："OPENID1","OPENID2"
+        /// </summary>
+        public static string OpenIdGroupFormat
+        {
+            get
+            {
+                return "\"touser\":[{0}]";
+            }
+        }
+
+
+
+
+        #endregion
+
+        #endregion
+
+        #region 群发消息 预览格式
+
+        /// <summary>
+        /// 图文 {0}：OpenIdGroupPreviewFormat，{1}：media_id
+        /// </summary>
+        public static string GroupSendNewsPreviewFormat
+        {
+            get
+            {
+                return "{{{0},\"mpnews\":{{\"media_id\":\"{1}\"}},\"msgtype\":\"mpnews\"}}";
+            }
+        }
+
+        //其它项目和正式群发一致
+
+
+        #region 预览组成
+
+        /// <summary>
+        /// 按OpenId 群发，{0}：openid
+        /// </summary>
+        public static string OpenIdGroupPreviewFormat
+        {
+            get
+            {
+                return "\"touser\":\"{0}\"";
+            }
+        }
+
+        /// <summary>
+        /// 按微信名 群发
+        /// </summary>
+        public static string WxNameGroupPreviewFormat
+        {
+            get
+            {
+                return "\"towxname\":\"{0}\"";
+            }
+        }
+
+
+        #endregion
+
+        #endregion
+
         #region 图文素材格式
 
         /// <summary>
@@ -1344,6 +1507,167 @@ namespace Site.Untity
             catch (Exception ex)
             {
                 LogHelp.Error("新增标签错误:" + ex.Message);
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region 群发管理
+
+        /// <summary>
+        /// 群发消息
+        /// </summary>
+        /// <param name="channel">群发渠道，openid,tag</param>
+        /// <param name="messageType">消息类型</param>
+        /// <param name="body">参数体</param>
+        /// <param name="msg_id">返回的群发消息Id</param>
+        /// <param name="msg_data_id">群发图文时该值才有效</param>
+        /// <returns></returns>
+        public static bool GroupSendMessage(string channel, string messageType, string body, out string msg_id, out string msg_data_id, bool isPreview = false)
+        {
+            msg_id = string.Empty;
+            msg_data_id = string.Empty;
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string urlFormat = string.Empty;
+                    if (channel == "openid")
+                    {
+                        urlFormat = "https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token={0}";
+                    }
+                    else if (channel == "tag")
+                    {
+                        urlFormat = "https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token={0}";
+                    }
+                    //预览
+                    if (isPreview)
+                    {
+                        urlFormat = "https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token={0}";
+                    }
+
+                    string url = string.Format(urlFormat, access_token);
+                    string content = HttpTool.Post(url, body);
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("errcode", out token);
+                        if (token != null)
+                        {
+                            if (token.ToString() == "0")
+                            {
+                                bool isSuccessRetrieved = obj.TryGetValue("msg_id", out token);
+                                if (isSuccessRetrieved)
+                                {
+                                    msg_id = token.ToString();
+                                }
+
+                                if (!isPreview)
+                                {
+                                    //群发图文消息时,msg_data_id,可以用于在图文分析数据接口中，获取到对应的图文消息的数据
+                                    if (messageType == "mpnews")
+                                    {
+                                        isSuccessRetrieved = obj.TryGetValue("msg_data_id", out token);
+                                        if (isSuccessRetrieved)
+                                        {
+                                            msg_data_id = token.ToString();
+                                        }
+                                    }
+                                }
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("群发消息错误:" + error);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("群发消息错误:" + ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 删除群发消息
+        /// </summary>
+        /// <param name="msg_id">提交任务成功后的Id</param>
+        /// <param name="article_idx">删除指定第几篇消息，从1开始；不填写或是0，删除全部</param>
+        /// <returns></returns>
+        public static bool DeleteGroupSend(string msg_id, int article_idx)
+        {
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/message/mass/delete?access_token={0}", access_token);
+                    string content = HttpTool.Post(url, string.Format(GroupSendDeleteFormat, msg_id, article_idx));
+
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("errcode", out token);
+                        if (token != null)
+                        {
+                            if (token.ToString() == "0")
+                            {
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errcode", out token);
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("删除群发消息错误:" + error);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("删除群发消息错误:" + ex.Message);
                 return false;
             }
         }

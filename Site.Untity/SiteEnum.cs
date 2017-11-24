@@ -37,6 +37,16 @@ namespace Site.Untity
         }
 
         /// <summary>
+        /// 群发消息状态
+        /// </summary>
+        public enum GroupSendState
+        {
+            成功 = 0,
+            失败 = 1,
+            发送中 = 2
+        }
+
+        /// <summary>
         /// Access_token 返回码
         /// </summary>
         public enum Access_tokenStatus
@@ -182,6 +192,9 @@ namespace Site.Untity
             素材数量超过上限 = 45028,
             media_id对该应用不可见 = 45029,
             作者名字长度超过限制 = 45032,
+            相同clientmsgid已存在 = 45065,
+            相同clientmsgid重试速度过快请间隔1分钟重试 = 45066,
+            clientmsgid长度超过限制 = 45067,
             标签名非法 = 45157,
             标签名超过30字 = 45158,
             标签数超过100个 = 45056,
