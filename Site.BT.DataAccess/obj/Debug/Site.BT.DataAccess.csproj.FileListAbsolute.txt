@@ -8,3 +8,12 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Microso
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT.DataAccess\obj\Debug\Site.BT.DataAccess.csprojResolveAssemblyReference.cache
+E:\liaoyang\Project\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Site.BT.DataAccess.dll
+E:\liaoyang\Project\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Site.BT.DataAccess.pdb
+E:\liaoyang\Project\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\liaoyang\Project\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\liaoyang\Project\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\liaoyang\Project\Site.WeiXin\Site.BT.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\liaoyang\Project\Site.WeiXin\Site.BT.DataAccess\obj\Debug\Site.BT.DataAccess.csprojResolveAssemblyReference.cache
+E:\liaoyang\Project\Site.WeiXin\Site.BT.DataAccess\obj\Debug\Site.BT.DataAccess.dll
+E:\liaoyang\Project\Site.WeiXin\Site.BT.DataAccess\obj\Debug\Site.BT.DataAccess.pdb

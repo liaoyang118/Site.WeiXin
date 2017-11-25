@@ -26,7 +26,7 @@
 
     <script type="text/javascript">
         var currentId = "";
-        var mediaId = "";
+        var _mediaId = "";
         var editId = "";
         $(function () {
 
@@ -59,7 +59,7 @@
 
         function btn_delete(id, mediaId) {
             currentId = id;
-            mediaId = mediaId;
+            _mediaId = mediaId;
             $("#myModal").modal({
                 backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
             })
@@ -89,7 +89,7 @@
                 dataType: "json",
                 data: {
                     id: currentId,
-                    mediaId: mediaId
+                    mediaId: _mediaId
                 },
                 cache: false,
                 success: function (json) {

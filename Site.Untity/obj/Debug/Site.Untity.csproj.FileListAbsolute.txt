@@ -41,3 +41,6 @@ E:\liaoyang\Project\Site.WeiXin\Site.Untity\bin\Debug\Microsoft.Practices.Enterp
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Debug\Site.Untity.dll.config
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Debug\Site.Common.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Debug\Site.Service.UploadService.dll
+E:\liaoyang\Project\Site.WeiXin\Site.Untity\bin\Debug\Site.Untity.dll.config
+E:\liaoyang\Project\Site.WeiXin\Site.Untity\bin\Debug\Site.Common.dll
+E:\liaoyang\Project\Site.WeiXin\Site.Untity\bin\Debug\Site.Service.UploadService.dll
