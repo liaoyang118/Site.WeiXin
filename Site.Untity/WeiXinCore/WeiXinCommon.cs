@@ -449,11 +449,12 @@ namespace Site.Untity
                                                         item.AuthorName,
                                                         item.Intro,
                                                         item.ShowCover,
-                                                        HttpUtility.HtmlDecode(HttpUtility.UrlEncode(item.ArticleContent)),
+                                                        item.ArticleContent.Replace("\"", "'"), 
                                                         item.ContentSourceUrl);
                     items.Add(articleStr);
                 }
                 result = string.Format(ImageContentListFormat, string.Join(",", items));
+                
             }
             catch (Exception ex)
             {
@@ -484,7 +485,7 @@ namespace Site.Untity
                                                     info.AuthorName,
                                                     info.Intro,
                                                     info.ShowCover,
-                                                    HttpUtility.HtmlDecode(HttpUtility.UrlEncode(info.ArticleContent)),
+                                                    info.ArticleContent.Replace("\"", "'"),
                                                     info.ContentSourceUrl);
 
                 result = string.Format(UpdateImageContentFormat, media_id, index, articleStr);
@@ -950,18 +951,12 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            //反序列化
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
-                            //失败
-                            obj.TryGetValue("errcode", out token);
                             string error = string.Empty;
                             try
                             {
@@ -1061,24 +1056,19 @@ namespace Site.Untity
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/del_material?access_token={0}", access_token);
-                    string content = HttpTool.Post(url, "{\"media_id\":" + media_id + "}");
+                    string content = HttpTool.Post(url, "{\"media_id\":\"" + media_id + "\"}");
                     if (!string.IsNullOrEmpty(content))
                     {
                         JObject obj = (JObject)JsonConvert.DeserializeObject(content);
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
-                            //失败
-                            obj.TryGetValue("errcode", out token);
                             string error = string.Empty;
                             try
                             {
@@ -1298,17 +1288,12 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
-                            //失败
-                            obj.TryGetValue("errcode", out token);
                             string error = string.Empty;
                             try
                             {
@@ -1351,17 +1336,12 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
-                            //失败
-                            obj.TryGetValue("errcode", out token);
                             string error = string.Empty;
                             try
                             {
@@ -1414,17 +1394,12 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
-                            //失败
-                            obj.TryGetValue("errcode", out token);
                             string error = string.Empty;
                             try
                             {
@@ -1473,17 +1448,12 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
-                            //失败
-                            obj.TryGetValue("errcode", out token);
                             string error = string.Empty;
                             try
                             {
@@ -1556,35 +1526,31 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
+                            bool isSuccessRetrieved = obj.TryGetValue("msg_id", out token);
+                            if (isSuccessRetrieved)
                             {
-                                bool isSuccessRetrieved = obj.TryGetValue("msg_id", out token);
-                                if (isSuccessRetrieved)
-                                {
-                                    msg_id = token.ToString();
-                                }
+                                msg_id = token.ToString();
+                            }
 
-                                if (!isPreview)
+                            if (!isPreview)
+                            {
+                                //群发图文消息时,msg_data_id,可以用于在图文分析数据接口中，获取到对应的图文消息的数据
+                                if (messageType == "mpnews")
                                 {
-                                    //群发图文消息时,msg_data_id,可以用于在图文分析数据接口中，获取到对应的图文消息的数据
-                                    if (messageType == "mpnews")
+                                    isSuccessRetrieved = obj.TryGetValue("msg_data_id", out token);
+                                    if (isSuccessRetrieved)
                                     {
-                                        isSuccessRetrieved = obj.TryGetValue("msg_data_id", out token);
-                                        if (isSuccessRetrieved)
-                                        {
-                                            msg_data_id = token.ToString();
-                                        }
+                                        msg_data_id = token.ToString();
                                     }
                                 }
-                                return true;
                             }
+                            return true;
+
                         }
                         else
                         {
-                            //失败
-                            obj.TryGetValue("errcode", out token);
                             string error = string.Empty;
                             try
                             {
@@ -1643,8 +1609,6 @@ namespace Site.Untity
                         }
                         else
                         {
-                            //失败
-                            obj.TryGetValue("errcode", out token);
                             string error = string.Empty;
                             try
                             {
