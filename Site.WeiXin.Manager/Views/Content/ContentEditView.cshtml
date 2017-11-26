@@ -29,16 +29,16 @@
                                     <form class="form-horizontal" enctype="multipart/form-data"  id="forms_edit" action="/Content/ArticleEdit" method="post" >
                                         <!-- title -->
                                         <div class="form-group">
-                                            <label class="control-label col-lg-3" for="article_title">标题</label>
+                                            <label class="control-label col-lg-3" for="Title">标题</label>
                                             <div class="col-lg-9">
-                                                <input type="text" name="Title" class="form-control" id="article_title" value="@obj.Title">
+                                                <input type="text" name="Title" class="form-control" id="Title" value="@obj.Title">
                                             </div>
                                         </div>
                                         <!-- 作者 -->
                                         <div class="form-group">
-                                            <label class="control-label col-lg-3" for="authorName">作者</label>
+                                            <label class="control-label col-lg-3" for="AuthorName">作者</label>
                                             <div class="col-lg-9">
-                                                <input type="text" name="AuthorName" class="form-control" id="authorName" value="@obj.AuthorName">
+                                                <input type="text" name="AuthorName" class="form-control" id="AuthorName" value="@obj.AuthorName">
                                             </div>
                                         </div>
                                         <!-- 封面设置 -->
@@ -57,9 +57,9 @@
 
                                         <!-- 原文地址 -->
                                         <div class="form-group" id="txt_val">
-                                            <label class="control-label col-lg-3" for="contentSourceUrl">原文地址</label>
+                                            <label class="control-label col-lg-3" for="ContentSourceUrl">原文地址</label>
                                             <div class="col-lg-9">
-                                                <input type="text" class="form-control" name="ContentSourceUrl" id="contentSourceUrl" value="@obj.ContentSourceUrl" />
+                                                <input type="text" class="form-control" name="ContentSourceUrl" id="ContentSourceUrl" value="@obj.ContentSourceUrl" />
                                             </div>
                                         </div>
                                         <!-- Intro -->
@@ -71,12 +71,12 @@
                                         </div>
                                         <!--文章封面的素材ID-->
                                         <div class="form-group" id="pic_mediaId">
-                                            <label class="control-label col-lg-3" for="mediaId">
+                                            <label class="control-label col-lg-3" for="MediaId">
                                             封面素材ID<br/>
                                             群发封面
                                             </label>
                                             <div class="col-lg-9">
-                                                <input type="text" class="form-control" name="MediaId" id="mediaId" value="@obj.MediaId" />
+                                                <input type="text" class="form-control" name="MediaId" id="MediaId" value="@obj.MediaId" />
                                             </div>
                                         </div>
 
@@ -134,21 +134,28 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                title: {
+                Title: {
                     validators: {
                         notEmpty: {
                             message: '标题名称不能为空'
                         }
                     }
                 },
-                authorName: {
+                AuthorName: {
                     validators: {
                         notEmpty: {
                             message: '作者不能为空'
                         }
                     }
                 },
-                mediaId: {
+                Intro: {
+                    validators: {
+                        notEmpty: {
+                            message: '简介不能为空'
+                        }
+                    }
+                },
+                MediaId: {
                     validators: {
                         notEmpty: {
                             message: '封面ID不能为空'

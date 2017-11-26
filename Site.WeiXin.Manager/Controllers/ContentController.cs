@@ -60,7 +60,7 @@ namespace Site.WeiXin.Manager.Controllers
             //文件
             HttpPostedFileBase file = Request.Files["lefile"] ?? null;
             List<string> urls = new List<string>();
-            if (file != null)
+            if (file != null && file.ContentLength > 0)
             {
                 byte[] bytes = new byte[file.ContentLength];
                 file.InputStream.Read(bytes, 0, bytes.Length);
@@ -261,7 +261,7 @@ namespace Site.WeiXin.Manager.Controllers
                     isSuccess = WeiXinCommon.AddPermanentMaterial(body, out media_id);
                 }
             }
-            else if(type == "video")//视频需要特殊处理
+            else if (type == "video")//视频需要特殊处理
             {
                 //TODO:视频素材处理
             }
@@ -353,6 +353,6 @@ namespace Site.WeiXin.Manager.Controllers
             return PartialView();
         }
         #endregion
-        
+
     }
 }
