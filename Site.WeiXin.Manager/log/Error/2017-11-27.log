@@ -1,0 +1,160 @@
+
+异常时间：2017-11-27 15:35:41,719 [13] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+发生一个或多个错误。 
+ 
+异常时间：2017-11-27 15:35:41,747 [13] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功： 
+ 
+异常时间：2017-11-27 15:36:06,942 [13] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 15:36:07,151 [13] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取用户信息错误:Unexpected character encountered while parsing value: o. Path '', line 0, position 0. 
+ 
+异常时间：2017-11-27 15:36:07,153 [13] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 15:36:07,313 [13] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取用户信息错误:未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-27 15:46:42,677 [40] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 15:46:43,071 [40] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取用户信息错误:Unexpected character encountered while parsing value: o. Path '', line 0, position 0. 
+ 
+异常时间：2017-11-27 16:00:41,053 [32] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:00:41,676 [32] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取用户信息错误:Unexpected character encountered while parsing value: o. Path '', line 0, position 0. 
+ 
+异常时间：2017-11-27 16:00:59,461 [32] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:00:59,680 [32] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取用户信息错误:Unexpected character encountered while parsing value: o. Path '', line 0, position 0. 
+ 
+异常时间：2017-11-27 16:03:26,894 [28] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:03:27,343 [28] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取用户信息错误:Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.Collections.Generic.List`1[System.String]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly.
+To fix this error either change the JSON to a JSON array (e.g. [1,2,3]) or change the deserialized type so that it is a normal .NET type (e.g. not a primitive type like integer, not a collection type like an array or List<T>) that can be deserialized from a JSON object. JsonObjectAttribute can also be added to the type to force it to deserialize from a JSON object.
+Path 'openid', line 2, position 12. 
+ 
+异常时间：2017-11-27 16:04:35,251 [22] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:05:03,253 [22] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取用户信息错误:Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.Collections.Generic.List`1[System.String]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly.
+To fix this error either change the JSON to a JSON array (e.g. [1,2,3]) or change the deserialized type so that it is a normal .NET type (e.g. not a primitive type like integer, not a collection type like an array or List<T>) that can be deserialized from a JSON object. JsonObjectAttribute can also be added to the type to force it to deserialize from a JSON object.
+Path 'openid', line 2, position 12. 
+ 
+异常时间：2017-11-27 16:05:35,586 [36] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:05:35,927 [36] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取用户信息错误:未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-27 16:06:02,273 [32] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:06:30,729 [32] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取用户信息错误:未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-27 16:06:36,789 [32] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:06:59,989 [32] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取用户信息错误:未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-27 16:07:48,225 [18] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:07:48,633 [18] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:07:49,428 [18] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:07:49,607 [18] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:07:49,757 [18] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:07:49,923 [18] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:07:50,104 [18] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:07:50,280 [18] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 
+异常时间：2017-11-27 16:07:50,477 [18] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Yj9G5Q0JLf7FHciyif1q1rNDoU3L88chX9gwPXePXo487CfXq2Zlt0q8X0XFghEfrXz6a-1Pkw41-UP2hqEFZa0iQdV0KZnVKpNaOisjZzUVHyEOUk8sDNdjx1gKBm98XPPaAEAASS 
+ 

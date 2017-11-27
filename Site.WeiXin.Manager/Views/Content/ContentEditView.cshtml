@@ -134,21 +134,28 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                title: {
+                Title: {
                     validators: {
                         notEmpty: {
                             message: '标题名称不能为空'
                         }
                     }
                 },
-                authorName: {
+                AuthorName: {
                     validators: {
                         notEmpty: {
                             message: '作者不能为空'
                         }
                     }
                 },
-                mediaId: {
+                Intro: {
+                    validators: {
+                        notEmpty: {
+                            message: '简介不能为空'
+                        }
+                    }
+                },
+                MediaId: {
                     validators: {
                         notEmpty: {
                             message: '封面ID不能为空'

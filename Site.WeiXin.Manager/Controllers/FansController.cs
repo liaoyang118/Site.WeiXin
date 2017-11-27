@@ -33,6 +33,68 @@ namespace Site.WeiXin.Manager.Controllers
 
             return View();
         }
+
+
+        public ActionResult DownloadUser()
+        {
+            List<string> ids = new List<string>();
+
+            List<string> openIdList = new List<string>();
+            string next_openid = string.Empty;
+            int total = 0;//总数
+            int getTotal = 0;//已经获取的总数
+            bool isSuccess = true;
+            int count = 0;
+            do
+            {
+                isSuccess = WeiXinCommon.GetUserList(next_openid, out openIdList, out total, out count, out next_openid);
+                if (isSuccess)
+                {
+                    ids.AddRange(openIdList);
+                }
+                getTotal += count;
+            } while (!string.IsNullOrEmpty(next_openid) && total > getTotal);
+
+            int result = 0;
+            isSuccess = false;
+            UserInfo wInfo;
+            User info = null;
+            foreach (string openId in ids)
+            {
+                isSuccess = WeiXinCommon.GetUserInfo(openId, out wInfo);
+                if (isSuccess)
+                {
+                    info = new User();
+                    info.OpenID = openId;
+                    info.Subscribe_Time = DateTime.Now;
+                    info.IsSubscribe = true;
+                    info.UnSubscribe_Time = DateTime.Now;
+                    info.Subscribe_Time = UntityTool.TimespanToDatetime(wInfo.subscribe_time);
+
+                    info.City = wInfo.city;
+                    info.Country = wInfo.country;
+                    info.HeadImg = wInfo.headimgurl;
+                    info.IsSubscribe = wInfo.subscribe == 1 ? true : false;
+                    info.Language = wInfo.language;
+                    info.NickName = wInfo.nickname;
+                    info.Province = wInfo.province;
+                    info.Sex = wInfo.sex;
+                    info.Unionid = wInfo.unionid ?? string.Empty;
+
+                    result += UserService.Insert(info);
+                }
+            }
+
+            if (result > 0)
+            {
+                return Json(UntityTool.JsonResult(true, "同步成功"));
+            }
+            else
+            {
+                return Json(UntityTool.JsonResult(false, "同步失败"));
+            }
+        }
+
         #endregion
 
         #region 02 标签管理

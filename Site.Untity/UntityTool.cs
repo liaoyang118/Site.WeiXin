@@ -58,6 +58,14 @@ namespace Site.Untity
             return intResult;
         }
 
+        public static DateTime TimespanToDatetime(long timeStamp)
+        {
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            DateTime dt = startTime.AddSeconds(timeStamp);
+            return dt;
+        }
+
+
         /// <summary>
         /// 生成分类列表分页Dome
         /// </summary>
@@ -119,7 +127,7 @@ namespace Site.Untity
 
             return result;
         }
-        
+
         #region 图片上传 WCF服务
 
         /// <summary>

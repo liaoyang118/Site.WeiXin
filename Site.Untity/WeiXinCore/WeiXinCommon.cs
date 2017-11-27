@@ -449,7 +449,7 @@ namespace Site.Untity
                                                         item.AuthorName,
                                                         item.Intro,
                                                         item.ShowCover,
-                                                        HttpUtility.HtmlDecode(HttpUtility.UrlEncode(item.ArticleContent)),
+                                                        item.ArticleContent.Replace("\"", "'"),
                                                         item.ContentSourceUrl);
                     items.Add(articleStr);
                 }
@@ -484,7 +484,7 @@ namespace Site.Untity
                                                     info.AuthorName,
                                                     info.Intro,
                                                     info.ShowCover,
-                                                    HttpUtility.HtmlDecode(HttpUtility.UrlEncode(info.ArticleContent)),
+                                                    info.ArticleContent.Replace("\"", "'"),
                                                     info.ContentSourceUrl);
 
                 result = string.Format(UpdateImageContentFormat, media_id, index, articleStr);
@@ -741,6 +741,77 @@ namespace Site.Untity
                 return false;
             }
         }
+
+        public static bool GetUserList(string next_openid, out List<string> openIdList, out int total, out int count, out string new_next_openid)
+        {
+            openIdList = new List<string>();
+            total = 0;
+            new_next_openid = string.Empty;
+            count = 0;
+            try
+            {
+                string access_token;
+                bool isSuccess = GetAccessToken(out access_token);
+                if (isSuccess)
+                {
+                    string url = string.Format("https://api.weixin.qq.com/cgi-bin/user/get?access_token={0}&next_openid={1}", access_token, next_openid);
+                    string content = HttpTool.Get(url);
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        JObject obj = (JObject)JsonConvert.DeserializeObject(content);
+
+                        JToken token;
+                        obj.TryGetValue("count", out token);
+                        if (token != null && token.ToString().ToInt32(0) > 0)
+                        {
+                            count = token.ToString().ToInt32(0);
+
+                            obj.TryGetValue("total", out token);
+                            total = token.ToString().ToInt32(0);
+
+                            obj.TryGetValue("next_openid", out token);
+                            new_next_openid = token.ToString();
+
+                            obj.TryGetValue("data", out token);
+                            if (token != null)
+                            {
+                                obj = (JObject)JsonConvert.DeserializeObject(token.ToString());
+                                obj.TryGetValue("openid", out token);
+                                //反序列化
+                                openIdList = JsonConvert.DeserializeObject<List<string>>(token.ToString());
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            //失败
+                            obj.TryGetValue("errcode", out token);
+
+                            string error = string.Empty;
+                            try
+                            {
+                                int errorCode = int.Parse(token.ToString());
+                                error = ((SiteEnum.Access_tokenStatus)errorCode).ToString();
+                            }
+                            catch
+                            {
+                                obj.TryGetValue("errmsg", out token);
+                                error = token.ToString();
+                            }
+                            LogHelp.Error("获取用户信息错误:" + error);
+                            return false;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                LogHelp.Error("获取用户信息错误:" + ex.Message);
+                return false;
+            }
+        }
+
         #endregion
 
         #region 素材管理
@@ -950,13 +1021,9 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            //反序列化
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
@@ -1068,12 +1135,9 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
@@ -1298,12 +1362,9 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
@@ -1351,12 +1412,9 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
@@ -1414,12 +1472,9 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
@@ -1473,12 +1528,9 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
@@ -1556,30 +1608,28 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
+                            bool isSuccessRetrieved = obj.TryGetValue("msg_id", out token);
+                            if (isSuccessRetrieved)
                             {
-                                bool isSuccessRetrieved = obj.TryGetValue("msg_id", out token);
-                                if (isSuccessRetrieved)
-                                {
-                                    msg_id = token.ToString();
-                                }
+                                msg_id = token.ToString();
+                            }
 
-                                if (!isPreview)
+                            if (!isPreview)
+                            {
+                                //群发图文消息时,msg_data_id,可以用于在图文分析数据接口中，获取到对应的图文消息的数据
+                                if (messageType == "mpnews")
                                 {
-                                    //群发图文消息时,msg_data_id,可以用于在图文分析数据接口中，获取到对应的图文消息的数据
-                                    if (messageType == "mpnews")
+                                    isSuccessRetrieved = obj.TryGetValue("msg_data_id", out token);
+                                    if (isSuccessRetrieved)
                                     {
-                                        isSuccessRetrieved = obj.TryGetValue("msg_data_id", out token);
-                                        if (isSuccessRetrieved)
-                                        {
-                                            msg_data_id = token.ToString();
-                                        }
+                                        msg_data_id = token.ToString();
                                     }
                                 }
-                                return true;
                             }
+                            return true;
+
                         }
                         else
                         {
@@ -1634,12 +1684,9 @@ namespace Site.Untity
 
                         JToken token;
                         obj.TryGetValue("errcode", out token);
-                        if (token != null)
+                        if (token != null && token.ToString() == "0")
                         {
-                            if (token.ToString() == "0")
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                         else
                         {
