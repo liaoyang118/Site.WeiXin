@@ -12,6 +12,9 @@ using Newtonsoft.Json;
 using Site.WeiXin.DataAccess.Service;
 using Site.Log;
 using System.Web;
+using Unity;
+using Microsoft.Practices.Unity.Configuration;
+using System.Configuration;
 
 namespace Site.Untity
 {
@@ -1722,63 +1725,108 @@ namespace Site.Untity
         #region 接口处理--入口
         public static string HandelRequest(string xmlContent)
         {
+            //IOC容器
+            IUnityContainer container = new UnityContainer();
+            //获取指定名称的配置节
+            UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
+            //载入名称为FirstClass 的container节点
+            container.LoadConfiguration(section, "HandleClass");
+
+
             string result = "";
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xmlContent);
-            HandleBase baseHandle = null;
+            IHandleBase baseHandle = null;
             string type = doc.GetElementsByTagName("MsgType")[0].InnerText;
+
+            #region 继承写法【无效】
+            //switch (type)
+            //{
+            //    //消息
+            //    case "text"://文本消息
+            //        baseHandle = new TextMessageHandle();
+            //        break;
+            //    case "image"://图片消息
+            //        break;
+            //    case "voice"://语音消息
+            //        break;
+            //    case "video"://视频消息
+            //        break;
+            //    case "shortvideo"://小视频消息
+            //        break;
+            //    case "location"://地理位置消息
+            //        break;
+            //    case "link"://链接消息
+            //        break;
+            //    //事件
+            //    case "event":
+            //        string eventName = doc.GetElementsByTagName("Event")[0].InnerText;
+            //        switch (eventName)
+            //        {
+            //            case "subscribe":
+            //                baseHandle = new SubscribeEvent();
+            //                break;
+            //            case "unsubscribe":
+            //                baseHandle = new UnSubscribeEvent();
+            //                break;
+            //            case "SCAN"://关注用户扫二维码
+            //                baseHandle = new ScanEvent();
+            //                break;
+            //            case "LOCATION":
+            //                baseHandle = new LocationEvent();
+            //                break;
+            //            case "CLICK":
+            //                baseHandle = new ClickEvent();
+            //                break;
+            //            case "VIEW":
+            //                baseHandle = new ViewEvent();
+            //                break;
+            //            default:
+            //                break;
+            //        }
+            //        break;
+            //    default:
+            //        baseHandle = new TextMessageHandle();
+            //        break;
+            //} 
+            #endregion
+
+            #region IOC Unity 写法
             switch (type)
             {
                 //消息
                 case "text"://文本消息
-                    baseHandle = new TextMessageHandle();
-                    break;
                 case "image"://图片消息
-                    break;
                 case "voice"://语音消息
-                    break;
                 case "video"://视频消息
-                    break;
                 case "shortvideo"://小视频消息
-                    break;
                 case "location"://地理位置消息
-                    break;
                 case "link"://链接消息
+                    baseHandle = IOC_GetInstance(container, type);
                     break;
                 //事件
                 case "event":
                     string eventName = doc.GetElementsByTagName("Event")[0].InnerText;
-                    switch (eventName)
-                    {
-                        case "subscribe":
-                            baseHandle = new SubscribeEvent();
-                            break;
-                        case "unsubscribe":
-                            baseHandle = new UnSubscribeEvent();
-                            break;
-                        case "SCAN"://关注用户扫二维码
-                            baseHandle = new ScanEvent();
-                            break;
-                        case "LOCATION":
-                            baseHandle = new LocationEvent();
-                            break;
-                        case "CLICK":
-                            baseHandle = new ClickEvent();
-                            break;
-                        case "VIEW":
-                            baseHandle = new ViewEvent();
-                            break;
-                        default:
-                            break;
-                    }
+                    baseHandle = IOC_GetInstance(container, eventName);
                     break;
                 default:
-                    baseHandle = new TextMessageHandle();
+                    baseHandle = IOC_GetInstance(container, "text");
                     break;
             }
+            #endregion
 
             result = baseHandle.Handle(xmlContent);
             return result;
+        }
+        #endregion
+
+        #region IOC处理
+
+        private static IHandleBase IOC_GetInstance(IUnityContainer container, string handName)
+        {
+            //指定命名解析对象
+            IHandleBase handle = container.Resolve<IHandleBase>(handName);
+            return handle;
         }
         #endregion
 

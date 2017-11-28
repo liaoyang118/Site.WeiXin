@@ -116,7 +116,12 @@ E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Newtonsoft.Json.dll
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Newtonsoft.Json.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Site.Service.UploadService.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Site.Common.dll
-E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Site.Untity.dll.config
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Site.Service.UploadService.dll
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Site.Common.dll
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Interface\bin\Site.Untity.dll.config
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Abstractions.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Configuration.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Container.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Abstractions.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Configuration.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Container.pdb

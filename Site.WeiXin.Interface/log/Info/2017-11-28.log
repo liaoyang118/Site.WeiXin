@@ -1,0 +1,250 @@
+
+日志时间：2017-11-28 12:47:20,053 [9] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-11-28 14:00:28,690 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-11-28 17:43:13,582 [9] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-11-28 17:43:20,979 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+c7eb6cbec5cb30832f02500074172bb65bf7ff8f,1511862201,2672409962 
+
+日志时间：2017-11-28 17:43:35,276 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+6eb5cdbfa7650b7348f0d6fadb8ab341c95f8971,1511862215,1199370851 
+
+日志时间：2017-11-28 17:43:35,286 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1511862215</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-11-28 17:44:06,912 [9] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+ebef6c31221daaf4c6a48fdba7e0f56b2ee01f28,1511862247,1759888847 
+
+日志时间：2017-11-28 17:44:06,912 [9] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1511862247</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-11-28 17:45:04,838 [13] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+9bce15459d405ea4b8ee2a9e4ac66b968e7e9b09,1511862305,56882889 
+
+日志时间：2017-11-28 17:45:04,839 [13] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1511862305</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[湖北]]></Content>
+<MsgId>6493399156474205325</MsgId>
+</xml> 
+
+日志时间：2017-11-28 17:45:57,574 [15] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-11-28 17:47:04,411 [15] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-11-28 17:47:24,245 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+09b9b0fb80004a59e6bba970c307ab52ee2f2a0c,1511862444,1079954206 
+
+日志时间：2017-11-28 17:47:24,246 [5] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1511862444</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[很尴尬]]></Content>
+<MsgId>6493399753474659483</MsgId>
+</xml> 
+
+日志时间：2017-11-28 17:48:52,550 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-11-28 17:49:18,484 [23] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+e724e4865c8952ed17b0dfb5984f00d99edd28f0,1511862558,807582908 
+
+日志时间：2017-11-28 17:49:18,484 [23] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1511862558</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[刚刚]]></Content>
+<MsgId>6493400243100931237</MsgId>
+</xml> 
+
+日志时间：2017-11-28 17:49:18,955 [23] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636474881589551249</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[你说什么，我不太明白。]]></Content></xml> 
+
+日志时间：2017-11-28 17:49:24,078 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-11-28 17:51:07,094 [19] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+,, 
+
+日志时间：2017-11-28 17:51:13,731 [30] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+e9e870bee07a566dbf7fddd911871667799dd9cd,1511862674,982818324 
+
+日志时间：2017-11-28 17:51:13,732 [30] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1511862674</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[交接班]]></Content>
+<MsgId>6493400741317137589</MsgId>
+</xml> 
+
+日志时间：2017-11-28 17:51:13,997 [30] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636474882739979626</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[你说什么，我不太明白。]]></Content></xml> 
+
+日志时间：2017-11-28 17:51:25,615 [30] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+8ff688c2239c74f1f02aa7d0fac4b35d28de4f70,1511862686,395208143 
+
+日志时间：2017-11-28 17:51:25,615 [30] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1511862686</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-11-28 17:51:25,685 [30] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-11-28 17:55:33,703 [29] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+79f900ffd3810f45d6ecfe9479d0f640787e3721,1511862934,669870183 
+
+日志时间：2017-11-28 17:55:33,704 [29] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1511862934</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-11-28 17:55:34,921 [29] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-11-28 17:56:22,262 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+57db69b8f2e82abc3b8cc9efb41654f0cacabafa,1511862982,510730501 
+
+日志时间：2017-11-28 17:56:22,262 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1511862982</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-11-28 17:56:22,269 [11] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-11-28 17:56:30,767 [31] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+87a949aa4896f3b02d980d1182dfdfdf46273c86,1511862991,1607756899 
+
+日志时间：2017-11-28 17:56:30,768 [31] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1511862991</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml> 
+
+日志时间：2017-11-28 17:56:30,993 [31] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636474885909930905</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[欢迎关注]]></Content></xml> 

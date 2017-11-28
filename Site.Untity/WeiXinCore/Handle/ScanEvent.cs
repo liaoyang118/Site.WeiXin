@@ -12,13 +12,13 @@ using Site.WeiXin.DataAccess.Service;
 
 namespace Site.Untity.WeiXinCore.Handle
 {
-    public class ScanEvent : HandleBase
+    public class ScanEvent : IHandleBase
     {
-        public override string Handle(string xml)
+        public string Handle(string xml)
         {
             try
             {
-                SubscribeEventModel xmlObj = DeSerialize<SubscribeEventModel>(xml, Encoding.UTF8);
+                SubscribeEventModel xmlObj = UntityTool.DeSerialize<SubscribeEventModel>(xml, Encoding.UTF8);
                 
                 string eventKey = xmlObj.EventKey;
                 string ticket = xmlObj.Ticket;

@@ -12,13 +12,13 @@ using Site.WeiXin.DataAccess.Service;
 
 namespace Site.Untity.WeiXinCore.Handle
 {
-    public class LocationEvent : HandleBase
+    public class LocationEvent : IHandleBase
     {
-        public override string Handle(string xml)
+        public string Handle(string xml)
         {
             try
             {
-                LocationModel xmlObj = DeSerialize<LocationModel>(xml, Encoding.UTF8);
+                LocationModel xmlObj = UntityTool.DeSerialize<LocationModel>(xml, Encoding.UTF8);
                 
                 double latitude = xmlObj.Latitude;
                 double longitude = xmlObj.Longitude;

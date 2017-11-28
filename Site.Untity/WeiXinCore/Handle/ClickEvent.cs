@@ -12,13 +12,13 @@ using Site.WeiXin.DataAccess.Service;
 
 namespace Site.Untity.WeiXinCore.Handle
 {
-    public class ClickEvent : HandleBase
+    public class ClickEvent : IHandleBase
     {
-        public override string Handle(string xml)
+        public string Handle(string xml)
         {
             try
             {
-                ClickModel xmlObj = DeSerialize<ClickModel>(xml, Encoding.UTF8);
+                ClickModel xmlObj = UntityTool.DeSerialize<ClickModel>(xml, Encoding.UTF8);
                 
                 string eventKey = xmlObj.EventKey;
 

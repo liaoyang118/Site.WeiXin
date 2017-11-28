@@ -120,7 +120,12 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Site.Log.pdb
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\log4net.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Site.Service.UploadService.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Site.Common.dll
-E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Site.Untity.dll.config
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\Site.Service.UploadService.dll
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\Site.Common.dll
 E:\liaoyang\Project\Site.WeiXin\Site.WeiXin.Manager\bin\Site.Untity.dll.config
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Unity.Abstractions.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Unity.Configuration.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Unity.Container.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Unity.Abstractions.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Unity.Configuration.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Manager\bin\Unity.Container.pdb

@@ -12,13 +12,13 @@ using Site.WeiXin.DataAccess.Service;
 
 namespace Site.Untity.WeiXinCore.Handle
 {
-    public class UnSubscribeEvent : HandleBase
+    public class UnSubscribeEvent : IHandleBase
     {
-        public override string Handle(string xml)
+        public string Handle(string xml)
         {
             try
             {
-                SubscribeEventModel xmlObj = DeSerialize<SubscribeEventModel>(xml, Encoding.UTF8);
+                SubscribeEventModel xmlObj = UntityTool.DeSerialize<SubscribeEventModel>(xml, Encoding.UTF8);
 
                 //取消关注
                 User info = UserService.Select(string.Format(" and OpenID={0}", xmlObj.FromUserName)).FirstOrDefault();

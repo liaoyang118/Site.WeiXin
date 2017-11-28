@@ -77,7 +77,7 @@ namespace Site.WeiXin.Manager.Controllers
             }
             else if (channel == "tag")
             {
-                groupFormat = string.Format(WeiXinCommon.TagIdGroupFormat, IsToAll, selectIds);
+                groupFormat = string.Format(WeiXinCommon.TagIdGroupFormat, IsToAll.ToString(), selectIds);
                 info.TagId = selectIds;
             }
 
@@ -157,7 +157,7 @@ namespace Site.WeiXin.Manager.Controllers
                 User uInfo = UserService.Select(string.Format(" where Id = {0}", selectIds)).FirstOrDefault();
                 groupFormat = string.Format(WeiXinCommon.OpenIdGroupPreviewFormat, uInfo.OpenID);
             }
-            Material mInfo = MaterialService.Select(string.Format(" where Media_id = N'{0}'", materialId)).FirstOrDefault();
+            Material mInfo = MaterialService.SelectObject(materialId.ToInt32(0));
             int clientMsgId = UntityTool.GetTimeStamp();
             switch (type)
             {

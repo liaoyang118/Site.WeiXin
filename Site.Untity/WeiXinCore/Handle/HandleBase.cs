@@ -9,28 +9,8 @@ using System.Xml.Serialization;
 
 namespace Site.Untity.WeiXinCore.Handle
 {
-    public abstract class HandleBase
+    public interface IHandleBase
     {
-        public abstract string Handle(string xml);
-
-        public T DeSerialize<T>(string xml, Encoding encoding) where T : new()
-        {
-            try
-            {
-                var mySerializer = new XmlSerializer(typeof(T));
-                using (var ms = new MemoryStream(encoding.GetBytes(xml)))
-                {
-                    using (var sr = new StreamReader(ms, encoding))
-                    {
-                        return (T)mySerializer.Deserialize(sr);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                return default(T);
-            }
-
-        }
+        string Handle(string xml);
     }
 }

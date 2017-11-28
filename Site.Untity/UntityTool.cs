@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using Site.Service.UploadService.UploadService;
 using Site.Common;
+using System.Text;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace Site.Untity
 {
@@ -46,6 +49,32 @@ namespace Site.Untity
             };
         }
 
+        /// <summary>
+        /// XML 反序列化
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="xml"></param>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
+        public static T DeSerialize<T>(string xml, Encoding encoding) where T : new()
+        {
+            try
+            {
+                var mySerializer = new XmlSerializer(typeof(T));
+                using (var ms = new MemoryStream(encoding.GetBytes(xml)))
+                {
+                    using (var sr = new StreamReader(ms, encoding))
+                    {
+                        return (T)mySerializer.Deserialize(sr);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return default(T);
+            }
+
+        }
 
         public static int GetTimeStamp()
         {

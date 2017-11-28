@@ -26,7 +26,7 @@
                 foreach (Material item in list)
                 {
                     <tr>
-                        <td><input class="checkbox" type="checkbox" name="chk_m_@num" id="chk_m_@num" value="@item.Media_id" /></td>
+                        <td><input class="checkbox" type="checkbox" name="chk_m_@num" id="chk_m_@num" value="@item.Id" /></td>
                         <td>@item.MaterialName</td>
                         <td>@item.Intro</td>
                         <td>@(item.Expire == "temp" ? "临时" : "永久")</td>

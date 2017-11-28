@@ -12,13 +12,13 @@ using Site.WeiXin.DataAccess.Service;
 
 namespace Site.Untity.WeiXinCore.Handle
 {
-    public class TextMessageHandle : HandleBase
+    public class TextMessageHandle : IHandleBase
     {
-        public override string Handle(string xml)
+        public string Handle(string xml)
         {
             try
             {
-                TextMessageModel xmlObj = DeSerialize<TextMessageModel>(xml, Encoding.UTF8);
+                TextMessageModel xmlObj = UntityTool.DeSerialize<TextMessageModel>(xml, Encoding.UTF8);
                 UserMessage info = new UserMessage();
                 info.XmlContent = xml;
                 info.ContentValue = xmlObj.Content;
