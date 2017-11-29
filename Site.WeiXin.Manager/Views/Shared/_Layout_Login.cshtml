@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
 
-    @Styles.Render("~/Content/css/base")
+    @Styles.Render("~/Content/base")
+    @Styles.Render("~/PageTemplate/style/base")
     @RenderSection("css", false)
     @RenderSection("head", false)
 
@@ -19,7 +20,7 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/js/base")
+    @Scripts.Render("~/Scripts/base")
     @RenderSection("scripts", false)
 
 </body>

@@ -10,11 +10,8 @@ namespace Site.WeiXin.Manager
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            //防止发布后样式只加载 min,样式丢失
-            BundleTable.EnableOptimizations = false;
-
             //jquery 基础版本和 bootstrap,message
-            bundles.Add(new ScriptBundle("~/bundles/js/base").Include(
+            bundles.Add(new ScriptBundle("~/Scripts/base").Include(
                         "~/Scripts/jquery-1.10.2.js",
                         "~/Scripts/bootstrap.min.js",
                         "~/Scripts/jquery.toast.js",
@@ -24,7 +21,7 @@ namespace Site.WeiXin.Manager
                         ));
 
             //bootstrap 模板脚本
-            bundles.Add(new ScriptBundle("~/bundles/js/bootstrap/template").Include(
+            bundles.Add(new ScriptBundle("~/PageTemplate/js/template").Include(
                         "~/PageTemplate/js/jquery-ui-1.9.2.custom.min.js",//jQuery UI
                         "~/PageTemplate/js/fullcalendar.min.js",//jQuery UI
                         "~/PageTemplate/js/jquery.rateit.min.js",//jQuery UI
@@ -59,15 +56,17 @@ namespace Site.WeiXin.Manager
 
 
             //bootstrap 基础样式和模板样式
-            bundles.Add(new StyleBundle("~/Content/css/base").Include(
+            bundles.Add(new StyleBundle("~/Content/base").Include(
                 "~/Content/bootstrap.min.css",
-                "~/Content/jquery.toast.css",
-                "~/PageTemplate/style/font-awesome.css",
-                "~/PageTemplate/style/style.css"
+                "~/Content/jquery.toast.css"
                 ));
+            bundles.Add(new StyleBundle("~/PageTemplate/style/base").Include(
+               "~/PageTemplate/style/font-awesome.css",
+               "~/PageTemplate/style/style.css"
+               ));
 
             //bootstrap 模板样式
-            bundles.Add(new StyleBundle("~/bundles/css/bootstrap/template").Include(
+            bundles.Add(new StyleBundle("~/PageTemplate/style/template").Include(
                         "~/PageTemplate/style/jquery-ui.css",//jQuery UI
                         "~/PageTemplate/style/fullcalendar.css",//Calendar
                         "~/PageTemplate/style/prettyPhoto.css",//prettyPhoto
