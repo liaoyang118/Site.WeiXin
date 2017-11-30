@@ -21,7 +21,7 @@ namespace Site.Untity.WeiXinCore.Handle
                 SubscribeEventModel xmlObj = UntityTool.DeSerialize<SubscribeEventModel>(xml, Encoding.UTF8);
 
                 //取消关注
-                User info = UserService.Select(string.Format(" and OpenID={0}", xmlObj.FromUserName)).FirstOrDefault();
+                User info = UserService.Select(string.Format(" where OpenID='{0}'", xmlObj.FromUserName)).FirstOrDefault();
                 if (info != null)
                 {
                     info.IsSubscribe = false;
@@ -35,6 +35,13 @@ namespace Site.Untity.WeiXinCore.Handle
                     info.OpenID = xmlObj.FromUserName;
                     info.UnSubscribe_Time = DateTime.Now;
                     info.IsSubscribe = false;
+
+                    GongzhongAccount gzInfo = GongzhongAccountService.Select(string.Format("where AppAccount='{0}'", xmlObj.ToUserName)).FirstOrDefault();
+                    if (gzInfo != null)
+                    {
+                        info.AppId = gzInfo.AppID;
+                    }
+
                     UserService.Insert(info);
                 }
 

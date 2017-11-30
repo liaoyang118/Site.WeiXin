@@ -12,7 +12,7 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
 
         public string KeyWords { get; set; }
 
-
+        public string AppID { get; set; }
 
         public string ToWhereString()
         {
@@ -20,6 +20,11 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
             if (!string.IsNullOrEmpty(KeyWords))
             {
                 where.Add(string.Format("KeyWords like N'%{0}%'", KeyWords));
+            }
+
+            if (!string.IsNullOrEmpty(AppID))
+            {
+                where.Add(string.Format("AppID = N'{0}'", AppID));
             }
 
             if (where.Count > 0)

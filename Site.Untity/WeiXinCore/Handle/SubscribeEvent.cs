@@ -27,21 +27,26 @@ namespace Site.Untity.WeiXinCore.Handle
                 info.IsSubscribe = true;
                 info.UnSubscribe_Time = DateTime.Now;
 
-
-                //获取用户信息
-                UserInfo wInfo;
-                bool isSuccess = WeiXinCommon.GetUserInfo(xmlObj.FromUserName, out wInfo);
-                if (isSuccess)
+                GongzhongAccount gzInfo = GongzhongAccountService.Select(string.Format("where AppAccount='{0}'", xmlObj.ToUserName)).FirstOrDefault();
+                if (gzInfo != null)
                 {
-                    info.City = wInfo.city;
-                    info.Country = wInfo.country;
-                    info.HeadImg = wInfo.headimgurl;
-                    info.IsSubscribe = wInfo.subscribe == 1 ? true : false;
-                    info.Language = wInfo.language;
-                    info.NickName = wInfo.nickname;
-                    info.Province = wInfo.province;
-                    info.Sex = wInfo.sex;
-                    info.Unionid = wInfo.unionid ?? string.Empty;
+                    info.AppId = gzInfo.AppID;
+
+                    //获取用户信息
+                    UserInfo wInfo;
+                    bool isSuccess = WeiXinCommon.GetUserInfo(xmlObj.FromUserName, gzInfo.AppID, gzInfo.AppSecret, out wInfo);
+                    if (isSuccess)
+                    {
+                        info.City = wInfo.city;
+                        info.Country = wInfo.country;
+                        info.HeadImg = wInfo.headimgurl;
+                        info.IsSubscribe = wInfo.subscribe == 1 ? true : false;
+                        info.Language = wInfo.language;
+                        info.NickName = wInfo.nickname;
+                        info.Province = wInfo.province;
+                        info.Sex = wInfo.sex;
+                        info.Unionid = wInfo.unionid ?? string.Empty;
+                    }
                 }
                 UserService.Insert(info);
 

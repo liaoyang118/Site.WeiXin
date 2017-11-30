@@ -8,10 +8,11 @@ using Site.WeiXin.DataAccess.Model;
 using Site.WeiXin.DataAccess.Service;
 using Site.WeiXin.DataAccess.Service.PartialService.Search;
 using System.Text;
-using Site.WeiXin.Manager.Common;
+using Site.WeiXin.Manager.Filder;
 
 namespace Site.WeiXin.Manager.Controllers
 {
+    [Authorize, Permission]
     public class ReplyController : Controller
     {
         #region 被动回复管理
@@ -19,6 +20,8 @@ namespace Site.WeiXin.Manager.Controllers
         {
             KeyWordsReplySearchInfo search = new KeyWordsReplySearchInfo();
             search.KeyWords = HttpUtility.UrlDecode(key);
+            search.AppID = HttpContextUntity.CurrentUser.AppID;
+
             int pageSize = 15;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
@@ -73,6 +76,7 @@ namespace Site.WeiXin.Manager.Controllers
                 info = new KeyWordsReply();
                 info.CreateTime = DateTime.Now;
                 info.CreateUserAccount = HttpContextUntity.CurrentUser.Account;
+                info.AppId = HttpContextUntity.CurrentUser.AppID;
             }
 
             info.Intro = intro;
@@ -176,6 +180,7 @@ namespace Site.WeiXin.Manager.Controllers
                 ArticleSearchInfo search = new ArticleSearchInfo();
                 search.Title = HttpUtility.UrlDecode(key);
                 search.Statu = (int)SiteEnum.ArticleState.通过;
+                search.AppID = HttpContextUntity.CurrentUser.AppID;
 
                 int pageSize = 15;
                 int rowCount;
@@ -193,6 +198,7 @@ namespace Site.WeiXin.Manager.Controllers
             else
             {
                 MaterialSearchInfo search = new MaterialSearchInfo();
+                search.AppID = HttpContextUntity.CurrentUser.AppID;
                 search.MaterialName = HttpUtility.UrlDecode(key);
                 search.MaterialType = type;
 

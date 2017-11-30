@@ -7,6 +7,7 @@ using Site.Untity;
 using Site.WeiXin.DataAccess.Model;
 using Site.WeiXin.DataAccess.Service;
 using Site.WeiXin.DataAccess.Service.PartialService.Search;
+using Site.WeiXin.Manager.Filder;
 
 namespace Site.WeiXin.Manager.Controllers
 {
@@ -18,17 +19,15 @@ namespace Site.WeiXin.Manager.Controllers
             return View();
         }
 
+        [Permission]
         public ActionResult Menu()
         {
-
-            IList<Menu> list = MenuService.SelectMenuList();
-
-
+            IList<Menu> list = MenuService.SelectMenuList(HttpContextUntity.CurrentUser.AppID);
             ViewBag.list = list;
             return View();
         }
 
-
+        [Permission]
         public ActionResult Delete(string id, string parentId)
         {
             int result = 0;
@@ -52,6 +51,7 @@ namespace Site.WeiXin.Manager.Controllers
             }
         }
 
+        [Permission]
         public ActionResult MenuEditView(string id, string parentId)
         {
             Menu obj = null;
@@ -88,6 +88,7 @@ namespace Site.WeiXin.Manager.Controllers
             return PartialView();
         }
 
+        [Permission]
         public ActionResult MenuEdit(Menu obj)
         {
             int result = 0;
@@ -106,6 +107,7 @@ namespace Site.WeiXin.Manager.Controllers
                 obj.CreateTime = DateTime.Now;
                 obj.Status = (int)SiteEnum.MenuState.正常;
                 obj.Value = obj.Value ?? string.Empty;
+                obj.AppId = HttpContextUntity.CurrentUser.AppID;
 
                 //新增
                 result = MenuService.Insert(obj);
@@ -138,18 +140,18 @@ namespace Site.WeiXin.Manager.Controllers
 
         }
 
-
+        [Permission]
         public ActionResult PublishButton()
         {
             #region 拿取access_token
             string result;
-            bool isSuccess = WeiXinCommon.GetAccessToken(out result);
+            bool isSuccess = WeiXinCommon.GetAccessToken(HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, out result);
             #endregion
 
             #region 组装按钮数据
             if (isSuccess)
             {
-                IList<Menu> menuList = MenuService.SelectMenuList();//带有 &nbsp;
+                IList<Menu> menuList = MenuService.SelectMenuList(HttpContextUntity.CurrentUser.AppID);//带有 &nbsp;
                 string btnParams = WeiXinCommon.GenerateButton(menuList.ToList());
                 string publishResult;
                 bool isPublishSuccess = WeiXinCommon.PostBtn(result, btnParams, out publishResult);
@@ -164,7 +166,7 @@ namespace Site.WeiXin.Manager.Controllers
 
 
         }
-        
+
         public ActionResult MessageList(string key, int? page)
         {
             int pageSize = 15;
@@ -177,7 +179,7 @@ namespace Site.WeiXin.Manager.Controllers
                 where = string.Format(" and t1.ContentValue like '{0}' ", key);
             }
 
-            IList<UserMessage> list = UserMessageService.SelectPageExcuteSql("t1.*,t2.NickName,t2.HeadImg", "t1.CreateTime DESC", "left join [User] t2 on t1.OpenID=t2.OpenID where t1.MessageType='text'" + where, pageIndex, pageSize, out rowCount);
+            IList<UserMessage> list = UserMessageService.SelectPageExcuteSql("t1.*,t2.NickName,t2.HeadImg", "t1.CreateTime DESC", "left join [User] t2 on t1.OpenID=t2.OpenID where t1.MessageType='text' and t1.AppId='" + HttpContextUntity.CurrentUser.AppID + "'" + where, pageIndex, pageSize, out rowCount);
 
 
             ViewBag.list = list;
@@ -189,11 +191,11 @@ namespace Site.WeiXin.Manager.Controllers
 
             return View();
         }
-        
+
         //最近留言
         public ActionResult NearMessage()
         {
-            IList<UserMessage> list = UserMessageService.Select(string.Format(" where MessageType='text' and CreateTime >='{0}'", DateTime.Now.AddHours(-2)));
+            IList<UserMessage> list = UserMessageService.Select(string.Format(" where MessageType='text' and AppId='" + HttpContextUntity.CurrentUser.AppID + "' and CreateTime >='{0}'", DateTime.Now.AddHours(-2)));
 
             ViewBag.list = list;
             return PartialView();
@@ -202,9 +204,9 @@ namespace Site.WeiXin.Manager.Controllers
         //今日关注
         public ActionResult Subscribe()
         {
-            IList<User> list = UserService.Select(" where IsSubscribe=1");
+            IList<User> list = UserService.Select(" where IsSubscribe=1 and AppId='" + HttpContextUntity.CurrentUser.AppID + "'");
             var todayCount = list.Where(u => u.Subscribe_Time.Value.ToString("yyyyMMdd") == DateTime.Now.ToString("yyyyMMdd")).Count();
-            
+
             ViewBag.total = list.Count;
             ViewBag.todayCount = todayCount;
             return PartialView();

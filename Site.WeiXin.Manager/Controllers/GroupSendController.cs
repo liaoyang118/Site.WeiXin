@@ -8,10 +8,11 @@ using Site.Untity;
 using Site.WeiXin.DataAccess.Model;
 using Site.WeiXin.DataAccess.Service;
 using Site.WeiXin.DataAccess.Service.PartialService.Search;
-using Site.WeiXin.Manager.Common;
+using Site.WeiXin.Manager.Filder;
 
 namespace Site.WeiXin.Manager.Controllers
 {
+    [Permission]
     public class GroupSendController : Controller
     {
         public ActionResult Index(string key, int? page)
@@ -23,10 +24,10 @@ namespace Site.WeiXin.Manager.Controllers
             string where = string.Empty;
             if (!string.IsNullOrEmpty(key))
             {
-                where = string.Format(" where t2.MaterialName like '{0}' ", HttpUtility.UrlDecode(key));
+                where = string.Format(" and t2.MaterialName like '{0}' ", HttpUtility.UrlDecode(key));
             }
 
-            IList<GroupSend> list = GroupSendService.SelectPageExcuteSql("t1.*,t2.MaterialName,t3.TagName", "t1.CreateTime DESC", "left join [Material] t2 on t1.Media_Id=t2.Media_id left join UserTag as t3 on t3.TagId=t1.TagId " + where, pageIndex, pageSize, out rowCount);
+            IList<GroupSend> list = GroupSendService.SelectPageExcuteSql("t1.*,t2.MaterialName,t3.TagName", "t1.CreateTime DESC", "left join [Material] t2 on t1.Media_Id=t2.Media_id left join UserTag as t3 on t3.TagId=t1.TagId where t1.AppId='" + HttpContextUntity.CurrentUser.AppID + "'" + where, pageIndex, pageSize, out rowCount);
 
 
             ViewBag.list = list;
@@ -67,6 +68,7 @@ namespace Site.WeiXin.Manager.Controllers
             info.MessageType = type;
             info.SendName = name;
             info.SendType = channel;
+            info.AppId = HttpContextUntity.CurrentUser.AppID;
 
             string contentBody = string.Empty;
             string groupFormat = string.Empty;
@@ -107,7 +109,7 @@ namespace Site.WeiXin.Manager.Controllers
 
             int result = 0;
             string msg_id, msg_data_id;
-            bool isSuccess = WeiXinCommon.GroupSendMessage(channel, type, contentBody, out msg_id, out msg_data_id);
+            bool isSuccess = WeiXinCommon.GroupSendMessage(channel, type, contentBody, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, out msg_id, out msg_data_id);
             if (isSuccess)
             {
 
@@ -182,7 +184,7 @@ namespace Site.WeiXin.Manager.Controllers
             }
 
             string msg_id, msg_data_id;
-            bool isSuccess = WeiXinCommon.GroupSendMessage(channel, type, contentBody, out msg_id, out msg_data_id, true);
+            bool isSuccess = WeiXinCommon.GroupSendMessage(channel, type, contentBody, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, out msg_id, out msg_data_id, true);
 
             //预览记录不记入数据库
             //if (isSuccess)
@@ -210,7 +212,7 @@ namespace Site.WeiXin.Manager.Controllers
 
         public ActionResult GroupSendDelete(int id, string msg_id, int index)
         {
-            bool isSuccess = WeiXinCommon.DeleteGroupSend(msg_id, index);
+            bool isSuccess = WeiXinCommon.DeleteGroupSend(msg_id, index, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret);
             int result = 0;
             if (isSuccess)
             {
@@ -237,6 +239,7 @@ namespace Site.WeiXin.Manager.Controllers
             {
                 UserSearchInfo search = new UserSearchInfo();
                 search.NickName = HttpUtility.UrlDecode(key);
+                search.AppID = HttpContextUntity.CurrentUser.AppID;
                 search.IsSubscribe = true;
 
 
@@ -256,6 +259,7 @@ namespace Site.WeiXin.Manager.Controllers
             else //标签列表
             {
                 UserTagSearchInfo search = new UserTagSearchInfo();
+                search.AppID = HttpContextUntity.CurrentUser.AppID;
                 search.TagName = HttpUtility.UrlDecode(key);
 
                 IList<UserTag> list = UserTagService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
@@ -275,6 +279,7 @@ namespace Site.WeiXin.Manager.Controllers
 
             MaterialSearchInfo search = new MaterialSearchInfo();
             search.MaterialName = HttpUtility.UrlDecode(key);
+            search.AppID = HttpContextUntity.CurrentUser.AppID;
             search.MaterialType = type;
 
             int pageSize = 20;

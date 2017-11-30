@@ -14,11 +14,11 @@ namespace Site.WeiXin.DataAccess.Service
         /// 递归查询菜单
         /// </summary>
         /// <returns></returns>
-        public static IList<Menu> SelectMenuList()
+        public static IList<Menu> SelectMenuList(string appId)
         {
             using (var access = new MenuAccess())
             {
-                return access.SelectMenuList();
+                return access.SelectMenuList(appId);
             }
         }
 

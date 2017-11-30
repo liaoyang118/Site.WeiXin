@@ -516,12 +516,12 @@ namespace Site.Untity
 
         #region 用户信息、菜单
 
-        private static bool GetHttpToken(out string result)
+        private static bool GetHttpToken(string appID, string appSecret, out string result)
         {
             result = string.Empty;
             try
             {
-                string url = string.Format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}", UntityTool.GetConfigValue("appID"), UntityTool.GetConfigValue("appsecret"));
+                string url = string.Format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}", appID, appSecret);
                 string content = HttpTool.Get(url);
                 if (!string.IsNullOrEmpty(content))
                 {
@@ -639,12 +639,12 @@ namespace Site.Untity
             }
         }
 
-        public static bool GetAccessToken(out string result)
+        public static bool GetAccessToken(string appId, string appSecret, out string result)
         {
             result = string.Empty;
             try
             {
-                IList<GloblaToken> list = GloblaTokenService.Select(string.Format(" where AppId='{0}'", UntityTool.GetConfigValue("appID"), DateTime.Now));
+                IList<GloblaToken> list = GloblaTokenService.Select(string.Format(" where AppId='{0}'", appId, DateTime.Now));
                 bool isSuccess = false;
                 if (list.Count > 0)
                 {
@@ -656,7 +656,7 @@ namespace Site.Untity
                     }
                     else
                     {
-                        isSuccess = GetHttpToken(out result);
+                        isSuccess = GetHttpToken(appId, appSecret, out result);
                         if (isSuccess)
                         {
                             //更新时间
@@ -670,13 +670,13 @@ namespace Site.Untity
                 else
                 {
                     //获取新的access_token
-                    isSuccess = GetHttpToken(out result);
+                    isSuccess = GetHttpToken(appId, appSecret, out result);
                     if (isSuccess)
                     {
                         //插入
                         GloblaTokenService.Insert(new GloblaToken()
                         {
-                            AppId = UntityTool.GetConfigValue("appID"),
+                            AppId = appId,
                             ExpireTime = DateTime.Now.AddHours(2),
                             Token = result
                         });
@@ -692,13 +692,13 @@ namespace Site.Untity
             }
         }
 
-        public static bool GetUserInfo(string openid, out UserInfo uInfo)
+        public static bool GetUserInfo(string openid, string appId, string appSecret, out UserInfo uInfo)
         {
             uInfo = null;
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/user/info?access_token={0}&openid={1}&lang=zh_CN", access_token, openid);
@@ -745,7 +745,7 @@ namespace Site.Untity
             }
         }
 
-        public static bool GetUserList(string next_openid, out List<string> openIdList, out int total, out int count, out string new_next_openid)
+        public static bool GetUserList(string next_openid, string appId, string appSecret, out List<string> openIdList, out int total, out int count, out string new_next_openid)
         {
             openIdList = new List<string>();
             total = 0;
@@ -754,7 +754,7 @@ namespace Site.Untity
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/user/get?access_token={0}&next_openid={1}", access_token, next_openid);
@@ -825,13 +825,13 @@ namespace Site.Untity
         /// <param name="media_id"></param>
         /// <param name="type">素材类型：image、voice、video、thumb</param>
         /// <returns></returns>
-        public static bool AddTempMaterial(string type, byte[] bytes, string fileName, out string media_id)
+        public static bool AddTempMaterial(string type, byte[] bytes, string fileName, string appId, string appSecret, out string media_id)
         {
             media_id = string.Empty;
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/media/upload?access_token={0}&type={1}", access_token, type);
@@ -888,13 +888,13 @@ namespace Site.Untity
         /// <param name="bytes"></param>
         /// <param name="media_id"></param>
         /// <returns></returns>
-        public static bool AddPermanentMaterial(string type, byte[] bytes, string fileName, out string media_id)
+        public static bool AddPermanentMaterial(string type, byte[] bytes, string fileName, string appId, string appSecret, out string media_id)
         {
             media_id = string.Empty;
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/add_material?access_token={0}&type={1}", access_token, type);
@@ -949,13 +949,13 @@ namespace Site.Untity
         /// </summary>
         /// <param name="body">图文素材组装好的body内容</param>
         /// <returns></returns>
-        public static bool AddPermanentMaterial(string body, out string media_id)
+        public static bool AddPermanentMaterial(string body, string appId, string appSecret, out string media_id)
         {
             media_id = string.Empty;
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/add_news?access_token={0}", access_token);
@@ -1007,12 +1007,12 @@ namespace Site.Untity
         /// </summary>
         /// <param name="body">更新图文素材组装好的body内容</param>
         /// <returns></returns>
-        public static bool EditPermanentMaterial(string body)
+        public static bool EditPermanentMaterial(string body, string appId, string appSecret)
         {
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/update_news?access_token={0}", access_token);
@@ -1065,13 +1065,13 @@ namespace Site.Untity
         /// <param name="ext"></param>
         /// <param name="imageUrl"></param>
         /// <returns></returns>
-        public static bool AddArticalImage(byte[] bytes, string fileName, out string imageUrl)
+        public static bool AddArticalImage(byte[] bytes, string fileName, string appId, string appSecret, out string imageUrl)
         {
             imageUrl = string.Empty;
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token={0}", access_token);
@@ -1122,12 +1122,12 @@ namespace Site.Untity
         /// </summary>
         /// <param name="media_id"></param>
         /// <returns></returns>
-        public static bool DeletePermanentMaterial(string media_id)
+        public static bool DeletePermanentMaterial(string media_id, string appId, string appSecret)
         {
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/del_material?access_token={0}", access_token);
@@ -1191,7 +1191,7 @@ namespace Site.Untity
             scope = string.Empty;
             try
             {
-                string url = string.Format("https://api.weixin.qq.com/sns/oauth2/access_token?appid={0}&secret={1}&code={2}&grant_type=authorization_code ", UntityTool.GetConfigValue("appID"), UntityTool.GetConfigValue("appsecret"), code);
+                string url = string.Format("https://api.weixin.qq.com/sns/oauth2/access_token?appid={0}&secret={1}&code={2}&grant_type=authorization_code ", HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, code);
                 string content = HttpTool.Get(url);
                 if (!string.IsNullOrEmpty(content))
                 {
@@ -1293,13 +1293,13 @@ namespace Site.Untity
         #endregion
 
         #region 标签管理
-        public static bool AddMark(string markName, out string id)
+        public static bool AddMark(string markName, string appId, string appSecret, out string id)
         {
             id = string.Empty;
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/create?access_token={0}", access_token);
@@ -1347,12 +1347,12 @@ namespace Site.Untity
             }
         }
 
-        public static bool DeleteMark(string markId)
+        public static bool DeleteMark(string markId, string appId, string appSecret)
         {
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/delete?access_token={0}", access_token);
@@ -1398,12 +1398,12 @@ namespace Site.Untity
             }
         }
 
-        public static bool EditMark(string markId, string markName)
+        public static bool EditMark(string markId, string markName, string appId, string appSecret)
         {
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/update?access_token={0}", access_token);
@@ -1458,12 +1458,12 @@ namespace Site.Untity
         /// <param name="openIds"></param>
         /// <param name="tagId"></param>
         /// <returns></returns>
-        public static bool BatchUserMark(List<string> openIds, string tagId)
+        public static bool BatchUserMark(List<string> openIds, string tagId, string appId, string appSecret)
         {
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token={0}", access_token);
@@ -1514,12 +1514,12 @@ namespace Site.Untity
         /// <param name="openIds"></param>
         /// <param name="tagId"></param>
         /// <returns></returns>
-        public static bool DeleteBatchUserMark(List<string> openIds, string tagId)
+        public static bool DeleteBatchUserMark(List<string> openIds, string tagId, string appId, string appSecret)
         {
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token={0}", access_token);
@@ -1577,14 +1577,14 @@ namespace Site.Untity
         /// <param name="msg_id">返回的群发消息Id</param>
         /// <param name="msg_data_id">群发图文时该值才有效</param>
         /// <returns></returns>
-        public static bool GroupSendMessage(string channel, string messageType, string body, out string msg_id, out string msg_data_id, bool isPreview = false)
+        public static bool GroupSendMessage(string channel, string messageType, string body, string appId, string appSecret, out string msg_id, out string msg_data_id, bool isPreview = false)
         {
             msg_id = string.Empty;
             msg_data_id = string.Empty;
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string urlFormat = string.Empty;
@@ -1669,12 +1669,12 @@ namespace Site.Untity
         /// <param name="msg_id">提交任务成功后的Id</param>
         /// <param name="article_idx">删除指定第几篇消息，从1开始；不填写或是0，删除全部</param>
         /// <returns></returns>
-        public static bool DeleteGroupSend(string msg_id, int article_idx)
+        public static bool DeleteGroupSend(string msg_id, int article_idx, string appId, string appSecret)
         {
             try
             {
                 string access_token;
-                bool isSuccess = GetAccessToken(out access_token);
+                bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)
                 {
                     string url = string.Format("https://api.weixin.qq.com/cgi-bin/message/mass/delete?access_token={0}", access_token);

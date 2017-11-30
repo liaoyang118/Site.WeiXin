@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendTool.cs" />
+    <Compile Include="HttpContextUntity.cs" />
     <Compile Include="HttpTool.cs" />
     <Compile Include="WeiXinCore\Handle\EmptyHandle.cs" />
     <Compile Include="WeiXinCore\Handle\ViewEvent.cs" />

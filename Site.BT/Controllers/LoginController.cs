@@ -36,7 +36,7 @@ namespace Site.BT.Controllers
                     bab.BusinessUserId = bInfo.Id;
                     bab.BussinessUserAccount = account;
                     bab.CreateTime = DateTime.Now;
-                    bab.OpenId = HttpContextUntity.CurrentUser.openid;
+                    bab.OpenId = Site.BT.Manager.Common.HttpContextUntity.CurrentUser.openid;
 
                     result = BusinessAccountBindingService.Insert(bab);
                 }

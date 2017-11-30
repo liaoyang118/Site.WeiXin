@@ -116,7 +116,7 @@ public class Crawler
     private string UploadImageBySiteService(byte[] imgData)
     {
         string result = string.Empty;
-        bool isSuccess = WeiXinCommon.AddArticalImage(imgData, "wximage.jpg", out result);
+        bool isSuccess = WeiXinCommon.AddArticalImage(imgData, "wximage.jpg", HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, out result);
         return result;
     }
 

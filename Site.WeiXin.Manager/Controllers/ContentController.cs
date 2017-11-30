@@ -7,10 +7,10 @@ using Site.Untity;
 using Site.WeiXin.DataAccess.Model;
 using Site.WeiXin.DataAccess.Service;
 using Site.WeiXin.DataAccess.Service.PartialService.Search;
+using Site.WeiXin.Manager.Filder;
 
 namespace Site.WeiXin.Manager.Controllers
 {
-    [Authorize]
     public class ContentController : Controller
     {
         #region 01 文章管理
@@ -18,6 +18,8 @@ namespace Site.WeiXin.Manager.Controllers
         {
             ArticleSearchInfo search = new ArticleSearchInfo();
             search.Title = HttpUtility.UrlDecode(key);
+            search.AppID = HttpContextUntity.CurrentUser.AppID;
+
             int pageSize = 15;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
@@ -96,6 +98,8 @@ namespace Site.WeiXin.Manager.Controllers
             }
             else
             {
+
+                obj.AppId = HttpContextUntity.CurrentUser.AppID;
                 obj.MediaId = obj.MediaId ?? string.Empty;
                 obj.CreateTime = DateTime.Now;
                 obj.CreateUserAccount = User.Identity.Name;
@@ -151,6 +155,7 @@ namespace Site.WeiXin.Manager.Controllers
             }
         }
 
+        [Permission]
         public ActionResult CheckArticle(string id, string status)
         {
             int result = 0;
@@ -177,6 +182,8 @@ namespace Site.WeiXin.Manager.Controllers
         {
             MaterialSearchInfo search = new MaterialSearchInfo();
             search.MaterialName = HttpUtility.UrlDecode(key);
+            search.AppID = HttpContextUntity.CurrentUser.AppID;
+
             int pageSize = 15;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
@@ -232,6 +239,7 @@ namespace Site.WeiXin.Manager.Controllers
                 info = new Material();
                 info.CreateTime = DateTime.Now;
                 info.CreateUserAccount = User.Identity.Name;
+                info.AppId = HttpContextUntity.CurrentUser.AppID;
             }
 
             info.Intro = intro;
@@ -253,12 +261,12 @@ namespace Site.WeiXin.Manager.Controllers
                 {
                     //修改
                     body = WeiXinCommon.GenerateUpdateImageContentBody(list.FirstOrDefault(), info.Media_id, int.Parse(index));
-                    isSuccess = WeiXinCommon.EditPermanentMaterial(body);
+                    isSuccess = WeiXinCommon.EditPermanentMaterial(body, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret);
                 }
                 else
                 {
                     //新增
-                    isSuccess = WeiXinCommon.AddPermanentMaterial(body, out media_id);
+                    isSuccess = WeiXinCommon.AddPermanentMaterial(body, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, out media_id);
                 }
             }
             else if (type == "video")//视频需要特殊处理
@@ -275,11 +283,11 @@ namespace Site.WeiXin.Manager.Controllers
                     file.InputStream.Read(bytes, 0, bytes.Length);
                     if (expire == "temp")
                     {
-                        isSuccess = WeiXinCommon.AddTempMaterial(type, bytes, file.FileName, out media_id);
+                        isSuccess = WeiXinCommon.AddTempMaterial(type, bytes, file.FileName, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, out media_id);
                     }
                     else
                     {
-                        isSuccess = WeiXinCommon.AddPermanentMaterial(type, bytes, file.FileName, out media_id);
+                        isSuccess = WeiXinCommon.AddPermanentMaterial(type, bytes, file.FileName, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, out media_id);
                     }
                 }
                 else
@@ -327,7 +335,7 @@ namespace Site.WeiXin.Manager.Controllers
             int result = MaterialService.Delete(id);
             if (!string.IsNullOrEmpty(mediaId))
             {
-                WeiXinCommon.DeletePermanentMaterial(mediaId);
+                WeiXinCommon.DeletePermanentMaterial(mediaId, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret);
             }
 
             if (result > 0)
@@ -344,6 +352,8 @@ namespace Site.WeiXin.Manager.Controllers
         {
             ArticleSearchInfo search = new ArticleSearchInfo();
             search.Title = HttpUtility.UrlDecode(key);
+            search.AppID = HttpContextUntity.CurrentUser.AppID;
+
             int rowCount;
             IList<Article> list = ArticleService.SelectPage("*", search.OrderBy, search.ToWhereString(), 1, 8, out rowCount);
 

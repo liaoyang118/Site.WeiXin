@@ -26,6 +26,13 @@ namespace Site.Untity.WeiXinCore.Handle
                 info.MessageType = xmlObj.MsgType;
                 info.MsgId = xmlObj.MsgId;
                 info.OpenID = xmlObj.FromUserName;
+
+                GongzhongAccount gzInfo = GongzhongAccountService.Select(string.Format("where AppAccount='{0}'",xmlObj.ToUserName)).FirstOrDefault();
+                if (gzInfo != null)
+                {
+                    info.AppId = gzInfo.AppID;
+                }
+
                 UserMessageService.Insert(info);
 
                 //优先处理关键字，如没有关键字则回复默认信息

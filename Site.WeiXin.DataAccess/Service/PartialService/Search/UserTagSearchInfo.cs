@@ -11,7 +11,7 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
         public string OrderBy = "CreateTime desc";
 
         public string TagName { get; set; }
-
+        public string AppID { get; set; }
 
 
         public string ToWhereString()
@@ -20,6 +20,10 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
             if (!string.IsNullOrEmpty(TagName))
             {
                 where.Add(string.Format("TagName like N'%{0}%'", TagName));
+            }
+            if (!string.IsNullOrEmpty(AppID))
+            {
+                where.Add(string.Format("AppID = N'{0}'", AppID));
             }
 
             if (where.Count > 0)

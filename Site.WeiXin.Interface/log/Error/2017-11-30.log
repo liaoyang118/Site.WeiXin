@@ -1,0 +1,207 @@
+
+异常时间：2017-11-30 15:38:29,913 [28] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 15:40:14,245 [40] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-30 15:42:13,475 [34] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 15:42:31,295 [41] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-30 15:44:00,910 [41] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 15:44:00,957 [36] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 15:44:01,047 [34] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 15:44:27,664 [34] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-30 15:44:27,665 [36] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-30 15:44:27,668 [46] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-30 15:47:43,565 [34] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 15:48:20,681 [41] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-30 15:48:20,681 [41] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功： 
+ 
+异常时间：2017-11-30 15:48:20,746 [41] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+不能将值 NULL 插入列 'NickName'，表 'TestDB.dbo.User'；列不允许有 Null 值。INSERT 失败。
+语句已终止。 
+ 
+异常时间：2017-11-30 15:51:38,797 [36] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 15:51:49,058 [49] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-30 15:51:49,059 [49] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功： 
+ 
+异常时间：2017-11-30 15:55:45,303 [36] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 15:56:05,930 [49] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-30 15:56:05,931 [49] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功： 
+ 
+异常时间：2017-11-30 15:58:07,787 [36] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 15:58:45,839 [7] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-30 15:59:08,154 [7] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功： 
+ 
+异常时间：2017-11-30 15:59:08,154 [49] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-30 15:59:08,155 [49] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功： 
+ 
+异常时间：2017-11-30 15:59:08,156 [55] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+未将对象引用设置到对象的实例。 
+ 
+异常时间：2017-11-30 15:59:08,156 [55] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功： 
+ 
+异常时间：2017-11-30 16:14:25,197 [66] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 16:15:08,087 [51] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 16:15:19,079 [66] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Uab9rAxQAseUjbMdIb1txRca-KSjt4jsiWsIB6XASeKuvt6zD1T6uqkeozrEFEyQZKarBGyNDKvw1IpHjldlF-R9-RIR9Z4Mq9g8Q23b3Z9iFbyhGaHH8HU5OsWbeXJjZBAaACAQSR 
+ 
+异常时间：2017-11-30 16:15:25,762 [68] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Uab9rAxQAseUjbMdIb1txRca-KSjt4jsiWsIB6XASeKuvt6zD1T6uqkeozrEFEyQZKarBGyNDKvw1IpHjldlF-R9-RIR9Z4Mq9g8Q23b3Z9iFbyhGaHH8HU5OsWbeXJjZBAaACAQSR 
+ 
+异常时间：2017-11-30 16:15:31,291 [70] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Uab9rAxQAseUjbMdIb1txRca-KSjt4jsiWsIB6XASeKuvt6zD1T6uqkeozrEFEyQZKarBGyNDKvw1IpHjldlF-R9-RIR9Z4Mq9g8Q23b3Z9iFbyhGaHH8HU5OsWbeXJjZBAaACAQSR 
+ 
+异常时间：2017-11-30 16:28:26,828 [68] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 16:28:34,241 [79] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Uab9rAxQAseUjbMdIb1txRca-KSjt4jsiWsIB6XASeKuvt6zD1T6uqkeozrEFEyQZKarBGyNDKvw1IpHjldlF-R9-RIR9Z4Mq9g8Q23b3Z9iFbyhGaHH8HU5OsWbeXJjZBAaACAQSR 
+ 
+异常时间：2017-11-30 16:30:13,163 [51] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 16:30:13,169 [79] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+关键字 'and' 附近有语法错误。 
+ 
+异常时间：2017-11-30 16:34:58,256 [72] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+列名 'o0YXKt_EJTmDd7Xx3cxZGyGAU5hI' 无效。 
+ 
+异常时间：2017-11-30 16:34:58,261 [69] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+列名 'o0YXKt_EJTmDd7Xx3cxZGyGAU5hI' 无效。 
+ 
+异常时间：2017-11-30 16:35:31,448 [69] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Uab9rAxQAseUjbMdIb1txRca-KSjt4jsiWsIB6XASeKuvt6zD1T6uqkeozrEFEyQZKarBGyNDKvw1IpHjldlF-R9-RIR9Z4Mq9g8Q23b3Z9iFbyhGaHH8HU5OsWbeXJjZBAaACAQSR 
+ 
+异常时间：2017-11-30 16:35:54,565 [73] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Uab9rAxQAseUjbMdIb1txRca-KSjt4jsiWsIB6XASeKuvt6zD1T6uqkeozrEFEyQZKarBGyNDKvw1IpHjldlF-R9-RIR9Z4Mq9g8Q23b3Z9iFbyhGaHH8HU5OsWbeXJjZBAaACAQSR 
+ 
+异常时间：2017-11-30 16:37:14,989 [71] 
+异常级别：ERROR 
+异 常 类：error [(null)] 
+获取acess_token成功：Uab9rAxQAseUjbMdIb1txRca-KSjt4jsiWsIB6XASeKuvt6zD1T6uqkeozrEFEyQZKarBGyNDKvw1IpHjldlF-R9-RIR9Z4Mq9g8Q23b3Z9iFbyhGaHH8HU5OsWbeXJjZBAaACAQSR 
+ 

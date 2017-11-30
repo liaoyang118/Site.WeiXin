@@ -90,7 +90,7 @@ public class UploadHandler : Handler
     private string UploadImageBySiteService(byte[] imgData, string fileName)
     {
         string result = string.Empty;
-        bool isSuccess = WeiXinCommon.AddArticalImage(imgData, fileName, out result);
+        bool isSuccess = WeiXinCommon.AddArticalImage(imgData, fileName, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, out result);
         return result;
     }
 

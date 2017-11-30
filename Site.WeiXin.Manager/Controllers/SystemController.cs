@@ -7,12 +7,15 @@ using Site.Untity;
 using Site.WeiXin.DataAccess.Model;
 using Site.WeiXin.DataAccess.Service;
 using Site.WeiXin.DataAccess.Service.PartialService.Search;
+using Site.WeiXin.Manager.Filder;
 
 namespace Site.WeiXin.Manager.Controllers
 {
+    [Permission]
     public class SystemController : Controller
     {
-        // GET: System
+        #region 系统用户管理
+
         public ActionResult UserList(string key, int? page)
         {
             SystemUserSearchInfo search = new SystemUserSearchInfo();
@@ -21,7 +24,14 @@ namespace Site.WeiXin.Manager.Controllers
             int pageSize = 15;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
-            IList<SystemUser> list = SystemUserService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
+
+            string where = string.Empty;
+            if (!string.IsNullOrEmpty(key))
+            {
+                where = string.Format(" where t1.Account like '{0}' ", HttpUtility.UrlDecode(key));
+            }
+
+            IList<SystemUser> list = SystemUserService.SelectPageExcuteSql("t1.*,t2.AppID,t2.AppSecret,t2.Name", "t1.CreateTime DESC", "left join [GongzhongAccount] t2 on t1.GongzhongAccountId=t2.Id " + where, pageIndex, pageSize, out rowCount);
 
 
             ViewBag.list = list;
@@ -48,22 +58,33 @@ namespace Site.WeiXin.Manager.Controllers
                 obj = new SystemUser();
             }
 
-            ViewBag.obj = obj;
+            //查询公众号
+            List<GongzhongAccount> list = GongzhongAccountService.Select("").ToList();
+            List<SelectListItem> selectList = list.Select(t =>
+            {
+                return new SelectListItem()
+                {
+                    Text = t.Name,
+                    Value = t.Id.ToString(),
+                    Selected = t.Id == obj.GongzhongAccountId
 
+                };
+            }).ToList();
+
+
+            ViewBag.obj = obj;
+            ViewBag.selectList = selectList;
             return PartialView();
         }
 
         public ActionResult UserEdit(SystemUser obj)
         {
             int result = 0;
-
+            SystemUser info = null;
             if (obj.Id > 0)
             {
-                SystemUser info = SystemUserService.SelectObject(obj.Id);
-                info.AppId = obj.AppId ?? string.Empty;
+                info = SystemUserService.SelectObject(obj.Id);
 
-                //修改
-                result = SystemUserService.Update(info);
             }
             else
             {
@@ -74,24 +95,35 @@ namespace Site.WeiXin.Manager.Controllers
                 }
                 else
                 {
-                    obj.AppId = obj.AppId ?? string.Empty;
                     obj.CreateTime = DateTime.Now;
                     obj.CreateUserName = User.Identity.Name;
-                    obj.AccountState =(int)SiteEnum.AccountState.正常;
+                    obj.AccountState = (int)SiteEnum.AccountState.正常;
 
+                    info = obj;
                     if (!string.IsNullOrEmpty(obj.Password.Trim(' ')))
                     {
-                        obj.Password = UntityTool.Md5_32(obj.Password);
+                        info.Password = UntityTool.Md5_32(obj.Password);
                     }
                     else
                     {
                         return Json(UntityTool.JsonResult(false, "密码不能为空"));
                     }
-
-                    
-                    //新增
-                    result = SystemUserService.Insert(obj);
                 }
+            }
+
+            info.GongzhongAccountId = obj.GongzhongAccountId;
+            info.IsAdmin = obj.IsAdmin;
+
+
+            if (obj.Id > 0)
+            {
+                //修改
+                result = SystemUserService.Update(info);
+            }
+            else
+            {
+                //新增
+                result = SystemUserService.Insert(info);
             }
 
             if (obj.Id > 0)
@@ -162,14 +194,14 @@ namespace Site.WeiXin.Manager.Controllers
             return PartialView();
         }
 
-        public ActionResult ResetPwdEdit(int id,string pwd)
+        public ActionResult ResetPwdEdit(int id, string pwd)
         {
             int result = 0;
             if (id > 0)
             {
                 SystemUser info = SystemUserService.SelectObject(id);
                 info.Password = UntityTool.Md5_32(pwd);
-                
+
                 result = SystemUserService.Update(info);
             }
 
@@ -183,11 +215,146 @@ namespace Site.WeiXin.Manager.Controllers
             }
         }
 
+        #endregion
+
+        #region 客服管理
+
         public ActionResult CustomerList()
         {
-            ViewBag.name = User.Identity.Name;
-
+            ViewBag.title = "客服管理";
+            ViewBag.words = "功能待开发";
             return View("~/Views/Common/Test.cshtml");
+        } 
+
+        #endregion
+        
+        #region 公众号管理
+
+
+        public ActionResult AppList(string key, int? page)
+        {
+            GongzhongAccountSearchInfo search = new GongzhongAccountSearchInfo();
+            search.Name = HttpUtility.UrlDecode(key);
+
+            int pageSize = 15;
+            int rowCount;
+            int pageIndex = page == null ? 1 : page.Value;
+
+            IList<GongzhongAccount> list = GongzhongAccountService.SelectPage("*", search.OrderBy, search.ToWhereString(), pageIndex, pageSize, out rowCount);
+
+
+            ViewBag.list = list;
+            ViewBag.key = HttpUtility.UrlDecode(key);
+
+            ViewBag.pageIndex = pageIndex;
+            ViewBag.pageSize = pageSize;
+            ViewBag.rowCount = rowCount;
+
+            return View();
         }
+        public ActionResult AppEditView(string id)
+        {
+            GongzhongAccount obj = null;
+            if (!string.IsNullOrEmpty(id))
+            {
+                //修改
+                obj = GongzhongAccountService.SelectObject(int.Parse(id));
+            }
+            else
+            {
+                //新增
+                obj = new GongzhongAccount();
+            }
+
+            ViewBag.obj = obj;
+            return PartialView();
+        }
+
+        public ActionResult AppEdit(GongzhongAccount obj)
+        {
+            int result = 0;
+            GongzhongAccount info = null;
+            if (obj.Id > 0)
+            {
+                info = GongzhongAccountService.SelectObject(obj.Id);
+            }
+            else
+            {
+                IList<GongzhongAccount> gzList = GongzhongAccountService.Select(string.Format(" where AppID='{0}'", obj.AppID));
+                if (gzList.Count > 0)
+                {
+                    return Json(UntityTool.JsonResult(false, "已存在相同的AppId"));
+                }
+                else
+                {
+                    obj.CreateTime = DateTime.Now;
+                    obj.CreateUserAccount = User.Identity.Name;
+                    info = obj;
+                }
+            }
+
+            info.AppAccount = obj.AppAccount;
+            info.AppID = obj.AppID;
+            info.AppSecret = obj.AppSecret;
+            info.Name = obj.Name;
+            info.Intro = obj.Intro;
+
+
+            if (obj.Id > 0)
+            {
+                //修改
+                result = GongzhongAccountService.Update(info);
+            }
+            else
+            {
+                //新增
+                result = GongzhongAccountService.Insert(info);
+            }
+
+            if (obj.Id > 0)
+            {
+                if (result > 0)
+                {
+                    return Json(UntityTool.JsonResult(true, "修改成功"));
+                }
+                else
+                {
+                    return Json(UntityTool.JsonResult(true, "修改失败"));
+                }
+            }
+            else
+            {
+                if (result > 0)
+                {
+                    return Json(UntityTool.JsonResult(true, "新增成功"));
+                }
+                else
+                {
+                    return Json(UntityTool.JsonResult(true, "新增失败"));
+                }
+            }
+        }
+
+        public ActionResult AppDelete(string id)
+        {
+            int result = 0;
+            if (!string.IsNullOrEmpty(id))
+            {
+                result = GongzhongAccountService.Delete(id.ToInt32(0));
+            }
+
+            if (result > 0)
+            {
+                return Json(UntityTool.JsonResult(true, "删除成功"));
+            }
+            else
+            {
+                return Json(UntityTool.JsonResult(true, "删除失败"));
+            }
+        }
+
+
+        #endregion
+
     }
 }

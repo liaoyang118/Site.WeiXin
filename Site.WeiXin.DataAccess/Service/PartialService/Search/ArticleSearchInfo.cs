@@ -13,6 +13,8 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
         public string Title { get; set; }
         public int? Statu { get; set; }
 
+        public string AppID { get; set; }
+
 
 
         public string ToWhereString()
@@ -21,6 +23,11 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
             if (!string.IsNullOrEmpty(Title))
             {
                 where.Add(string.Format("Title like N'%{0}%'", Title));
+            }
+
+            if (!string.IsNullOrEmpty(AppID))
+            {
+                where.Add(string.Format("AppID = N'{0}'", AppID));
             }
 
             if (Statu != null)

@@ -8,20 +8,19 @@ using Site.WeiXin.DataAccess.Model;
 using Site.Untity;
 using Site.WeiXin.DataAccess.Service.PartialService.Search;
 using System.Web.Security;
-using Site.WeiXin.Manager.Common;
 
 namespace Site.WeiXin.Manager.Controllers
 {
     public class LoginController : Controller
     {
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
 
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public ActionResult Index(string username, string pwd)
         {
             SystemUserSearchInfo search = new SystemUserSearchInfo
@@ -42,6 +41,12 @@ namespace Site.WeiXin.Manager.Controllers
                     string md5Str = UntityTool.Md5_32(pwd);
                     if (md5Str == uInfo.Password)
                     {
+                        //保存用户app信息
+                        GongzhongAccount gzInfo = GongzhongAccountService.SelectObject(uInfo.GongzhongAccountId);
+                        uInfo.AppID = gzInfo.AppID;
+                        uInfo.AppSecret = gzInfo.AppSecret;
+                        uInfo.Name = gzInfo.Name;
+
                         HttpContextUntity.CurrentUser = uInfo;
                         string remenber = Request["remenber"] ?? string.Empty;
 

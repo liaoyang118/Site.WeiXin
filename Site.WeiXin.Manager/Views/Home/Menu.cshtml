@@ -173,7 +173,7 @@
                                             <td>@Html.Raw(item.Name)</td>
                                             <td>@item.Type</td>
                                             <td class="hidden-xs">@item.Value</td>
-                                            <td class="hidden-xs">@item.CreateTime.Value.ToString("yyyy/MM/dd HH:mm:ss")</td>
+                                            <td class="hidden-xs">@item.CreateTime.ToString("yyyy/MM/dd HH:mm:ss")</td>
                                             <td class="hidden-xs">
                                                 @{
                                                     if ((int)SiteEnum.MenuState.正常 == item.Status)

@@ -1,0 +1,308 @@
+﻿
+@{
+    ViewBag.Title = "公众号管理";
+    Layout = "~/Views/Shared/_Layout_Index.cshtml";
+}
+@using Site.WeiXin.DataAccess.Model;
+@using Site.Untity;
+@{
+
+    IList<GongzhongAccount> list = ViewBag.list;
+    string key = ViewBag.key;
+
+    int pageIndex = ViewBag.pageIndex;
+    int pageSize = ViewBag.pageSize;
+    int rowCount = ViewBag.rowCount;
+}
+
+@section css{
+    @Styles.Render("~/PageTemplate/style/template")
+    <link href="~/Content/bootstrapValidator.min.css" rel="stylesheet" />
+}
+
+@section scripts{
+    @Scripts.Render("~/PageTemplate/js/template")
+    <script src="~/Scripts/bootstrapValidator.min.js"></script>
+
+    <script type="text/javascript">
+        var currentId = "";
+        var editId = "";
+        $(function () {
+
+            $('#myModal').on('hidden.bs.modal', function (e) {
+                currentId = "";
+            });
+
+            $('#editModal').on('hidden.bs.modal', function (e) {
+                editId = "";
+                //移除表单数据
+                $(this).removeData();
+            });
+
+            $('#checkModal').on('hidden.bs.modal', function (e) {
+                currentId = "";
+            });
+
+
+
+            $('#btn_deleteEdit').on('click', function (e) {
+                btn_deleteEdit();
+            })
+
+            $("button[name='btn_check']").on('click', function (e) {
+                var status = $(this).attr("state");
+                btn_checkEdit(currentId, status);
+            })
+
+        })
+
+        function btn_delete(id) {
+            currentId = id;
+            $("#myModal").modal({
+                backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
+            })
+        }
+
+        function btn_check(id) {
+            currentId = id;
+            $("#checkModal").modal({
+                backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
+            })
+        }
+
+        function btn_edit(id) {
+            editId = id;
+            $("#editModal").modal({
+                remote: "/System/AppEditView?id=" + id,
+                backdrop: "static"//指定一个静态背景，当用户点击背景处，modal界面不会消失
+            })
+        }
+
+        function btn_deleteEdit() {
+            $.ShowLoading("删除中...");
+            //验证通过
+            $.ajax({
+                url: "/System/AppDelete",
+                type: "post",
+                dataType: "json",
+                data: {
+                    id: currentId
+                },
+                cache: false,
+                success: function (json) {
+                    $.HideLoading();
+                    if (json.success) {
+                        $.SuccessInfo(json.message.text, 1000);
+                        setTimeout(function () {
+                            top.location.reload();
+                        }, 1000);
+                    }
+                    else {
+                        $.WarningInfo(json.message.text);
+                    }
+                },
+                error: function (xhr, state, error) {
+                    $.HideLoading();
+
+                    $.ErrorInfo(error);
+                }
+            });
+
+            $('#myModal').modal('hide')
+        }
+
+        function btn_checkEdit(id, status) {
+            $.ShowLoading("审核中...");
+            //审核
+            $.ajax({
+                url: "/System/CheckSystemUser",
+                type: "post",
+                dataType: "json",
+                data: {
+                    id: id,
+                    status: status
+                },
+                cache: false,
+                success: function (json) {
+                    $.HideLoading();
+                    if (json.success) {
+                        $.SuccessInfo(json.message.text, 1000);
+                        setTimeout(function () {
+                            top.location.reload();
+                        }, 1000);
+                    }
+                    else {
+                        $.WarningInfo(json.message.text);
+                    }
+                },
+                error: function (xhr, state, error) {
+                    $.HideLoading();
+
+                    $.ErrorInfo(error);
+                }
+            });
+            $('#checkModal').modal('hide')
+        }
+
+        function btn_search() {
+            var _key = $("#title").val();
+            top.location.href = "/System/AppList?key=" + _key;
+        }
+        
+    </script>
+}
+
+<div class="page-head">
+    <h2 class="pull-left"><i class="icon-th-list"></i> 公众号管理 </h2>
+    <!-- Breadcrumb -->
+    <div class="bread-crumb pull-right">
+        <a href="index.html"><i class="icon-home"></i> 首页 </a>
+        <!-- Divider -->
+        <span class="divider">/</span>
+        <a href="#" class="bread-current">公众号管理</a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div class="matter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <div class="widget-head">
+                        <div class="pull-left form-inline">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="title" value="@key" placeholder="请输入账户">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-sm btn-default" onclick="btn_search()"><i class="icon-search"></i> 搜索</button>
+                            </div>
+                        </div>
+                        <div class="widget-icons pull-right">
+                            <button class="btn btn-sm btn-success" onclick="btn_edit('');"><i class="icon-plus"></i>新增</button>
+                            <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="wclose"><i class="icon-remove"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content referrer">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th class="hidden-xs">公众号名称</th>
+                                    <th class="hidden-xs">AppId</th>
+                                    <th class="hidden-xs">AppSecret</th>
+                                    <th class="hidden-xs">微信号</th>
+                                    <th style="width:130px;">创建时间</th>
+                                    <th class="hidden-xs" style="width:100px;">创建人</th>
+                                    <th style="width:120px;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    if (list != null && list.Count > 0)
+                                    {
+                                        int num = 1;
+                                        foreach (GongzhongAccount item in list)
+                                        {
+                                            <tr>
+                                                <td style="width:40px;">@num</td>
+                                                <td class="hidden-xs">@item.Name</td>
+                                                <td class="hidden-xs">@item.AppID</td>
+                                                <td class="hidden-xs">@item.AppSecret</td>
+                                                <td class="hidden-xs">@item.AppAccount</td>
+                                                <td>@item.CreateTime</td>
+                                                <td class="hidden-xs">@item.CreateUserAccount</td>
+                                                
+                                                <td>
+                                                    <button class="btn btn-xs btn-warning" onclick="btn_edit(@item.Id);"><i class="icon-pencil"></i></button>
+                                                    <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id')"><i class="icon-remove"></i></button>
+                                                </td>
+                                            </tr>
+                                            num++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="9">暂无任何数据</td></tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                        <div class="widget-foot">
+                            @Html.Raw(UntityTool.CreateListPage(pageSize, pageIndex, rowCount, string.Format("/System/AppList/{0}", key == "" ? "" : string.Format("?key={0}", HttpUtility.UrlEncode(key)))))
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+
+                    <!-- confirm 模态框（Modal） -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">
+                                        删除
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    删除后，将会导致本系统中后续的关注用户无法归属到该公众号上,请问确定要删除该信息吗？
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        取消
+                                    </button>
+                                    <button type="button" id="btn_deleteEdit" class="btn btn-primary">
+                                        确定
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 编辑 模态框（Modal） -->
+                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+
+                    </div>
+
+                    <!-- check 模态框（Modal） -->
+                    <div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-labelledby="checkModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" id="checkModalLabel">
+                                        审核
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    请问选择审核状态？
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        取消
+                                    </button>
+                                    <button type="button" name="btn_check" state="1" class="btn btn-danger">
+                                        不可用
+                                    </button>
+                                    <button type="button" name="btn_check" state="0" class="btn btn-success">
+                                        正常
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

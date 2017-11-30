@@ -156,6 +156,77 @@ namespace Site.WeiXin.DataAccess.Service
 		#endregion
 
     }
+	public partial class GongzhongAccountService
+    {
+
+        #region 01 GongzhongAccount_Insert
+		 public static int Insert(GongzhongAccount obj)
+		 {
+			using (var access = new GongzhongAccountAccess())
+            {
+                return access.Insert(obj);
+            }
+		 }
+		#endregion
+		
+		#region 02 GongzhongAccount_Delete
+		 public static int Delete(int id)
+		 {
+			using (var access = new GongzhongAccountAccess())
+			{
+				return access.Delete(id);
+			}
+		}
+		#endregion
+
+		#region 03 GongzhongAccount_Update
+		 public static int Update(GongzhongAccount obj)
+		 {
+			
+			using (var access = new GongzhongAccountAccess())
+			{
+				return access.Update(obj);
+			}
+		}
+		#endregion
+
+		#region 04 GongzhongAccount_SelectObject
+		 public static GongzhongAccount SelectObject(int id)
+		 {
+			
+			using (var access = new GongzhongAccountAccess())
+			{
+				return access.SelectObject(id);
+			}
+		}
+		#endregion
+
+		#region 05 GongzhongAccount_Select
+		/// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以where 开始</param>
+         /// <returns></returns>
+		 public static IList<GongzhongAccount> Select(string whereStr)
+		 {
+			using (var access = new GongzhongAccountAccess())
+			{
+				return access.Select(whereStr);
+			}
+		}
+		#endregion
+
+		#region 06 GongzhongAccount_SelectPage
+		 public static IList<GongzhongAccount> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			using (var access = new GongzhongAccountAccess())
+			{
+				return access.SelectPage(cloumns,order,whereStr,pageIndex,pageSize, out rowCount);
+			}
+		}
+		#endregion
+
+    }
 	public partial class GroupSendService
     {
 

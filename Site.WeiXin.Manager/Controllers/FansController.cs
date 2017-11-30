@@ -7,10 +7,11 @@ using Site.Untity;
 using Site.WeiXin.DataAccess.Model;
 using Site.WeiXin.DataAccess.Service;
 using Site.WeiXin.DataAccess.Service.PartialService.Search;
-using Site.WeiXin.Manager.Common;
+using Site.WeiXin.Manager.Filder;
 
 namespace Site.WeiXin.Manager.Controllers
 {
+    [Permission]
     public class FansController : Controller
     {
         #region 01 粉丝列表
@@ -18,6 +19,8 @@ namespace Site.WeiXin.Manager.Controllers
         {
             UserSearchInfo search = new UserSearchInfo();
             search.NickName = HttpUtility.UrlDecode(key);
+            search.AppID = HttpContextUntity.CurrentUser.AppID;
+
             int pageSize = 15;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
@@ -47,7 +50,7 @@ namespace Site.WeiXin.Manager.Controllers
             int count = 0;
             do
             {
-                isSuccess = WeiXinCommon.GetUserList(next_openid, out openIdList, out total, out count, out next_openid);
+                isSuccess = WeiXinCommon.GetUserList(next_openid, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, out openIdList, out total, out count, out next_openid);
                 if (isSuccess)
                 {
                     ids.AddRange(openIdList);
@@ -61,7 +64,7 @@ namespace Site.WeiXin.Manager.Controllers
             User info = null;
             foreach (string openId in ids)
             {
-                isSuccess = WeiXinCommon.GetUserInfo(openId, out wInfo);
+                isSuccess = WeiXinCommon.GetUserInfo(openId, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, out wInfo);
                 if (isSuccess)
                 {
                     info = new User();
@@ -80,6 +83,7 @@ namespace Site.WeiXin.Manager.Controllers
                     info.Province = wInfo.province;
                     info.Sex = wInfo.sex;
                     info.Unionid = wInfo.unionid ?? string.Empty;
+                    info.AppId = HttpContextUntity.CurrentUser.AppID;
 
                     result += UserService.Insert(info);
                 }
@@ -103,6 +107,8 @@ namespace Site.WeiXin.Manager.Controllers
         {
             UserTagSearchInfo search = new UserTagSearchInfo();
             search.TagName = HttpUtility.UrlDecode(key);
+            search.AppID = HttpContextUntity.CurrentUser.AppID;
+
             int pageSize = 15;
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
@@ -153,7 +159,7 @@ namespace Site.WeiXin.Manager.Controllers
                 UserTag info = UserTagService.SelectObject(obj.Id);
                 info.TagName = obj.TagName ?? string.Empty;
 
-                bool isSuccess = WeiXinCommon.EditMark(info.TagId, obj.TagName);
+                bool isSuccess = WeiXinCommon.EditMark(info.TagId, obj.TagName, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret);
                 if (isSuccess)
                 {
                     //修改
@@ -169,8 +175,10 @@ namespace Site.WeiXin.Manager.Controllers
 
                 obj.CreateTime = DateTime.Now;
                 obj.CreateUserAccount = HttpContextUntity.CurrentUser.Account;
+                obj.AppId = HttpContextUntity.CurrentUser.AppID;
+
                 string tagId;
-                bool isSuccess = WeiXinCommon.AddMark(obj.TagName, out tagId);
+                bool isSuccess = WeiXinCommon.AddMark(obj.TagName, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret, out tagId);
 
                 if (isSuccess)
                 {
@@ -210,7 +218,7 @@ namespace Site.WeiXin.Manager.Controllers
             if (!string.IsNullOrEmpty(id))
             {
                 UserTag info = UserTagService.SelectObject(int.Parse(id));
-                bool isSuccess = WeiXinCommon.DeleteMark(info.TagId);
+                bool isSuccess = WeiXinCommon.DeleteMark(info.TagId, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret);
                 if (isSuccess)
                 {
                     result = UserTagService.Delete(int.Parse(id));
@@ -260,7 +268,7 @@ namespace Site.WeiXin.Manager.Controllers
         public ActionResult DeleteUserMark(string openIds, string tagId, string id)
         {
             List<string> ids = openIds.Split(new string[] { ",", "，" }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            bool isSuccess = WeiXinCommon.DeleteBatchUserMark(ids, tagId);
+            bool isSuccess = WeiXinCommon.DeleteBatchUserMark(ids, tagId, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret);
 
             if (isSuccess)
             {
@@ -289,6 +297,8 @@ namespace Site.WeiXin.Manager.Controllers
         {
             UserTagSearchInfo search = new UserTagSearchInfo();
             search.TagName = HttpUtility.UrlDecode(key);
+            search.AppID = HttpContextUntity.CurrentUser.AppID;
+
             int rowCount;
             int pageIndex = Request["pageIndex"].ToInt32(1);
             int pageSize = Request["pageSize"].ToInt32(15);
@@ -308,7 +318,7 @@ namespace Site.WeiXin.Manager.Controllers
         public ActionResult MarkGroupEdit(string openIds, string tagId)
         {
             List<string> ids = openIds.Split(new string[] { ",", "，" }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            bool isSuccess = WeiXinCommon.BatchUserMark(ids, tagId);
+            bool isSuccess = WeiXinCommon.BatchUserMark(ids, tagId, HttpContextUntity.CurrentUser.AppID, HttpContextUntity.CurrentUser.AppSecret);
 
             if (isSuccess)
             {

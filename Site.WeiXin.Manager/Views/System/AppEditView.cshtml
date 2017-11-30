@@ -1,0 +1,162 @@
+﻿@using Site.WeiXin.DataAccess.Model;
+@using Site.Untity;
+@{
+    GongzhongAccount obj = ViewBag.obj;
+}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+            </button>
+            <h4 class="modal-title" id="editModalLabel">@(obj.Id > 0 ? "修改用户" : "新增用户")</h4>
+        </div>
+        <div class="modal-body">
+            <div class="widget-content">
+                <div class="tabbable" style="margin-bottom: 18px;">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">基本信息</a></li>
+                    </ul>
+                    <div class="tab-content" style="padding-bottom: 9px;">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="padd">
+                                <div class="form quick-post">
+                                    <!-- Edit profile form (not working)-->
+                                    <form class="form-horizontal" enctype="multipart/form-data" id="forms_edit" action="/System/AppEdit" method="post">
+                                        <!-- 名称 -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="Name">公众号名称</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" name="Name" class="form-control" id="Name" value="@obj.Name">
+                                            </div>
+                                        </div>
+                                        <!-- Intro -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="Intro">简介</label>
+                                            <div class="col-lg-9">
+                                                <textarea class="form-control" rows="5" name="Intro" id="Intro">@obj.Intro</textarea>
+                                            </div>
+                                        </div>
+                                        <!-- AppId -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="AppId">AppID</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" name="AppId" class="form-control" id="AppId" value="@obj.AppID">
+                                            </div>
+                                        </div>
+                                        <!-- AppSecret -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="AppSecret">AppSecret</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" name="AppSecret" class="form-control" id="AppSecret" value="@obj.AppSecret">
+                                            </div>
+                                        </div>
+                                        <!-- 账户 -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="AppAccount">微信号</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" name="AppAccount" class="form-control" id="AppAccount" value="@obj.AppAccount">
+                                            </div>
+                                        </div>
+                                      
+                                        <input type="hidden" name="id" value="@obj.Id" />
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                取消
+            </button>
+            <button type="button" onclick="btn_EditSubmit();" class="btn btn-primary">
+                确定
+            </button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(function () {
+        //设置校验规则
+        $('form').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                Name: {
+                    validators: {
+                        notEmpty: {
+                            message: '公众号名称不能为空'
+                        }
+                    }
+                },
+                AppId: {
+                    validators: {
+                        notEmpty: {
+                            message: '公众号AppId不能为空'
+                        }
+                    }
+                },
+                AppSecret: {
+                    validators: {
+                        notEmpty: {
+                            message: '公众号AppSecret不能为空'
+                        }
+                    }
+                },
+                AppAccount: {
+                    validators: {
+                        notEmpty: {
+                            message: '微信号不能为空'
+                        }
+                    }
+                }
+            }
+        });
+
+    });
+
+    function btn_EditSubmit() {
+        var valiForm = $('#forms_edit').data('bootstrapValidator');
+        valiForm.validate();
+        //验证通过
+        if (valiForm.isValid()) {
+            $.ShowLoading("提交中...");
+            //jquery.form 插件
+            $("#forms_edit").ajaxSubmit({
+                //定义返回JSON数据，还包括xml和script格式,必须指定表单的action和method
+                dataType: 'json',
+                success: function (json) {
+                    $.HideLoading();
+                    if (json.success) {
+                        $.SuccessInfo(json.message.text, 1000);
+                        setTimeout(function () {
+                            top.location.reload();
+                        }, 1000);
+                    }
+                    else {
+                        $.WarningInfo(json.message.text, 1000);
+                    }
+                },
+                error: function (xhr, xhrText, error) {
+                    $.HideLoading();
+                    $.ErrorInfo(error);
+                }
+            });
+        }
+
+    }
+
+</script>

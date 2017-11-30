@@ -7,7 +7,7 @@ using Site.WeiXin.DataAccess.Model;
 using Site.WeiXin.DataAccess.Service;
 using Site.WeiXin.DataAccess.Service.PartialService.Search;
 
-namespace Site.WeiXin.Manager.Common
+namespace Site.Untity
 {
     public class HttpContextUntity
     {
@@ -37,7 +37,15 @@ namespace Site.WeiXin.Manager.Common
                             AccountState = (int)SiteEnum.AccountState.正常
                         };
                         IList<SystemUser> list = SystemUserService.Select(search.ToWhereString());
-                        return list.FirstOrDefault();
+                        SystemUser sInfo = list.FirstOrDefault();
+                        if (sInfo != null)
+                        {
+                            GongzhongAccount gzInfo = GongzhongAccountService.SelectObject(sInfo.GongzhongAccountId);
+                            sInfo.AppID = gzInfo.AppID;
+                            sInfo.AppSecret = gzInfo.AppSecret;
+                            sInfo.Name = gzInfo.Name;
+                        }
+                        return sInfo;
                     }
                     return null;
                 }

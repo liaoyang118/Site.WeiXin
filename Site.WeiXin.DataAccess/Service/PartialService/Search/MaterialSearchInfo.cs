@@ -12,7 +12,7 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
 
         public string MaterialName { get; set; }
         public string MaterialType { get; set; }
-
+        public string AppID { get; set; }
 
 
         public string ToWhereString()
@@ -21,6 +21,10 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
             if (!string.IsNullOrEmpty(MaterialName))
             {
                 where.Add(string.Format("MaterialName like N'%{0}%'", MaterialName));
+            }
+            if (!string.IsNullOrEmpty(AppID))
+            {
+                where.Add(string.Format("AppID = N'{0}'", AppID));
             }
 
             if (!string.IsNullOrEmpty(MaterialType))

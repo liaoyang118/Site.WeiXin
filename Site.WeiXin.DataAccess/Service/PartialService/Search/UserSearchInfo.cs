@@ -13,7 +13,7 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
         public string NickName { get; set; }
         public bool? IsSubscribe { get; set; }
 
-
+        public string AppID { get; set; }
 
         public string ToWhereString()
         {
@@ -22,6 +22,12 @@ namespace Site.WeiXin.DataAccess.Service.PartialService.Search
             {
                 where.Add(string.Format("NickName like N'%{0}%'", NickName));
             }
+
+            if (!string.IsNullOrEmpty(AppID))
+            {
+                where.Add(string.Format("AppID = N'{0}'", AppID));
+            }
+
             if (IsSubscribe != null)
             {
                 where.Add(string.Format("IsSubscribe = {0}", IsSubscribe == true ? 1 : 0));

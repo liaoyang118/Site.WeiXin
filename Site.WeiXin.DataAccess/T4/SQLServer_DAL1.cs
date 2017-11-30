@@ -81,6 +81,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@CoverSrc", DbType.String,obj.CoverSrc);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 			db.AddInParameter(dbCmd, "@Statu", DbType.Int32,obj.Statu);
 						try
 			{ 
@@ -130,6 +131,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@CoverSrc", DbType.String,obj.CoverSrc);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 			db.AddInParameter(dbCmd, "@Statu", DbType.Int32,obj.Statu);
 			
 			try
@@ -257,6 +259,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.CoverSrc = reader["CoverSrc"] == DBNull.Value ? default(string) : (string)reader["CoverSrc"];
 				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
 				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
+				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
 				obj.Statu = reader["Statu"] == DBNull.Value ? default(int) : (int)reader["Statu"];
 				
             }
@@ -509,6 +512,253 @@ namespace Site.WeiXin.DataAccess.Access
 
     }
 	[Serializable]
+	public partial class GongzhongAccountAccess : AccessBase<GongzhongAccount>,IDisposable
+    {
+
+		Database db;
+
+		DatabaseProviderFactory factory = new DatabaseProviderFactory();//6.0 创建方式
+
+        #region 00 IDisposable 实现
+        public GongzhongAccountAccess(string configName)
+        {
+			db = factory.Create(configName);
+        }
+
+        public GongzhongAccountAccess()
+        {
+            db = factory.Create("wxmanager");
+        }
+
+        //虚拟Idisposable 实现,手动调用的
+        public void Dispose()
+        {
+            //调用方法，释放资源
+            Dispose(true);
+            //通知GC，已经手动调用，不用调用析构函数了
+            System.GC.SuppressFinalize(this);
+        }
+
+        //重载方法，满足不同的调用，清理干净资源，提升性能
+        /// <summary>
+        /// true --手动调用，清理托管资源
+        /// false--GC 调用，把非托管资源一起清理掉
+        /// </summary>
+        /// <param name="isDispose"></param>
+        protected virtual void Dispose(bool isDispose)
+        {
+            if (isDispose)
+            {
+
+            }
+            //清理非托管资源，此处没有，所以直接ruturn
+            return;
+        }
+
+        //析构函数，供GC 调用
+        ~GongzhongAccountAccess()
+        {
+            Dispose(false);
+        }
+        #endregion
+
+
+        #region 01 Proc_GongzhongAccount_Insert
+		 public override int Insert(GongzhongAccount obj)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GongzhongAccount_Insert");
+			db.AddOutParameter(dbCmd, "@Id", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@AppID", DbType.String,obj.AppID);
+			db.AddInParameter(dbCmd, "@AppSecret", DbType.String,obj.AppSecret);
+			db.AddInParameter(dbCmd, "@AppAccount", DbType.String,obj.AppAccount);
+			db.AddInParameter(dbCmd, "@Name", DbType.String,obj.Name);
+			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+						try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				//int Id = (int)dbCmd.Parameters["@Id"].Value;
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+		
+		#region 02 Proc_GongzhongAccount_Delete
+		 public override int Delete(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GongzhongAccount_DeleteById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 03 Proc_GongzhongAccount_Update
+		 public override int Update(GongzhongAccount obj)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GongzhongAccount_UpdateById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
+			db.AddInParameter(dbCmd, "@AppID", DbType.String,obj.AppID);
+			db.AddInParameter(dbCmd, "@AppSecret", DbType.String,obj.AppSecret);
+			db.AddInParameter(dbCmd, "@AppAccount", DbType.String,obj.AppAccount);
+			db.AddInParameter(dbCmd, "@Name", DbType.String,obj.Name);
+			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
+			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			
+			try
+			{ 
+				int returnValue = db.ExecuteNonQuery(dbCmd);
+				return returnValue;
+			}
+			catch(Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+		#endregion
+
+		#region 04 Proc_GongzhongAccount_SelectObject
+		 public override GongzhongAccount SelectObject(int id)
+		 {
+			
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GongzhongAccount_SelectById");
+			db.AddInParameter(dbCmd, "@Id", DbType.Int32,id);
+			
+			GongzhongAccount obj=null;
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						obj=Object2Model(reader);
+					}
+                }
+				return obj;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 05 Proc_GongzhongAccount_Select
+		 /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="whereStr">以 空格 and开始</param>
+         /// <returns></returns>
+		 public override IList<GongzhongAccount> Select(string whereStr)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GongzhongAccount_SelectList");
+			db.AddInParameter(dbCmd, "@whereStr", DbType.String,whereStr);
+			
+			IList<GongzhongAccount> list= new List<GongzhongAccount>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						GongzhongAccount obj= Object2Model(reader);
+						list.Add(obj);
+					}
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+		#region 06 Proc_GongzhongAccount_SelectPage
+		 public override IList<GongzhongAccount> SelectPage(string cloumns, string order, string whereStr, int pageIndex, int pageSize, out int rowCount)
+		 {
+			DbCommand dbCmd = db.GetStoredProcCommand("Proc_GongzhongAccount_SelectPage");
+			db.AddOutParameter(dbCmd, "@rowCount", DbType.Int32,4);
+			db.AddInParameter(dbCmd, "@cloumns", DbType.String,cloumns);
+			db.AddInParameter(dbCmd, "@pageIndex", DbType.Int32,pageIndex);
+			db.AddInParameter(dbCmd, "@pageSize", DbType.Int32,pageSize);
+			db.AddInParameter(dbCmd, "@orderBy", DbType.String,order);
+			db.AddInParameter(dbCmd, "@where", DbType.String,whereStr);
+
+			List<GongzhongAccount> list= new List<GongzhongAccount>();
+			try
+            {
+               using(IDataReader reader = db.ExecuteReader(dbCmd))
+               {
+					while (reader.Read())
+					{
+						//属性赋值
+						GongzhongAccount obj= Object2Model(reader);
+						list.Add(obj);
+					}
+					reader.NextResult();
+					rowCount = (int)dbCmd.Parameters["@rowCount"].Value;
+                }
+				return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+		}
+		#endregion
+
+
+		#region Object2Model
+
+        public GongzhongAccount Object2Model(IDataReader reader)
+        {
+            GongzhongAccount obj = null;
+            try
+            {
+                obj = new GongzhongAccount();
+				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
+				obj.AppID = reader["AppID"] == DBNull.Value ? default(string) : (string)reader["AppID"];
+				obj.AppSecret = reader["AppSecret"] == DBNull.Value ? default(string) : (string)reader["AppSecret"];
+				obj.AppAccount = reader["AppAccount"] == DBNull.Value ? default(string) : (string)reader["AppAccount"];
+				obj.Name = reader["Name"] == DBNull.Value ? default(string) : (string)reader["Name"];
+				obj.Intro = reader["Intro"] == DBNull.Value ? default(string) : (string)reader["Intro"];
+				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
+				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
+				
+            }
+            catch(Exception ex)
+            {
+                obj = null;
+            }
+            return obj;
+        }
+
+
+
+        #endregion
+
+
+    }
+	[Serializable]
 	public partial class GroupSendAccess : AccessBase<GroupSend>,IDisposable
     {
 
@@ -576,6 +826,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@Msg_id", DbType.String,obj.Msg_id);
 			db.AddInParameter(dbCmd, "@Msg_data_id", DbType.String,obj.Msg_data_id);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -625,6 +876,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@Msg_id", DbType.String,obj.Msg_id);
 			db.AddInParameter(dbCmd, "@Msg_data_id", DbType.String,obj.Msg_data_id);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 			
 			try
 			{ 
@@ -752,6 +1004,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
 				obj.Msg_id = reader["Msg_id"] == DBNull.Value ? default(string) : (string)reader["Msg_id"];
 				obj.Msg_data_id = reader["Msg_data_id"] == DBNull.Value ? default(string) : (string)reader["Msg_data_id"];
+				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
 				
             }
             catch(Exception ex)
@@ -831,6 +1084,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@Statu", DbType.Int32,obj.Statu);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -876,6 +1130,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@Statu", DbType.Int32,obj.Statu);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 			
 			try
 			{ 
@@ -999,6 +1254,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.Statu = reader["Statu"] == DBNull.Value ? default(int) : (int)reader["Statu"];
 				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
 				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
+				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
 				
             }
             catch(Exception ex)
@@ -1079,6 +1335,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
 			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
 			db.AddInParameter(dbCmd, "@Expire", DbType.String,obj.Expire);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -1125,6 +1382,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
 			db.AddInParameter(dbCmd, "@Intro", DbType.String,obj.Intro);
 			db.AddInParameter(dbCmd, "@Expire", DbType.String,obj.Expire);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 			
 			try
 			{ 
@@ -1249,6 +1507,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
 				obj.Intro = reader["Intro"] == DBNull.Value ? default(string) : (string)reader["Intro"];
 				obj.Expire = reader["Expire"] == DBNull.Value ? default(string) : (string)reader["Expire"];
+				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
 				
             }
             catch(Exception ex)
@@ -1327,6 +1586,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@Value", DbType.String,obj.Value);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@LevelCode", DbType.String,obj.LevelCode);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 			db.AddInParameter(dbCmd, "@Status", DbType.Int32,obj.Status);
 						try
 			{ 
@@ -1372,6 +1632,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@Value", DbType.String,obj.Value);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@LevelCode", DbType.String,obj.LevelCode);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 			db.AddInParameter(dbCmd, "@Status", DbType.Int32,obj.Status);
 			
 			try
@@ -1495,6 +1756,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.Value = reader["Value"] == DBNull.Value ? default(string) : (string)reader["Value"];
 				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
 				obj.LevelCode = reader["LevelCode"] == DBNull.Value ? default(string) : (string)reader["LevelCode"];
+				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
 				obj.Status = reader["Status"] == DBNull.Value ? default(int) : (int)reader["Status"];
 				
             }
@@ -1800,12 +2062,13 @@ namespace Site.WeiXin.DataAccess.Access
 		 {
 			DbCommand dbCmd = db.GetStoredProcCommand("Proc_SystemUser_Insert");
 			db.AddOutParameter(dbCmd, "@Id", DbType.Int32,4);
-			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
+			db.AddInParameter(dbCmd, "@GongzhongAccountId", DbType.Int32,obj.GongzhongAccountId);
 			db.AddInParameter(dbCmd, "@Account", DbType.String,obj.Account);
 			db.AddInParameter(dbCmd, "@Password", DbType.String,obj.Password);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@CreateUserName", DbType.String,obj.CreateUserName);
 			db.AddInParameter(dbCmd, "@AccountState", DbType.Int32,obj.AccountState);
+			db.AddInParameter(dbCmd, "@IsAdmin", DbType.Boolean,obj.IsAdmin);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -1844,12 +2107,13 @@ namespace Site.WeiXin.DataAccess.Access
 			
 			DbCommand dbCmd = db.GetStoredProcCommand("Proc_SystemUser_UpdateById");
 			db.AddInParameter(dbCmd, "@Id", DbType.Int32,obj.Id);
-			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
+			db.AddInParameter(dbCmd, "@GongzhongAccountId", DbType.Int32,obj.GongzhongAccountId);
 			db.AddInParameter(dbCmd, "@Account", DbType.String,obj.Account);
 			db.AddInParameter(dbCmd, "@Password", DbType.String,obj.Password);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@CreateUserName", DbType.String,obj.CreateUserName);
 			db.AddInParameter(dbCmd, "@AccountState", DbType.Int32,obj.AccountState);
+			db.AddInParameter(dbCmd, "@IsAdmin", DbType.Boolean,obj.IsAdmin);
 			
 			try
 			{ 
@@ -1966,12 +2230,13 @@ namespace Site.WeiXin.DataAccess.Access
             {
                 obj = new SystemUser();
 				obj.Id = reader["Id"] == DBNull.Value ? default(int) : (int)reader["Id"];
-				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
+				obj.GongzhongAccountId = reader["GongzhongAccountId"] == DBNull.Value ? default(int) : (int)reader["GongzhongAccountId"];
 				obj.Account = reader["Account"] == DBNull.Value ? default(string) : (string)reader["Account"];
 				obj.Password = reader["Password"] == DBNull.Value ? default(string) : (string)reader["Password"];
 				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
 				obj.CreateUserName = reader["CreateUserName"] == DBNull.Value ? default(string) : (string)reader["CreateUserName"];
 				obj.AccountState = reader["AccountState"] == DBNull.Value ? default(int) : (int)reader["AccountState"];
+				obj.IsAdmin = reader["IsAdmin"] == DBNull.Value ? default(bool) : (bool)reader["IsAdmin"];
 				
             }
             catch(Exception ex)
@@ -2056,6 +2321,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@Unionid", DbType.String,obj.Unionid);
 			db.AddInParameter(dbCmd, "@IsSubscribe", DbType.Boolean,obj.IsSubscribe);
 			db.AddInParameter(dbCmd, "@UnSubscribe_Time", DbType.DateTime,obj.UnSubscribe_Time);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -2106,6 +2372,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@Unionid", DbType.String,obj.Unionid);
 			db.AddInParameter(dbCmd, "@IsSubscribe", DbType.Boolean,obj.IsSubscribe);
 			db.AddInParameter(dbCmd, "@UnSubscribe_Time", DbType.DateTime,obj.UnSubscribe_Time);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 			
 			try
 			{ 
@@ -2234,6 +2501,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.Unionid = reader["Unionid"] == DBNull.Value ? default(string) : (string)reader["Unionid"];
 				obj.IsSubscribe = reader["IsSubscribe"] == DBNull.Value ? default(bool) : (bool)reader["IsSubscribe"];
 				obj.UnSubscribe_Time = reader["UnSubscribe_Time"] == DBNull.Value ? default(DateTime) : (DateTime)reader["UnSubscribe_Time"];
+				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
 				
             }
             catch(Exception ex)
@@ -2547,6 +2815,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@MsgId", DbType.String,obj.MsgId);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@ContentValue", DbType.String,obj.ContentValue);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -2591,6 +2860,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@MsgId", DbType.String,obj.MsgId);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
 			db.AddInParameter(dbCmd, "@ContentValue", DbType.String,obj.ContentValue);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 			
 			try
 			{ 
@@ -2713,6 +2983,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.MsgId = reader["MsgId"] == DBNull.Value ? default(string) : (string)reader["MsgId"];
 				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
 				obj.ContentValue = reader["ContentValue"] == DBNull.Value ? default(string) : (string)reader["ContentValue"];
+				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
 				
             }
             catch(Exception ex)
@@ -2789,6 +3060,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@TagId", DbType.String,obj.TagId);
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -2831,6 +3103,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@TagId", DbType.String,obj.TagId);
 			db.AddInParameter(dbCmd, "@CreateUserAccount", DbType.String,obj.CreateUserAccount);
 			db.AddInParameter(dbCmd, "@CreateTime", DbType.DateTime,obj.CreateTime);
+			db.AddInParameter(dbCmd, "@AppId", DbType.String,obj.AppId);
 			
 			try
 			{ 
@@ -2951,6 +3224,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.TagId = reader["TagId"] == DBNull.Value ? default(string) : (string)reader["TagId"];
 				obj.CreateUserAccount = reader["CreateUserAccount"] == DBNull.Value ? default(string) : (string)reader["CreateUserAccount"];
 				obj.CreateTime = reader["CreateTime"] == DBNull.Value ? default(DateTime) : (DateTime)reader["CreateTime"];
+				obj.AppId = reader["AppId"] == DBNull.Value ? default(string) : (string)reader["AppId"];
 				
             }
             catch(Exception ex)

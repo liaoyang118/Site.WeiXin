@@ -28,7 +28,7 @@ namespace Site.BT.Filder
         {
             //为了控制绑定页面需要身份验证后才能访问，和防止死循环，此处做用户信息加载判断
             //if (((BaseController)filterContext.Controller).CurrentUser == null)
-            if (HttpContextUntity.CurrentUser == null)
+            if (Site.BT.Manager.Common.HttpContextUntity.CurrentUser == null)
             {
                 //snsapi_base 静默授权 如果用户未关注，只能获取 openid
                 //snsapi_userinfo 授权页面 如果用户未关注，确认后也可以获取到openid和access_token，并通过接口拿到用户基本信息
@@ -107,13 +107,13 @@ namespace Site.BT.Filder
                                 uInfo.openid = uObj.HeadImg;
                                 uInfo.privilege = null;
                                 uInfo.province = uObj.Province;
-                                uInfo.sex = uObj.Sex.Value;
+                                uInfo.sex = uObj.Sex;
                                 uInfo.unionid = uObj.Unionid;
                             }
                         }
                         //加载微信用户信息
                         //((BaseController)filterContext.Controller).CurrentUser = uInfo;
-                        HttpContextUntity.CurrentUser = uInfo;
+                        Site.BT.Manager.Common.HttpContextUntity.CurrentUser = uInfo;
 
                         if (IsLogin)
                         {

@@ -547,8 +547,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Common\HttpContextUntity.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\FansController.cs" />
     <Compile Include="Controllers\GroupSendController.cs" />
@@ -556,6 +557,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReplyController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
+    <Compile Include="Filder\PermissionAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -623,6 +625,8 @@
     <Content Include="Views\GroupSend\UserListView.cshtml" />
     <Content Include="Views\GroupSend\TagListView.cshtml" />
     <Content Include="Views\GroupSend\GroupSendMaterialContent.cshtml" />
+    <Content Include="Views\System\AppList.cshtml" />
+    <Content Include="Views\System\AppEditView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

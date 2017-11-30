@@ -199,6 +199,8 @@
                                 <tr>
                                     <th>编号</th>
                                     <th class="hidden-xs">AppId</th>
+                                    <th class="hidden-xs">AppSecret</th>
+                                    <th class="hidden-xs">公众号</th>
                                     <th>账户</th>
                                     <th style="width:130px;">创建时间</th>
                                     <th class="hidden-xs" style="width:100px;">创建人</th>
@@ -215,7 +217,9 @@
                                         {
                                             <tr>
                                                 <td style="width:40px;">@num</td>
-                                                <td class="hidden-xs">@item.AppId</td>
+                                                <td class="hidden-xs">@item.AppID</td>
+                                                <td class="hidden-xs">@item.AppSecret</td>
+                                                <td class="hidden-xs">@item.Name</td>
                                                 <td>@item.Account</td>
                                                 <td>@item.CreateTime</td>
                                                 <td class="hidden-xs">@item.CreateUserName</td>
@@ -238,13 +242,13 @@
                                                     <button class="btn btn-xs btn-default" onclick="btn_reset('@item.Id')"><i class="icon-refresh"></i></button>
                                                 </td>
                                             </tr>
-                                                                num++;
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            <tr><td colspan="7">暂无任何数据</td></tr>
-                                                        }
+                                            num++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr><td colspan="9">暂无任何数据</td></tr>
+                                    }
                                 }
                             </tbody>
                         </table>

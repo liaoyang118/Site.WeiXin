@@ -15,9 +15,10 @@ namespace Site.WeiXin.DataAccess.Access
         /// 递归查询菜单
         /// </summary>
         /// <returns></returns>
-        public IList<Menu> SelectMenuList()
+        public IList<Menu> SelectMenuList(string appId)
         {
             DbCommand dbCmd = db.GetStoredProcCommand("Proc_Menu_SelectMenuList");
+            db.AddInParameter(dbCmd, "@AppId", DbType.String, appId);
 
             IList<Menu> list = new List<Menu>();
             try
@@ -45,7 +46,7 @@ namespace Site.WeiXin.DataAccess.Access
         /// <param name="id"></param>
         /// <param name="parentId"></param>
         /// <returns></returns>
-        public int DeleteByParentId(int id,int parentId)
+        public int DeleteByParentId(int id, int parentId)
         {
 
             DbCommand dbCmd = db.GetStoredProcCommand("Proc_Menu_DeleteByParentId");

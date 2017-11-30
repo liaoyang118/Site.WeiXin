@@ -167,6 +167,20 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region AppId
+		private string _AppId;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string AppId 
+		{ 
+			get { return _AppId; } 
+			set { _AppId = value; } 
+		
+		}
+		#endregion
+		
 		#region Statu
 		private int _Statu;
        
@@ -238,6 +252,123 @@ namespace Site.WeiXin.DataAccess.Model
 		{ 
 			get { return _ExpireTime; } 
 			set { _ExpireTime = value; } 
+		
+		}
+		#endregion
+		
+    }
+	[Serializable]
+	public partial class GongzhongAccount
+    {
+        
+		#region Id
+		private int _Id;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int Id 
+		{ 
+			get { return _Id; } 
+			set { _Id = value; } 
+		
+		}
+		#endregion
+		
+		#region AppID
+		private string _AppID;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string AppID 
+		{ 
+			get { return _AppID; } 
+			set { _AppID = value; } 
+		
+		}
+		#endregion
+		
+		#region AppSecret
+		private string _AppSecret;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string AppSecret 
+		{ 
+			get { return _AppSecret; } 
+			set { _AppSecret = value; } 
+		
+		}
+		#endregion
+		
+		#region AppAccount
+		private string _AppAccount;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string AppAccount 
+		{ 
+			get { return _AppAccount; } 
+			set { _AppAccount = value; } 
+		
+		}
+		#endregion
+		
+		#region Name
+		private string _Name;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string Name 
+		{ 
+			get { return _Name; } 
+			set { _Name = value; } 
+		
+		}
+		#endregion
+		
+		#region Intro
+		private string _Intro;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string Intro 
+		{ 
+			get { return _Intro; } 
+			set { _Intro = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateUserAccount
+		private string _CreateUserAccount;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string CreateUserAccount 
+		{ 
+			get { return _CreateUserAccount; } 
+			set { _CreateUserAccount = value; } 
+		
+		}
+		#endregion
+		
+		#region CreateTime
+		private DateTime _CreateTime;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public DateTime CreateTime 
+		{ 
+			get { return _CreateTime; } 
+			set { _CreateTime = value; } 
 		
 		}
 		#endregion
@@ -415,6 +546,20 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region AppId
+		private string _AppId;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string AppId 
+		{ 
+			get { return _AppId; } 
+			set { _AppId = value; } 
+		
+		}
+		#endregion
+		
     }
 	[Serializable]
 	public partial class KeyWordsReply
@@ -528,6 +673,20 @@ namespace Site.WeiXin.DataAccess.Model
 		{ 
 			get { return _CreateUserAccount; } 
 			set { _CreateUserAccount = value; } 
+		
+		}
+		#endregion
+		
+		#region AppId
+		private string _AppId;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string AppId 
+		{ 
+			get { return _AppId; } 
+			set { _AppId = value; } 
 		
 		}
 		#endregion
@@ -663,6 +822,20 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region AppId
+		private string _AppId;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string AppId 
+		{ 
+			get { return _AppId; } 
+			set { _AppId = value; } 
+		
+		}
+		#endregion
+		
     }
 	[Serializable]
 	public partial class Menu
@@ -683,12 +856,12 @@ namespace Site.WeiXin.DataAccess.Model
 		#endregion
 		
 		#region ParentId
-		private int? _ParentId;
+		private int _ParentId;
        
         /// <summary>
         /// 
         /// </summary>        
-        public int? ParentId 
+        public int ParentId 
 		{ 
 			get { return _ParentId; } 
 			set { _ParentId = value; } 
@@ -739,12 +912,12 @@ namespace Site.WeiXin.DataAccess.Model
 		#endregion
 		
 		#region CreateTime
-		private DateTime? _CreateTime;
+		private DateTime _CreateTime;
        
         /// <summary>
         /// 
         /// </summary>        
-        public DateTime? CreateTime 
+        public DateTime CreateTime 
 		{ 
 			get { return _CreateTime; } 
 			set { _CreateTime = value; } 
@@ -766,13 +939,27 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
-		#region Status
-		private int? _Status;
+		#region AppId
+		private string _AppId;
        
         /// <summary>
         /// 
         /// </summary>        
-        public int? Status 
+        public string AppId 
+		{ 
+			get { return _AppId; } 
+			set { _AppId = value; } 
+		
+		}
+		#endregion
+		
+		#region Status
+		private int _Status;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public int Status 
 		{ 
 			get { return _Status; } 
 			set { _Status = value; } 
@@ -846,16 +1033,16 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
-		#region AppId
-		private string _AppId;
+		#region GongzhongAccountId
+		private int _GongzhongAccountId;
        
         /// <summary>
         /// 
         /// </summary>        
-        public string AppId 
+        public int GongzhongAccountId 
 		{ 
-			get { return _AppId; } 
-			set { _AppId = value; } 
+			get { return _GongzhongAccountId; } 
+			set { _GongzhongAccountId = value; } 
 		
 		}
 		#endregion
@@ -889,12 +1076,12 @@ namespace Site.WeiXin.DataAccess.Model
 		#endregion
 		
 		#region CreateTime
-		private DateTime? _CreateTime;
+		private DateTime _CreateTime;
        
         /// <summary>
         /// 
         /// </summary>        
-        public DateTime? CreateTime 
+        public DateTime CreateTime 
 		{ 
 			get { return _CreateTime; } 
 			set { _CreateTime = value; } 
@@ -917,15 +1104,29 @@ namespace Site.WeiXin.DataAccess.Model
 		#endregion
 		
 		#region AccountState
-		private int? _AccountState;
+		private int _AccountState;
        
         /// <summary>
         /// 0 正常 1 不可用
         /// </summary>        
-        public int? AccountState 
+        public int AccountState 
 		{ 
 			get { return _AccountState; } 
 			set { _AccountState = value; } 
+		
+		}
+		#endregion
+		
+		#region IsAdmin
+		private bool _IsAdmin;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public bool IsAdmin 
+		{ 
+			get { return _IsAdmin; } 
+			set { _IsAdmin = value; } 
 		
 		}
 		#endregion
@@ -1117,6 +1318,20 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region AppId
+		private string _AppId;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string AppId 
+		{ 
+			get { return _AppId; } 
+			set { _AppId = value; } 
+		
+		}
+		#endregion
+		
     }
 	[Serializable]
 	public partial class UserGroup
@@ -1281,6 +1496,20 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region AppId
+		private string _AppId;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string AppId 
+		{ 
+			get { return _AppId; } 
+			set { _AppId = value; } 
+		
+		}
+		#endregion
+		
     }
 	[Serializable]
 	public partial class UserTag
@@ -1352,6 +1581,20 @@ namespace Site.WeiXin.DataAccess.Model
 		{ 
 			get { return _CreateTime; } 
 			set { _CreateTime = value; } 
+		
+		}
+		#endregion
+		
+		#region AppId
+		private string _AppId;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public string AppId 
+		{ 
+			get { return _AppId; } 
+			set { _AppId = value; } 
 		
 		}
 		#endregion

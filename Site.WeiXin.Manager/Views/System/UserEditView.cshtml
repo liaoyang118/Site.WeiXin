@@ -2,6 +2,7 @@
 @using Site.Untity;
 @{
     SystemUser obj = ViewBag.obj;
+    List<SelectListItem> selectList = ViewBag.selectList;
 }
 <div class="modal-dialog">
     <div class="modal-content">
@@ -26,9 +27,9 @@
                                     <form class="form-horizontal" enctype="multipart/form-data" id="forms_edit" action="/System/UserEdit" method="post">
                                         <!-- AppId -->
                                         <div class="form-group">
-                                            <label class="control-label col-lg-3" for="AppId">AppId</label>
+                                            <label class="control-label col-lg-3" for="AppId">所属公众号</label>
                                             <div class="col-lg-9">
-                                                <input type="text" name="AppId" class="form-control" id="AppId" value="@obj.AppId">
+                                                @Html.DropDownList("GongzhongAccountId", selectList, "--请选择--", new { id = "GongzhongAccountId", @class = "form-control" })
                                             </div>
                                         </div>
                                         <!-- 账户 -->
@@ -43,6 +44,16 @@
                                             <label class="control-label col-lg-3" for="Password">密码</label>
                                             <div class="col-lg-9">
                                                 <input type="text" name="Password" class="form-control" id="Password" value="">
+                                            </div>
+                                        </div>
+                                        <!-- 是否管理员 -->
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3" for="IsAdmin">管理员</label>
+                                            <div class="col-lg-9">
+                                                <div class="make-switch has-switch" id="toggle-state-switch">
+                                                    <input type="hidden" id="IsAdmin" name="IsAdmin" value="@obj.IsAdmin.ToInt32()" />
+                                                    <div id="btn_switch" class="switch-@(obj.IsAdmin.ToInt32()==1?"on":"off") switch-animate" style=""><input type="checkbox"><span class="switch-left switch-success">ON</span><label>&nbsp;</label><span class="switch-right switch-warning">OFF</span></div>
+                                                </div>
                                             </div>
                                         </div>
                                         
@@ -87,10 +98,10 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                AppId: {
+                GongzhongAccountId: {
                     validators: {
                         notEmpty: {
-                            message: 'AppId不能为空'
+                            message: '所属公众号不能为空'
                         }
                     }
                 },
@@ -110,6 +121,22 @@
                 }
             }
         });
+
+
+        $('#toggle-state-switch').click(function () {
+            var _check = $("#IsAdmin").val()
+            console.log(_check);
+            if (_check == 1) {
+                $("#btn_switch").removeClass("switch-on switch-animate").addClass("switch-off switch-animate");
+                $("#IsAdmin").val("false");
+            }
+            else {
+                $("#btn_switch").removeClass("switch-off switch-animate").addClass("switch-on switch-animate");
+                $("#IsAdmin").val("true");
+            }
+        });
+
+
 
     });
 
