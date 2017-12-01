@@ -11,7 +11,7 @@ using Site.WeiXin.Manager.Filder;
 
 namespace Site.WeiXin.Manager.Controllers
 {
-    
+
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -19,6 +19,7 @@ namespace Site.WeiXin.Manager.Controllers
             return View();
         }
 
+        #region 菜单
         [Permission]
         public ActionResult Menu()
         {
@@ -166,7 +167,9 @@ namespace Site.WeiXin.Manager.Controllers
 
 
         }
+        #endregion
 
+        #region 留言和关注
         [Permission]
         public ActionResult MessageList(string key, int? page)
         {
@@ -212,5 +215,67 @@ namespace Site.WeiXin.Manager.Controllers
             ViewBag.todayCount = todayCount;
             return PartialView();
         }
+        #endregion
+
+        #region 系统初始化
+
+        [HttpGet, AllowAnonymous]
+        public ActionResult Init()
+        {
+            return View();
+        }
+
+
+        [HttpPost, AllowAnonymous]
+        public ActionResult Init(string username, string pwd)
+        {
+            SystemUserSearchInfo search = new SystemUserSearchInfo
+            {
+                Account = username,
+                AccountState = (int)SiteEnum.AccountState.正常
+            };
+            IList<SystemUser> list = SystemUserService.Select(search.ToWhereString());
+            if (list.Count > 0)
+            {
+                ModelState.AddModelError("500", "系统中存在同名账号，请更换后在尝试");
+            }
+            else
+            {
+                list = SystemUserService.Select(" where IsSuperAdmin=1");
+                if (list.Count > 0)
+                {
+                    ModelState.AddModelError("403", "系统已激活，请直接登录");
+                }
+                else
+                {
+                    string md5Str = UntityTool.Md5_32(pwd);
+                    SystemUser uInfo = new SystemUser();
+                    uInfo.Account = username;
+                    uInfo.AccountState = (int)SiteEnum.AccountState.正常;
+                    uInfo.GongzhongAccountId = 0;
+                    uInfo.CreateTime = DateTime.Now;
+                    uInfo.CreateUserName = "";
+                    uInfo.IsAdmin = true;
+                    uInfo.IsSuperAdmin = true;
+                    uInfo.Password = md5Str;
+                    
+                    int result = SystemUserService.Insert(uInfo);
+                    int mresult = SystemUserService.InitSystemRootMenu();
+                    if (result > 0 && mresult > 0)
+                    {
+                        return RedirectToAction("index", "home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("400", "系统激活出错，请稍后再尝试");
+                    }
+                }
+            }
+
+
+            return View();
+        }
+
+        #endregion
     }
 }

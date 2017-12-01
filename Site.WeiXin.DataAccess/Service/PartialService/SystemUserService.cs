@@ -17,5 +17,14 @@ namespace Site.WeiXin.DataAccess.Service
                 return access.SelectPageExcuteSql(cloumns, order, whereStr, pageIndex, pageSize, out rowCount);
             }
         }
+
+        public static int InitSystemRootMenu()
+        {
+            using (var access = new SystemUserAccess())
+            {
+                return access.InitSystemRootMenu();
+            }
+        }
+
     }
 }

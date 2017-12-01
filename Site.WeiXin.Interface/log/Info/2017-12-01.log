@@ -1,0 +1,43 @@
+
+日志时间：2017-12-01 17:47:32,562 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+015a7dc59bae4e77c24ea6d46b1ef1ef0596751b,1512121649,948207013 
+
+日志时间：2017-12-01 17:47:32,586 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1512121649</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[car]]></EventKey>
+</xml> 
+
+日志时间：2017-12-01 17:47:32,941 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 
+
+日志时间：2017-12-01 17:47:34,817 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+fb893406e72a90e39e70a46577b4a6f94b322eaa,1512121654,1547002542 
+
+日志时间：2017-12-01 17:47:34,818 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1512121654</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://wbt.jsonyang.com]]></EventKey>
+<MenuId>444059558</MenuId>
+</xml> 
+
+日志时间：2017-12-01 17:47:34,894 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息: 

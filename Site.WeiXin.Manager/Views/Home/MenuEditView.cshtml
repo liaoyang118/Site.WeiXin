@@ -91,10 +91,17 @@
                         message: '层级编码不能为空'
                     }
                 }
+            },
+            value:{
+                validators: {
+                    notEmpty: {
+                        message: '值不能为空'
+                    }
+                }
             }
         };
 
-        if ('@parentId' != 1) {
+        @*if ('@parentId' != 1) {
             fields.value = {
                 validators: {
                     notEmpty: {
@@ -102,7 +109,7 @@
                     }
                 }
             };
-        }
+        }*@
 
         $('form').bootstrapValidator({
             message: 'This value is not valid',

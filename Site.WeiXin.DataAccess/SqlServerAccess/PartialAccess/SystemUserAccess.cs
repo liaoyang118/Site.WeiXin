@@ -59,5 +59,24 @@ namespace Site.WeiXin.DataAccess.Access
             }
         }
         #endregion
+
+        #region 初始化系统菜单根目录
+
+        public int InitSystemRootMenu()
+        {
+            DbCommand dbCmd = db.GetStoredProcCommand("Proc_System_Init");
+
+            try
+            {
+                int returnValue = db.ExecuteNonQuery(dbCmd);
+                return returnValue;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        #endregion
     }
 }

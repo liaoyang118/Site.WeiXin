@@ -626,6 +626,7 @@
     <Content Include="Views\GroupSend\GroupSendMaterialContent.cshtml" />
     <Content Include="Views\System\AppList.cshtml" />
     <Content Include="Views\System\AppEditView.cshtml" />
+    <Content Include="Views\Home\Init.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
