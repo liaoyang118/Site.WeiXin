@@ -11,11 +11,10 @@ using Site.WeiXin.Manager.Filder;
 
 namespace Site.WeiXin.Manager.Controllers
 {
-    [Permission]
+    [Permission(AllowSuperAdmin = true)]
     public class SystemController : Controller
     {
         #region 系统用户管理
-
         public ActionResult UserList(string key, int? page)
         {
             SystemUserSearchInfo search = new SystemUserSearchInfo();
@@ -25,13 +24,19 @@ namespace Site.WeiXin.Manager.Controllers
             int rowCount;
             int pageIndex = page == null ? 1 : page.Value;
 
-            string where = string.Empty;
-            if (!string.IsNullOrEmpty(key))
+            string where = "left join [GongzhongAccount] t2 on t1.GongzhongAccountId=t2.Id where t1.IsSuperAdmin=0 ";
+            if (!HttpContextUntity.CurrentUser.IsSuperAdmin)
             {
-                where = string.Format(" where t1.Account like '{0}' ", HttpUtility.UrlDecode(key));
+                where += " and t2.AppID='" + HttpContextUntity.CurrentUser.AppID + "'";
             }
 
-            IList<SystemUser> list = SystemUserService.SelectPageExcuteSql("t1.*,t2.AppID,t2.AppSecret,t2.Name", "t1.CreateTime DESC", "left join [GongzhongAccount] t2 on t1.GongzhongAccountId=t2.Id " + where, pageIndex, pageSize, out rowCount);
+            if (!string.IsNullOrEmpty(key))
+            {
+
+                where += string.Format(" and t1.Account like '{0}' ", HttpUtility.UrlDecode(key));
+            }
+
+            IList<SystemUser> list = SystemUserService.SelectPageExcuteSql("t1.*,t2.AppID,t2.AppSecret,t2.Name", "t1.CreateTime DESC", where, pageIndex, pageSize, out rowCount);
 
 
             ViewBag.list = list;
@@ -43,7 +48,6 @@ namespace Site.WeiXin.Manager.Controllers
 
             return View();
         }
-
         public ActionResult UserEditView(string id)
         {
             SystemUser obj = null;
@@ -58,8 +62,14 @@ namespace Site.WeiXin.Manager.Controllers
                 obj = new SystemUser();
             }
 
+            string where = string.Empty;
+            if (!HttpContextUntity.CurrentUser.IsSuperAdmin)
+            {
+                where = " where AppID='" + HttpContextUntity.CurrentUser.AppID + "'";
+            }
+
             //查询公众号
-            List<GongzhongAccount> list = GongzhongAccountService.Select("").ToList();
+            List<GongzhongAccount> list = GongzhongAccountService.Select(where).ToList();
             List<SelectListItem> selectList = list.Select(t =>
             {
                 return new SelectListItem()
@@ -76,7 +86,6 @@ namespace Site.WeiXin.Manager.Controllers
             ViewBag.selectList = selectList;
             return PartialView();
         }
-
         public ActionResult UserEdit(SystemUser obj)
         {
             int result = 0;
@@ -149,7 +158,6 @@ namespace Site.WeiXin.Manager.Controllers
                 }
             }
         }
-
         public ActionResult Delete(string id)
         {
             int result = 0;
@@ -167,7 +175,6 @@ namespace Site.WeiXin.Manager.Controllers
                 return Json(UntityTool.JsonResult(true, "删除失败"));
             }
         }
-
         public ActionResult CheckSystemUser(string id, string status)
         {
             int result = 0;
@@ -187,13 +194,11 @@ namespace Site.WeiXin.Manager.Controllers
                 return Json(UntityTool.JsonResult(true, "审核失败"));
             }
         }
-
         public ActionResult ResetPwdView(int id)
         {
             ViewBag.id = id;
             return PartialView();
         }
-
         public ActionResult ResetPwdEdit(int id, string pwd)
         {
             int result = 0;
@@ -218,18 +223,16 @@ namespace Site.WeiXin.Manager.Controllers
         #endregion
 
         #region 客服管理
-
         public ActionResult CustomerList()
         {
             ViewBag.title = "客服管理";
             ViewBag.words = "功能待开发";
-            return View("~/Views/Common/Test.cshtml");
-        } 
+            return View("~/Views/Common/Common.cshtml");
+        }
 
         #endregion
-        
-        #region 公众号管理
 
+        #region 公众号管理
 
         public ActionResult AppList(string key, int? page)
         {
@@ -252,6 +255,7 @@ namespace Site.WeiXin.Manager.Controllers
 
             return View();
         }
+
         public ActionResult AppEditView(string id)
         {
             GongzhongAccount obj = null;

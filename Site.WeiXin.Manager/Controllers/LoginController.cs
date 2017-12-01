@@ -43,10 +43,12 @@ namespace Site.WeiXin.Manager.Controllers
                     {
                         //保存用户app信息
                         GongzhongAccount gzInfo = GongzhongAccountService.SelectObject(uInfo.GongzhongAccountId);
-                        uInfo.AppID = gzInfo.AppID;
-                        uInfo.AppSecret = gzInfo.AppSecret;
-                        uInfo.Name = gzInfo.Name;
-
+                        if (gzInfo != null)
+                        {
+                            uInfo.AppID = gzInfo.AppID;
+                            uInfo.AppSecret = gzInfo.AppSecret;
+                            uInfo.Name = gzInfo.Name;
+                        }
                         HttpContextUntity.CurrentUser = uInfo;
                         string remenber = Request["remenber"] ?? string.Empty;
 
@@ -68,6 +70,10 @@ namespace Site.WeiXin.Manager.Controllers
                         //取值
                         //((System.Web.Security.FormsIdentity)this.Context.User.Identity).Ticket.UserData
                         #endregion
+                        if (uInfo.IsSuperAdmin)
+                        {
+                            return RedirectToAction("AppList", "System");
+                        }
                         return RedirectToAction("index", "home");
                     }
                     else

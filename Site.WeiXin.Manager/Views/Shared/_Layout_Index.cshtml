@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Site.Untity;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,7 +20,7 @@
 
     @RenderSection("css", false)
     @RenderSection("head", false)
-    
+
     @{
         string action = ViewContext.RouteData.Values["Action"].ToString().ToLower();
         string controllerName = ViewContext.RouteData.Values["controller"].ToString().ToLower();
@@ -121,9 +122,9 @@
 
                         <!-- Dropdown menu -->
                         <ul class="dropdown-menu">
-                            @*<li><a href="#"><i class="icon-user"></i> 资料</a></li>
-                            <li><a href="#"><i class="icon-cogs"></i> 设置</a></li>*@
-                            <li><a href="/Login/LoginOut"><i class="icon-off"></i> 退出</a></li>
+                            <li><a href="javascript:void(0);"><i class="icon-bullhorn"></i>@HttpContextUntity.CurrentUser.Name</a></li>
+                            <li><a href="javascript:void(0);"><i class="icon-star"></i>@(HttpContextUntity.CurrentUser.IsSuperAdmin ? "超级管理员" : (HttpContextUntity.CurrentUser.IsAdmin ? "管理员" : "普通用户"))</a></li>
+                            <li><a href="/Login/LoginOut"><i class="icon-off"></i>退出</a></li>
                         </ul>
                     </li>
 
@@ -187,32 +188,41 @@
             <!--- Sidebar navigation -->
             <!-- If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation. -->
             <ul id="nav">
-                <!-- Main menu with font awesome icon -->
-                <li>
-                    <a href="/"  class="@((controllerName == "home" && action == "index") ? "open" : "")"><i class="icon-home"></i> 首页</a>
-                </li>
-                <li><a href="/Home/Menu" class="@((controllerName == "home" && action == "menu") ? "open" : "")"><i class="icon-th-list"></i>菜单</a></li>
-                <li class="has_sub">
-                    <a href="#" class="@((controllerName == "fans") ? "subdrop" : "")"><i class="icon-heart"></i>粉丝管理<span class="pull-right"><i class="icon-chevron-right"></i></span></a>
-                    <ul style="display:@(controllerName=="fans"?"block":"none");">
-                        <li><a href="/Fans/UserList">关注用户</a></li>
-                        <li><a href="/Fans/UserMark">用户标签</a></li>
-                    </ul>
-                </li>
-                <li><a href="/Home/MessageList" class="@((controllerName == "home" && action == "messagelist") ? "open" : "")"><i class="icon-comments"></i>用户留言</a></li>
-                <li class="has_sub">
-                    <a href="#" class="@((controllerName == "content") ? "subdrop" : "")"><i class="icon-folder-open"></i>内容管理<span class="pull-right"><i class="icon-chevron-right"></i></span></a>
-                    <ul style="display:@(controllerName=="content"?"block":"none");">
-                        <li><a href="/Content/Index">文章管理</a></li>
-                        <li><a href="/Content/MaterialList">素材管理</a></li>
-                    </ul>
-                </li>
-                <li><a href="/Reply/KeyWordList" class="@((controllerName == "reply" && action == "keywordlist") ? "open" : "")"><i class="icon-tags"></i>回复管理</a></li>
-                
-                <li><a href="/System/UserList"  class="@((controllerName == "system" && action == "userlist") ? "open" : "")"><i class="icon-user"></i>系统用户</a></li>
-                <li><a href="/System/CustomerList" class="@((controllerName == "system" && action == "customerlist") ? "open" : "")"><i class="icon-headphones"></i>客服管理</a></li>
-                <li><a href="/GroupSend/Index" class="@((controllerName == "groupsend" && action == "index") ? "open" : "")"><i class="icon-volume-up"></i>群发管理</a></li>
-                <li><a href="/System/AppList" class="@((controllerName == "system" && action == "applist") ? "open" : "")"><i class="icon-wrench"></i>公众号管理</a></li>
+                @{
+                    if (HttpContextUntity.CurrentUser.IsSuperAdmin)
+                    {
+                        <li><a href="/System/AppList" class="@((controllerName == "system" && action == "applist") ? "open" : "")"><i class="icon-wrench"></i>公众号管理</a></li>
+                        <li><a href="/System/UserList" class="@((controllerName == "system" && action == "userlist") ? "open" : "")"><i class="icon-user"></i>系统用户</a></li>
+                    }
+                    else
+                    {
+                        <!-- Main menu with font awesome icon -->
+                        <li>
+                            <a href="/" class="@((controllerName == "home" && action == "index") ? "open" : "")"><i class="icon-home"></i> 首页</a>
+                        </li>
+                        <li><a href="/Home/Menu" class="@((controllerName == "home" && action == "menu") ? "open" : "")"><i class="icon-th-list"></i>菜单</a></li>
+                        <li class="has_sub">
+                            <a href="#" class="@((controllerName == "fans") ? "subdrop" : "")"><i class="icon-heart"></i>粉丝管理<span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+                            <ul style="display:@(controllerName=="fans"?"block":"none");">
+                                <li><a href="/Fans/UserList">关注用户</a></li>
+                                <li><a href="/Fans/UserMark">用户标签</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/Home/MessageList" class="@((controllerName == "home" && action == "messagelist") ? "open" : "")"><i class="icon-comments"></i>用户留言</a></li>
+                        <li class="has_sub">
+                            <a href="#" class="@((controllerName == "content") ? "subdrop" : "")"><i class="icon-folder-open"></i>内容管理<span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+                            <ul style="display:@(controllerName=="content"?"block":"none");">
+                                <li><a href="/Content/Index">文章管理</a></li>
+                                <li><a href="/Content/MaterialList">素材管理</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/Reply/KeyWordList" class="@((controllerName == "reply" && action == "keywordlist") ? "open" : "")"><i class="icon-tags"></i>回复管理</a></li>
+
+                        <li><a href="/System/UserList" class="@((controllerName == "system" && action == "userlist") ? "open" : "")"><i class="icon-user"></i>系统用户</a></li>
+                        <li><a href="/System/CustomerList" class="@((controllerName == "system" && action == "customerlist") ? "open" : "")"><i class="icon-headphones"></i>客服管理</a></li>
+                        <li><a href="/GroupSend/Index" class="@((controllerName == "groupsend" && action == "index") ? "open" : "")"><i class="icon-volume-up"></i>群发管理</a></li>
+                    }
+                }
             </ul>
         </div>
 

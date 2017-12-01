@@ -1131,6 +1131,20 @@ namespace Site.WeiXin.DataAccess.Model
 		}
 		#endregion
 		
+		#region IsSuperAdmin
+		private bool _IsSuperAdmin;
+       
+        /// <summary>
+        /// 
+        /// </summary>        
+        public bool IsSuperAdmin 
+		{ 
+			get { return _IsSuperAdmin; } 
+			set { _IsSuperAdmin = value; } 
+		
+		}
+		#endregion
+		
     }
 	[Serializable]
 	public partial class User

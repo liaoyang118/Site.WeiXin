@@ -11,7 +11,7 @@ using Site.WeiXin.Manager.Filder;
 
 namespace Site.WeiXin.Manager.Controllers
 {
-    [Authorize]
+    
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -167,6 +167,7 @@ namespace Site.WeiXin.Manager.Controllers
 
         }
 
+        [Permission]
         public ActionResult MessageList(string key, int? page)
         {
             int pageSize = 15;

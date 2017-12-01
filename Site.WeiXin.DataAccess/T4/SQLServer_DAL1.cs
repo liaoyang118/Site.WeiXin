@@ -2069,6 +2069,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@CreateUserName", DbType.String,obj.CreateUserName);
 			db.AddInParameter(dbCmd, "@AccountState", DbType.Int32,obj.AccountState);
 			db.AddInParameter(dbCmd, "@IsAdmin", DbType.Boolean,obj.IsAdmin);
+			db.AddInParameter(dbCmd, "@IsSuperAdmin", DbType.Boolean,obj.IsSuperAdmin);
 						try
 			{ 
 				int returnValue = db.ExecuteNonQuery(dbCmd);
@@ -2114,6 +2115,7 @@ namespace Site.WeiXin.DataAccess.Access
 			db.AddInParameter(dbCmd, "@CreateUserName", DbType.String,obj.CreateUserName);
 			db.AddInParameter(dbCmd, "@AccountState", DbType.Int32,obj.AccountState);
 			db.AddInParameter(dbCmd, "@IsAdmin", DbType.Boolean,obj.IsAdmin);
+			db.AddInParameter(dbCmd, "@IsSuperAdmin", DbType.Boolean,obj.IsSuperAdmin);
 			
 			try
 			{ 
@@ -2237,6 +2239,7 @@ namespace Site.WeiXin.DataAccess.Access
 				obj.CreateUserName = reader["CreateUserName"] == DBNull.Value ? default(string) : (string)reader["CreateUserName"];
 				obj.AccountState = reader["AccountState"] == DBNull.Value ? default(int) : (int)reader["AccountState"];
 				obj.IsAdmin = reader["IsAdmin"] == DBNull.Value ? default(bool) : (bool)reader["IsAdmin"];
+				obj.IsSuperAdmin = reader["IsSuperAdmin"] == DBNull.Value ? default(bool) : (bool)reader["IsSuperAdmin"];
 				
             }
             catch(Exception ex)

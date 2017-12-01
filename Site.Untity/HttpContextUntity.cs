@@ -41,9 +41,12 @@ namespace Site.Untity
                         if (sInfo != null)
                         {
                             GongzhongAccount gzInfo = GongzhongAccountService.SelectObject(sInfo.GongzhongAccountId);
-                            sInfo.AppID = gzInfo.AppID;
-                            sInfo.AppSecret = gzInfo.AppSecret;
-                            sInfo.Name = gzInfo.Name;
+                            if (gzInfo != null)
+                            {
+                                sInfo.AppID = gzInfo.AppID;
+                                sInfo.AppSecret = gzInfo.AppSecret;
+                                sInfo.Name = gzInfo.Name;
+                            }
                         }
                         return sInfo;
                     }

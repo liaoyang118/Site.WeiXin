@@ -12,12 +12,24 @@ namespace Site.WeiXin.Manager.Filder
     /// </summary>
     public class PermissionAttribute : AuthorizeAttribute
     {
+        /// <summary>
+        /// 超级管理员验证
+        /// </summary>
+        public bool AllowSuperAdmin { get; set; }
+
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            bool isAdmin = HttpContextUntity.CurrentUser.IsAdmin;
-            if (!isAdmin)
+            string httpMethod = filterContext.RequestContext.HttpContext.Request.HttpMethod.ToLower();
+
+            ViewDataDictionary dic = new ViewDataDictionary();
+            dic.Add(new KeyValuePair<string, object>("title", "无法访问"));
+            dic.Add(new KeyValuePair<string, object>("words", "该账号无此访问权限"));
+
+            //验证超级管理员
+
+            if (!HttpContextUntity.CurrentUser.IsAdmin)
             {
-                string httpMethod = filterContext.RequestContext.HttpContext.Request.HttpMethod.ToLower();
+
                 if (httpMethod == "post")
                 {
                     filterContext.Result = new JsonResult() { Data = UntityTool.JsonResult(false, "无此操作权限") };
@@ -26,10 +38,41 @@ namespace Site.WeiXin.Manager.Filder
                 else
                 {
                     //无权限访问
-                    filterContext.Result = new RedirectResult("/Common/NotPermission");
+                    filterContext.Result = new ViewResult()
+                    {
+                        ViewName = "~/Views/Common/Common.cshtml",
+                        ViewData = dic
+                    };
                     return;
                 }
             }
+            else
+            {
+                if (!AllowSuperAdmin)
+                {
+                    if (HttpContextUntity.CurrentUser.IsSuperAdmin)
+                    {
+                        if (httpMethod == "post")
+                        {
+                            filterContext.Result = new JsonResult() { Data = UntityTool.JsonResult(false, "无此操作权限") };
+                            return;
+                        }
+                        else
+                        {
+                            //无权限访问
+                            filterContext.Result = new ViewResult()
+                            {
+                                ViewName = "~/Views/Common/Common.cshtml",
+                                ViewData = dic
+                            };
+
+                            return;
+                        }
+                    }
+                }
+            }
+
+
         }
     }
 }

@@ -10,6 +10,9 @@ namespace Site.WeiXin.DataAccess.Model
     {
         public string AppID { get; set; }
         public string AppSecret { get; set; }
+        /// <summary>
+        /// 所属公众号名称
+        /// </summary>
         public string Name { get; set; }
     }
 }

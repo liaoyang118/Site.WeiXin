@@ -549,7 +549,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\FansController.cs" />
     <Compile Include="Controllers\GroupSendController.cs" />
@@ -599,7 +598,7 @@
     <Content Include="UEdit\third-party\video-js\font\vjs.eot" />
     <Content Include="UEdit\third-party\video-js\font\vjs.ttf" />
     <Content Include="UEdit\third-party\video-js\font\vjs.woff" />
-    <Content Include="Views\Common\Test.cshtml" />
+    <Content Include="Views\Common\Common.cshtml" />
     <Content Include="Views\Home\NearMessage.cshtml" />
     <Content Include="Scripts\jquery.form.min.js.map" />
     <Content Include="Views\Content\MaterialList.cshtml" />
