@@ -5,8 +5,9 @@ using System.Web;
 using System.IO;
 using System.Collections;
 using Newtonsoft.Json;
+using System.Web.SessionState;
 
-public class UEditorHandler : IHttpHandler
+public class UEditorHandler : IHttpHandler, IRequiresSessionState
 {
     public void ProcessRequest(HttpContext context)
     {

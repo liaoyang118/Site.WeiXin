@@ -4,7 +4,6 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\bin\Release\M
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
-E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\obj\Release\Site.WeiXin.DataAccess.csprojResolveAssemblyReference.cache
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\obj\Release\Site.WeiXin.DataAccess.csproj.CoreCompileInputs.cache
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\obj\Release\Site.WeiXin.DataAccess.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.DataAccess\obj\Release\Site.WeiXin.DataAccess.pdb

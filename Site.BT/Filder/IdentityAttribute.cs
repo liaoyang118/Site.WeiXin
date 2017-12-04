@@ -107,7 +107,7 @@ namespace Site.BT.Filder
                                 uInfo.openid = uObj.HeadImg;
                                 uInfo.privilege = null;
                                 uInfo.province = uObj.Province;
-                                uInfo.sex = uObj.Sex;
+                                uInfo.sex = uObj.Sex.Value;
                                 uInfo.unionid = uObj.Unionid;
                             }
                         }

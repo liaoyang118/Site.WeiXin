@@ -1,4 +1,3 @@
-E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Site.Untity.dll.config
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Site.Untity.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Site.Untity.pdb
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Newtonsoft.Json.dll
@@ -19,3 +18,19 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\obj\Release\Site.Untity.
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\obj\Release\Site.Untity.csproj.CoreCompileInputs.cache
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\obj\Release\Site.Untity.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\obj\Release\Site.Untity.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\CommonServiceLocator.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.Abstractions.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.Configuration.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.Container.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.Interception.Configuration.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.Interception.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.RegistrationByConvention.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.ServiceLocation.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\CommonServiceLocator.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.Abstractions.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.Configuration.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.Container.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.Interception.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.Interception.Configuration.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.RegistrationByConvention.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.Untity\bin\Release\Unity.ServiceLocation.pdb

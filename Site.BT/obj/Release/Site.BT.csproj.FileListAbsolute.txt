@@ -21,7 +21,6 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Microsoft.Practices.Ente
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Site.BT.DataAccess.pdb
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Site.Log.pdb
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Site.Untity.pdb
-E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Site.Untity.dll.config
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Site.WeiXin.DataAccess.pdb
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\System.Web.Razor.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\System.Web.Webpages.xml
@@ -43,3 +42,9 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\obj\Release\Site.BT.csprojRe
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\obj\Release\Site.BT.csproj.CoreCompileInputs.cache
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\obj\Release\Site.BT.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\obj\Release\Site.BT.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Unity.Abstractions.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Unity.Configuration.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Unity.Container.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Unity.Abstractions.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Unity.Configuration.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.BT\bin\Unity.Container.pdb

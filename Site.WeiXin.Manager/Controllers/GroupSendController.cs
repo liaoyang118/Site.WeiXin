@@ -69,6 +69,7 @@ namespace Site.WeiXin.Manager.Controllers
             info.SendName = name;
             info.SendType = channel;
             info.AppId = HttpContextUntity.CurrentUser.AppID;
+            info.TagId = string.Empty;
 
             string contentBody = string.Empty;
             string groupFormat = string.Empty;
@@ -79,7 +80,7 @@ namespace Site.WeiXin.Manager.Controllers
             }
             else if (channel == "tag")
             {
-                groupFormat = string.Format(WeiXinCommon.TagIdGroupFormat, IsToAll.ToString(), selectIds);
+                groupFormat = string.Format(WeiXinCommon.TagIdGroupFormat, IsToAll.ToString().ToLower(), selectIds);
                 info.TagId = selectIds;
             }
 
@@ -113,7 +114,7 @@ namespace Site.WeiXin.Manager.Controllers
             if (isSuccess)
             {
 
-                info.Media_Id = mInfo.Media_id;
+                info.Media_Id = mInfo == null ? string.Empty : mInfo.Media_id;
                 info.Msg_data_id = msg_data_id;
                 info.Msg_id = msg_id;
                 info.SendStatu = (int)SiteEnum.GroupSendState.成功;

@@ -19,7 +19,6 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Microsoft.
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Site.Log.pdb
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Site.Untity.pdb
-E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Site.Untity.dll.config
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Site.WeiXin.DataAccess.pdb
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\System.Web.Razor.xml
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\System.Web.Webpages.xml
@@ -41,3 +40,9 @@ E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\obj\Release\Si
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\obj\Release\Site.WeiXin.Interface.csproj.CoreCompileInputs.cache
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\obj\Release\Site.WeiXin.Interface.dll
 E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\obj\Release\Site.WeiXin.Interface.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Abstractions.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Configuration.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Container.dll
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Abstractions.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Configuration.pdb
+E:\yang.liao\个人项目文件\Site.WeiXin\Site.WeiXin.Interface\bin\Unity.Container.pdb

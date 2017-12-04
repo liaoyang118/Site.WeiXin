@@ -172,7 +172,7 @@ namespace Site.Untity
         {
             get
             {
-                return "{{{0},\"mpnews\":{{\"media_id\":\"{1}\"}},\"msgtype\":\"mpnews\"，\"send_ignore_reprint\":0,\"clientmsgid\":\"{2}\"}}";
+                return "{{{0},\"mpnews\":{{\"media_id\":\"{1}\"}},\"msgtype\":\"mpnews\",\"send_ignore_reprint\":0,\"clientmsgid\":\"{2}\"}}";
             }
         }
 
@@ -1583,6 +1583,8 @@ namespace Site.Untity
             msg_data_id = string.Empty;
             try
             {
+                LogHelp.Info("群发消息格式:" + body);
+
                 string access_token;
                 bool isSuccess = GetAccessToken(appId, appSecret, out access_token);
                 if (isSuccess)

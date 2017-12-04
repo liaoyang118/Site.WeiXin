@@ -202,6 +202,7 @@
                                     <th class="hidden-xs">AppSecret</th>
                                     <th class="hidden-xs">所属公众号</th>
                                     <th>账户</th>
+                                    <th>管理员</th>
                                     <th style="width:130px;">创建时间</th>
                                     <th class="hidden-xs" style="width:100px;">创建人</th>
                                     <th style="width:60px;">状态</th>
@@ -221,6 +222,18 @@
                                                 <td class="hidden-xs">@item.AppSecret</td>
                                                 <td class="hidden-xs">@item.Name</td>
                                                 <td>@item.Account</td>
+                                                <td>
+                                                    @{
+                                                        if (item.IsAdmin)
+                                                        {
+                                                            <span class="label label-success">是</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="label label-warning">否</span>
+                                                        }
+                                                    }
+                                                </td>
                                                 <td>@item.CreateTime</td>
                                                 <td class="hidden-xs">@item.CreateUserName</td>
                                                 <td>

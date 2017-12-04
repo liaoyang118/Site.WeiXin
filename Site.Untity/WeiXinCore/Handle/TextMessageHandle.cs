@@ -40,7 +40,7 @@ namespace Site.Untity.WeiXinCore.Handle
                 }
 
                 //优先处理关键字，如没有关键字则回复默认信息
-                IList<KeyWordsReply> list = KeyWordsReplyService.Select(string.Format(" where KeyWords like N'%{0}%' and Statu={1} order by CreateTime", xmlObj.Content, (int)SiteEnum.ArticleState.通过));
+                IList<KeyWordsReply> list = KeyWordsReplyService.Select(string.Format(" where KeyWords like N'%{0}%' and Statu={1} and AppId='{2}' order by CreateTime", xmlObj.Content, (int)SiteEnum.ArticleState.通过, info.AppId));
                 if (list.Count > 0)
                 {
                     KeyWordsReply kInfo = list.FirstOrDefault();
@@ -49,7 +49,7 @@ namespace Site.Untity.WeiXinCore.Handle
                 else
                 {
                     //优先执行默认回复，如没有则不处理
-                    list = KeyWordsReplyService.Select(string.Format(" where KeyWords like N'%{0}%' and Statu={1} order by CreateTime", "默认", (int)SiteEnum.ArticleState.通过));
+                    list = KeyWordsReplyService.Select(string.Format(" where KeyWords like N'%{0}%' and Statu={1} and AppId='{2}' order by CreateTime", "默认", (int)SiteEnum.ArticleState.通过, info.AppId));
                     if (list.Count > 0)
                     {
                         KeyWordsReply kInfo = list.FirstOrDefault();
