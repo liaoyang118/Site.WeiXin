@@ -1,0 +1,52 @@
+
+日志时间：2017-12-04 10:48:47,078 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+83607739739939f8d197f767bec02cd3c9a88337,1512355719,241938272 
+
+日志时间：2017-12-04 10:48:47,078 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+83607739739939f8d197f767bec02cd3c9a88337,1512355719,241938272 
+
+日志时间：2017-12-04 10:48:47,144 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1512355719</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[哈哈哈]]></Content>
+<MsgId>6495518353467649633</MsgId>
+</xml> 
+
+日志时间：2017-12-04 10:48:47,144 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+接收消息:<xml><ToUserName><![CDATA[gh_b26d4dbcc910]]></ToUserName>
+<FromUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></FromUserName>
+<CreateTime>1512355719</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[哈哈哈]]></Content>
+<MsgId>6495518353467649633</MsgId>
+</xml> 
+
+日志时间：2017-12-04 10:48:47,669 [8] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636479813276693016</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[哈哈，<a href="http://www.baidu.com">点我吧</a>]]></Content></xml> 
+
+日志时间：2017-12-04 10:48:47,669 [10] 
+日志级别：INFO  
+日 志 类：info [(null)] 
+返回消息:<xml>
+                        <ToUserName><![CDATA[o0YXKt_EJTmDd7Xx3cxZGyGAU5hI]]></ToUserName>
+                        <FromUserName><![CDATA[gh_b26d4dbcc910]]></FromUserName>
+                        <CreateTime>636479813276693016</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA[哈哈，<a href="http://www.baidu.com">点我吧</a>]]></Content></xml> 

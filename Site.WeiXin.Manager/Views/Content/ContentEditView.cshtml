@@ -194,7 +194,6 @@
         var valiForm = $('#forms_edit').data('bootstrapValidator');
         valiForm.validate();
         if (valiForm.isValid()) {
-            $.ShowLoading("提交中...");
             //验证通过
             var _content = ue.getContent();
             if (_content.length <= 0) {
@@ -202,6 +201,14 @@
                 return false;
             }
 
+            if ($('#txt_filename').val().length <= 0) {
+                $.WarningInfo("回复封面不能为空");
+                return false;
+            }
+
+
+
+            $.ShowLoading("提交中...");
             //jquery.form 插件
             $("#forms_edit").ajaxSubmit({
                 //定义返回JSON数据，还包括xml和script格式,必须指定表单的action和method

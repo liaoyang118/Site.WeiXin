@@ -170,7 +170,10 @@
             <div class="col-md-12">
                 <div class="widget">
                     <div class="alert alert-warning" style="margin-bottom:0px;">
-                        <h5>1.设置关键字回复，关键字之间用空格隔开。</h5>
+                        @{
+                            string demo = "<a href=\"http://www.baidu.com\">点我吧</a>";
+                        }
+                        <h5>1.设置关键字回复，关键字之间用空格隔开，文本里面可以设置超链接（如：@demo）。</h5>
                         <h5 style="color:red;">2.如要设置默认回复，请添加关键字为 “默认” 的回复，多条以最新一条为准。</h5>
                         <h5 style="color:red;">3.如要设置关注回复，请添加关键字为 “关注” 的回复，多条以最新一条为准。</h5>
                     </div>
@@ -217,7 +220,7 @@
                                                 <td>@item.KeyWords</td>
                                                 <td class="hidden-xs">@item.Intro</td>
                                                 <td style="text-align:center;">
-                                                    @{ 
+                                                    @{
                                                         string type = string.Empty;
                                                         switch (item.ReplyType)
                                                         {
@@ -267,13 +270,13 @@
                                                     <button class="btn btn-xs btn-danger" onclick="btn_delete('@item.Id')"><i class="icon-remove"></i></button>
                                                 </td>
                                             </tr>
-                                            num++;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <tr><td colspan="9">暂无任何数据</td></tr>
-                                    }
+                                                                num++;
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr><td colspan="9">暂无任何数据</td></tr>
+                                                        }
                                 }
                             </tbody>
                         </table>

@@ -27,13 +27,17 @@ namespace Site.Untity.WeiXinCore.Handle
                 info.MsgId = xmlObj.MsgId;
                 info.OpenID = xmlObj.FromUserName;
 
-                GongzhongAccount gzInfo = GongzhongAccountService.Select(string.Format("where AppAccount='{0}'",xmlObj.ToUserName)).FirstOrDefault();
+                GongzhongAccount gzInfo = GongzhongAccountService.Select(string.Format("where AppAccount='{0}'", xmlObj.ToUserName)).FirstOrDefault();
                 if (gzInfo != null)
                 {
                     info.AppId = gzInfo.AppID;
                 }
-
-                UserMessageService.Insert(info);
+                //判断是否是重试消息
+                UserMessage mInfo = UserMessageService.Select(string.Format(" where MsgId='{0}'", info.MsgId)).FirstOrDefault();
+                if (mInfo == null)
+                {
+                    UserMessageService.Insert(info);
+                }
 
                 //优先处理关键字，如没有关键字则回复默认信息
                 IList<KeyWordsReply> list = KeyWordsReplyService.Select(string.Format(" where KeyWords like N'%{0}%' and Statu={1} order by CreateTime", xmlObj.Content, (int)SiteEnum.ArticleState.通过));

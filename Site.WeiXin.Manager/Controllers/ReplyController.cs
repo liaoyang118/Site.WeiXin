@@ -57,6 +57,7 @@ namespace Site.WeiXin.Manager.Controllers
             return PartialView();
         }
 
+        [ValidateInput(false)]
         public ActionResult ReplyEdit(int id)
         {
             string type = Request["ReplyType"] ?? string.Empty;
