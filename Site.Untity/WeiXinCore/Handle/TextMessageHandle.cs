@@ -59,7 +59,7 @@ namespace Site.Untity.WeiXinCore.Handle
                     {
                         return WeiXinCommon.Success;
                     }
-                }
+                } 
 
             }
             catch (Exception ex)
